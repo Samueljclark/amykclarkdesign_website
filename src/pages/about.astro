@@ -34,17 +34,19 @@ import kelseePortrait from '../assets/images/team/kelsee-etmans.jpg';
 const studio = [
   {
     image: amyPortrait,
-    alt: 'Amy Clark, founder of Amy K Clark Design',
+    alt: 'Amy Clark, founder of Amy K Clark Design, in a navy dress against a white-painted brick wall',
     name: 'Amy Clark',
     role: 'Founder',
     blurDataURL:
-      'data:image/webp;base64,UklGRvAAAABXRUJQVlA4IOQAAADQBQCdASoYABcAPwF2slOrJyQiqAgBYCAJaAC0/QgKoD3VjNZc6bjJeEfAQBlIWS+qsz2KNFAAAP7r/0UVZjXaH15b16gIYofAvr02/Y6fq4Os8LjnaAGzW+UHHXj/IK1ZqOqqHjkag4Z5GW/tEdkQgycskwBorlDtUHjSe0utGRLkZ7vUs8TsVo3hQGYev00yr3bVL2ErI/jdv2eCWvrZ5gK/+wlFJxZGscyP7BQ0dnPuhaYEbPSogsk3r81HM6cGqY2PgWjYoCSaVlmDKpFQk3raZnU7TuDUx79ZmQ5nlXD7gAA=',
+      'data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZQDImYvq26U2FB3I/Bd+AAD+7UhLLgKV84pGZXTkhAd/SQPQtyVj1Aas1OMeYp4N8s/12mgNRDs9nQLR4/EtxCbS9ijwP0CRXcutExgAAA==',
   },
   {
     image: samPortrait,
     alt: 'Sam Clark, web development and digital strategy',
     name: 'Sam Clark',
     role: 'Web Development & Digital Strategy',
+    // The only portrait that still needs a lifted crop — see the style block.
+    lift: true,
     blurDataURL:
       'data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADQBACdASoYAB4APwFqrU8rJiQiMAgBYCAJbACxHyGBlqVK7OZmAQYYc9pSMHaUAAD+zXxNENZ7PTGw6BXWhP3ISh6Sc+CivpasODVB5wfj+9w3pdDk5dlsVhWpamyDJvS1Q9FlRbFHkJQW1pdJx2Bu8g0HEJJpD8HKl5ZMBe93XZJLp0YhaMTxSHWnYfI3MGsZUFEZmi5Vd/+uEihbuAo6/EjYv2qJMgOKT4gA',
   },
@@ -144,7 +146,7 @@ const studio = [
     <ul class="studio__list">
       {studio.map((person) => (
         <li class="studio__item">
-          <figure class="studio__figure">
+          <figure class:list={['studio__figure', { 'studio__figure--lift': person.lift }]}>
             <RevealImage
               src={person.image}
               alt={person.alt}
@@ -190,16 +192,23 @@ const studio = [
     }
   }
 
-  /* 1:1, not the 4:5 the rest of the site's images use, and that is an asset
-     constraint rather than a design preference. Two of the three headshots
-     (Amy's and Kelsee's) are circle-cropped avatars on a near-black square
-     ground, roughly 400px — a 4:5 crop slices the top and bottom off both
-     circles. Square keeps them intact. The lifted object-position is for the
-     third: Sam's is a real 888x1120 portrait, and a centred square crop
-     shaves the top of his head. Revert both of these to a 4:5 portrait crop
-     the moment real rectangular headshots arrive (IMAGE-MANIFEST.md asset
-     request 2). */
-  .studio__figure :global(.reveal-image__img) {
+  /* 1:1, not the 4:5 the rest of the site's images use. Still an asset
+     constraint rather than a design preference, but a smaller one than it
+     was: **Amy's real headshot landed 2026-07-27** (1941x1300, shot against
+     white brick), replacing the ~400px circle-cropped avatar that was half
+     the original reason for the square. Kelsee's is still that kind of
+     avatar, and a 4:5 crop would slice her circle, so the row stays square
+     until asset request 2 lands.
+
+     The lifted object-position used to apply to all three figures. It only
+     ever did real work on one: Sam's 888x1120 portrait, where a centred
+     square crop shaves the top of his head. On the two near-square avatars
+     there was almost no vertical overflow for it to act on, and on Amy's new
+     landscape frame there is none at all — `cover` fills the square's height
+     exactly, so the Y term is a no-op and a centred crop already lands her
+     face well. Scoped to Sam alone rather than left blanket-applied.
+     Revert the row to 4:5 the moment Kelsee's real headshot arrives. */
+  .studio__figure--lift :global(.reveal-image__img) {
     object-position: 50% 15%;
   }
 

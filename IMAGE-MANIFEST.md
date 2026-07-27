@@ -23,7 +23,7 @@ exists so it doesn't need repeating each time.
 
 | Slot | File | Source original | Size | Notes |
 |---|---|---|---|---|
-| team/ Amy | `team/amy-clark.jpg` | amyheadshot.png | 426x408 | **Quality flag:** circle-cropped avatar on dark ground, ~400px. Fine as stand-in; request the original rectangular photo for the Studio row. |
+| team/ Amy | `team/amy-clark.jpg` | Amyheadshot.JPG | 1600x1072 | **Replaced 2026-07-27 and no longer a quality flag.** Real professional headshot — Amy in a navy dress against a white-painted brick wall, natural light, 1941x1300 original. Supersedes the 426x408 circle-cropped avatar previously in this slot. |
 | team/ Sam | `team/sam-clark.jpg` | samheadshot.jpg | 888x1120 | Formal portrait, good quality. Blue studio backdrop sits oddly against `--paper`; consider a candid to match the other two later. |
 | team/ Kelsee | `team/kelsee-etmans.jpg` | Kelseeheadshot.png | 399x384 | Same flag as Amy's: circle-cropped avatar, ~400px. Request original. |
 | about/ workroom | `about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg` | processpicture.png | 1144x1548 | Real workroom photo: hands stitching a check-fabric ottoman on the gridded cutting table. Strong for About (invention framing) and Process. |
@@ -173,10 +173,39 @@ still carry the overwhelming majority of image slots across the site — the
 count grew this session rather than shrank, because the hover stage and two
 location pages all draw on them. Asset request 1 has not got any less urgent.
 
+## 2026-07-27: Amy's real headshot replaced the avatar
+
+Sam replaced `source-photos/Amyheadshot.JPG` in place — same filename as the
+old avatar (macOS is case-insensitive, so the earlier `.png` was overwritten by
+a `.JPG`), which is why it does not look new in a directory listing. **Check
+file dimensions, not filenames, when a photo is said to be new.** The old asset
+was 426x408; the new original is 1941x1300.
+
+Processed the same way as every other real photo: resized to 1600x1072, written
+to both `public/images/team/` and `src/assets/images/team/` as `amy-clark.jpg`,
+new ~180-byte blur-up generated with the standing `sharp` one-liner, and alt
+text rewritten from the generic "Amy Clark, founder of Amy K Clark Design" to
+describe what is actually in the frame.
+
+**The Studio row's square-crop workaround is now half-obsolete, and was scoped
+down rather than removed.** It existed for two reasons: two circle-cropped
+avatars that a 4:5 crop would slice, and a lifted `object-position` so a centred
+square crop would not shave the top of Sam's head. Amy's half of the first
+reason is gone. **Kelsee's is not** — hers is still a ~400px circle avatar on a
+dark ground, so the row stays 1:1 until asset request 2 lands. The
+`object-position: 50% 15%` was applied to all three figures and only ever did
+real work on Sam's; it is now scoped to his figure alone. Full reasoning in
+`about.astro`'s style block.
+
+**The row is now two real photographs and one avatar**, against three
+mismatched treatments before. Still not uniform — Amy's white brick and Sam's
+blue studio backdrop are different worlds — but the weakest asset is now
+clearly the remaining one.
+
 ## Asset requests, in priority order
 
 1. Kelsee's edited project photography (fills hero/ and portfolio/, the two blocking slots).
-2. Original rectangular headshots for Amy and Kelsee.
+2. **A real rectangular headshot for Kelsee.** Amy's landed 2026-07-27; Kelsee's is the last circle-crop avatar in the Studio row and the only thing still forcing the 1:1 crop.
 3. An early photograph of Amy for the origin section.
 4. **Proper photographs of the pillows on `/signature-pieces`**, and of any
    other finished pieces worth showing there. The two live now are honest and

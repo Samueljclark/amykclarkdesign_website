@@ -662,6 +662,43 @@ on an `<ol>` that carries the ordering semantically.
   cannot fix that. Confirmed in-browser — the layout is correct, the source
   material is the problem.
 
+## 2026-07-27: Amy's real Studio headshot, and a hack removed because the asset improved
+
+`source-photos/Amyheadshot.JPG` is a real professional headshot (1941x1300, white
+brick wall, natural light), replacing the 426x408 circle-cropped avatar that had
+been standing in since step 5. Processed to 1600x1072, new blur-up, alt text
+rewritten to describe the actual frame. Details in IMAGE-MANIFEST.md.
+
+**Worth remembering: the file did not look new.** Sam replaced it in place and
+macOS is case-insensitive, so the old `amyheadshot.png` was overwritten by a
+`.JPG` carrying the same modification date as other week-old files. A directory
+listing showed nothing unusual and the first scan for "a new photo" missed it
+entirely. **Check dimensions, not filenames or timestamps.**
+
+**The square-crop workaround was scoped down, not removed, and the reason is the
+asset — not a change of rule.** Step 5 introduced two related hacks: a 1:1 crop
+(because a 4:5 crop sliced the circle avatars) and `object-position: 50% 15%`
+applied to all three figures (because a centred square crop shaves the top of
+Sam's head). With Amy's real photo in place:
+
+- **The lifted `object-position` is now scoped to Sam's figure alone**, via a
+  per-person `lift` flag rather than a blanket rule on `.studio__figure`. It only
+  ever did real work on his 888x1120 portrait — the two near-square avatars had
+  almost no vertical overflow for it to act on, and Amy's new landscape frame has
+  none at all, since `cover` fills the square's height exactly and the Y term is a
+  no-op. Verified in a real browser: Sam computes `50% 15%`, Amy and Kelsee
+  compute `50% 50%`.
+- **The 1:1 crop stays**, because Kelsee's headshot is still a ~400px circle
+  avatar and 4:5 would slice it. Half the original justification is gone; the
+  other half is not.
+
+So this is a hack removed because the underlying asset got better, and a hack
+retained because the remaining asset has not. Revert the row to 4:5 the moment
+Kelsee's real headshot arrives (IMAGE-MANIFEST.md asset request 2).
+
+Verified at 1345px and 375px: Amy's crop lands her full head and shoulders with
+no clipping, all three frames render square, zero horizontal overflow at 375.
+
 ## Step 6: Journal + Contact — done, pending your review
 
 Built: `src/content/journal/` (three posts), `src/pages/journal/index.astro`,
