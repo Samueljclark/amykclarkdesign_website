@@ -44,3 +44,10 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
   committing it. Small, frequent commits are better than one giant one —
   commit after each real unit of work, not just at the very end of a
   long session.
+- **Commit straight to `main`, and push. No feature branches, no pull
+  requests.** This is a solo repo with no collaborators and no review
+  process, so a branch-and-PR round trip only delays the work and leaves
+  changes sitting unmerged. Do not ask which branch to use — it is always
+  `main`. The single exception is Sam explicitly asking for a branch or a
+  PR in so many words; otherwise `git commit` on `main` then
+  `git push` is the whole workflow.
