@@ -67,7 +67,16 @@ import { projects } from '../../data/projects';
   .portfolio-index__list {
     display: grid;
     gap: 3rem 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    /* The track max is 32rem, not `1fr`, and that matters. With `auto-fit`,
+       a `1fr` max is a trap on a single item: auto-fit collapses the empty
+       tracks to 0 and the one surviving track absorbs the entire row. At
+       1345px that rendered a 1249x1561 image — taller than the viewport, and
+       on a short laptop screen roughly two screens tall. Capping the max
+       lets one item render at a sane size while three or more still fill the
+       row exactly as before. The bug only appears while a collection holds a
+       single item, which is the state the portfolio and this gallery are
+       actually in today. */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 32rem));
   }
 
   .portfolio-index__link {

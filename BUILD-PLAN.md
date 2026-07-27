@@ -1421,3 +1421,43 @@ are interpretation calls with their own sections above.
     the identical defect), so list-based navigation — the nav, the footer,
     ServiceList — keeps the clean hover-only treatment the brief describes.
 
+## 2026-07-27: the oversized portfolio image — root cause was the grid, not the image
+
+Reported as "the lead image on the Portfolio detail page renders roughly two
+screen-widths tall." **It was not the lead image**, and checking before fixing
+mattered here.
+
+Measured at 1345px:
+- **Lead image: 1345x757, ratio 1.78.** Exactly the `aspectRatio="16/9"`
+  `ProjectGallery` asks for. Correct, and correct all along.
+- **Supporting image: 1249x1561** — taller than the 1324px viewport, and on a
+  short laptop screen genuinely about two screens tall. That is the one that
+  looks wrong.
+
+**Root cause: `grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem),
+1fr))` with a single grid item.** Computed value was literally
+`1249px 0px 0px` — `auto-fit` collapsed the two empty tracks to zero and the one
+surviving track took the whole row, because its max is `1fr`. A 4:5 aspect on a
+1249px-wide track is 1561px tall.
+
+**A different mechanism from the two earlier height bugs, and worth
+distinguishing.** The hero's ~58% bug was `<picture>` inheriting `height: auto`
+from the image reset; the reveal's overflow bug was `scale(1.04)` contributing
+to scrollable overflow. This one is grid track sizing, and unlike either of
+those it is **content-count dependent** — it only appears while a collection
+holds exactly one item, which is precisely the state the portfolio and this
+gallery are in today. With three or more items the grid always looked right,
+which is why it survived the step 8 acceptance pass: every render check measured
+overflow and off-canvas elements, and a too-tall in-flow image is neither.
+
+**Fixed at the root** by capping the track max at `32rem` instead of `1fr`, in
+all four places the pattern appears — `PortfolioStrip`, `ProjectGallery`,
+`journal/index`, `portfolio/index`. Three of the four had the same latent bug
+waiting for the same conditions; only two were showing it.
+
+Verified after the fix: supporting image 512x640 at 1345px and 1440px,
+portfolio index card the same, lead unchanged at 16:9 full-bleed, zero
+horizontal overflow. At 375px nothing changed — lead 375x211, supporting
+335x419, single column — because the pathology needed a wide viewport and mobile
+was never affected.
+
