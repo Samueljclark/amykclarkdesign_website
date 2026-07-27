@@ -42,6 +42,35 @@ const rotatingQuotes = [
              another attention-to-detail line.`,
   },
   {
+    quote: 'Even though I was satisfied, she felt it needed a bit more cushioning.',
+    attribution: 'Heather L.',
+    note: `Same holding pattern and same source as the others: a PUBLIC review,
+             not written permission (BUILD-PLAN.md decision 4).
+             Cut from a long two-project review. This sentence was chosen over
+             the more quotable "Amy is creative, detail-oriented, and truly
+             cares about her craft," which is the kind of generic praise the
+             selection rule for this section rejects. The fragment kept is the
+             only line in the set where the client says the work was already
+             good enough for her and Amy redid it anyway — that is a claim
+             about standards that no adjective can make. Verbatim.`,
+  },
+  {
+    // A literal ellipsis character, NOT `&hellip;`. Diane K.'s quote is an
+    // entity because it is written as an HTML attribute in the template, where
+    // Astro decodes it; these are plain JS strings passed through an
+    // expression, so an entity would render as the literal text "&hellip;".
+    quote: '…designed and installed her gorgeous work.',
+    attribution: 'Jenny H.',
+    note: `Same holding pattern and same source (BUILD-PLAN.md decision 4).
+             Verbatim tail of one sentence, elided at the front the same way
+             Diane K.'s is. Chosen over "Her attention to detail is unmatched,"
+             which is generic, and over the fabric-options clause, which is
+             about the consultation rather than the craft. "Designed and
+             installed" is a client independently describing the exact
+             design-fabricate-install combination DESIGN_BRIEF section 1 calls
+             Amy's actual differentiator, which is worth more than praise.`,
+  },
+  {
     quote: 'The design is beautiful and color came out perfect.',
     attribution: 'Lisa C.',
     note: `Same holding pattern and same source: a PUBLIC Google review, not

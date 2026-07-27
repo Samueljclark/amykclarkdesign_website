@@ -133,30 +133,30 @@ add.
 - **Whether to expand beyond the single restrained accent color, or keep photography
   as the only source of color.** Tracked as decision 10 in BUILD-PLAN.md — see that
   entry for the reasoning already on file rather than repeating it here.
-- **Written permission for every testimonial now on the site.** No longer two
-  quotes — Home shows two at a time and the second slot **rotates**, so the
-  permission question now covers a set. None of these is published with
-  permission yet, and all of them are on the same holding pattern.
-  - **"…made my house into a home." — Diane K.** Fixed top slot, never
-    rotates. Attribution format approved by Amy 2026-07-25; permission to
-    publish the quote itself was logged as separately pending then and still
-    is.
-  - **"She even matches complicated designs on the seams." — Kelly G.** In the
+- **Written permission for every testimonial now on the site.** Home shows two
+  at a time: a fixed top slot and a second slot that **rotates through four**.
+  Five real quotes are live in total, and **none is published with permission
+  yet.** All are on the same holding pattern, and all but Diane's were cut from
+  Amy's public Google Business profile — **a public review is not permission to
+  feature it on her own website.**
+  - **"…made my house into a home." — Diane K.** Fixed top slot, never rotates.
+    Attribution format approved by Amy 2026-07-25; permission to publish the
+    quote itself was logged as separately pending then and still is.
+  - **"She even matches complicated designs on the seams." — Kelly G.** In
     rotation, and the quote shown at page load and under reduced motion.
-  - **"The design is beautiful and color came out perfect." — Lisa C.** In the
-    rotation. Trimmed from a longer review and **the pink heart emoji was
-    removed** (DESIGN_BRIEF 3.2 bans emoji outright); otherwise verbatim,
-    including "color came out perfect" rather than "the color."
-  - **Kelly G.'s and Lisa C.'s both came off Amy's public Google Business
-    profile, and a public review is not permission to feature it on her own
-    website.** Amy needs written permission from Diane, Kelly, and Lisa before
-    launch.
-- **Heather L. and Jenny H. — their actual words are missing.** Both are named
-  in BUILD-PLAN decision 4 as real review candidates, but **the text of their
-  reviews does not exist anywhere in this project**, only their names. They
-  were deliberately left out of the rotation rather than paraphrased, because
-  inventing words and attributing them to a named real customer is not a
-  drafting shortcut, it is a fabricated endorsement. **Paste the actual
-  wording** (a screenshot of each review is enough) and each becomes a
-  one-entry addition to `rotatingQuotes` in `src/pages/index.astro`.
-  kimmybbarn's review stays excluded — no project detail, weakest of the set.
+  - **"Even though I was satisfied, she felt it needed a bit more cushioning."
+    — Heather L.** In rotation. Verbatim, cut from a long two-project review.
+  - **"…designed and installed her gorgeous work." — Jenny H.** In rotation.
+    Verbatim tail of one sentence, elided at the front like Diane's.
+  - **"The design is beautiful and color came out perfect." — Lisa C.** In
+    rotation. Trimmed from a longer review and **the pink heart emoji removed**
+    (DESIGN_BRIEF 3.2 bans emoji); otherwise verbatim, including "color came
+    out perfect" rather than "the color."
+
+  **Amy needs written permission from Diane, Kelly, Heather, Jenny, and Lisa
+  before launch.** If any says no, that quote is one line to delete and the
+  rotation simply carries the rest.
+- **kimmybbarn's review is on file but deliberately unused**, and this is the
+  one judgement call worth confirming: it carries no project detail, which is
+  the standard every other quote here was selected against. Full text is in
+  `SITE-COPY-EXPORT.md` if Amy would rather it were used.
