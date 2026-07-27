@@ -1,0 +1,34 @@
+---
+// Home section 5 (DESIGN_BRIEF.md 5.1): "Two quotes maximum, Newsreader
+// light, large, attributed by first name and last initial only. No stars,
+// no cards, no avatars." Left-aligned per 3.4's body-copy rule, applied here
+// too rather than centering the quote as testimonial sections conventionally
+// do.
+
+interface Props {
+  quote: string;
+  attribution: string;
+}
+
+const { quote, attribution } = Astro.props;
+---
+
+<figure class="quote">
+  <blockquote class="quote__text">
+    <p class="type-quote">{quote}</p>
+  </blockquote>
+  <figcaption class="type-label quote__attribution">{attribution}</figcaption>
+</figure>
+
+<style>
+  .quote__text p {
+    font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+    line-height: 1.35;
+    max-width: 22ch;
+  }
+
+  .quote__attribution {
+    margin-top: 1.5rem;
+    color: var(--ink-muted);
+  }
+</style>

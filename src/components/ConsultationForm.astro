@@ -1,0 +1,349 @@
+---
+// The qualification form (DESIGN_BRIEF.md 5.7). Every field in 5.7's table, in
+// 5.7's order, with Budget and "How did you hear about us?" required — the two
+// the brief singles out, and acceptance criterion "Consultation form requires
+// budget and attribution."
+//
+// Backend: Netlify Forms (BUILD-PLAN.md decision 1). `data-netlify="true"` is
+// what Netlify's post-processing looks for when it scans the built HTML;
+// `netlify-honeypot` names the decoy field (section 7's honeypot requirement).
+// `enctype="multipart/form-data"` is required by Netlify for the file input, not
+// optional.
+//
+// `data-astro-reload` is load-bearing. Astro's ClientRouter intercepts POST
+// submissions and replays them through its own fetch-based navigation, which
+// never reaches Netlify's form handler — the submission would appear to succeed
+// and no entry would ever arrive. This attribute forces a real browser
+// navigation for this one form. Do not remove it while ClientRouter is enabled
+// in Base.astro.
+//
+// **Server-side validation (section 7) is NOT satisfied by this component.**
+// Netlify Forms accepts whatever is POSTed; `required` here is browser-side
+// only. Flagged in BUILD-PLAN.md — closing it properly needs a Netlify
+// Function, which is a step 7 decision, not something to fake here.
+//
+// Option values are the label strings themselves rather than slugs, so a
+// notification email reads as a sentence instead of `budget=tier-3`. Nothing
+// downstream parses them.
+//
+// Required/optional marking is inverted from the usual convention on purpose:
+// seven of the eleven fields are required, so the four optional ones carry the
+// mark. `required` is still on the inputs, so assistive tech announces it
+// either way.
+
+// 5.7's exact multi-select list.
+const projectTypes = [
+  'Drapery',
+  'Blinds and shades',
+  'Upholstery',
+  'Soft furnishings',
+  'Whole home',
+  'Not sure',
+];
+
+// Resolved in BUILD-PLAN.md decision 2, recorded in DESIGN_BRIEF.md 5.7.
+// Verbatim from that table — do not adjust these without Sam.
+const budgetRanges = [
+  'Under $2,500',
+  '$2,500 to $7,500',
+  '$7,500 to $20,000',
+  '$20,000 to $50,000',
+  '$50,000+',
+  "I'd like Amy's guidance on this",
+];
+
+// **Interpretation, not resolved anywhere.** 5.7 requires a Timeline select and
+// is silent on its options; no source in this repo lists them. These are
+// deliberately plain and non-committal. Flagged in BUILD-PLAN.md for Sam.
+const timelines = [
+  'As soon as possible',
+  'Within one to three months',
+  'Within three to six months',
+  'Six months or more out',
+  'Still planning',
+];
+
+// Resolved in BUILD-PLAN.md decision 3, recorded in DESIGN_BRIEF.md 5.7.
+// Verbatim from that table.
+const referralSources = [
+  'Google search',
+  'Instagram',
+  'Facebook',
+  'Referred by a friend or family member',
+  'Referred by a designer or builder',
+  'Saw my work in a home',
+  'Houzz',
+  'Other',
+];
+---
+
+<form
+  class="consultation-form"
+  name="consultation"
+  method="POST"
+  action="/contact/thank-you"
+  enctype="multipart/form-data"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  data-astro-reload
+  data-consultation-form
+>
+  <!-- Honeypot (section 7). Hidden from sight and from the accessibility tree;
+       Netlify discards any submission that fills it. Not `display: none` on the
+       input alone — some autofill implementations still populate those. -->
+  <p class="consultation-form__honeypot" aria-hidden="true">
+    <label>
+      Do not fill this in
+      <input type="text" name="bot-field" tabindex="-1" autocomplete="off" />
+    </label>
+  </p>
+
+  <div class="consultation-form__grid">
+    <p class="field consultation-form__field">
+      <label class="type-label field__label" for="name">Name</label>
+      <input type="text" id="name" name="name" autocomplete="name" required />
+    </p>
+
+    <p class="field consultation-form__field">
+      <label class="type-label field__label" for="email">Email</label>
+      <input type="email" id="email" name="email" autocomplete="email" required />
+    </p>
+
+    <p class="field consultation-form__field">
+      <label class="type-label field__label" for="phone">
+        Phone <span class="field__optional">Optional</span>
+      </label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel" />
+    </p>
+
+    <p class="field consultation-form__field">
+      <label class="type-label field__label" for="location">Location</label>
+      <input
+        type="text"
+        id="location"
+        name="location"
+        autocomplete="address-level2"
+        aria-describedby="location-hint"
+        required
+      />
+      <span id="location-hint" class="field__hint">Your city or neighborhood.</span>
+    </p>
+  </div>
+
+  <p class="field consultation-form__field consultation-form__field--wide">
+    <label class="type-label field__label" for="room">Tell us about your room</label>
+    <textarea id="room" name="room" rows="5" aria-describedby="room-hint" required></textarea>
+    <span id="room-hint" class="field__hint">
+      Which room, which windows, and what is not working about it now.
+    </span>
+  </p>
+
+  <p class="field consultation-form__field consultation-form__field--wide">
+    <label class="type-label field__label" for="about-you">
+      Tell us about you <span class="field__optional">Optional</span>
+    </label>
+    <textarea id="about-you" name="about-you" rows="4" aria-describedby="about-you-hint"></textarea>
+    <span id="about-you-hint" class="field__hint">
+      How you live in the room, who else uses it, and what you already know you like.
+    </span>
+  </p>
+
+  <fieldset class="field consultation-form__fieldset" data-checkbox-group>
+    <legend class="type-label field__label">Project type</legend>
+    <ul class="consultation-form__checks">
+      {projectTypes.map((type, i) => (
+        <li>
+          <label class="consultation-form__check">
+            <input
+              type="checkbox"
+              name="project-type"
+              value={type}
+              data-checkbox-group-input={i === 0 ? 'anchor' : undefined}
+            />
+            <span>{type}</span>
+          </label>
+        </li>
+      ))}
+    </ul>
+    <span class="field__hint">Choose as many as apply.</span>
+  </fieldset>
+
+  <div class="consultation-form__grid">
+    <p class="field consultation-form__field">
+      <label class="type-label field__label" for="budget">Budget</label>
+      <select id="budget" name="budget" required>
+        <option value="">Select one</option>
+        {budgetRanges.map((range) => <option value={range}>{range}</option>)}
+      </select>
+    </p>
+
+    <p class="field consultation-form__field">
+      <label class="type-label field__label" for="timeline">
+        Timeline <span class="field__optional">Optional</span>
+      </label>
+      <select id="timeline" name="timeline">
+        <option value="">Select one</option>
+        {timelines.map((timeline) => <option value={timeline}>{timeline}</option>)}
+      </select>
+    </p>
+  </div>
+
+  <p class="field consultation-form__field consultation-form__field--wide">
+    <label class="type-label field__label" for="photos">
+      Photos <span class="field__optional">Optional</span>
+    </label>
+    <input
+      type="file"
+      id="photos"
+      name="photos"
+      multiple
+      accept="image/*"
+      aria-describedby="photos-hint"
+    />
+    <span id="photos-hint" class="field__hint">
+      Photographs of the room help more than anything else you can send.
+    </span>
+  </p>
+
+  <p class="field consultation-form__field consultation-form__field--wide">
+    <label class="type-label field__label" for="referral">How did you hear about us?</label>
+    <select id="referral" name="referral" required>
+      <option value="">Select one</option>
+      {referralSources.map((source) => <option value={source}>{source}</option>)}
+    </select>
+  </p>
+
+  <div class="consultation-form__submit">
+    <button type="submit" class="btn btn-solid">Request a Consultation</button>
+  </div>
+</form>
+
+<script>
+  // Native `required` cannot express "at least one of this checkbox group,"
+  // and 5.7 marks Project type required. This puts the constraint on the
+  // group's first input via setCustomValidity, so the browser's own validation
+  // bubble and focus handling do the work — no custom error UI, no submit
+  // handler that could swallow the submission before it reaches Netlify.
+  function initCheckboxGroups() {
+    document.querySelectorAll('[data-checkbox-group]').forEach((group) => {
+      const boxes = Array.from(group.querySelectorAll('input[type="checkbox"]'));
+      const anchor = group.querySelector('[data-checkbox-group-input="anchor"]');
+      if (!anchor || !boxes.length) return;
+
+      const sync = () => {
+        const anyChecked = boxes.some((box) => box.checked);
+        anchor.setCustomValidity(anyChecked ? '' : 'Choose at least one project type.');
+      };
+
+      boxes.forEach((box) => box.addEventListener('change', sync));
+      sync();
+    });
+  }
+
+  // Same two-call pattern as motion.js: run now for the true first load, and
+  // again after each ClientRouter swap, since <main> is replaced.
+  initCheckboxGroups();
+  document.addEventListener('astro:after-swap', initCheckboxGroups);
+</script>
+
+<style>
+  /* Hairlines and 2px radius only, no cards, no shadow (3.2). Control base
+     styles live in global.css so every form on the site matches. */
+  .consultation-form {
+    max-width: 44rem;
+  }
+
+  .consultation-form__honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .consultation-form__field,
+  .consultation-form__fieldset {
+    margin-top: 2rem;
+  }
+
+  .field__label {
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .field__optional {
+    /* Same Label role, just the muted weight of a caption (3.3). */
+    color: var(--ink-muted);
+    margin-left: 0.5rem;
+  }
+
+  .field__hint {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  .consultation-form__grid {
+    display: grid;
+    gap: 0;
+  }
+
+  @media (min-width: 640px) {
+    .consultation-form__grid {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1.5rem;
+    }
+  }
+
+  .consultation-form__fieldset {
+    border: none;
+    padding: 0;
+  }
+  .consultation-form__fieldset legend {
+    padding: 0;
+  }
+
+  .consultation-form__checks {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .consultation-form__checks {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .consultation-form__check {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+  }
+  /* global.css's `.field input` rule (full width, hairline border, 0.85rem
+     padding) is written for text inputs and the fieldset carries `.field` too,
+     so a checkbox inherits all of it and renders as a large empty box. Reset
+     the four properties that do not belong on a checkbox rather than narrowing
+     the global rule, which four reviewed pages already depend on. */
+  .consultation-form__check input[type='checkbox'] {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    accent-color: var(--ink);
+  }
+
+  .consultation-form__field input[type='file'] {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .consultation-form__submit {
+    margin-top: 3rem;
+  }
+</style>

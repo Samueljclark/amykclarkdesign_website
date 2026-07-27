@@ -1,0 +1,131 @@
+---
+// DESIGN_BRIEF.md 6.5 / 5.3: blinds decision categories, the one place this
+// pattern is used. `grid-template-rows: 0fr` to `1fr`, 420ms,
+// cubic-bezier(0.4, 0, 0.2, 1) — never `height: auto` (5.3's own warning).
+// Chevron rotates 180deg over the same duration; content opacity fades in
+// over the final 200ms via a transition-delay, not a separate timer.
+// prefers-reduced-motion needs no special-casing here: global.css's
+// blanket rule (6.8) already collapses every transition-duration site-wide.
+//
+// Items open independently, not exclusively — the brief doesn't ask these
+// five decision categories to behave like radio buttons, and someone
+// comparing "privacy" against "light and glare control" shouldn't have to
+// reopen one after checking the other.
+
+interface AccordionItem {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  items: AccordionItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="accordion">
+  {items.map((item, i) => (
+    <div class="accordion__item">
+      <h3 class="accordion__heading">
+        <button
+          class="accordion__trigger"
+          aria-expanded="false"
+          aria-controls={`accordion-panel-${i}`}
+          id={`accordion-trigger-${i}`}
+        >
+          <span class="type-label">{item.title}</span>
+          <svg class="accordion__chevron" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </button>
+      </h3>
+      <div
+        class="accordion__panel"
+        id={`accordion-panel-${i}`}
+        role="region"
+        aria-labelledby={`accordion-trigger-${i}`}
+      >
+        <div class="accordion__panel-inner">
+          <p>{item.content}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .accordion {
+    border-top: 1px solid var(--rule);
+  }
+  .accordion__item {
+    border-bottom: 1px solid var(--rule);
+  }
+  .accordion__heading {
+    margin: 0;
+  }
+
+  .accordion__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding-block: 1.25rem;
+    text-align: left;
+  }
+
+  .accordion__chevron {
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    transition: transform var(--accordion-duration) var(--ease-accordion);
+  }
+  .accordion__trigger[aria-expanded='true'] .accordion__chevron {
+    transform: rotate(180deg);
+  }
+
+  /* `visibility` is doing accessibility work here, not visual work — the
+     0fr row already makes the panel zero-height and invisible. Without it the
+     collapsed answer stays in the accessibility tree, so a screen reader
+     announces all five answers while every trigger says
+     `aria-expanded="false"`, and any focusable content added to a panel later
+     would be reachable by Tab while hidden. These panels hold plain prose
+     today, so the tab-order half is latent; the contradiction a screen reader
+     hears is not.
+     The delay is what keeps 6.5's animation intact: on open, visibility flips
+     to visible instantly and the row grows; on close, visibility waits the
+     full 420ms so the text is still there while the panel collapses.
+     `transition-delay` is untouched by 6.8's duration-only override, so under
+     reduced motion the panel is simply already at zero height throughout. */
+  .accordion__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+      grid-template-rows var(--accordion-duration) var(--ease-accordion),
+      visibility 0s linear var(--accordion-duration);
+  }
+  .accordion__panel.is-open {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition:
+      grid-template-rows var(--accordion-duration) var(--ease-accordion),
+      visibility 0s linear 0s;
+  }
+
+  .accordion__panel-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+  .accordion__panel-inner p {
+    max-width: var(--measure);
+    padding-bottom: 1.5rem;
+    color: var(--ink-muted);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+  .accordion__panel.is-open .accordion__panel-inner p {
+    opacity: 1;
+    transition-delay: calc(var(--accordion-duration) - 200ms);
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+// Contact FAQ (DESIGN_BRIEF.md 5.7: "Below the form, the FAQ. Frame every answer
+// around the value Amy provides. No price answers.") plus the FAQPage JSON-LD
+// 8.2 requires. The structured data lives here rather than waiting for step 7's
+// JsonLd.astro because it has to be generated from these exact question and
+// answer strings — splitting them across two files guarantees they drift.
+// BUILD-PLAN.md's component table already assigns FAQPage to this component.
+//
+// Reuses Accordion.astro (6.5's animated grid-template-rows expansion), the
+// same component the blinds decision categories use. That is deliberate: the
+// brief authorises one expansion pattern and this is it.
+//
+// **The consultation fee amount appears nowhere here, and must not.** 5.7 and
+// rule 2: no amount until Amy confirms one, and no claim that the fee credits
+// toward the project, because it does not. ASK-AMY.md tracks the amount as an
+// open question. The answer below says the visit is paid and what it buys,
+// which is what the brief actually permits.
+
+import Accordion from './Accordion.astro';
+
+const faqs = [
+  {
+    title: 'What happens at the consultation?',
+    content:
+      'Amy comes to your home and works in the actual room. She measures the openings herself, looks at the light at the hour it matters, and brings fabric to see against your walls, your floors, and the furniture already in place. You leave the visit knowing what the room needs and what she would do about it. It is a paid visit, and it is the design work, not a sales call.',
+  },
+  {
+    title: 'Do I need to know what I want before I call?',
+    content:
+      'No. Most people know something in the room is not right and cannot name it, and finding that is part of what the consultation is for. Photographs of the room help more than anything else you can send ahead.',
+  },
+  {
+    title: 'Do you work with interior designers?',
+    content:
+      'Yes, regularly. Some clients come directly and some come through a designer, a builder, or a project manager who hands the textile category over. Amy owns the windows, the upholstery, and the soft furnishings; she is not a full-service interior design firm and does not try to be.',
+  },
+  {
+    title: 'Who actually makes and installs the work?',
+    content:
+      'Amy does. She designs the treatment, sews it in her own workroom, and installs it herself. Nothing goes out to a workroom that never saw the room, and nobody hangs it who was not part of the decisions. An interior decorator does not make anything, and that is the whole difference.',
+  },
+  {
+    title: 'How long does a project take?',
+    content:
+      'It depends on the fabric more than the sewing. Fabric has to be ordered, and a mill can be quick or a pattern can be on back order, which is settled before anything is promised. Amy gives you a real date once the fabric is confirmed rather than an optimistic one at the consultation.',
+  },
+  {
+    title: 'Where do you work?',
+    content:
+      'Cincinnati, Northern Kentucky, and a small number of travel projects each year. Hyde Park, Indian Hill, Mariemont, Terrace Park, Wyoming, Anderson Township, Fort Mitchell, Fort Thomas, Villa Hills, Crestview Hills, Union, and Edgewood are all regular ground.',
+  },
+  {
+    title: 'Can you match something I already have?',
+    content:
+      'Usually. Matching an existing treatment, working a new piece around a fabric already in the room, or repeating a pattern across a seam so the join disappears is ordinary work here. Bring the piece or a photograph of it to the consultation.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.title,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.content,
+    },
+  })),
+};
+---
+
+<section class="section wrap faq" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="type-display faq__heading">Common questions</h2>
+  <Accordion items={faqs} />
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
+
+<style>
+  .faq__heading {
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    margin-bottom: 2.5rem;
+  }
+</style>

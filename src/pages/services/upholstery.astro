@@ -1,0 +1,95 @@
+---
+// DESIGN_BRIEF.md 5.3. Keyword cluster (8.3): "custom upholstery Cincinnati"
+// — title, H1, first paragraph, meta description.
+//
+// Placeholder image per the IMAGE-MANIFEST.md standing rule: the workroom
+// ottoman-stitching photo is the closest real upholstery-adjacent shot that
+// exists (it is literally a check-fabric ottoman on the cutting table). Swap
+// when Kelsee's shoot lands.
+
+import Base from '../../layouts/Base.astro';
+import RevealImage from '../../components/RevealImage.astro';
+import leadImage from '../../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
+---
+
+<Base
+  title="Custom Upholstery Cincinnati | Amy K Clark Design"
+  description="Custom upholstery and reupholstery for Cincinnati and Northern Kentucky homes. Fabric selection and finished detail by Amy K Clark Design."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Upholstery', href: '/services/upholstery' },
+  ]}
+>
+  <section class="section wrap service-page__intro">
+    <p class="type-label service-page__eyebrow">Services</p>
+    <h1 class="type-display service-page__heading">Upholstery</h1>
+    <p class="service-page__lead">
+      Custom upholstery in Cincinnati and Northern Kentucky, for furniture worth keeping. Amy helps
+      decide what a piece should become, picks the fabric for how it will wear, and handles the
+      details that separate a reupholstered chair from a chair with new fabric on it.
+    </p>
+  </section>
+
+  <RevealImage
+    src={leadImage}
+    alt="Amy's hands stitching a check-fabric ottoman on the workroom's gridded cutting table"
+    blurDataURL="data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQBQCdASoUABsAPtFWpk2oJCOiMBgIAQAaCUAWI+0YM6xTv/HqJLEODA5eoh4khh+AAP6A1FH/ibcZQuuEMg5Bb9qgUg+8MTeydH5d/BbmERZiGbJsiLRQ2+PUcm+DG+P8NtdDhDZFf1313HfX7lH3WkmsrO1kjqlzEbGk6qNAbfKC94avLNB3OZpndDKKEQGcZKeQXRVS3MhjogZaVWt6+6UBmAAAAAA="
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap service-page__body">
+    <h2 class="type-display service-page__subhead">Start with the frame</h2>
+    <p>
+      Not every chair should be reupholstered, and saying so out loud is part of the job. The frame
+      decides it. Hardwood, joined and doweled instead of stapled, will take new fabric almost
+      regardless of age, and eight-way hand-tied springs are worth keeping. Good bones under an
+      unfashionable fabric is the ideal candidate. A failing frame on a particleboard base usually
+      is not. A loose joint can be reglued; a cracked rail is a different conversation, and that is
+      better known before anything comes apart.
+    </p>
+    <p>
+      Sentiment counts, and it counts legitimately. A chair from a grandparent's house gets done
+      properly because it is that chair, and no other reason is required. That decision belongs to
+      the client, made with clear information rather than being talked into or out of it.
+    </p>
+
+    <h2 class="type-display service-page__subhead">Fabric that survives the room</h2>
+    <p>
+      Upholstery fabric answers to different demands than drapery. It gets sat on, leaned against,
+      spilled on, and cleaned. Double rubs measure abrasion resistance, and the number that suits a
+      formal dining chair is nowhere near what a family room sectional needs. Performance fabrics
+      have improved enough to choose on their own merits now, not as a concession to children and
+      dogs.
+    </p>
+    <p>
+      Pattern scale matters more here than almost anywhere, because the fabric is being fitted to a
+      three-dimensional object. A large repeat can be beautiful on a sofa back and unusable on a
+      tight-seat chair. Railroading, whether a pattern runs along the bolt or across it, decides
+      whether a wide piece can be covered without a seam down the middle. All of that is settled
+      before yardage is ordered.
+    </p>
+
+    <h2 class="type-display service-page__subhead">The details that show</h2>
+    <p>
+      Welt does more to the character of a finished piece than most people expect. Self-welt keeps
+      it quiet. Contrast welt gives it an edge and draws the shape out. A tailored skirt reads
+      nothing like a waterfall, and an exposed leg reads differently again. Cushion fill decides
+      how the piece feels a year in: down-wrapped foam where softness matters, something firmer
+      where people sit every single day.
+    </p>
+    <p>
+      Pattern placement is where the care becomes visible. A motif centered on the seat and
+      centered again on the back. Stripes running true down an arm. These are decisions made by
+      someone standing over the piece, not by a machine following a cutting order.
+    </p>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>

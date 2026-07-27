@@ -1,0 +1,214 @@
+---
+// About (DESIGN_BRIEF.md 5.4). Five required parts, in the brief's order:
+// Amy's story, the origin section anchored to her grandmother's attic, the
+// invention framing, the fabric lines, and the Studio row of three portraits.
+//
+// **Known gap, deliberately not filled by invention.** 5.4.1 asks for "actual
+// detail about what she made and for whom," and 5.4.2 wants the attic section
+// to be specific. Those details exist only in Amy's head — ASK-AMY.md's first
+// item is the recorded conversation that produces them. The copy below is
+// written at exactly the level of detail that is actually established (the
+// attic, the trunks, taking things apart to see the construction) and stops
+// there rather than inventing a first object, a first client, or a childhood
+// scene. Expand this section from her own words, do not embellish it.
+//
+// Fabric lines (5.4.4 / rule 8): "the lines I represent," and that stays as
+// written. Resolved 2026-07-26 (BUILD-PLAN.md decision 11): Schumacher is
+// cleared for public naming and is named on /services/drapery; Stout and
+// Pollack are not cleared yet, pending Amy's rep calls, so they are named
+// nowhere on the public site. This page names no house at all, which is
+// correct either way.
+//
+// Images (IMAGE-MANIFEST.md standing rule): every slot carries a real photo.
+// The origin section has no early photograph of Amy in existence on this
+// machine, so the workroom shot stands in and is flagged in the manifest.
+
+import Base from '../layouts/Base.astro';
+import RevealImage from '../components/RevealImage.astro';
+import leadImage from '../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
+import originImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
+import amyPortrait from '../assets/images/team/amy-clark.jpg';
+import samPortrait from '../assets/images/team/sam-clark.jpg';
+import kelseePortrait from '../assets/images/team/kelsee-etmans.jpg';
+
+const studio = [
+  {
+    image: amyPortrait,
+    alt: 'Amy Clark, founder of Amy K Clark Design',
+    name: 'Amy Clark',
+    role: 'Founder',
+    blurDataURL:
+      'data:image/webp;base64,UklGRvAAAABXRUJQVlA4IOQAAADQBQCdASoYABcAPwF2slOrJyQiqAgBYCAJaAC0/QgKoD3VjNZc6bjJeEfAQBlIWS+qsz2KNFAAAP7r/0UVZjXaH15b16gIYofAvr02/Y6fq4Os8LjnaAGzW+UHHXj/IK1ZqOqqHjkag4Z5GW/tEdkQgycskwBorlDtUHjSe0utGRLkZ7vUs8TsVo3hQGYev00yr3bVL2ErI/jdv2eCWvrZ5gK/+wlFJxZGscyP7BQ0dnPuhaYEbPSogsk3r81HM6cGqY2PgWjYoCSaVlmDKpFQk3raZnU7TuDUx79ZmQ5nlXD7gAA=',
+  },
+  {
+    image: samPortrait,
+    alt: 'Sam Clark, web development and digital strategy',
+    name: 'Sam Clark',
+    role: 'Web Development & Digital Strategy',
+    blurDataURL:
+      'data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADQBACdASoYAB4APwFqrU8rJiQiMAgBYCAJbACxHyGBlqVK7OZmAQYYc9pSMHaUAAD+zXxNENZ7PTGw6BXWhP3ISh6Sc+CivpasODVB5wfj+9w3pdDk5dlsVhWpamyDJvS1Q9FlRbFHkJQW1pdJx2Bu8g0HEJJpD8HKl5ZMBe93XZJLp0YhaMTxSHWnYfI3MGsZUFEZmi5Vd/+uEihbuAo6/EjYv2qJMgOKT4gA',
+  },
+  {
+    image: kelseePortrait,
+    alt: 'Kelsee Etmans, photographer',
+    name: 'Kelsee Etmans',
+    role: 'Photographer',
+    blurDataURL:
+      'data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAAAwBQCdASoYABgAPwFysFIrJqSiqAqpYCAJbACw7A0WLHyRVpL4BaXhAkkV935PTW44AAD+6/6olE6FqPSaMKIkbh30v3yxPKOvGzajfQUvitW7unMiry65YrDZa8lI1QidPuVXCKT0bbQNe129zeDnljMVu4fqAGu9AneiawptnBT1LhNGdOzz2d7moLaxf1cXRqyDZXR5+MAO0iREXvQac6y/NHsD7MN0mhd/csj3wVTNS6CuKjLyhO1U1C55x2siTpejwcWbn4/cZmAAAA==',
+  },
+];
+---
+
+<Base
+  title="About Amy Clark | Amy K Clark Design"
+  description="Amy Clark designs, makes, and installs custom window treatments, upholstery, and soft furnishings in Cincinnati and Northern Kentucky."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+  ]}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">About</p>
+    <h1 class="type-display text-page__heading">Amy Clark</h1>
+    <p class="text-page__lead">
+      Amy K Clark Design is one person. Amy designs the treatment, makes it, and installs it, and
+      she is the same person at every stage. An interior decorator does not make anything.
+    </p>
+  </section>
+
+  <RevealImage
+    src={leadImage}
+    alt="Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead"
+    blurDataURL="data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA"
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap text-page__body">
+    <h2 class="type-display text-page__subhead">The part of the room she owns</h2>
+    <p>
+      Amy owns the textile layer. Windows, upholstery, pillows, cushions, trim. Not the floor plan
+      and not the paint. That is a narrower brief than a decorator's, on purpose, because it is the
+      part of a room that has to be made rather than bought.
+    </p>
+    <p>
+      Most projects start with a room somebody already likes and cannot quite finish. Amy is usually
+      solving a problem the client had not put into words yet, and pointing at the thing in the room
+      that could be far better.
+    </p>
+
+    <h2 class="type-display text-page__subhead">Where it started</h2>
+    <p>
+      Her grandmother's attic, and the trunks in it. A child who wanted to know how the things in
+      those trunks had been put together, and who took them apart to find out. The construction came
+      first. The trade came a long time later.
+    </p>
+  </section>
+
+  <RevealImage
+    src={originImage}
+    alt="Amy's hands stitching a check-fabric ottoman on the workroom's gridded cutting table"
+    blurDataURL="data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQBQCdASoUABsAPtFWpk2oJCOiMBgIAQAaCUAWI+0YM6xTv/HqJLEODA5eoh4khh+AAP6A1FH/ibcZQuuEMg5Bb9qgUg+8MTeydH5d/BbmERZiGbJsiLRQ2+PUcm+DG+P8NtdDhDZFf1313HfX7lH3WkmsrO1kjqlzEbGk6qNAbfKC94avLNB3OZpndDKKEQGcZKeQXRVS3MhjogZaVWt6+6UBmAAAAAA="
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap text-page__body">
+    <h2 class="type-display text-page__subhead">Every one of them is invented</h2>
+    <p>
+      There is no guide for the window in front of her. Rooms are not standard. Houses in Cincinnati
+      and Northern Kentucky are rarely square, a ceiling that runs out of level by half an inch
+      changes what a treatment has to do, and the published way of building something assumes an
+      opening nobody actually has.
+    </p>
+    <p>
+      So every shade gets worked out for the room it is going into. That is why Amy measures each
+      opening herself instead of sending somebody, and why the person who decided how a thing should
+      be built is the person who builds it.
+    </p>
+
+    <h2 class="type-display text-page__subhead">Fabric</h2>
+    <p>
+      Fabric comes from the lines I represent. The list is short and stays short, because knowing
+      what a house actually does at length is worth more than access to everything. A memo sample
+      gives you the color. It will not tell you how the piece hangs after a season of being drawn
+      every evening, and that is the part that decides whether a room still looks right in five
+      years.
+    </p>
+  </section>
+
+  <section class="section wrap studio" aria-labelledby="studio-heading">
+    <h2 id="studio-heading" class="type-display studio__heading">Studio</h2>
+    <ul class="studio__list">
+      {studio.map((person) => (
+        <li class="studio__item">
+          <figure class="studio__figure">
+            <RevealImage
+              src={person.image}
+              alt={person.alt}
+              blurDataURL={person.blurDataURL}
+              aspectRatio="1/1"
+              sizes="(min-width: 768px) 30vw, 90vw"
+            />
+            <figcaption class="studio__caption">
+              <p class="type-label studio__name">{person.name}</p>
+              <p class="type-label studio__role">{person.role}</p>
+            </figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>
+
+<style>
+  /* 5.4.5: "Three portraits in a row. Name in Label style, role beneath in
+     --ink-muted. No biography paragraphs. Section heading is Studio, not Our
+     Team." A plain three-up row, not a card grid — no border, no shadow, no
+     radius, nothing the portraits sit inside (3.2). */
+  .studio__heading {
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    margin-bottom: 2.5rem;
+  }
+
+  .studio__list {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .studio__list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  /* 1:1, not the 4:5 the rest of the site's images use, and that is an asset
+     constraint rather than a design preference. Two of the three headshots
+     (Amy's and Kelsee's) are circle-cropped avatars on a near-black square
+     ground, roughly 400px — a 4:5 crop slices the top and bottom off both
+     circles. Square keeps them intact. The lifted object-position is for the
+     third: Sam's is a real 888x1120 portrait, and a centred square crop
+     shaves the top of his head. Revert both of these to a 4:5 portrait crop
+     the moment real rectangular headshots arrive (IMAGE-MANIFEST.md asset
+     request 2). */
+  .studio__figure :global(.reveal-image__img) {
+    object-position: 50% 15%;
+  }
+
+  .studio__caption {
+    margin-top: 1rem;
+  }
+
+  .studio__role {
+    margin-top: 0.5rem;
+    color: var(--ink-muted);
+  }
+</style>

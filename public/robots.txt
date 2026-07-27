@@ -1,0 +1,16 @@
+# Amy K Clark Design — amykclarkdesign.com
+# DESIGN_BRIEF.md 8.1: "sitemap.xml generated at build, robots.txt referencing it."
+#
+# Everything is crawlable. The two pages that should not be indexed
+# (/404 and /contact/thank-you) carry a noindex meta tag instead, which is the
+# correct mechanism: a Disallow rule would stop Google reading the page at all,
+# so it would never see the noindex and the URL could still surface in results.
+#
+# The sitemap reference points at sitemap-index.xml, which is what the
+# @astrojs/sitemap integration actually generates; sitemap-0.xml holds the URLs
+# and the index points at it.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://amykclarkdesign.com/sitemap-index.xml

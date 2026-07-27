@@ -1,0 +1,202 @@
+---
+// Journal post (DESIGN_BRIEF.md 5.6). Markdown-driven via the `journal`
+// content collection.
+//
+// **5.6's "each post internally links to at least one service page" is enforced
+// structurally, not by trusting the prose.** `relatedService` is a required
+// enum in content.config.ts and gets rendered as a real link below the body, so
+// a post cannot ship without one even if someone later edits the inline links
+// out of the markdown. Every post also links inline, which is the link that
+// actually carries weight for search.
+//
+// Article and BreadcrumbList JSON-LD (8.2) are passed to Base.astro as props
+// and emitted by JsonLd.astro, which owns every structured-data block except
+// FAQPage (that one lives with the questions it describes, in Faq.astro).
+//
+// Prose styles are `:global()` because Astro's scoped styles do not reach
+// markdown rendered through <Content />. The link treatment reproduces 6.6's
+// scaleX underline rather than toggling text-decoration, since markdown links
+// cannot carry the .link-underline class.
+
+import Base from '../../layouts/Base.astro';
+import RevealImage from '../../components/RevealImage.astro';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { journalImages } from '../../data/journalImages';
+import { services } from '../../data/services';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('journal');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'journal'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const hero = journalImages[post.data.heroImage];
+const relatedService = services.find((service) => service.href === post.data.relatedService)!;
+
+const publishedISO = post.data.publishDate.toISOString().slice(0, 10);
+const publishedLabel = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+}).format(post.data.publishDate);
+---
+
+<Base
+  title={post.data.seoTitle}
+  description={post.data.description}
+  ogImage="/images/og/og-default.jpg"
+  ogType="article"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Journal', href: '/journal' },
+    { name: post.data.title, href: `/journal/${post.id}` },
+  ]}
+  article={{
+    // `headline` is the on-page H1, not `seoTitle`: schema.org wants the
+    // article's actual headline, and seoTitle exists only to fit 8.1's
+    // 60-character <title> budget.
+    headline: post.data.title,
+    description: post.data.description,
+    // The verbatim-served master under /public/images/, not the hashed
+    // astro:assets variant — a schema image URL should be stable across
+    // rebuilds and independent of which srcset width happened to be picked.
+    image: hero.publicPath,
+    datePublished: publishedISO,
+  }}
+>
+  <article>
+    <section class="section wrap text-page__intro">
+      <p class="type-label text-page__eyebrow">
+        <a href="/journal" class="link-underline">Journal</a>
+      </p>
+      <h1 class="type-display journal-post__heading">{post.data.title}</h1>
+      <p class="type-label journal-post__date">
+        <time datetime={publishedISO}>{publishedLabel}</time>
+      </p>
+    </section>
+
+    <RevealImage
+      src={hero.image}
+      alt={hero.alt}
+      blurDataURL={hero.blurDataURL}
+      aspectRatio="16/9"
+      sizes="100vw"
+      transitionName={`journal-photo-${post.id}`}
+    />
+
+    <section class="section wrap">
+      <div class="prose">
+        <Content />
+      </div>
+
+      <aside class="journal-post__related">
+        <p class="type-label journal-post__related-label">Related service</p>
+        <p class="journal-post__related-link">
+          <a href={relatedService.href} class="link-underline">{relatedService.name}</a>
+        </p>
+      </aside>
+    </section>
+  </article>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>
+
+<style>
+  .journal-post__heading {
+    /* Post titles are sentences, not two-word page names, so they need a wider
+       measure than .text-page__heading's 18ch and a smaller point size than the
+       full Display clamp. Same Display role, page-appropriate range. */
+    font-size: clamp(1.875rem, 1.4rem + 1.9vw, 3.25rem);
+    max-width: 34ch;
+  }
+
+  .journal-post__date {
+    margin-top: 1.5rem;
+    color: var(--ink-muted);
+  }
+
+  /* ---- Rendered markdown ---- */
+  .prose {
+    max-width: var(--measure);
+  }
+
+  .prose :global(h2) {
+    font-weight: var(--weight-display);
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    line-height: 1.15;
+    letter-spacing: var(--tracking-display);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose :global(p + p) {
+    margin-top: 1rem;
+  }
+
+  /* global.css strips list markers site-wide (nav, galleries, the Studio row);
+     rendered prose is the one place a real list should read as one. */
+  .prose :global(ul),
+  .prose :global(ol) {
+    list-style: revert;
+    padding-inline-start: 1.5rem;
+    margin-top: 1rem;
+    max-width: var(--measure);
+  }
+  .prose :global(li + li) {
+    margin-top: 0.5rem;
+  }
+
+  /* 6.6, reproduced for markdown links: scaleX on a pseudo-element, in
+     --indigo, never text-decoration. */
+  .prose :global(a) {
+    position: relative;
+    display: inline;
+    text-decoration: none;
+  }
+  .prose :global(a)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.15em;
+    height: 2px;
+    background: var(--indigo);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--link-underline-duration) ease;
+  }
+  .prose :global(a):hover::after,
+  .prose :global(a):focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .journal-post__related {
+    max-width: var(--measure);
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .journal-post__related-label {
+    color: var(--ink-muted);
+  }
+
+  .journal-post__related-link {
+    margin-top: 1rem;
+  }
+</style>

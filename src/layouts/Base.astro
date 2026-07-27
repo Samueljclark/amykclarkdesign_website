@@ -1,0 +1,131 @@
+---
+// Every page composes this layout. Owns <head> (title/description/canonical/
+// OG per DESIGN_BRIEF.md 8.1), nav, footer, and the one motion.js include.
+//
+// `title` and `description` are page-authored strings, not auto-suffixed
+// with the site name, so each page keeps full control of its character
+// budget (title < 60 chars, description < 155 chars — 8.1).
+//
+// `ogImage` is required with no fallback: public/images/og/og-default.jpg
+// does not exist yet (see IMAGE-MANIFEST.md), so a silent default would 404.
+// Every page must supply a real image once one exists.
+
+import { ClientRouter } from 'astro:transitions';
+import '../styles/tokens.css';
+import '../styles/global.css';
+// TEMPORARY — Sam's cream-and-green palette preview. Live again as of
+// 2026-07-26, at his instruction, so the site is as he left it.
+//
+// It was switched off for exactly one thing: the step 8 acceptance pass, whose
+// measurements therefore describe the **real 3.3 palette**, not this preview.
+// DESIGN_BRIEF §10 requires "no cream, no terracotta," so with this line in
+// place that one acceptance criterion fails site-wide by design, and 3.2 names
+// this exact look as the single most likely failure mode for this brief.
+//
+// **Comment this line out to see the real palette; delete the line and
+// `src/styles/sam-preview-theme.css` before launch** (LAUNCH_CHECKLIST.md §2).
+// Nothing else anywhere depends on it — it is custom-property overrides only.
+import '../styles/sam-preview-theme.css';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  transparentNav?: boolean;
+  // Structured data (8.2). Assembled here rather than by each page adding its
+  // own `slot="head"` element, so <head> stays in one place and no page can
+  // quietly ship without a breadcrumb. JsonLd.astro emits nothing when none of
+  // these are set, which is the correct state for Home's siblings 404 and
+  // /contact/thank-you.
+  localBusiness?: boolean;
+  breadcrumbs?: { name: string; href: string }[];
+  article?: {
+    headline: string;
+    description: string;
+    image: string;
+    datePublished: string;
+    dateModified?: string;
+  };
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  ogType = 'website',
+  noindex = false,
+  transparentNav = true,
+  localBusiness = false,
+  breadcrumbs,
+  article,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <link rel="canonical" href={canonicalURL.href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Amy K Clark Design" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
+
+    <!-- Section 7: self-hosted woff2, font-display: swap, preload the two
+         used weights. Both Archivo weights (400/500) live in one variable
+         file, so one preload covers them. Newsreader is quote-only and
+         below the fold on every page, so it loads unpreloaded via
+         @font-face in tokens.css. -->
+    <link
+      rel="preload"
+      href="/fonts/archivo-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Site-wide page transitions, not in DESIGN_BRIEF.md, flagged in
+         BUILD-PLAN.md. Default fade between every page. Astro's own default
+         CSS (node_modules/astro/components/viewtransitions.css, read
+         directly, not assumed) already guards every ::view-transition-*
+         animation under `@media (prefers-reduced-motion)`, so no extra work
+         is needed here for that. -->
+    <ClientRouter />
+
+    <JsonLd localBusiness={localBusiness} breadcrumbs={breadcrumbs} article={article} />
+
+    <slot name="head" />
+  </head>
+  <body data-transparent-nav={transparentNav ? 'true' : 'false'}>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <SiteNav currentPath={Astro.url.pathname} transparent={transparentNav} transition:persist />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter transition:persist />
+    <script>
+      import '../scripts/motion.js';
+    </script>
+  </body>
+</html>

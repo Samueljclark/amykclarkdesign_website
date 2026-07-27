@@ -1,0 +1,156 @@
+---
+// The signature element (DESIGN_BRIEF.md 3.7): every content image on the
+// site goes through this component. The `.reveal` class (global.css) owns
+// the clip-path/transform transition; motion.js adds `.is-revealed` once per
+// element via IntersectionObserver (6.2) — or immediately for elements
+// already in the viewport at load, since an IntersectionObserver's first
+// callback reports current intersection state. That's what makes the hero
+// image reveal on page load without any special-casing here.
+//
+// `.reveal` is deliberately nested inside an unclipped `.reveal-frame`; the
+// frame is what motion.js observes. See the style block below for why —
+// it is the difference between the reveal firing and no image on the site
+// ever becoming visible.
+//
+// Blur-up (6.7): `blurDataURL` is a pre-generated ~24px-wide base64 image,
+// computed once per source photo (see IMAGE-MANIFEST.md) rather than at
+// request time — astro:assets' generated files aren't reliably readable from
+// disk at component-render time in dev or build, so a live base64 pipeline
+// here would be fragile. It sits behind the real <Picture> as a blurred
+// layer; once the real image decodes it simply covers the blur, no JS
+// needed.
+//
+// `fill` mirrors the common "fill the positioned parent" pattern (hero
+// layers, which are already position:absolute/inset:0) as an alternative to
+// `aspectRatio`, which self-sizes the wrapper (portfolio thumbnails, etc).
+
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  widths?: number[];
+  sizes?: string;
+  blurDataURL?: string;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  fill?: boolean;
+  aspectRatio?: string;
+  class?: string;
+  transitionName?: string;
+}
+
+const {
+  src,
+  alt,
+  widths = [480, 768, 1200, 1800, 2400],
+  sizes = '100vw',
+  blurDataURL,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  fill = false,
+  aspectRatio,
+  class: className,
+  transitionName,
+} = Astro.props;
+---
+
+<div
+  class:list={['reveal-frame', { 'reveal-frame--fill': fill }, className]}
+  style={aspectRatio ? `aspect-ratio:${aspectRatio}` : undefined}
+>
+  <div class="reveal reveal-image" transition:name={transitionName}>
+    {blurDataURL && (
+      <div
+        class="reveal-image__blur"
+        style={`background-image:url(${blurDataURL})`}
+        aria-hidden="true"
+      >
+      </div>
+    )}
+    <Picture
+      src={src}
+      alt={alt}
+      formats={['avif', 'webp']}
+      fallbackFormat="jpg"
+      widths={widths}
+      sizes={sizes}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class="reveal-image__img"
+    />
+  </div>
+</div>
+
+<style>
+  /* Two elements, deliberately. `.reveal-frame` carries the layout (size,
+     aspect ratio, any class a consumer passes in) and is never clipped;
+     `.reveal` inside it carries 3.7's clip-path and transform, unchanged.
+
+     They have to be separate because motion.js observes the frame, not the
+     clipped box: a browser factors an element's own clip-path into the
+     intersectionRect it reports, and 3.7's resting `inset(0 0 100% 0)`
+     clips the box to zero height — so observing `.reveal` itself pinned
+     intersectionRatio at 0 and 6.2's `threshold: 0.15` could never be met.
+     The reveal never fired and every image on the site stayed invisible.
+     Keep the clip-path off `.reveal-frame` or that bug comes straight back. */
+  .reveal-frame {
+    position: relative;
+    width: 100%;
+    /* Contains 3.7's resting `transform: scale(1.04)`. A transform still
+       contributes to scrollable overflow even though `clip-path` hides the
+       element, so before this was here every not-yet-revealed image made the
+       whole document horizontally scrollable by about 2% of the viewport
+       width — measured at 8px / 15px / 29px / 51px at the four render
+       targets. On a phone that is a sideways rubber-band on any page with an
+       image below the fold.
+       `overflow` is safe here in a way `clip-path` is not: it clips
+       descendants only and does not alter this element's own box, so the
+       IntersectionObserver that measures this frame is unaffected. **Still do
+       not put a clip-path on this element** — see the note below. */
+    overflow: hidden;
+  }
+  .reveal-frame--fill {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
+  .reveal-image {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .reveal-image__blur {
+    position: absolute;
+    inset: -10%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+  }
+
+  /* `<Picture>` wraps the <img> in a <picture>, and global.css's image reset
+     (`img, picture { height: auto }`) applies to that wrapper too — so the
+     <img>'s own `height: 100%` resolved against an auto-height parent and
+     fell back to the photo's intrinsic height. The hero filled about 58% of
+     its 100svh box with the blur-up layer showing through underneath the
+     rest, against 5.1's "the image fills the entire screen." Long-standing;
+     it was invisible until the reveal above started firing. The wrapper has
+     to carry the height for `object-fit: cover` on the <img> to mean
+     anything. */
+  .reveal-image picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .reveal-image__img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+// Project detail page image flow (DESIGN_BRIEF.md 5.2): a lead image, then
+// three to eight supporting images. Lead is full-bleed (3.5); supporting
+// images sit in a quiet grid — the brief only asks for asymmetry on index
+// listings (Home strip, Portfolio index), not the detail page's own gallery.
+
+import RevealImage from './RevealImage.astro';
+import type { ProjectImage } from '../data/projects';
+
+interface Props {
+  lead: ProjectImage;
+  supporting: ProjectImage[];
+  leadTransitionName?: string;
+}
+
+const { lead, supporting, leadTransitionName } = Astro.props;
+---
+
+<RevealImage
+  src={lead.image}
+  alt={lead.alt}
+  blurDataURL={lead.blurDataURL}
+  aspectRatio="16/9"
+  sizes="100vw"
+  loading="eager"
+  fetchpriority="high"
+  transitionName={leadTransitionName}
+/>
+
+{supporting.length > 0 && (
+  <ul class="wrap project-gallery__list">
+    {supporting.map((item) => (
+      <li class="project-gallery__item">
+        <RevealImage
+          src={item.image}
+          alt={item.alt}
+          blurDataURL={item.blurDataURL}
+          aspectRatio="4/5"
+          sizes="(min-width: 768px) 40vw, 90vw"
+        />
+      </li>
+    ))}
+  </ul>
+)}
+
+<style>
+  .project-gallery__list {
+    display: grid;
+    gap: 3rem 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    margin-top: 3rem;
+  }
+</style>

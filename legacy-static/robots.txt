@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# CONFIRM WITH SAM: final domain
+Sitemap: https://www.amykclarkdesign.com/sitemap.xml

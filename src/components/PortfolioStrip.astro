@@ -1,0 +1,106 @@
+---
+// Home section 2 (DESIGN_BRIEF.md 5.1): "Four to six projects, asymmetric,
+// shade-reveal on scroll. Project name in Label style beneath each. One link
+// to the full portfolio." No teaser copy on these cards — that rule is
+// stated explicitly for the /portfolio index (5.2) and applies here too,
+// since a strip card is even smaller than an index card.
+//
+// Only one real project exists right now (src/data/projects.ts); the
+// nth-child offsets below are written for the eventual 4-6 so the layout
+// doesn't need revisiting when more land in step 3.
+
+import RevealImage from './RevealImage.astro';
+import type { Project } from '../data/projects';
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="section wrap portfolio-strip scroll-ease-target" aria-labelledby="portfolio-strip-heading">
+  <h2 id="portfolio-strip-heading" class="visually-hidden">Featured Projects</h2>
+
+  <ul class="portfolio-strip__list">
+    {projects.map((project) => (
+      <li class="portfolio-strip__item">
+        <a href={`/portfolio/${project.slug}`} class="portfolio-strip__link">
+          <RevealImage
+            src={project.image}
+            alt={project.alt}
+            blurDataURL={project.blurDataURL}
+            aspectRatio="4/5"
+            sizes="(min-width: 768px) 40vw, 90vw"
+            class="portfolio-strip__image"
+          />
+          <span class="type-label portfolio-strip__name">{project.name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <p class="portfolio-strip__cta">
+    <a href="/portfolio" class="type-label link-underline">View Full Portfolio</a>
+  </p>
+</section>
+
+<style>
+  .portfolio-strip__list {
+    display: grid;
+    gap: 3rem 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+
+  .portfolio-strip__link {
+    display: block;
+  }
+
+  .portfolio-strip__name {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--ink-muted);
+    opacity: 0.6;
+    transform: translateY(0);
+    transition:
+      opacity var(--hover-image-duration) ease-out,
+      transform var(--hover-image-duration) ease-out;
+  }
+
+  /* 6.4 portfolio hover: image scale 1.0 -> 1.03 / 700ms ease-out, caption
+     rises 8px, opacity 0.6 -> 1. Nothing else. */
+  .portfolio-strip__link:hover .portfolio-strip__image :global(.reveal-image__img),
+  .portfolio-strip__link:focus-visible .portfolio-strip__image :global(.reveal-image__img) {
+    transform: scale(1.03);
+  }
+  .portfolio-strip__link :global(.reveal-image__img) {
+    transition: transform var(--hover-image-duration) ease-out;
+  }
+  .portfolio-strip__link:hover .portfolio-strip__name,
+  .portfolio-strip__link:focus-visible .portfolio-strip__name {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+
+  .portfolio-strip__cta {
+    margin-top: 3rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portfolio-strip__link:hover .portfolio-strip__image :global(.reveal-image__img) {
+      transform: none;
+    }
+  }
+
+  /* Asymmetry (3.5): alternate vertical offsets once there's more than one
+     card per row. Single-item state today renders flush, which is correct —
+     asymmetry needs a second item to read against. */
+  @media (min-width: 768px) {
+    .portfolio-strip__item:nth-child(3n+2) {
+      margin-top: 4rem;
+    }
+    .portfolio-strip__item:nth-child(3n+3) {
+      margin-top: 2rem;
+    }
+  }
+</style>

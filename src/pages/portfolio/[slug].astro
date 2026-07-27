@@ -1,0 +1,59 @@
+---
+// Project detail template (DESIGN_BRIEF.md 5.2): lead image, supporting
+// images, a short paragraph stating Amy's scope explicitly ("so the site
+// never implies she designed the whole house"), and a spec block. Real <h1>
+// is the project name — no visually-hidden-H1 pattern here, that was Home's
+// hero-specific workaround for its own "no headline block" rule (5.1), which
+// doesn't apply on this page.
+
+import Base from '../../layouts/Base.astro';
+import ProjectGallery from '../../components/ProjectGallery.astro';
+import SpecBlock from '../../components/SpecBlock.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Base
+  title={`${project.name} | Amy K Clark Design`}
+  description={project.scope}
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: project.name, href: `/portfolio/${project.slug}` },
+  ]}
+>
+  <article>
+    <ProjectGallery
+      lead={project.lead}
+      supporting={project.supporting}
+      leadTransitionName={`project-photo-${project.slug}`}
+    />
+
+    <section class="section wrap project-detail__body">
+      <h1 class="type-display project-detail__heading">{project.name}</h1>
+      <p class="project-detail__scope">{project.scope}</p>
+      <SpecBlock spec={project.spec} />
+    </section>
+  </article>
+</Base>
+
+<style>
+  .project-detail__heading {
+    max-width: 18ch;
+  }
+  .project-detail__scope {
+    max-width: var(--measure);
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+</style>

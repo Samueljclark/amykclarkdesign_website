@@ -1,0 +1,179 @@
+---
+// Thin horizontal line, six items, no dropdowns, no search icon, no phone
+// number in the header (DESIGN_BRIEF.md 3.5, 4). Transparent over the hero,
+// solid past 80vh (6.3) — driven by motion.js toggling .is-solid / .on-dark.
+//
+// The wordmark link and the mobile hamburger toggle are not spelled out in
+// the brief; both are necessary for a usable, accessible nav on pages
+// without the home hero treatment and at narrow viewports, so they're added
+// here as the minimal addition that doesn't contradict "no dropdowns, no
+// search icon, no phone number." The toggle icon is a custom-drawn SVG per
+// the ban on icon libraries (3.2).
+
+interface Props {
+  currentPath: string;
+  transparent?: boolean;
+}
+
+const { currentPath, transparent = true } = Astro.props;
+
+const navItems = [
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Process', href: '/process' },
+  { label: 'Journal', href: '/journal' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const isCurrent = (href: string) =>
+  currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<header
+  class:list={['site-nav', { 'on-dark': transparent }]}
+  data-nav
+  data-nav-transparent={transparent ? 'true' : 'false'}
+>
+  <div class="site-nav__inner wrap">
+    <a href="/" class="type-label site-nav__mark link-underline">Amy K Clark Design</a>
+
+    <button
+      class="site-nav__toggle"
+      data-nav-toggle
+      aria-expanded="false"
+      aria-controls="site-nav-panel"
+      aria-label="Menu"
+    >
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+        <line x1="2" y1="6" x2="22" y2="6" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="2" y1="18" x2="22" y2="18" stroke="currentColor" stroke-width="1.5"></line>
+      </svg>
+    </button>
+
+    <nav aria-label="Primary" id="site-nav-panel" class="site-nav__panel" data-nav-panel>
+      <ul class="site-nav__list">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={['type-label', 'link-underline', { 'is-current': isCurrent(item.href) }]}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color var(--nav-transition) ease,
+      border-color var(--nav-transition) ease;
+    backdrop-filter: none;
+  }
+
+  /* The mobile panel below is positioned absolute; its containing block is
+     .site-nav (already position: fixed) rather than .site-nav__inner, which
+     carries .wrap's inline padding — resolving against the padded box would
+     inset the panel from the viewport edges instead of full-bleed. */
+
+  .site-nav[data-nav-transparent='false'],
+  .site-nav.is-solid {
+    background: var(--paper);
+    border-bottom-color: var(--rule);
+    backdrop-filter: blur(12px);
+  }
+
+  .site-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--nav-height);
+  }
+
+  .site-nav__mark {
+    color: var(--paper);
+    white-space: nowrap;
+  }
+  .site-nav[data-nav-transparent='false'] .site-nav__mark,
+  .site-nav.is-solid .site-nav__mark {
+    color: var(--ink);
+  }
+
+  .site-nav__toggle {
+    color: var(--paper);
+    display: block;
+    padding: 0.5rem;
+    margin-right: -0.5rem;
+  }
+  .site-nav[data-nav-transparent='false'] .site-nav__toggle,
+  .site-nav.is-solid .site-nav__toggle {
+    color: var(--ink);
+  }
+
+  .site-nav__panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--accordion-duration) var(--ease-accordion);
+  }
+  .site-nav__panel.is-open {
+    max-height: 24rem;
+  }
+
+  .site-nav__list {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0 1rem;
+  }
+  .site-nav__panel .site-nav__list a {
+    display: block;
+    padding: 0.85rem 0;
+    color: var(--ink);
+  }
+
+  @media (min-width: 768px) {
+    .site-nav__toggle {
+      display: none;
+    }
+    .site-nav__panel {
+      position: static;
+      max-height: none;
+      overflow: visible;
+      background: transparent;
+      border-bottom: none;
+    }
+    .site-nav__list {
+      flex-direction: row;
+      gap: 2rem;
+      padding: 0;
+    }
+    .site-nav__panel .site-nav__list a {
+      display: inline-block;
+      padding: 0;
+      color: var(--paper);
+    }
+    .site-nav[data-nav-transparent='false'] .site-nav__panel .site-nav__list a,
+    .site-nav.is-solid .site-nav__panel .site-nav__list a {
+      color: var(--ink);
+    }
+  }
+</style>

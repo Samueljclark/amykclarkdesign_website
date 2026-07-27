@@ -1,0 +1,154 @@
+/* ===========================================================================
+   Amy K Clark Design — design tokens
+   Source of truth: DESIGN_BRIEF.md section 3 (palette 3.3, type 3.4,
+   layout 3.5, signature motion 3.7) and section 6 (motion spec).
+   Every value here traces to the brief. Derived interpolations are the only
+   additions and each one is commented with its derivation.
+   =========================================================================== */
+
+/* ---- 3.4 Typefaces: self-hosted woff2, font-display: swap (section 7) ----
+   Primary: Archivo variable, weights 400 and 500 only.
+   Secondary: Newsreader light (300), testimonial quotes only. */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-variable.woff2') format('woff2-variations');
+  font-weight: 100 900; /* variable file; usage is restricted to 400 and 500 */
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- 3.3 Palette. No brand accent; all color comes from photographs. ---- */
+  --paper: #F1F1EF;      /* cool near-white, gallery wall, deliberately not cream */
+  --ink: #191917;        /* near-black with a trace of warmth, never pure #000 */
+  --ink-muted: #6E6E68;  /* captions, roles, meta */
+  --rule: #D6D6D1;       /* hairlines, form borders */
+  --ground: #181816;     /* full-bleed dark sections and footer */
+  --indigo: #22303F;     /* ONLY on focus rings and link hover underlines.
+                            If this appears as a background or button fill,
+                            the palette has been broken. */
+
+  /* ---- 3.4 Type ---- */
+  --font-primary: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-quote: 'Newsreader', Georgia, serif; /* testimonial quotes only */
+
+  /* Display: 400, clamp 40px to 92px, tracking -0.025em, line-height 1.02.
+     Middle term derived to hit 40px at 375px viewport and 92px at 1440px:
+     slope 52px/1065px = 4.883vw, intercept 40 - 4.883*3.75 = 21.69px. */
+  --text-display: clamp(2.5rem, 1.356rem + 4.883vw, 5.75rem);
+  --leading-display: 1.02;
+  --tracking-display: -0.025em;
+  --weight-display: 400;
+
+  /* Label: 500, 11px, uppercase, tracking 0.18em.
+     Nav, eyebrows, section markers, spec blocks, form labels. */
+  --text-label: 0.6875rem; /* 11px */
+  --tracking-label: 0.18em;
+  --weight-label: 500;
+
+  /* Body: 400, 16 to 17px, line-height 1.65, tracking 0, max-width 58ch.
+     Fluid between the brief's two endpoints across the same 375-1440 span:
+     slope 1px/1065px = 0.094vw, intercept 16 - 0.094*3.75 = 15.65px. */
+  --text-body: clamp(1rem, 0.978rem + 0.094vw, 1.0625rem);
+  --leading-body: 1.65;
+  --weight-body: 400;
+
+  /* ---- 3.5 Layout ---- */
+  --measure: 58ch;            /* text column maximum, often much less */
+  --space-section: 96px;      /* mobile vertical rhythm */
+  --radius: 2px;              /* absolute maximum radius anywhere (3.2) */
+  --nav-height: 4.5rem;       /* site-nav's fixed height, constant across
+                                  breakpoints; shared so fixed-position
+                                  content (the hero) can clear it */
+
+  /* ---- 3.7 / 6. Motion ---- */
+  --reveal-clip-duration: 1100ms;         /* shade reveal: clip-path */
+  --reveal-transform-duration: 1400ms;    /* shade reveal: settle */
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-stagger: 90ms;                 /* 6.2 sibling stagger */
+
+  --hero-hold: 6.5s;                      /* 5.1 gallery hold */
+  --hero-dissolve: 1.4s;                  /* 5.1 cross-fade */
+
+  --nav-transition: 300ms;                /* 6.3 */
+  --hover-image-duration: 700ms;          /* 6.4 portfolio hover, ease-out */
+  --accordion-duration: 420ms;            /* 6.5 */
+  --ease-accordion: cubic-bezier(0.4, 0, 0.2, 1);
+  --link-underline-duration: 300ms;       /* 6.6 */
+}
+
+/* Desktop rhythm: 160px sections (3.5). Breakpoint is an interpretation:
+   the brief names 375/768/1440/2560 as render targets; 768 is the first
+   non-mobile one. */
+@media (min-width: 768px) {
+  :root {
+    --space-section: 160px;
+  }
+}
+
+/* ---- Base type roles. Nothing outside these three (3.4). ---- */
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--weight-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: 0;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.type-display {
+  font-weight: var(--weight-display);
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.type-label {
+  font-weight: var(--weight-label);
+  font-size: var(--text-label);
+  line-height: 1;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.type-quote {
+  font-family: var(--font-quote);
+  font-weight: 300;
+}
+
+/* Body copy is always left-aligned. Never centered, never justified (3.4). */
+p {
+  max-width: var(--measure);
+  text-align: left;
+}
+
+/* ---- 3.3 Indigo discipline: focus rings and link hover underlines only ----
+   Interpretation flagged for review: --indigo (#22303F) has near-zero
+   contrast against --ground (#181816) or dark hero photography. On dark
+   backgrounds the focus ring and hover underline fall back to --paper, the
+   same neutral already in the palette, so no new color enters the system —
+   this is a contrast substitution, not a second accent. */
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+.bg-ground :focus-visible,
+.on-dark :focus-visible {
+  outline-color: var(--paper);
+}
+
+/* ---- 6.8 Reduced motion, verbatim ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

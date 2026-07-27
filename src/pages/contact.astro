@@ -1,0 +1,75 @@
+---
+// Contact (DESIGN_BRIEF.md 5.7). "This is a qualification form, not a booking
+// link. Its job is to filter." Three parts, in the brief's order: the paragraph
+// explaining what the consultation is, the form, then the FAQ.
+//
+// The intro paragraph is the most rule-bound copy on the site. 5.7: say it is a
+// paid in-home visit; do NOT say the fee credits toward the project (rule 2 —
+// it does not); do not apologise for the fee; do not state the amount until Amy
+// confirms one (open in ASK-AMY.md). The paragraph below does all four by
+// describing what the visit buys and stopping there.
+//
+// **Two deliberate omissions, both interpretations rather than oversights:**
+// - No lead image. Every other text-led page opens with one, but 5.7 does not
+//   ask for one and the site has three usable photographs total, each already
+//   doing three or four jobs. A fifth reuse would add nothing here. Revisit once
+//   Kelsee's shoot lands (IMAGE-MANIFEST.md).
+// - No phone number or email on the page. The footer already carries contact
+//   details (5.1). Putting them beside the form would give a reader a way around
+//   the filter the brief says this page exists to be.
+
+import Base from '../layouts/Base.astro';
+import ConsultationForm from '../components/ConsultationForm.astro';
+import Faq from '../components/Faq.astro';
+---
+
+<Base
+  title="Schedule a Consultation | Amy K Clark Design"
+  description="Request an in-home consultation for custom drapery, blinds and shades, upholstery, or soft furnishings in Cincinnati and Northern Kentucky."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Contact', href: '/contact' },
+  ]}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">Contact</p>
+    <h1 class="type-display text-page__heading">Schedule a Consultation</h1>
+    <p class="text-page__lead">
+      Every project starts with a paid in-home visit. Amy comes to the room, measures the openings
+      herself, sees the light at the hour that matters, and puts fabric against your walls and your
+      furniture. You come out of it knowing what the room needs and what she would do about it.
+    </p>
+    <p class="contact__lead-continued">
+      The form below is how she works out whether she is the right person for your project before
+      either of you spends a morning finding out. The more you can tell her about the room, the more
+      useful the visit will be.
+    </p>
+  </section>
+
+  <section class="section wrap contact__form-section" aria-labelledby="form-heading">
+    <h2 id="form-heading" class="type-display contact__form-heading">Tell me about your room</h2>
+    <ConsultationForm />
+  </section>
+
+  <Faq />
+</Base>
+
+<style>
+  .contact__lead-continued {
+    max-width: var(--measure);
+    margin-top: 1rem;
+  }
+
+  /* The form section follows the intro immediately, so it drops the leading
+     section pad rather than stacking 160px on top of 160px. */
+  .contact__form-section {
+    padding-block-start: 0;
+  }
+
+  .contact__form-heading {
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    margin-bottom: 2.5rem;
+  }
+</style>

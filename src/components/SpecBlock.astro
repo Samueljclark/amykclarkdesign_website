@@ -1,0 +1,55 @@
+---
+// Project detail pages only (DESIGN_BRIEF.md 3.6): "Treatment type, fabric
+// house, lining, hardware, rooms. Set in the Label style." Not every project
+// has every fact confirmed yet (see projects.ts) — only present fields
+// render, same "don't guess it" pattern as business.ts's opening hours,
+// rather than a row of placeholder dashes.
+
+import type { ProjectSpec } from '../data/projects';
+
+interface Props {
+  spec: ProjectSpec;
+}
+
+const { spec } = Astro.props;
+
+const rows: Array<{ label: string; value: string }> = [
+  { label: 'Treatment', value: spec.treatment ?? '' },
+  { label: 'Fabric house', value: spec.fabricHouse ?? '' },
+  { label: 'Lining', value: spec.lining ?? '' },
+  { label: 'Hardware', value: spec.hardware ?? '' },
+  { label: 'Rooms', value: spec.rooms ?? '' },
+].filter((row) => row.value !== '');
+---
+
+{rows.length > 0 && (
+  <dl class="spec-block">
+    {rows.map((row) => (
+      <div class="spec-block__row">
+        <dt class="type-label spec-block__label">{row.label}</dt>
+        <dd class="spec-block__value">{row.value}</dd>
+      </div>
+    ))}
+  </dl>
+)}
+
+<style>
+  .spec-block {
+    display: grid;
+    gap: 0.75rem;
+    max-width: var(--measure);
+  }
+  .spec-block__row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    padding-block: 0.75rem;
+    border-top: 1px solid var(--rule);
+  }
+  .spec-block__label {
+    color: var(--ink-muted);
+  }
+  .spec-block__value {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+// Location page (DESIGN_BRIEF.md section 4). Same standing as /cincinnati:
+// exists for search, lives in the footer rather than the main nav, and does
+// not conflict with the no-geography project-naming rule — section 4 says so
+// explicitly. Nothing here names a project, a client, or an address.
+//
+// Keyword target (8.3): "custom drapery Northern Kentucky" — title, H1, first
+// paragraph, meta description, once each.
+//
+// Neighbourhoods (8.4): the Kentucky-side names from the brief's list — Fort
+// Mitchell, Fort Thomas, Villa Hills, Crestview Hills, Union, Edgewood. The
+// Ohio-side names are on /cincinnati. Splitting them is what keeps these two
+// pages genuinely different documents rather than the thin near-duplicates
+// 8.4 warns against.
+//
+// Fort Wright is named here because it is where Amy actually is
+// (business.ts's `baseCity`) — the one geographic fact about the business
+// itself, as distinct from an address, which is never published.
+//
+// Vendor naming: rule 8's "the lines I represent." No pricing (rule 1).
+// Image: standing IMAGE-MANIFEST.md placeholder rule. Swap when Kelsee's
+// shoot lands.
+
+import Base from '../layouts/Base.astro';
+import RevealImage from '../components/RevealImage.astro';
+import { photos } from '../data/photos';
+
+const lead = photos['pleated-drapery'];
+---
+
+<Base
+  title="Custom Drapery Northern Kentucky | Amy K Clark Design"
+  description="Custom drapery in Northern Kentucky, plus blinds, shades, upholstery, and soft furnishings. Designed, sewn, and installed by Amy Clark from Fort Wright."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Northern Kentucky', href: '/northern-kentucky' },
+  ]}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">Service area</p>
+    <h1 class="type-display text-page__heading">Custom Drapery in Northern Kentucky</h1>
+    <p class="text-page__lead">
+      Custom drapery in Northern Kentucky, made a few minutes from most of it. Amy works out of
+      Fort Wright, which means the consultation, the fabrication, and the installation are all the
+      same person driving the same short distance.
+    </p>
+  </section>
+
+  <RevealImage
+    src={lead.image}
+    alt={lead.alt}
+    blurDataURL={lead.blurDataURL}
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap text-page__body">
+    <h2 class="type-display text-page__subhead">Close enough to come back</h2>
+    <p>
+      Fort Mitchell, Fort Thomas, Villa Hills, Crestview Hills, Edgewood, and Union are all short
+      drives, and that changes what is practical. A panel that needs dressing again a week after
+      it hangs gets dressed again. A memo can be dropped off to sit in the room overnight and be
+      looked at in the morning light instead of decided on the spot. Proximity is not a selling
+      point so much as the reason the finishing actually happens.
+    </p>
+
+    <h2 class="type-display text-page__subhead">Drapery first, then everything around it</h2>
+    <p>
+      Drapery is the largest piece of fabric in most rooms and it sets the terms for the rest.
+      Where the rod goes, how far the panels stack back, what the lining does to the light. Once
+      that is settled, blinds and shades, upholstery, and the pillows and cushions can be worked
+      around it rather than negotiated against it afterward.
+    </p>
+    <p>
+      Fabric comes from the lines I represent, chosen for how it will hang in the specific room
+      rather than for how it reads in a book. Amy is not a full-service interior design firm; she
+      owns the textile layer and works alongside whoever owns the rest of the house.
+    </p>
+
+    <h2 class="type-display text-page__subhead">River-view rooms and new builds</h2>
+    <p>
+      A Fort Thomas room facing the river has a view worth keeping and afternoon light worth
+      controlling, which are competing requirements and the reason openness factor is a real
+      number rather than a preference. A new build in Union has square openings and no history,
+      which makes the work easier and makes the fabric decision carry more of the weight.
+    </p>
+
+    <h2 class="type-display text-page__subhead">Start with the room</h2>
+    <p>
+      Every project starts in the house. See <a href="/services/drapery" class="link-underline"
+        >custom drapery</a
+      > for how that work is built, or the <a href="/process" class="link-underline">process</a> for
+      what happens in what order.
+    </p>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>

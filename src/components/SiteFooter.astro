@@ -1,0 +1,123 @@
+---
+// DESIGN_BRIEF.md 5.1: "Footer. Navigation, location pages, Instagram and
+// Facebook links, contact, service area line." Location pages live here
+// only, never in main nav (section 4). Business facts come from
+// src/data/business.ts, confirmed by Sam 2026-07-24. Email is still a
+// placeholder pending confirmation.
+
+import { business } from '../data/business';
+
+const navItems = [
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Process', href: '/process' },
+  { label: 'Journal', href: '/journal' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const locationPages = [
+  { label: 'Cincinnati', href: '/cincinnati' },
+  { label: 'Northern Kentucky', href: '/northern-kentucky' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer bg-ground">
+  <div class="wrap section site-footer__grid">
+    <div>
+      <p class="type-label site-footer__mark">Amy K Clark Design</p>
+      <p class="site-footer__area">Cincinnati/NKY Based</p>
+      <p class="site-footer__area site-footer__area--secondary">Serving all areas</p>
+    </div>
+
+    <nav aria-label="Footer">
+      <p class="type-label site-footer__heading">Site</p>
+      <ul class="site-footer__list">
+        {navItems.map((item) => (
+          <li><a href={item.href} class="link-underline">{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav aria-label="Service areas">
+      <p class="type-label site-footer__heading">Service Areas</p>
+      <ul class="site-footer__list">
+        {locationPages.map((item) => (
+          <li><a href={item.href} class="link-underline">{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div>
+      <p class="type-label site-footer__heading">Contact</p>
+      <ul class="site-footer__list">
+        <li>
+          <a href={business.phoneHref} class="link-underline">{business.phone}</a>
+        </li>
+        <li>
+          <!-- CONFIRM WITH SAM: real contact email -->
+          <a href={`mailto:${business.email}`} class="link-underline">{business.email}</a>
+        </li>
+        <li>
+          <a href={business.instagram} class="link-underline" rel="noopener">Instagram</a>
+        </li>
+        <li>
+          <a href={business.facebook} class="link-underline" rel="noopener">Facebook</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap site-footer__bottom">
+    <p class="type-label">&copy; {year} Amy K Clark Design</p>
+  </div>
+</footer>
+
+<style>
+  /* Muted-on-dark pattern: there is no defined "muted paper" token, so
+     secondary text on --ground uses opacity on the existing --paper token
+     rather than introducing a new color (3.3's "no values not in the
+     brief" read literally). Applies to the area line, column headings,
+     and the copyright line below. */
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 768px) {
+    .site-footer__grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  .site-footer__mark {
+    margin-bottom: 1rem;
+  }
+  .site-footer__area {
+    max-width: 32ch;
+    opacity: 0.7;
+  }
+  .site-footer__area--secondary {
+    margin-top: 0.25rem;
+    opacity: 0.5;
+  }
+  .site-footer__heading {
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+  .site-footer__list {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .site-footer__bottom {
+    padding-block: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--paper) 15%, var(--ground));
+  }
+  .site-footer__bottom p {
+    opacity: 0.5;
+  }
+</style>

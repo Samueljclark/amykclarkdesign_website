@@ -1,0 +1,135 @@
+---
+// Design Journal index (DESIGN_BRIEF.md 5.6). Three real posts at launch, all
+// drafted from the brief's own listed topics and flagged in each .md file as
+// pending Amy's review.
+//
+// This page is the one deliberate exception to Amy's "they are not there to
+// read" rule (section 1), and it is a narrow one: the journal exists for search
+// (8.x), so the index still has to be scannable rather than a wall of text.
+// Each entry is a photo, a title, and the one-line description that is already
+// doing duty as the post's meta description — nothing is written twice.
+//
+// Ordered newest first. Dates are placeholders until launch, flagged in
+// BUILD-PLAN.md step 6.
+
+import Base from '../../layouts/Base.astro';
+import RevealImage from '../../components/RevealImage.astro';
+import { getCollection } from 'astro:content';
+import { journalImages } from '../../data/journalImages';
+
+const posts = (await getCollection('journal')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<Base
+  title="Design Journal | Amy K Clark Design"
+  description="Notes on fabric, drapery, blinds, and shades from Amy Clark, who designs, makes, and installs them in Cincinnati and Northern Kentucky."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Journal', href: '/journal' },
+  ]}
+>
+  <section class="section wrap">
+    <p class="type-label text-page__eyebrow">Journal</p>
+    <h1 class="type-display journal-index__heading">Design Journal</h1>
+    <p class="text-page__lead">
+      What I have learned making window treatments, written down. How to read a fabric, how to
+      choose between drapery and shades room by room, and the details that decide whether a
+      treatment looks finished.
+    </p>
+
+    <ul class="journal-index__list">
+      {posts.map((post) => {
+        const hero = journalImages[post.data.heroImage];
+        return (
+          <li class="journal-index__item">
+            <article class="journal-index__entry">
+              <a href={`/journal/${post.id}`} class="journal-index__link">
+                <RevealImage
+                  src={hero.image}
+                  alt={hero.alt}
+                  blurDataURL={hero.blurDataURL}
+                  aspectRatio="4/5"
+                  sizes="(min-width: 768px) 40vw, 90vw"
+                  transitionName={`journal-photo-${post.id}`}
+                />
+                <div class="journal-index__meta">
+                  <p class="type-label journal-index__date">
+                    <time datetime={post.data.publishDate.toISOString().slice(0, 10)}>
+                      {dateFormatter.format(post.data.publishDate)}
+                    </time>
+                  </p>
+                  <h2 class="journal-index__title">
+                    <span class="link-underline">{post.data.title}</span>
+                  </h2>
+                </div>
+              </a>
+              <p class="journal-index__description">{post.data.description}</p>
+            </article>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .journal-index__heading {
+    max-width: 18ch;
+  }
+
+  .journal-index__list {
+    display: grid;
+    gap: 4rem 1.5rem;
+    margin-top: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+
+  .journal-index__link {
+    display: block;
+  }
+
+  .journal-index__meta {
+    margin-top: 1rem;
+  }
+
+  .journal-index__date {
+    color: var(--ink-muted);
+  }
+
+  /* The subhead size (global.css's .text-page__subhead), not a fourth type
+     role — same Display role at the small end of its clamp. */
+  .journal-index__title {
+    font-weight: var(--weight-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    line-height: 1.15;
+    letter-spacing: var(--tracking-display);
+    margin-top: 0.75rem;
+  }
+
+  .journal-index__description {
+    margin-top: 0.75rem;
+    color: var(--ink-muted);
+  }
+
+  /* Asymmetry (3.5): the same nth-child offset device the portfolio index and
+     Home strip already use, so the journal does not introduce a second one. */
+  @media (min-width: 768px) {
+    .journal-index__item:nth-child(3n + 2) {
+      margin-top: 4rem;
+    }
+    .journal-index__item:nth-child(3n + 3) {
+      margin-top: 2rem;
+    }
+  }
+</style>

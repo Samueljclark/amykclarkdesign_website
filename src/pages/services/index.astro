@@ -1,0 +1,53 @@
+---
+// Services overview (DESIGN_BRIEF.md 5.3): "Overview page plus four child
+// pages." Reuses ServiceList — the same four entries in the same order as
+// Home (5.1), shared via src/data/services.ts — rather than a second,
+// near-identical list component. Real visible <h1> here (unlike Home's
+// hero-specific visually-hidden one).
+
+import Base from '../../layouts/Base.astro';
+import ServiceList from '../../components/ServiceList.astro';
+import RevealImage from '../../components/RevealImage.astro';
+import { services } from '../../data/services';
+import leadImage from '../../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
+---
+
+<Base
+  title="Services | Amy K Clark Design"
+  description="Custom drapery, blinds and shades, upholstery, and soft furnishings for Cincinnati and Northern Kentucky homes, designed and made by Amy K Clark."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+  ]}
+>
+  <section class="section wrap services-intro">
+    <h1 class="type-display services-intro__heading">Services</h1>
+    <p class="services-intro__body">
+      Amy designs, fabricates, and installs custom window treatments, upholstery, and soft
+      furnishings for homes across Cincinnati and Northern Kentucky. Every project starts with the
+      room itself &mdash; its light, its architecture, and how it is actually used.
+    </p>
+  </section>
+
+  <RevealImage
+    src={leadImage}
+    alt="Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa"
+    blurDataURL="data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQAwCdASoYAA4APu1orU6ppiSiMAgBMB2JZQAAJqLi3qVMQ9VAANjKqbeciNEkpMXDllsCpgoMYdl7ucLubhtqE1JLh7v3/75MyoCwt8lGS7+Oq0L5IIs0IK5IIrEHVgX8zHrArz/FAAAA"
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <ServiceList services={services} />
+</Base>
+
+<style>
+  .services-intro__heading {
+    max-width: 18ch;
+  }
+  .services-intro__body {
+    max-width: var(--measure);
+    margin-top: 1.5rem;
+  }
+</style>

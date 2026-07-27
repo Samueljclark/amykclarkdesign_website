@@ -1,0 +1,108 @@
+---
+// Location page (DESIGN_BRIEF.md section 4). Exists for search, lives in the
+// footer rather than the main nav, and **does not conflict with the
+// no-geography project-naming rule** — section 4 says so explicitly. Project
+// names stay placeless for brand reasons; the site still has to be findable.
+// Nothing on this page names a project, a client, or an address.
+//
+// Keyword target (8.3): "window treatments Cincinnati OH" — title, H1, first
+// paragraph, meta description. Once each, per 8.3's own "do not stuff" rule.
+//
+// Neighbourhoods (8.4): the brief's instruction is to name the areas
+// *naturally within the two location pages*, and explicitly NOT to build
+// twelve thin doorway pages, which Google penalises. The Cincinnati-side
+// names from 8.4's list appear here; the Kentucky-side ones are on
+// /northern-kentucky, so neither page is a duplicate of the other.
+//
+// **Nothing here claims a project in a named neighbourhood.** The brief
+// establishes these as where Amy's clients are concentrated, which supports
+// naming them as ground she covers — it does not establish a finished job on
+// any particular street, and inventing one would break rule 4 and be untrue.
+//
+// Vendor naming: rule 8's "the lines I represent." Lafayette is named on its
+// own page only. No pricing language (rule 1).
+//
+// Image: the standing IMAGE-MANIFEST.md placeholder rule — a real photograph,
+// never a blank box. Swap when Kelsee's shoot lands.
+
+import Base from '../layouts/Base.astro';
+import RevealImage from '../components/RevealImage.astro';
+import { photos } from '../data/photos';
+
+const lead = photos['banded-roman-shade'];
+---
+
+<Base
+  title="Window Treatments Cincinnati OH | Amy K Clark Design"
+  description="Custom window treatments in Cincinnati OH: drapery, blinds and shades, upholstery, and soft furnishings, designed, made, and installed by Amy Clark."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Cincinnati', href: '/cincinnati' },
+  ]}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">Service area</p>
+    <h1 class="type-display text-page__heading">Window Treatments in Cincinnati</h1>
+    <p class="text-page__lead">
+      Custom window treatments in Cincinnati OH, made by the person who measured the room. Amy
+      designs the treatment, sews it in her own workroom, and hangs it herself, which is a
+      different arrangement from the one most of this city offers.
+    </p>
+  </section>
+
+  <RevealImage
+    src={lead.image}
+    alt={lead.alt}
+    blurDataURL={lead.blurDataURL}
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap text-page__body">
+    <h2 class="type-display text-page__subhead">Where she works</h2>
+    <p>
+      Hyde Park, Indian Hill, Mariemont, Terrace Park, Wyoming, and Anderson Township are regular
+      ground, and so is everything between them. The houses are not interchangeable and neither
+      are the windows. A 1920s Hyde Park sunroom with original steel casements is a different
+      problem from a new build in Anderson with a two-storey wall of glass, and the same treatment
+      would be wrong in both.
+    </p>
+
+    <h2 class="type-display text-page__subhead">What that means in an older house</h2>
+    <p>
+      Older Cincinnati houses rarely give you a square opening. Plaster moves, sills are out of
+      level, and the trim was run by hand a century ago. Every measurement gets taken in the room
+      rather than assumed off a plan, and the treatment is built to the opening that is actually
+      there. That is the part that decides whether an inside mount reads as intentional or as
+      slightly off, and it is why nothing is ordered from a photograph.
+    </p>
+
+    <h2 class="type-display text-page__subhead">The whole textile layer</h2>
+    <p>
+      Drapery, blinds and shades, upholstery, pillows and cushions. Fabric comes from the lines I
+      represent, chosen for how it will hang and wear rather than for how it looks folded on a
+      table. Amy is not a full-service interior design firm and does not pretend to be one: she
+      owns the textile layer of a room and works alongside whoever owns the rest.
+    </p>
+    <p>
+      If a designer, builder, or project manager is already running the house, that is an ordinary
+      way to work here. If it is just you and a room that has never looked right, that is ordinary
+      too.
+    </p>
+
+    <h2 class="type-display text-page__subhead">Start with the room</h2>
+    <p>
+      Every project starts with a consultation in the house, because the light, the sightlines,
+      and the way the room actually gets used are the things that decide the work. The
+      <a href="/process" class="link-underline">process</a> page walks through what happens after
+      that, and the <a href="/portfolio" class="link-underline">portfolio</a> shows finished work.
+    </p>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>

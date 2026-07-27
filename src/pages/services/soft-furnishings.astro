@@ -1,0 +1,107 @@
+---
+// DESIGN_BRIEF.md 5.3. Keyword cluster (8.3): "custom pillows and cushions
+// Cincinnati" — title, H1, first paragraph, meta description. Site
+// architecture (4) names this page "Pillows, Cushions & Soft Furnishings";
+// nav and the services list use the shorter "Soft Furnishings" (5.1's own
+// wording for the Home entry), so the H1 here carries the full phrase.
+//
+// Placeholder image per the IMAGE-MANIFEST.md standing rule: the living-room
+// detail crop is the only real photo showing pillows in place. Swap when
+// Kelsee's shoot lands.
+
+import Base from '../../layouts/Base.astro';
+import RevealImage from '../../components/RevealImage.astro';
+import leadImage from '../../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
+---
+
+<Base
+  title="Custom Pillows & Cushions Cincinnati | Amy K Clark"
+  description="Custom pillows, cushions, and soft furnishings for Cincinnati and Northern Kentucky homes, made and finished by Amy K Clark Design."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Soft Furnishings', href: '/services/soft-furnishings' },
+  ]}
+>
+  <section class="section wrap service-page__intro">
+    <p class="type-label service-page__eyebrow">Services</p>
+    <h1 class="type-display service-page__heading">Pillows, Cushions &amp; Soft Furnishings</h1>
+    <p class="service-page__lead">
+      Custom pillows and cushions in Cincinnati and Northern Kentucky, the layer that finishes a
+      room. These are the smallest things Amy makes and often the ones that decide whether a room
+      reads as considered or merely furnished.
+    </p>
+  </section>
+
+  <RevealImage
+    src={leadImage}
+    alt="Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead"
+    blurDataURL="data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA"
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap service-page__body">
+    <h2 class="type-display service-page__subhead">Small work, disproportionate effect</h2>
+    <p>
+      A ready-made pillow is one size, one fabric, one edge, all decided by somebody who never saw
+      the sofa. Custom means the proportion suits the piece it sits on and the finish is chosen
+      rather than accepted. It is also the easiest way to get a remarkable textile into a room. A
+      fabric that would be impractical across a whole sofa is perfect as a pair of pillows, and a
+      size that does not exist ready-made is not an obstacle when Amy is making it anyway.
+    </p>
+    <p>
+      This is often where a project starts. A client who is not ready to commit to drapery can see
+      exactly how Amy works from a set of pillows, and the room moves further than the size of the
+      job suggests it should.
+    </p>
+
+    <h2 class="type-display service-page__subhead">Proportion and fill</h2>
+    <p>
+      Size is the thing people get wrong most. Pillows that are too small leave a sofa looking
+      undressed. A mix of sizes with a deliberate relationship between them beats a matched set of
+      four, and two large pillows can carry a long sofa better than four small ones ever will. Seat
+      depth and back height decide what belongs there, along with whether anyone actually sits on
+      it.
+    </p>
+    <p>
+      Fill decides how a pillow behaves. Down and down-blend inserts have a hand that foam cannot
+      fake, and they take the karate chop, or the casual slump that makes a room look lived in
+      rather than staged. Inserts are sized larger than the cover so the pillow sits full instead
+      of slack. Small detail, immediately visible.
+    </p>
+    <p>
+      The edge sets the register. A knife edge is clean and quiet. A flange softens it and reads
+      traditional. Box edge where the pillow needs to hold structure. Brush fringe and tape push it
+      formal fast, and there is a line past which a pillow is wearing a costume.
+    </p>
+
+    <h2 class="type-display service-page__subhead">Cushions and the rest</h2>
+    <p>
+      Window seats, benches, and banquettes need cushions built to an actual measurement rather
+      than trimmed down to fit. Foam density gets chosen for how long people sit there, with a
+      boxed construction that holds its front edge instead of collapsing into it. Dining chair
+      seats take the most abuse in the house and get built accordingly. Outdoor cushions have to
+      survive weather and then dry out properly.
+    </p>
+    <p>
+      Past pillows and cushions, soft furnishings covers table linens, bed skirts, shams,
+      headboards, and the occasional piece that has no standard name and simply has to be invented
+      for the space it goes in.
+    </p>
+
+    <h2 class="type-display service-page__subhead">Pieces already made</h2>
+    <p>
+      A few finished pillows are photographed on the
+      <a href="/signature-pieces" class="link-underline">signature pieces</a> page. Any of them can
+      be made again, in that fabric or in one chosen for your room.
+    </p>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>

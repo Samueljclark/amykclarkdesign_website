@@ -1,0 +1,77 @@
+---
+// Process page only (DESIGN_BRIEF.md 5.5, and 3.6's rule that "numbered steps
+// appear on the Process page and nowhere else, because that is a real ordered
+// sequence"). Nothing else on this site is allowed to be numbered, so this
+// component is deliberately single-use rather than a general "numbered list."
+//
+// The number is set in the Label role (3.4) — no fourth type role, no
+// decorative numeral treatment. An <ol> carries the ordering semantically;
+// the visible numerals are drawn from the data rather than list-style markers
+// so they can take the Label role and sit in their own column.
+
+interface Step {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+---
+
+<ol class="step-list">
+  {steps.map((step, i) => (
+    <li class="step-list__item">
+      <p class="type-label step-list__number" aria-hidden="true">
+        {String(i + 1).padStart(2, '0')}
+      </p>
+      <div class="step-list__content">
+        <h2 class="type-display step-list__title">{step.title}</h2>
+        <p class="step-list__body">{step.body}</p>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .step-list {
+    border-top: 1px solid var(--rule);
+  }
+
+  .step-list__item {
+    border-bottom: 1px solid var(--rule);
+    padding-block: 2rem;
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0 1.5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .step-list__item {
+      padding-block: 3rem;
+      grid-template-columns: 5rem 1fr;
+      gap: 0 2.5rem;
+    }
+  }
+
+  /* The numeral sits on the Body baseline rather than the Display one, so a
+     column of them reads as a quiet margin note beside each step instead of
+     competing with the step titles. */
+  .step-list__number {
+    color: var(--ink-muted);
+    padding-top: 0.6em;
+  }
+
+  .step-list__title {
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  }
+
+  .step-list__body {
+    margin-top: 0.75rem;
+    max-width: var(--measure);
+    color: var(--ink-muted);
+  }
+</style>

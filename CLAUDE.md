@@ -1,0 +1,38 @@
+# Amy K Clark Design — Website Build
+
+## Authority
+DESIGN_BRIEF.md is the single source of truth for design, copy, page
+structure, and content decisions. BUILD-PLAN.md governs build order and
+step-by-step status. IMAGE-MANIFEST.md tracks every image in use.
+
+If anything in this file, in old chat history, or anywhere else in this
+repo conflicts with DESIGN_BRIEF.md or BUILD-PLAN.md, those two win.
+
+## Who's who
+- Amy Clark — founder, Amy K Clark Design. Custom drapery, blinds/shades,
+  upholstery, soft furnishings. Fort Wright, KY.
+- Sam Clark — building this site, using Claude Code.
+- Kelsee Etmans — photographer, Studio section.
+
+## Stack
+Astro, static output, hosted on Netlify. Netlify Forms for the contact
+form. Fonts self-hosted (Archivo variable + Newsreader 300). Node pinned
+to 24.18.0 in netlify.toml.
+
+## legacy-static/ is archived, not a reference
+An earlier plain-HTML version of this site (different palette, different
+type system, different page list, no Portfolio/Journal) lives in
+legacy-static/ for history only. Do not pull structure, copy, palette,
+or typography from it. DESIGN_BRIEF.md replaced it entirely.
+
+## Session rules
+- Stay on Sonnet 5 for all coding work. If a message about
+  model-unavailability causes an automatic fallback, check /model and
+  switch back to Sonnet 5 before continuing. Never use Fable 5 unless
+  Sam explicitly asks.
+- Skip the Claude Browser screenshot/click-testing loop for routine
+  build steps. Verify with production build and code-level checks only.
+  Sam reviews visually himself in a real browser between steps. Reserve
+  Browser-based visual testing for the final acceptance pass only.
+- Run /clear before starting each new step in BUILD-PLAN.md.
+- Run /cost at the end of each step.

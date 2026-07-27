@@ -1,0 +1,123 @@
+---
+// Home (DESIGN_BRIEF.md 5.1). Six sections in the order the brief specifies:
+// hero, portfolio, differentiator, services, testimonials, contact. The two
+// signature moves (full-screen hero gallery, shade reveal) carry the whole
+// design thesis per BUILD-PLAN.md step 2 — everything else here stays quiet.
+//
+// SEO (8.1/8.3): the hero deliberately carries no headline text ("no
+// headline block, no descriptor paragraph" - 5.1), so the keyword-bearing
+// <h1> is a visually-hidden element up front instead of the on-screen
+// wordmark. The primary keyword ("custom window treatments Cincinnati")
+// appears in the title, this H1, and the differentiator paragraph below
+// (the first real body copy on the page), plus the meta description.
+
+import Base from '../layouts/Base.astro';
+import HeroGallery from '../components/HeroGallery.astro';
+import PortfolioStrip from '../components/PortfolioStrip.astro';
+import ServiceList from '../components/ServiceList.astro';
+import Quote from '../components/Quote.astro';
+import { projects } from '../data/projects';
+import { services } from '../data/services';
+import heroImage from '../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
+
+const heroImages = [
+  {
+    src: heroImage,
+    alt: 'Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa',
+    blurDataURL:
+      'data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQAwCdASoYAA4APu1orU6ppiSiMAgBMB2JZQAAJqLi3qVMQ9VAANjKqbeciNEkpMXDllsCpgoMYdl7ucLubhtqE1JLh7v3/75MyoCwt8lGS7+Oq0L5IIs0IK5IIrEHVgX8zHrArz/FAAAA',
+  },
+];
+
+---
+
+<Base
+  title="Custom Window Treatments Cincinnati | Amy K Clark Design"
+  description="Custom drapery, blinds and shades, and upholstery for Cincinnati and Northern Kentucky homes. Schedule a consultation with Amy K Clark Design."
+  ogImage="/images/og/og-default.jpg"
+  localBusiness={true}
+>
+  <h1 class="visually-hidden">
+    Custom Window Treatments, Drapery &amp; Shades in Cincinnati and Northern Kentucky
+  </h1>
+
+  <HeroGallery images={heroImages} />
+
+  <PortfolioStrip projects={projects} />
+
+  <section class="section wrap differentiator">
+    <h2 class="type-display differentiator__heading">A Designer's Eye, A Workroom's Understanding</h2>
+    <p class="differentiator__body">
+      Amy designs, fabricates, and installs custom window treatments, upholstery, and soft furnishings
+      for homes across Cincinnati and Northern Kentucky. An interior decorator does not make anything;
+      Amy does, bringing all three together herself.
+    </p>
+  </section>
+
+  <ServiceList services={services} />
+
+  <section class="section wrap testimonial" aria-labelledby="testimonial-heading">
+    <h2 id="testimonial-heading" class="visually-hidden">What Clients Say</h2>
+    <ul class="testimonial__list">
+      <li>
+        <!-- Attribution format ("Diane K.") approved by Amy — her full name is
+             already public on her own Instagram, so first name + last initial
+             isn't a new disclosure. Written permission to publish THIS quote
+             live at launch is still pending confirmation (BUILD-PLAN.md
+             decision 4) — the format is settled, publishing it is not. -->
+        <Quote quote="&hellip;made my house into a home." attribution="Diane K." />
+      </li>
+      <li>
+        <!-- Second of the two 5.1 permits. Same attribution format, same
+             holding pattern: this fragment is cut from a review on Amy's
+             PUBLIC Google Business profile, which is not the same thing as
+             written permission to feature it on her own site. Permission to
+             publish this specific quote at launch is still pending
+             confirmation (BUILD-PLAN.md decision 4).
+             Chosen over three other real candidates because it is the one
+             piece of trade-level proof in the set — matching a pattern across
+             a seam is the kind of detail 3.6 says persuades a reader who
+             knows what the words mean — and because it sits in a completely
+             different register from Diane K.'s. One quote is what the room
+             felt like afterward; this one is how the work was actually built.
+             Not shortened further: "on the seams" is what makes it specific
+             rather than another attention-to-detail line. -->
+        <Quote quote="She even matches complicated designs on the seams." attribution="Kelly G." />
+      </li>
+    </ul>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>
+
+<style>
+  .differentiator__heading {
+    max-width: 18ch;
+  }
+  .differentiator__body {
+    margin-top: 1.5rem;
+  }
+
+  /* Two quotes, the maximum 5.1 allows. Plain list, no cards, no rules, no
+     avatars — the only thing separating them is space. The second sits lower
+     than the first at desktop, which is 3.5's "asymmetry over grids" using the
+     offset device the portfolio strip already established, not a new one. */
+  .testimonial__list {
+    display: grid;
+    gap: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial__list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      align-items: start;
+    }
+    .testimonial__list > li:nth-child(2) {
+      margin-top: 5rem;
+    }
+  }
+</style>

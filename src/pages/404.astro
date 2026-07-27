@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page Not Found | Amy K Clark Design"
+  description="This page doesn't exist. Explore the portfolio or get in touch to start a project with Amy K Clark Design."
+  ogImage="/images/og/og-default.jpg"
+  noindex={true}
+  transparentNav={false}
+>
+  <section class="section wrap">
+    <h1 class="type-display">This page doesn't exist.</h1>
+    <p class="not-found__body">
+      The room you're looking for isn't here. Explore the portfolio or get in touch to start a project.
+    </p>
+    <p class="not-found__links">
+      <a href="/portfolio" class="link-underline">View Portfolio</a>
+      <a href="/" class="link-underline">Return home</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .not-found__body {
+    margin-top: 1.5rem;
+  }
+  .not-found__links {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+</style>

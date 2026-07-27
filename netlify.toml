@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Pinned to the Node version actually on PATH locally (/usr/local/bin/node
+  # v24.18.0), which also matches Netlify's build image default (Node 24) as
+  # of 2026-07. Netlify resolves this exact patch via nvm at build time.
+  NODE_VERSION = "24.18.0"

@@ -1,0 +1,110 @@
+---
+// DESIGN_BRIEF.md 5.3: own title, meta description, H1, and 400-700 words of
+// real copy. Keyword cluster (8.3): "custom drapery Cincinnati, custom
+// curtains Cincinnati" — in title, H1, first paragraph, and meta description,
+// and nowhere else (8.3's own "do not stuff" rule).
+//
+// Vendor naming, resolved 2026-07-26 (BUILD-PLAN.md decision 11): **Schumacher
+// is the only fabric house cleared for public naming.** Amy confirmed Stout and
+// Pollack are real lines she carries but are NOT yet cleared to be named
+// publicly, pending her rep calls — so they use rule 8's "the lines I
+// represent" phrasing here and must not be named on any public page. Rule 7
+// lists all three; that is a statement of which lines she carries, not a
+// clearance to print them, and rule 8 governs until each rep confirms.
+// No pricing language anywhere (rule 1).
+
+import Base from '../../layouts/Base.astro';
+import RevealImage from '../../components/RevealImage.astro';
+import leadImage from '../../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
+---
+
+<Base
+  title="Custom Drapery Cincinnati | Amy K Clark Design"
+  description="Custom drapery and curtains for Cincinnati and Northern Kentucky homes. Fabric selection, fabrication, and installation by Amy K Clark Design."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Custom Drapery', href: '/services/drapery' },
+  ]}
+>
+  <section class="section wrap service-page__intro">
+    <p class="type-label service-page__eyebrow">Services</p>
+    <h1 class="type-display service-page__heading">Custom Drapery</h1>
+    <p class="service-page__lead">
+      Custom drapery in Cincinnati and Northern Kentucky, worked out in the room it belongs to.
+      Amy picks the fabric, settles the details, sews the treatment, and hangs it herself. The
+      custom curtains that show up on installation day are the ones the room was measured for.
+    </p>
+  </section>
+
+  <RevealImage
+    src={leadImage}
+    alt="Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa"
+    blurDataURL="data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQAwCdASoYAA4APu1orU6ppiSiMAgBMB2JZQAAJqLi3qVMQ9VAANjKqbeciNEkpMXDllsCpgoMYdl7ucLubhtqE1JLh7v3/75MyoCwt8lGS7+Oq0L5IIs0IK5IIrEHVgX8zHrArz/FAAAA"
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap service-page__body">
+    <h2 class="type-display service-page__subhead">Start in the room</h2>
+    <p>
+      Drapery either works with a room's architecture or argues with it. Where the rod goes. How
+      far the panels stack back when they are open, and how much wall they take up doing it. Those
+      calls are what make a room read taller and finished instead of merely covered.
+    </p>
+    <p>
+      Amy works it out standing in the room, at the hour the light matters most. A north-facing
+      sitting room and a west-facing dining room want different weights and different linings even
+      when the windows are identical.
+    </p>
+
+    <h2 class="type-display service-page__subhead">What the fabric will actually do</h2>
+    <p>
+      Fabric comes from Schumacher and the other lines I represent, chosen for behavior rather
+      than for how it photographs on a memo sample. How it hangs. What it looks like after a
+      season of being drawn every evening. A linen that is gorgeous flat can fall like a wet towel
+      at length, and a pattern that reads beautifully in the hand can vanish the moment it is
+      gathered.
+    </p>
+    <p>
+      Lining is settled in the same conversation. Interlining adds weight and body and makes a
+      lighter fabric hang like a heavier one. Blackout belongs in bedrooms and media rooms.
+      Sun-facing rooms need protection from fade. These are the choices that decide whether a
+      treatment still looks right in five years.
+    </p>
+
+    <h2 class="type-display service-page__subhead">Pleats and hardware</h2>
+    <p>
+      Pleat style sets the character. Euro pleats read cleaner and more current. French pleats hold
+      a deeper fold and lean traditional. Ripplefold moves as one continuous wave, which suits a
+      wide contemporary span. Goblet pleats belong in the rooms that can carry them.
+    </p>
+    <p>
+      Hardware gets chosen alongside the fabric, never after. Bracket projection and return decide
+      how the finished treatment sits against the wall, and a rod picked for looks alone will bow
+      under interlined panels. Trim is where a treatment stops looking bought and starts looking
+      made. A contrast band down a leading edge. A return that closes tight to the frame so no
+      light sneaks around the side.
+    </p>
+
+    <h2 class="type-display service-page__subhead">A decorator does not make anything</h2>
+    <p>
+      Amy sews the drapery herself and installs it herself. Nothing goes out to a workroom that
+      never saw the room, and nobody hangs it who was not part of the decisions. Panels are dressed
+      and trained on installation day so the folds fall correctly from the start, and the treatment
+      is left looking the way it should look every day after.
+    </p>
+    <p>
+      Hard to photograph, obvious the second you walk in: the hem hangs level, the pattern matches
+      across panels, the stack clears the glass. Precise work, done by someone who knew what the
+      room needed before anything was cut.
+    </p>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>

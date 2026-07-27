@@ -1,0 +1,78 @@
+---
+// Process (DESIGN_BRIEF.md 5.5). Four numbered steps, in the brief's exact
+// order and with its exact step names. This is the only page on the site
+// where numbering is permitted (3.6), which is why StepList.astro exists and
+// is used nowhere else.
+//
+// **The consultation fee is deliberately not mentioned here.** 5.7 requires
+// the "paid in-home visit" paragraph on the Contact page and sets strict
+// rules around it (no amount until Amy confirms it, no claim that it credits
+// toward the project, no apologising for it). The brief does not ask for it
+// on this page, and rule 1 treats cost framing strictly, so step 1 below
+// describes what the visit is without touching what it costs. Contact
+// (step 6) is where that paragraph lands.
+//
+// Image (IMAGE-MANIFEST.md standing rule): the workroom shot is the only real
+// photo of Amy actually making something, which is what this page is about.
+
+import Base from '../layouts/Base.astro';
+import RevealImage from '../components/RevealImage.astro';
+import StepList from '../components/StepList.astro';
+import leadImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
+
+const steps = [
+  {
+    title: 'Consultation',
+    body: "Amy comes to the room. Measurements get taken, the light gets looked at during the hours that actually matter, and the conversation is about how the room gets used rather than how it photographs. Most of what shapes a project is decided standing in it.",
+  },
+  {
+    title: 'Design and sourcing',
+    body: 'Fabric, lining, hardware, and construction get settled together, because each one decides the others. Memos come to the house so a textile is judged against the room it will live in and the things already in it, never under showroom lighting.',
+  },
+  {
+    title: 'Fabrication and coordination',
+    body: 'Amy makes the work herself. Nothing goes out to a workroom that never saw the room. Where a project runs alongside a painter, a contractor, or a trade outside her scope, she works to their schedule rather than handing that job to the client.',
+  },
+  {
+    title: 'Installation and finishing',
+    body: 'Amy hangs the work herself. Panels get dressed and trained on the day, hardware is set so the returns close tight to the frame, and nothing gets called finished from the top of a ladder. The last thing that happens is standing back in the doorway, where the client will actually see it from.',
+  },
+];
+---
+
+<Base
+  title="Process | Amy K Clark Design"
+  description="How a project runs with Amy K Clark Design: consultation, design and sourcing, fabrication and coordination, installation and finishing."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Process', href: '/process' },
+  ]}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">Process</p>
+    <h1 class="type-display text-page__heading">Process</h1>
+    <p class="text-page__lead">
+      Four steps, in this order, every time. The same person carries the project through all of
+      them, which is the reason nothing gets lost between one and the next.
+    </p>
+  </section>
+
+  <RevealImage
+    src={leadImage}
+    alt="Amy's hands stitching a check-fabric ottoman on the workroom's gridded cutting table"
+    blurDataURL="data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQBQCdASoUABsAPtFWpk2oJCOiMBgIAQAaCUAWI+0YM6xTv/HqJLEODA5eoh4khh+AAP6A1FH/ibcZQuuEMg5Bb9qgUg+8MTeydH5d/BbmERZiGbJsiLRQ2+PUcm+DG+P8NtdDhDZFf1313HfX7lH3WkmsrO1kjqlzEbGk6qNAbfKC94avLNB3OZpndDKKEQGcZKeQXRVS3MhjogZaVWt6+6UBmAAAAAA="
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap">
+    <StepList steps={steps} />
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>

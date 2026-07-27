@@ -1,0 +1,128 @@
+---
+// DESIGN_BRIEF.md 5.3 — the growth category, "needs the most attention."
+// Lafayette Interior Fashions is named here and only here (rule 8 reserves
+// the name for this page; Home and the services overview use "the lines I
+// represent"). No logo or trademark is used, per rule 8.
+//
+// Naming Lafayette as the source is what rule 7 and 8.3 ask for. A formal
+// relationship claim is not: the page said "Amy is a Lafayette Interior
+// Fashions dealer" until 2026-07-26, which is an unconfirmed factual claim
+// about a business relationship (BUILD-PLAN decision 12). Softened to "the one
+// line I represent in this category," matching the holding pattern Stout and
+// Pollack are already under. Restore the dealer wording only once Amy
+// confirms it.
+//
+// Keyword cluster (8.3): "custom blinds Cincinnati, custom shades Northern
+// Kentucky, Lafayette blinds Cincinnati" — title, H1, first paragraph, meta
+// description.
+//
+// Roman shades appear as a searchable term but route to manufactured
+// product, not Amy's workroom (5.3's own instruction) — the copy below says
+// so explicitly rather than leaving it ambiguous.
+
+import Base from '../../layouts/Base.astro';
+import RevealImage from '../../components/RevealImage.astro';
+import Accordion from '../../components/Accordion.astro';
+import leadImage from '../../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
+
+const decisionCategories = [
+  {
+    title: 'Light and glare control',
+    content:
+      "How much light a room should keep is a different question from how much it lets in. A west-facing room with a television needs glare handled at one specific hour. A kitchen usually wants every bit of daylight it can hold. Solar shades are rated by openness, and that number decides how much view survives when they are down.",
+  },
+  {
+    title: 'Privacy',
+    content:
+      'Privacy and light are not the same requirement, and treating them as one is the most common mistake here. A top-down/bottom-up shade covers the lower half of a window and leaves the daylight coming in above it, which is usually what a street-facing bedroom or bathroom actually needs. Sheers give daytime privacy and then read completely differently after dark, once the lamps are on inside.',
+  },
+  {
+    title: 'Motorization',
+    content:
+      'Motorization earns its keep on tall windows, wide spans, and anything stranded above a stair or behind furniture, the treatments nobody ever adjusts because reaching them is a nuisance. It also lets a whole room drop on a schedule, ahead of the afternoon sun instead of after the room has already cooked. Battery, hardwired, and solar-charged suit different constructions, and the decision is far easier before drywall than after.',
+  },
+  {
+    title: 'Child and pet safety',
+    content:
+      'Cordless, in any house with young children or pets. There is rarely a good reason to choose otherwise. Cordless lift, motorization, and tensioned continuous-loop mounts all take the hazard of a traditional pull cord off the table. Worth deciding on purpose rather than by omission.',
+  },
+  {
+    title: 'Room by room',
+    content:
+      'Bathrooms and kitchens need something that shrugs off moisture and wipes clean. Bedrooms usually want room-darkening or blackout, often layered under drapery. Living rooms need something adjustable enough for a whole day of moving light. Woven woods warm up a room that reads flat. Shutters suit a window where the treatment should read as architecture rather than fabric.',
+  },
+];
+---
+
+<Base
+  title="Custom Blinds & Shades Cincinnati | Amy K Clark Design"
+  description="Custom blinds Cincinnati and custom shades Northern Kentucky. Lafayette blinds, shades, shutters, and woven woods, measured and installed."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Blinds & Shades', href: '/services/blinds-shades' },
+  ]}
+>
+  <section class="section wrap service-page__intro">
+    <p class="type-label service-page__eyebrow">Services</p>
+    <h1 class="type-display service-page__heading">Blinds &amp; Shades</h1>
+    <p class="service-page__lead">
+      Custom blinds in Cincinnati and custom shades across Northern Kentucky, specified for the way
+      a room actually gets used. Lafayette Interior Fashions is the one line I represent in this
+      category, so every Lafayette blind and shade here comes from a single catalog. One
+      manufacturer, measured and installed by the person who helped choose it.
+    </p>
+  </section>
+
+  <RevealImage
+    src={leadImage}
+    alt="Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead"
+    blurDataURL="data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA"
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap service-page__body">
+    <h2 class="type-display service-page__subhead">One line, on purpose</h2>
+    <p>
+      Amy works from the Lafayette catalog rather than assembling treatments out of whichever
+      supplier happens to be convenient that week. Blinds, shades, shutters, woven woods. Knowing
+      one catalog cold produces better specifications than knowing six of them halfway.
+    </p>
+    <p>
+      Roman shades live here as a manufactured product, built to Lafayette's specification rather
+      than in Amy's workroom. When a room wants a fabric Roman shade made to order, a particular
+      textile with a particular band, that is workroom work and it gets handled as custom drapery
+      instead.
+    </p>
+
+    <h2 class="type-display service-page__subhead">Decide these before anything is ordered</h2>
+    <p>
+      Most regret about blinds and shades traces back to a decision nobody actually made. A shade
+      picked for how it looked in a showroom, not for what the window does at four in the
+      afternoon.
+    </p>
+
+    <Accordion items={decisionCategories} />
+
+    <h2 class="type-display service-page__subhead">An eighth of an inch</h2>
+    <p>
+      Blinds and shades are unforgiving about measurement in a way drapery is not. An eighth of an
+      inch decides whether an inside mount clears the frame or binds against it, and a mount depth
+      that looked fine on paper can prove otherwise once the hardware is in hand. Amy measures
+      every opening herself and installs the finished product herself.
+    </p>
+    <p>
+      Windows in older Cincinnati and Northern Kentucky houses are almost never square. The
+      allowances for that are a judgment call rather than a formula, and making them correctly is
+      what keeps a treatment from looking almost right.
+    </p>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <p class="type-display contact-band__line">Ready to start your project?</p>
+    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  </section>
+</Base>

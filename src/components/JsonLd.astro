@@ -1,0 +1,129 @@
+---
+// Structured data (DESIGN_BRIEF.md 8.2). One component, three schema types,
+// each emitted only when the page asks for it:
+//
+//   LocalBusiness   Home only, extending HomeAndConstructionBusiness
+//   BreadcrumbList  every nested page
+//   Article         Journal posts
+//
+// FAQPage is deliberately NOT here — it lives in Faq.astro, generated from the
+// same question and answer strings the accordion renders, so the two cannot
+// drift. See that file's header.
+//
+// Every fact comes from `src/data/business.ts`. Nothing is invented here:
+// `priceRange` is omitted because 8.2 says to omit it and rule 1 bans price
+// signals anywhere, and `openingHoursSpecification` is omitted entirely
+// because `business.openingHours` is still `null` — a guessed set of hours is
+// worse than no hours, since Google surfaces them to people deciding whether
+// to call. `geo` is likewise omitted: no coordinates are on file, and a
+// service-area business with no published street address should not carry a
+// pin it cannot stand behind. Both are tracked in ASK-AMY.md.
+
+import { business } from '../data/business';
+
+interface Crumb {
+  name: string;
+  href: string;
+}
+
+interface ArticleMeta {
+  headline: string;
+  description: string;
+  image: string;
+  datePublished: string;
+  dateModified?: string;
+}
+
+interface Props {
+  localBusiness?: boolean;
+  breadcrumbs?: Crumb[];
+  article?: ArticleMeta;
+}
+
+const { localBusiness = false, breadcrumbs, article } = Astro.props;
+
+const site = Astro.site!;
+const abs = (path: string) => new URL(path, site).href;
+
+// One stable @id for the business, referenced by every other node that needs
+// to point at it. Google treats this as the identity key across the site.
+const businessId = `${abs('/')}#business`;
+
+const graph: Record<string, unknown>[] = [];
+
+if (localBusiness) {
+  graph.push({
+    '@type': 'HomeAndConstructionBusiness',
+    '@id': businessId,
+    name: 'Amy K Clark Design',
+    url: abs('/'),
+    image: abs('/images/og/og-default.jpg'),
+    telephone: business.phone,
+    description:
+      'Custom drapery, blinds and shades, upholstery, and soft furnishings for Cincinnati and Northern Kentucky homes. Designed, made, and installed by Amy Clark.',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: business.baseCity,
+      addressRegion: business.baseState,
+      addressCountry: 'US',
+    },
+    areaServed: business.areaServed.map((area) => ({ '@type': 'Place', name: area })),
+    sameAs: [business.instagram, business.facebook, business.googleBusinessProfile],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Services',
+      itemListElement: [
+        { name: 'Custom Drapery', href: '/services/drapery' },
+        { name: 'Blinds & Shades', href: '/services/blinds-shades' },
+        { name: 'Upholstery', href: '/services/upholstery' },
+        { name: 'Soft Furnishings', href: '/services/soft-furnishings' },
+      ].map((service) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.name,
+          url: abs(service.href),
+        },
+      })),
+    },
+  });
+}
+
+if (breadcrumbs?.length) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: abs(crumb.href),
+    })),
+  });
+}
+
+if (article) {
+  graph.push({
+    '@type': 'Article',
+    headline: article.headline,
+    description: article.description,
+    image: abs(article.image),
+    datePublished: article.datePublished,
+    dateModified: article.dateModified ?? article.datePublished,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': abs(Astro.url.pathname) },
+    // Author and publisher are the same entity: the studio, not a named
+    // person. Stated in full rather than as a bare `@id` reference, because
+    // the LocalBusiness node only exists on the homepage and a validator
+    // reading a post in isolation has nothing to resolve the reference
+    // against. The shared `@id` still ties the two nodes together.
+    // Deliberately not a Person: the launch posts are drafts pending Amy's
+    // review (BUILD-PLAN decision 7), so naming her as the author would
+    // assert something that is not yet true.
+    author: { '@type': 'Organization', '@id': businessId, name: 'Amy K Clark Design', url: abs('/') },
+    publisher: { '@type': 'Organization', '@id': businessId, name: 'Amy K Clark Design', url: abs('/') },
+  });
+}
+
+const payload = { '@context': 'https://schema.org', '@graph': graph };
+---
+
+{graph.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(payload)} is:inline />}

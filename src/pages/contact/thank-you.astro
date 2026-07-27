@@ -1,0 +1,44 @@
+---
+// Netlify Forms' success destination for the consultation form
+// (ConsultationForm.astro's `action`). Not specified in DESIGN_BRIEF.md — added
+// because the alternative is Netlify's own generic branded success page, which
+// would be the only screen on the site that is not this site.
+//
+// `noindex` because it has no standalone search value and would otherwise turn
+// up as a stray result for the brand.
+//
+// No fee amount, no "credits toward your project" (rule 2), no promised
+// response time — Amy has not committed to one and inventing one here would be
+// a claim on her behalf.
+
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Thank You | Amy K Clark Design"
+  description="Your consultation request has been received by Amy K Clark Design."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  noindex={true}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">Contact</p>
+    <h1 class="type-display text-page__heading">Thank you</h1>
+    <p class="text-page__lead">
+      Your request is in. Amy reads these herself, and she will be in touch to arrange the visit and
+      to ask anything she needs to know before she comes.
+    </p>
+    <p class="thank-you__next">
+      In the meantime, the <a href="/journal" class="link-underline">Design Journal</a> covers how to
+      read a fabric and how to choose between drapery and shades room by room, and the
+      <a href="/portfolio" class="link-underline">portfolio</a> shows finished work.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .thank-you__next {
+    max-width: var(--measure);
+    margin-top: 1.5rem;
+  }
+</style>

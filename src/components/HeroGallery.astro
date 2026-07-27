@@ -1,0 +1,241 @@
+---
+// Home section 1 (DESIGN_BRIEF.md 5.1). Array-driven: a one-item array gives
+// a static hero for free (BUILD-PLAN.md), which is the real state today —
+// see IMAGE-MANIFEST.md for the single available hero photo. Cross-dissolve
+// cycling (6.1) and the opening line's sessionStorage timing (5.1) live in
+// motion.js's initHeroGallery().
+//
+// No headline block, no descriptor paragraph (5.1's own rule) — the
+// keyword-bearing <h1> lives as a visually-hidden element in index.astro,
+// not here. "Amy K Clark Design" below is a styled paragraph, not a heading.
+
+import RevealImage from './RevealImage.astro';
+import type { ImageMetadata } from 'astro';
+
+interface GalleryImage {
+  src: ImageMetadata;
+  alt: string;
+  blurDataURL?: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+}
+
+const { images } = Astro.props;
+---
+
+<section class="hero on-dark" data-hero>
+  <div class="hero__gallery" data-hero-gallery data-single-image={images.length === 1 ? '' : undefined}>
+    {images.map((image, i) => (
+      <div class:list={['hero__layer', { 'is-active': i === 0 }]} data-hero-layer>
+        <RevealImage
+          src={image.src}
+          alt={image.alt}
+          blurDataURL={image.blurDataURL}
+          fill
+          sizes="100vw"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : 'auto'}
+        />
+      </div>
+    ))}
+    <div class="hero__scrim" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero__content wrap">
+    <div class="hero__location">
+      <p class="type-label hero__location-primary">Cincinnati/NKY Based</p>
+      <p class="type-label hero__location-secondary">Serving all areas</p>
+    </div>
+
+    <div class="hero__center">
+      <p class="type-display hero__mark">Amy K Clark Design</p>
+      <p class="hero__opening-line" data-hero-opening-line>The little details make all the difference.</p>
+    </div>
+
+    <div class="hero__bottom">
+      <nav class="hero__words" aria-label="Featured categories">
+        <a href="/services/upholstery" class="type-label link-underline">Upholstery</a>
+        <a href="/services/drapery" class="type-label link-underline">Drapery</a>
+        <a href="/services/blinds-shades" class="type-label link-underline">Shades</a>
+      </nav>
+      <div class="hero__ctas">
+        <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+        <a href="/portfolio" class="btn btn-outline">View Portfolio</a>
+      </div>
+      <div class="hero__scroll-cue" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    color: var(--paper);
+  }
+
+  .hero__gallery {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* 6.1 cross-dissolve: opacity only, no sliding. Brightness pulse on the
+     outgoing layer and continuous slow scale both live here rather than on
+     RevealImage's own element, so they don't fight the reveal's one-time
+     settle transform (translateY + scale) on the same property. */
+  .hero__layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity var(--hero-dissolve) ease;
+    animation: hero-slow-scale calc(var(--hero-hold) + var(--hero-dissolve)) linear infinite;
+  }
+  .hero__layer.is-active {
+    opacity: 1;
+    z-index: 1;
+  }
+  .hero__layer.is-leaving {
+    animation:
+      hero-slow-scale calc(var(--hero-hold) + var(--hero-dissolve)) linear infinite,
+      hero-brightness-pulse var(--hero-dissolve) ease;
+  }
+
+  /* 6.1's continuous scale runs "across its full cycle" — a cycle being one
+     hold plus one dissolve, ending when this layer hands off to the next.
+     With a one-item array there is no handoff, so the animation just looped
+     against itself: it ran 1.0 to 1.055 over 7.9s and then snapped back to
+     1.0, over and over, for as long as the page stayed open. Gated on the
+     real array length rather than removed, so it comes back on its own the
+     moment a second photo lands and there is an actual cycle to run across.
+     The JS half is already gated the same way (motion.js's initHeroGallery
+     returns early below two layers). */
+  .hero__gallery[data-single-image] .hero__layer {
+    animation: none;
+  }
+
+  @keyframes hero-slow-scale {
+    from { transform: scale(1); }
+    to { transform: scale(1.055); }
+  }
+  @keyframes hero-brightness-pulse {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.06); }
+    100% { filter: brightness(1); }
+  }
+
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--ground) 35%, transparent) 0%,
+      transparent 22%,
+      transparent 55%,
+      color-mix(in srgb, var(--ground) 55%, transparent) 100%
+    );
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    /* Top padding clears the fixed site-nav (--nav-height), which overlaps
+       the hero at every width since the nav is position: fixed with no
+       document flow of its own. Bug found in Step 2 review: the location
+       line rendered directly under the nav's wordmark link. */
+    padding-block: calc(var(--nav-height) + 1.5rem) 2rem;
+  }
+
+  .hero__location {
+    justify-self: center;
+    text-align: center;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .hero__location-primary {
+    opacity: 0.92;
+  }
+  .hero__location-secondary {
+    opacity: 0.65;
+  }
+
+  .hero__center {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .hero__mark {
+    margin: 0;
+    opacity: 0.92;
+  }
+
+  .hero__opening-line {
+    max-width: 32ch;
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    font-weight: var(--weight-label);
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+  .hero__opening-line.is-visible {
+    opacity: 1;
+  }
+  .hero__opening-line.is-visible.is-hiding {
+    opacity: 0;
+    transition-duration: 900ms;
+  }
+
+  .hero__bottom {
+    display: grid;
+    justify-items: center;
+    gap: 1.75rem;
+  }
+
+  .hero__words {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero__scroll-cue {
+    width: 1px;
+    height: 2.25rem;
+    background: color-mix(in srgb, var(--paper) 60%, transparent);
+    animation: hero-scroll-cue 2.2s ease-in-out infinite;
+  }
+  @keyframes hero-scroll-cue {
+    0%, 100% { transform: scaleY(0.6); opacity: 0.4; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__layer,
+    .hero__layer.is-leaving,
+    .hero__scroll-cue {
+      animation: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero__words {
+      gap: 3rem;
+    }
+  }
+</style>
