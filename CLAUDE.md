@@ -36,3 +36,11 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
   Browser-based visual testing for the final acceptance pass only.
 - Run /clear before starting each new step in BUILD-PLAN.md.
 - Run /cost at the end of each step.
+- After finishing any real change (a build step, a bug fix, a content or
+  copy update, a documentation update), commit it to git with a clear,
+  descriptive commit message before ending your turn — don't wait to be
+  asked. Only commit when the build is actually clean (npm run build
+  succeeds); if something's left broken or half-done, say so instead of
+  committing it. Small, frequent commits are better than one giant one —
+  commit after each real unit of work, not just at the very end of a
+  long session.
