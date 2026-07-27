@@ -662,6 +662,75 @@ on an `<ol>` that carries the ordering semantically.
   cannot fix that. Confirmed in-browser — the layout is correct, the source
   material is the problem.
 
+## 2026-07-27: Testimonial rotation — INTERPRETATION CALL
+
+Home's testimonial section now shows **two quotes at once, with the second slot
+rotating**. Requested by Sam; not a literal reading of the brief, so flagged
+here rather than presented as spec compliance.
+
+**DESIGN_BRIEF 5.1 was amended, not quietly deviated from.** It read "Two quotes
+maximum," which the rotation contradicts on its face. The line now reads "two
+quotes visible at once," with the fixed-anchor and rotating-slot behaviour
+spelled out and the amendment dated. Two are on screen at any moment, which is
+what the original constraint was protecting.
+
+- **Top-left slot (Diane K.) is fixed and has no JS at all.** It is the anchor
+  and the strongest quote.
+- **Bottom-right slot** cross-dissolves on 6.1's exact timing (6.5s hold, 1.4s
+  dissolve) — deliberately the **same device as the hero**, not a second motion
+  idea, per 3.7's "everything else stays quiet so this can land. Do not add
+  competing effects."
+
+**The timer logic was extracted rather than duplicated.** `motion.js` gained
+`startCrossDissolve(layers, cycleMs)`, lifted out of `initHeroGallery()`, and
+both callers now share it. It carries all three lessons the hero learned the
+hard way, so a third consumer gets them for free:
+1. **Single-item guard** — under two layers, no interval is created. This is not
+   an optimisation; a one-layer cycle re-running its own handoff forever was the
+   cause of the hero's repeating-scale bug.
+2. **Reduced motion** — returns before creating any timer.
+3. **Caller-owned cleanup** — returns a teardown function instead of tracking
+   the interval internally, so the leak the hero gallery had (one orphaned
+   interval per soft navigation, driving detached layers) is hard to reintroduce.
+   `stopHeroGallery` / `stopQuoteRotation` are both cleared on
+   `astro:after-swap`.
+
+**Accessibility: no `aria-live`, deliberately.** This is decorative rotation of
+interchangeable social proof, not new information arriving. `aria-live` would
+make a screen reader re-announce a quote every 7.9 seconds, interrupting
+whatever the user was reading — worse than silence. Every quote is real text in
+the DOM in document order, nothing is `display: none` or `aria-hidden`, so the
+first reads normally once and all of them stay in the accessibility tree.
+
+**Layout.** The layers are stacked with CSS grid (`grid-area: 1 / 1`) rather
+than absolute positioning, specifically so the container keeps an intrinsic
+height equal to the tallest quote. An absolute stack would collapse to zero and
+need a magic-number height. Verified: height held at 181px across a full
+rotation, no jump.
+
+**Quotes in rotation, and the two that are missing.** Kelly G. and Lisa C., both
+real and both verbatim. Lisa's is trimmed from a longer review and **her pink
+heart emoji was removed** (3.2 bans emoji outright); "color came out perfect" is
+left uncorrected because tidying a quote is still editing it. Kelly's is first
+in the array on purpose — it is the trade-level one, so it is what shows at page
+load and what reduced-motion users see.
+
+**Heather L. and Jenny H. were left out.** Both are named in decision 4 as real
+candidates, but **their review text does not exist anywhere in this repo, only
+their names.** Writing words and attributing them to a named real customer would
+be a fabricated endorsement, not a drafting shortcut. Each is a one-entry
+addition to `rotatingQuotes` in `index.astro` once the actual wording is pasted
+in — flagged in ASK-AMY.md. **Every quote in the rotation carries its own
+permission-holding HTML comment**, not just the two that were live before.
+
+**Verified in a real browser, not just in code.** Caught mid-dissolve with
+opacities 0.448 / 0.552 summing to 1.0 (a true cross-fade, not a cut), and
+sampled 45 times over 18 seconds: three clean handoffs, height stable
+throughout. Reduced motion re-checked with Chrome's
+`--force-prefers-reduced-motion`: opacities pinned at `1,0` across 12 seconds,
+`activeIndex` never left 0, showing Kelly G. — one static quote, never a frozen
+mid-fade. The same run without the flag advanced to Lisa C.
+
 ## 2026-07-27: Amy's real Studio headshot, and a hack removed because the asset improved
 
 `source-photos/Amyheadshot.JPG` is a real professional headshot (1941x1300, white

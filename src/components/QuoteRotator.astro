@@ -1,0 +1,82 @@
+---
+// Home section 5, second slot (DESIGN_BRIEF.md 5.1). INTERPRETATION CALL,
+// flagged in BUILD-PLAN.md — 5.1 originally read "Two quotes maximum," which
+// has been amended to "two visible at once, second slot rotating."
+//
+// Two visible slots stay. The first is a fixed anchor and does not use this
+// component at all; this one cross-dissolves through several real quotes on
+// 6.1's timing (6.5s hold + 1.4s dissolve), driven by `startCrossDissolve()`
+// in motion.js — the same shared timer the hero gallery uses. Deliberately
+// the same device rather than a second motion idea, per 3.7's "everything
+// else stays quiet so this can land. Do not add competing effects."
+//
+// Accessibility, and the one decision worth defending:
+// **No `aria-live`.** This is decorative rotation of interchangeable social
+// proof, not new information arriving. `aria-live` would make a screen reader
+// re-announce a quote every 7.9 seconds, interrupting whatever the user was
+// reading — actively worse than silence. Every quote is real text in the DOM
+// in document order, so the first one reads normally once, and the rest are
+// reachable by any AT that walks the document. Nothing is hidden with
+// `display: none` or `aria-hidden`, so none of them leave the accessibility
+// tree.
+//
+// Reduced motion (6.8, rule 9): `startCrossDissolve()` returns before creating
+// any timer, and the CSS below gives the first layer full opacity with no
+// transition, so the slot shows one static quote — never a frozen mid-fade.
+
+import Quote from './Quote.astro';
+
+interface RotatingQuote {
+  quote: string;
+  attribution: string;
+  /** The permission note rendered as an HTML comment beside each quote. */
+  note: string;
+}
+
+interface Props {
+  quotes: RotatingQuote[];
+}
+
+const { quotes } = Astro.props;
+---
+
+<div class="quote-rotator" data-quote-rotator>
+  {quotes.map((item, i) => (
+    <>
+      <Fragment set:html={`<!-- ${item.note} -->`} />
+      <div class:list={['quote-rotator__layer', { 'is-active': i === 0 }]} data-quote-layer>
+        <Quote quote={item.quote} attribution={item.attribution} />
+      </div>
+    </>
+  ))}
+</div>
+
+<style>
+  /* The layers stack, so the slot's height is the tallest quote's and never
+     jumps as they swap. `grid` rather than absolute positioning precisely so
+     the container still has an intrinsic height — an absolutely-positioned
+     stack would collapse to zero and the section would need a magic number. */
+  .quote-rotator {
+    display: grid;
+  }
+
+  .quote-rotator__layer {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transition: opacity var(--hero-dissolve) ease-in-out;
+  }
+
+  .quote-rotator__layer.is-active {
+    opacity: 1;
+  }
+
+  /* 6.8. Under reduce no timer is ever created, so `is-active` stays on the
+     first layer permanently — this just removes the transition so there is no
+     possibility of a partial fade, and hides the others outright rather than
+     leaving them stacked at opacity 0 with a live transition attached. */
+  @media (prefers-reduced-motion: reduce) {
+    .quote-rotator__layer {
+      transition: none;
+    }
+  }
+</style>

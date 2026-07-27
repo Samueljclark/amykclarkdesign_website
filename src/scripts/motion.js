@@ -186,20 +186,52 @@ function parseCssSeconds(varName) {
   return raw.endsWith('ms') ? value : value * 1000;
 }
 
-// Same reason `cleanupHeroScrollEase` below exists: this runs again on every
-// `astro:after-swap`, so without clearing the previous timer a home -> about ->
-// home round trip leaves one extra interval running per visit, all of them
-// driving layers that were detached by the DOM swap. Currently latent — the hero
-// array holds one image and the `layers.length < 2` guard returns before any
-// timer is set — but it activates the moment a second hero image is added, which
-// is what happens when Kelsee's photography lands. Cleared here rather than in a
-// separate cleanup function because there is exactly one timer to track.
-let heroGalleryTimer = null;
+/* ---- Shared cross-dissolve timer (6.1). ----
+   Extracted from initHeroGallery() when the testimonial rotation became a
+   second consumer, so the timer logic exists in exactly one place. Both
+   callers get the three lessons the hero gallery learned the hard way:
+
+     1. **Single-item guard.** Fewer than two layers means there is nothing to
+        cross-dissolve, so no interval is created at all. This is not just an
+        optimisation — a one-layer cycle re-runs the same handoff forever and
+        was the cause of the hero's repeating-scale bug.
+     2. **Reduced motion (6.8).** Returns before creating any timer. The
+        caller is responsible for leaving a sensible static first layer.
+     3. **Caller-owned cleanup.** Returns its own teardown function rather
+        than tracking the interval internally, because these run again on
+        every `astro:after-swap` and an uncleaned interval keeps driving
+        layers the DOM swap already detached. That leak was real, and this
+        signature is what makes forgetting it hard.
+
+   `is-active` / `is-leaving` are the same two classes the hero's CSS already
+   keys off, so the visual treatment stays entirely in each component's own
+   stylesheet — this function only decides *when*. */
+function startCrossDissolve(layers, cycleMs) {
+  if (!layers || layers.length < 2 || reducedMotion) return null;
+
+  let index = 0;
+  const timer = window.setInterval(() => {
+    const next = (index + 1) % layers.length;
+    layers[index].classList.add('is-leaving');
+    layers[index].classList.remove('is-active');
+    layers[next].classList.remove('is-leaving');
+    layers[next].classList.add('is-active');
+    index = next;
+  }, cycleMs);
+
+  return () => window.clearInterval(timer);
+}
+
+// Cleanup handles for the two cross-dissolve consumers. Both re-run on every
+// `astro:after-swap`; without these, a home -> about -> home round trip leaves
+// an extra interval running per visit against detached layers.
+let stopHeroGallery = null;
+let stopQuoteRotation = null;
 
 function initHeroGallery() {
-  if (heroGalleryTimer !== null) {
-    window.clearInterval(heroGalleryTimer);
-    heroGalleryTimer = null;
+  if (stopHeroGallery) {
+    stopHeroGallery();
+    stopHeroGallery = null;
   }
 
   const gallery = document.querySelector('[data-hero-gallery]');
@@ -218,18 +250,32 @@ function initHeroGallery() {
   }
 
   const layers = gallery.querySelectorAll('[data-hero-layer]');
-  if (layers.length < 2 || reducedMotion) return;
-
   const cycleMs = parseCssSeconds('--hero-hold') + parseCssSeconds('--hero-dissolve');
-  let index = 0;
-  heroGalleryTimer = window.setInterval(() => {
-    const next = (index + 1) % layers.length;
-    layers[index].classList.add('is-leaving');
-    layers[index].classList.remove('is-active');
-    layers[next].classList.remove('is-leaving');
-    layers[next].classList.add('is-active');
-    index = next;
-  }, cycleMs);
+  stopHeroGallery = startCrossDissolve(layers, cycleMs);
+}
+
+/* ---- Testimonial rotation (5.1, BUILD-PLAN interpretation call). ----
+   Home's second testimonial slot cycles through several real quotes on the
+   same 6.1 cross-dissolve the hero uses — deliberately the same device rather
+   than a second motion idea, per 3.7's "do not add competing effects."
+   The first slot never rotates and has no JS at all.
+
+   No `aria-live`: this is decorative rotation, and announcing a new quote
+   every cycle would interrupt a screen-reader user mid-sentence for no gain.
+   Whatever quote is in the DOM at load reads normally once, in document
+   order, like any other blockquote. */
+function initQuoteRotation() {
+  if (stopQuoteRotation) {
+    stopQuoteRotation();
+    stopQuoteRotation = null;
+  }
+
+  const rotator = document.querySelector('[data-quote-rotator]');
+  if (!rotator) return;
+
+  const layers = rotator.querySelectorAll('[data-quote-layer]');
+  const cycleMs = parseCssSeconds('--hero-hold') + parseCssSeconds('--hero-dissolve');
+  stopQuoteRotation = startCrossDissolve(layers, cycleMs);
 }
 
 /* ---- Hero → next-section scroll ease (BUILD-PLAN.md, not in the brief).
@@ -301,12 +347,14 @@ function initAccordion() {
 initNav();
 initReveal();
 initHeroGallery();
+initQuoteRotation();
 initHeroScrollEase();
 initAccordion();
 
 document.addEventListener('astro:after-swap', () => {
   initReveal();
   initHeroGallery();
+  initQuoteRotation();
   initHeroScrollEase();
   initAccordion();
 });

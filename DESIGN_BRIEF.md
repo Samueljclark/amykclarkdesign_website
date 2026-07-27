@@ -211,7 +211,7 @@ Main nav, six items maximum: Portfolio, Services, About, Process, Journal, Conta
 
 **Section 4: Services.** Four entries in this order: Custom Drapery, Blinds & Shades, Upholstery, Soft Furnishings. Name and one line each. Not a card grid with icons.
 
-**Section 5: Testimonials.** Two quotes maximum, Newsreader light, large, attributed by first name and last initial only. No stars, no cards, no avatars.
+**Section 5: Testimonials.** **Two quotes visible at once**, Newsreader light, large, attributed by first name and last initial only. No stars, no cards, no avatars. The first slot is fixed and never changes — it is the anchor. The second slot rotates through more than two real quotes over time, cross-dissolving on section 6.1's timing, so the section shows two at a time but draws on a larger pool. (Amended 2026-07-27; this line previously read "Two quotes maximum," which the rotation would otherwise contradict.)
 
 **Section 6: Contact.** One line and one button to the consultation form.
 

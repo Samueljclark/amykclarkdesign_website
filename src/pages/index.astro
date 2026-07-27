@@ -16,9 +16,46 @@ import HeroGallery from '../components/HeroGallery.astro';
 import PortfolioStrip from '../components/PortfolioStrip.astro';
 import ServiceList from '../components/ServiceList.astro';
 import Quote from '../components/Quote.astro';
+import QuoteRotator from '../components/QuoteRotator.astro';
 import { projects } from '../data/projects';
 import { services } from '../data/services';
 import heroImage from '../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
+
+// Second testimonial slot (5.1, amended). Every one of these is a real
+// fragment from a real review — nothing here is written for the site.
+// **Heather L. and Jenny H. are named as candidates in BUILD-PLAN decision 4
+// but their review text does not exist anywhere in this repo**, so they are
+// deliberately absent rather than paraphrased. Adding either is one entry
+// here once Sam pastes the actual wording in. See ASK-AMY.md.
+const rotatingQuotes = [
+  {
+    quote: 'She even matches complicated designs on the seams.',
+    attribution: 'Kelly G.',
+    note: `Cut from a review on Amy's PUBLIC Google Business profile, which is
+             not the same thing as written permission to feature it on her own
+             site. Permission to publish this specific quote at launch is still
+             pending confirmation (BUILD-PLAN.md decision 4).
+             First in the rotation on purpose: it is the one piece of
+             trade-level proof in the set, so it is the quote present at page
+             load and the only one shown under reduced motion. Not shortened
+             further — "on the seams" is what makes it specific rather than
+             another attention-to-detail line.`,
+  },
+  {
+    quote: 'The design is beautiful and color came out perfect.',
+    attribution: 'Lisa C.',
+    note: `Same holding pattern and same source: a PUBLIC Google review, not
+             written permission (BUILD-PLAN.md decision 4).
+             Verbatim apart from two things. The original ends with a pink
+             heart emoji, removed under 3.2's outright ban on emoji. And the
+             fragment is cut from a longer review whose first sentence names
+             the piece ("just completed a bathroom valance for me") — the
+             sentence kept is the one about the result rather than the object,
+             so it does not read as a duplicate of the spec blocks. "color came
+             out perfect" is her wording, not "the color"; left uncorrected
+             because tidying a quote is still editing it.`,
+  },
+];
 
 const heroImages = [
   {
@@ -68,21 +105,14 @@ const heroImages = [
         <Quote quote="&hellip;made my house into a home." attribution="Diane K." />
       </li>
       <li>
-        <!-- Second of the two 5.1 permits. Same attribution format, same
-             holding pattern: this fragment is cut from a review on Amy's
-             PUBLIC Google Business profile, which is not the same thing as
-             written permission to feature it on her own site. Permission to
-             publish this specific quote at launch is still pending
-             confirmation (BUILD-PLAN.md decision 4).
-             Chosen over three other real candidates because it is the one
-             piece of trade-level proof in the set — matching a pattern across
-             a seam is the kind of detail 3.6 says persuades a reader who
-             knows what the words mean — and because it sits in a completely
-             different register from Diane K.'s. One quote is what the room
-             felt like afterward; this one is how the work was actually built.
-             Not shortened further: "on the seams" is what makes it specific
-             rather than another attention-to-detail line. -->
-        <Quote quote="She even matches complicated designs on the seams." attribution="Kelly G." />
+        <!-- ROTATING SLOT. 5.1 (amended 2026-07-27): two quotes visible at
+             once, and this second slot cross-dissolves through several real
+             ones on 6.1's timing. Interpretation call, BUILD-PLAN.md.
+             The permission holding pattern applies to EVERY quote in the
+             rotation, not just the first — each carries its own note below.
+             Quotes are ordered so the strongest trade detail (Kelly G.) is
+             the one present at page load and under reduced motion. -->
+        <QuoteRotator quotes={rotatingQuotes} />
       </li>
     </ul>
   </section>
