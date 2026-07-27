@@ -193,6 +193,37 @@ input, textarea, select {
   background: var(--paper);
 }
 
+/* ---- Resting affordance for links in running prose.
+   6.6's scaleX draw is a HOVER effect — at rest `::after` is `scaleX(0)`.
+   That is right for the nav, the footer, and ServiceList, where position and
+   context already say "link." It is wrong inside a paragraph: the base `a`
+   reset sets `color: inherit` and `text-decoration: none`, so an inline link
+   in body copy was pixel-identical to the prose around it until the pointer
+   happened to cross it. Sixteen links across twelve pages were affected —
+   Sam reported not being able to tell the Portfolio page's "signature pieces"
+   was a link at all, and he was right.
+
+   Also a real WCAG 1.4.1 problem: with no colour difference and no underline,
+   there was no distinguishing feature whatsoever, so a keyboard or
+   screen-magnifier user scanning body copy had nothing to find.
+
+   A second pseudo-element rather than changing `::after`, so **6.6's device
+   is untouched**: `::before` is the always-on 1px hairline in `currentColor`,
+   and the 2px `--indigo` `::after` still draws left-to-right over the top of
+   it on hover. Scoped to `p` so list-based navigation keeps the clean
+   hover-only treatment the brief describes. */
+p .link-underline::before,
+.prose a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
 /* ---- 3.7 Signature shade reveal, values verbatim from the brief.
    Applied to every content image (RevealImage component, built with Home).
    JS (motion.js) adds .is-revealed once per element via IntersectionObserver;

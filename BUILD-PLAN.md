@@ -1384,3 +1384,40 @@ are interpretation calls with their own sections above.
     other three photographs still carry roughly twenty jobs between them.
     Asset request 1 in IMAGE-MANIFEST.md remains the highest-leverage thing
     outstanding.
+
+20. **Sam wants Signature Pieces reachable from the nav — needs a decision, not
+    a default.** DESIGN_BRIEF section 4 caps the main nav at six items and names
+    them: Portfolio, Services, About, Process, Journal, Contact. All six are in
+    use. Adding Signature Pieces means either **exceeding the cap** or
+    **replacing one of the six**, and both are content/scope decisions that are
+    Sam's and Amy's to make, not a styling fix. **Not resolved here.**
+
+    What was done instead (2026-07-27) is the narrower thing that was actually
+    wrong: the two existing entry points did not *look* like links. See the
+    prose-link fix below. The page is reachable from the Portfolio index and
+    from `/services/soft-furnishings`, and it is in the sitemap.
+
+    Worth noting for whoever decides: Journal is the likeliest candidate to
+    swap out if the cap holds, since it is three draft posts today, while
+    Signature Pieces is the only page on the site showing finished objects
+    that can be ordered again. That is an observation, not a recommendation.
+
+21. **In-prose links had no resting affordance, site-wide.** Fixed 2026-07-27,
+    recorded here because it changes a device the brief specifies. 6.6's scaleX
+    underline is a *hover* effect — at rest `::after` is `scaleX(0)` — and the
+    base `a` reset sets `color: inherit` with no text-decoration. So an inline
+    link inside a paragraph was **pixel-identical to the prose around it** until
+    a pointer happened to cross it. Sam reported not being able to tell the
+    Portfolio page's "signature pieces" was a link, and he was right.
+
+    Sixteen links across twelve pages were affected, so it was fixed at the root
+    rather than on the two reported instances. Also a real WCAG 1.4.1 failure:
+    no colour difference and no underline meant no distinguishing feature at all.
+
+    **6.6's device is untouched.** A second pseudo-element does the work: a
+    always-on 1px `currentColor` hairline on `::before`, with the 2px `--indigo`
+    `::after` still drawing left-to-right over it on hover. Scoped to `p` (and
+    the journal's `.prose a`, which reproduces 6.6 for markdown links and had
+    the identical defect), so list-based navigation — the nav, the footer,
+    ServiceList — keeps the clean hover-only treatment the brief describes.
+
