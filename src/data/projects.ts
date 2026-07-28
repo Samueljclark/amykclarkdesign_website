@@ -43,7 +43,14 @@ export interface Project {
   image: ImageMetadata;
   alt: string;
   blurDataURL: string;
+  // First-person, the on-page voice everywhere else on the site (SITE-COPY-
+  // REWRITE.md). `metaDescription` is the separate third-person sentence for
+  // <meta name="description"> — search snippets read better naming the
+  // business, matching the pattern every other page's meta tag already
+  // follows even though its own on-page body copy is first person. Falls
+  // back to `scope` if unset.
   scope: string;
+  metaDescription?: string;
   lead: ProjectImage;
   supporting: ProjectImage[];
   spec: ProjectSpec;
@@ -57,7 +64,9 @@ export const projects: Project[] = [
     alt: 'Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead',
     blurDataURL:
       'data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA',
-    scope: 'Amy selected the fabric and made the drapery and banded roman shade for this living room.',
+    scope: 'I chose the fabric and made the drapery and the banded roman shade for this room.',
+    metaDescription:
+      'Amy selected the fabric and made the drapery and banded roman shade for this living room.',
     lead: {
       image: collectedLivingRoomLeadImage,
       alt: 'Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa',
@@ -105,7 +114,9 @@ export const projects: Project[] = [
     alt: photos['ivory-house-bay-window'].alt,
     blurDataURL: photos['ivory-house-bay-window'].blurDataURL,
     scope:
-      "Amy made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three pillows shown here. She did not design or supply the furniture itself.",
+      "I made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. I did not design or supply the furniture itself.",
+    metaDescription:
+      'Amy made the drapery, reupholstered the dining chairs, and made the cushions and pillows shown in this whole-house project.',
     lead: {
       image: photos['ivory-house-bay-window'].image,
       alt: photos['ivory-house-bay-window'].alt,

@@ -23,7 +23,7 @@ const { project } = Astro.props;
 
 <Base
   title={`${project.name} | Amy K Clark Design`}
-  description={project.scope}
+  description={project.metaDescription ?? project.scope}
   ogImage="/images/og/og-default.jpg"
   transparentNav={false}
   breadcrumbs={[

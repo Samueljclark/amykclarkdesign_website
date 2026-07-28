@@ -146,10 +146,27 @@ comes up.
   opening-hours block entirely** rather than publishing an invented one. Google
   shows hours to people deciding whether to call, so this one is worth ten
   seconds of her time.
-- **Names for the two pillows on `/signature-pieces`.** They currently read
-  "Canal Houses" and "Dot Weave," which describe the weave and are ours, not
-  hers. If she calls them something, that wins. Also worth asking whether
-  either fabric is from a line she can name publicly yet.
+- **Names for the two pillows on `/signature-pieces` — proposed, not
+  confirmed.** They currently read "Canal Houses" and "Dot Weave," working
+  names that describe the weave and are ours, not hers (flagged in an HTML
+  comment in `src/data/signaturePieces.ts`). If she calls them something,
+  that wins. Also worth asking whether either fabric is from a line she can
+  name publicly yet.
+- **The neighborhood lists on `/cincinnati`, `/northern-kentucky`, and the
+  Contact FAQ's "Where do you work?" answer assert specific places she
+  actually works** (Hyde Park, Indian Hill, Mariemont, Terrace Park,
+  Wyoming, Anderson Township, Fort Mitchell, Fort Thomas, Villa Hills,
+  Crestview Hills, Union, Edgewood). DESIGN_BRIEF 8.4 permits naming these
+  "where accurate," but nobody has confirmed with Amy that this exact list
+  is accurate — it has been carried forward across sessions since it first
+  went in. Flagged in `Faq.astro`. Worth a plain "is this still the real
+  list?" alongside the other quick-confirm items here.
+- **The site's copy was rewritten in Amy's own first-person voice
+  (SITE-COPY-REWRITE.md, merged 2026-07-28) but has not been reviewed by
+  her.** Same holding pattern as the Journal drafts below and the
+  testimonials — it reads like her, but nothing on the site today is
+  actually her own reviewed words except what came directly from a
+  recorded conversation or a text thread.
 - **Final tagline.** Unresolved since the first meeting.
 - **Ampersand usage in body copy.** Whether/where "&" is used in running text (nav
   and page titles already use it, e.g. "Blinds & Shades").

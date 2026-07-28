@@ -31,13 +31,13 @@ export const signaturePieces: SignaturePiece[] = [
     name: 'Canal Houses',
     photo: 'canal-house-pillow',
     description:
-      'A whole street woven into one long pillow: gabled fronts leaning on each other, every window picked out in thread rather than printed on. The navy piping is cut and set by hand around the edge, which is the part that keeps a busy fabric from looking loose.',
+      'A whole street woven into one long pillow. Gabled fronts leaning on each other, every window picked out in thread rather than printed on. The navy piping is cut and set by hand around the edge, which is what keeps a busy fabric from looking loose.',
   },
   {
     slug: 'dot-weave',
     name: 'Dot Weave',
     photo: 'woven-dot-pillow',
     description:
-      'Blue-grey ground, a small cream and ochre figure repeating across it, and enough texture in the weave that the pattern changes as the light moves. The ochre piping picks the quietest colour in the cloth rather than the loudest, which is usually the right call.',
+      'A blue-grey ground with a small cream and ochre figure repeating across it, and enough texture in the weave that the pattern changes as the light moves. The ochre piping picks the quietest color in the cloth rather than the loudest, which is usually the right call.',
   },
 ];

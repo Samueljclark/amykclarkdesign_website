@@ -1278,8 +1278,12 @@ are interpretation calls with their own sections above.
    what turns these from good drafts into her voice.
 8. **Final tagline.** Unresolved since the first meeting. Not proposing an answer here —
    tracking it as open.
-9. **Ampersand usage in body copy.** Whether/where "&" vs "and" is used in running text
-   (nav and page titles already use "&", e.g. "Blinds & Shades"). Open, not resolved.
+9. ~~**Ampersand usage in body copy.**~~ **Resolved 2026-07-28 by SITE-COPY-REWRITE.md:**
+   ampersands are spelled out as "and" everywhere, including page titles, H1s, breadcrumbs, and
+   `services.ts`'s service names — not just running text. Applied site-wide when the rewrite was
+   merged (see the 2026-07-28 entry below). `services.ts`'s `'Blinds & Shades'` is now
+   `'Blinds and Shades'`, and every title/H1/breadcrumb that named it is updated to match. Recorded
+   in DESIGN_BRIEF.md's new Voice note (section 1).
 10. **Whether to expand beyond the single restrained accent color, or keep photography as
     the only source of color**, per the brand research on file (Meeting 03 notes, section
     11): in the premium sites Amy responded to, "the photography carries all the color"
@@ -1569,3 +1573,91 @@ Console clean on both pages at both widths.
 the testimonials: written permission from both the photographer (copyright)
 and the homeowner (their house) has not been obtained. Wired in and visible
 for review; not cleared to publish.
+
+## 2026-07-28: SITE-COPY-REWRITE.md merged — the site is now first person
+
+`SITE-COPY-REWRITE.md` had sat in the project root, untracked, since a session before Ivory
+House — a full rewrite of every page's copy in Amy's own voice, first person throughout, roughly
+half the prior word count, written before Ivory House existed. Merged in, not overwritten: Ivory
+House's project record, images, scope line, and spec block are untouched, and both testimonial
+slots, the Diane K./rotation structure, and every quote's own permission-holding comment are
+unchanged. **This copy has not been reviewed by Amy** — same holding pattern as the Journal drafts
+and the testimonials, and worth remembering the next time this file is touched.
+
+**What changed.** Every page's body copy, first-person throughout ("I design," "I make," "the
+lines I represent" stays as-is since it was already first person). Ampersands spelled out as
+"and" everywhere the rewrite touched, resolving decision 9 above — `services.ts`'s
+`'Blinds & Shades'` is now `'Blinds and Shades'`, and every title/H1/breadcrumb/JsonLd entry that
+named it now matches. "Two-storey" on `/cincinnati` fixed to "two-story" (the rewrite doc itself
+still had this British spelling even though its own intro claims "British spellings corrected" —
+worth knowing if a future pass trusts that claim at face value). "Colour" in
+`signaturePieces.ts`'s Dot Weave description fixed to "color" for the same reason. Swept the rest
+of the visible copy for other British spellings; none survived. DESIGN_BRIEF.md gained a Voice
+note (section 1) stating first person as the standard going forward, so voice doesn't drift back
+to third person on the next edit.
+
+**Two deliberate non-applications, not oversights:**
+- **The hero and footer location lines were NOT reverted.** SITE-COPY-REWRITE.md's Home and
+  footer sections both show "Cincinnati, Northern Kentucky, plus select travel projects" /
+  "Cincinnati and Northern Kentucky" / "Plus select travel projects" — the wording Amy explicitly
+  asked to replace with "Cincinnati/NKY Based" / "Serving all areas" on 2026-07-25 (see that
+  step's entry above). The rewrite doc predates that correction and was never updated to reflect
+  it. Applying it here would have reverted a dated, sourced instruction from Amy with older copy
+  from a document that doesn't know about it — so it was left alone. Everywhere else the rewrite's
+  copy is newer than what it replaced; this one spot is the exception, and it's flagged here so it
+  doesn't get "corrected" back to the rewrite's wording by mistake later.
+- **Meta descriptions stayed third person** ("Amy Clark designs, makes, and installs...") even
+  though on-page body copy became first person. This isn't a gap — the rewrite doc itself does
+  this consistently: every page's on-page voice is "I," but every meta description names "Amy" or
+  "Amy K Clark Design." Third person reads better as a search-result snippet with the business
+  name in it. Followed that pattern throughout rather than making metas first person too.
+
+**Projects.ts gained a `metaDescription` field**, separate from `scope`. The rewrite gives two
+different sentences for Collected Living Room — a first-person on-page paragraph ("I chose the
+fabric...") and a third-person meta description ("Amy selected the fabric...") — and the existing
+code fed one `scope` field to both the visible paragraph and `<meta name="description">`. Rather
+than pick one voice and lose the other, `Project` gained an optional `metaDescription`, falling
+back to `scope` if unset. Both projects now carry one. Ivory House's original scope text (written
+before this rewrite, third person) became its `metaDescription` verbatim, shortened from 228 to
+123 characters to clear 8.1's 155-character limit — it was already over budget before this pass;
+nobody had audited it since it shipped two sessions ago. Its `scope` is now first person, matching
+the rest of the site.
+
+**Blinds and Shades accordion:** category titles shortened to match the rewrite's button labels
+("Light and glare," "Children and pets," "Room by room" stays) rather than DESIGN_BRIEF 5.3's
+longer phrasing ("light and glare control," "child safety"). Same five categories, shorter labels
+— a wording nuance, not a scope change. The "One line, on purpose" section (Lafayette-catalog
+framing, "whichever supplier happens to be convenient") is gone; the rewrite folds that content
+into the page's opening paragraph instead, including the roman-shades routing note that used to
+live under that heading.
+
+**Process's step 3 keeps its DESIGN_BRIEF name.** 5.5 lists the four step names explicitly,
+including "Fabrication and coordination"; SITE-COPY-REWRITE.md's process page shortens this one
+step to just "Fabrication." Since 5.5's four names are a structural requirement or 5.5 wouldn't
+list all four in full, the step title stayed put — only the body text under it was replaced with
+the rewrite's first-person version.
+
+**Word counts on all four service pages are now well under 5.3's 400-700 minimum**, and this is
+the direct, known cost of applying the rewrite: drapery 373 words, blinds-shades 415, upholstery
+315, soft-furnishings 410 (measured against the compiled `dist/` output). This is the same tension
+decision 16 already named for pricing language — one instruction (SITE-COPY-REWRITE.md, "roughly
+half the current word count," which is Amy's own stated rule that visitors are here for visuals
+"with a little bit of words") conflicts with an older, more specific one (5.3's 400-700 count). Not
+resolved here — reading the rewrite as the newer, more specific instruction and letting it win, the
+same way 5.7 already beat the general no-pricing rule on Contact. **Flagged for Sam:** either 5.3's
+word-count floor should come down, or the service pages need Amy's own material added back in to
+clear it — padding them with generic sentences to hit a number would be the wrong fix.
+
+**New flag, Contact FAQ's "Where do you work?" answer.** The neighborhood list here (and on
+`/cincinnati`) asserts specific places Amy actually works. 8.4 permits naming them "where
+accurate," and this list predates this rewrite — it isn't new copy, just carried forward — but it
+has never been explicitly confirmed with Amy as accurate. Flagged in an HTML comment in
+`Faq.astro` and in ASK-AMY.md.
+
+**Verified:** `npm run build` clean, 21 pages. Scripted audit of the compiled `dist/` output: every
+title ≤60 chars, every meta description ≤155 (after the Ivory House fix above), exactly one `<h1>`
+per page, no heading-level skips, zero banned words (rule 5), zero em dash in visible body copy
+(the few that remain are inside HTML developer comments, not rendered text — checked directly),
+no "William Morris," no unconfirmed "dealer" claim, no "two-storey" or "colour," and testimonial
+quotes correctly left in the clients' own third-person words rather than converted to Amy's first
+person (they're quotes from someone else, not her copy).

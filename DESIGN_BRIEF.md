@@ -28,6 +28,15 @@ She is not a full-service interior designer and the site must never say she is. 
 
 > They are not there to read. They are there to take in visuals with a little bit of words.
 
+**Voice (added 2026-07-28, per SITE-COPY-REWRITE.md):** the site speaks as Amy, in first person
+("I design," "I make," "the lines I represent"), not about her in the third person. This was
+applied site-wide when SITE-COPY-REWRITE.md was merged into the build and is now the standard —
+new copy should match it, not drift back to third person. Client testimonials are the one
+exception: they stay in the client's own words and voice, since they are quotes from someone else
+describing Amy's work, not Amy's own copy. Ampersands are spelled out as "and" in all display
+copy and page titles (nav labels, H1s, meta titles, service names) — this resolves the ampersand
+question BUILD-PLAN.md previously tracked as open.
+
 ---
 
 # 2. Non-negotiables
@@ -163,9 +172,9 @@ This is the one memorable thing about the site. Everything else stays quiet so t
 /portfolio/[slug]      Project detail
 /services              Services overview
 /services/drapery      Custom Drapery
-/services/blinds-shades  Blinds & Shades
+/services/blinds-shades  Blinds and Shades
 /services/upholstery   Upholstery
-/services/soft-furnishings  Pillows, Cushions & Soft Furnishings
+/services/soft-furnishings  Pillows, Cushions, and Soft Furnishings
 /about                 About, origin story, Studio
 /process               Process
 /journal               Design Journal index
@@ -209,7 +218,7 @@ Main nav, six items maximum: Portfolio, Services, About, Process, Journal, Conta
 
 **Section 3: The differentiator.** Heading: `A Designer's Eye, A Workroom's Understanding`. Body underneath uses Amy's own framing about designing, fabricating, and installing, and the line that a decorator does not make anything. Short. Two sentences.
 
-**Section 4: Services.** Four entries in this order: Custom Drapery, Blinds & Shades, Upholstery, Soft Furnishings. Name and one line each. Not a card grid with icons.
+**Section 4: Services.** Four entries in this order: Custom Drapery, Blinds and Shades, Upholstery, Soft Furnishings. Name and one line each. Not a card grid with icons.
 
 **Section 5: Testimonials.** **Two quotes visible at once**, Newsreader light, large, attributed by first name and last initial only. No stars, no cards, no avatars. The first slot is fixed and never changes — it is the anchor. The second slot rotates through more than two real quotes over time, cross-dissolving on section 6.1's timing, so the section shows two at a time but draws on a larger pool. (Amended 2026-07-27; this line previously read "Two quotes maximum," which the rotation would otherwise contradict.)
 
@@ -229,7 +238,7 @@ Names are evocative and non-geographic. No leading "The." Garden Room, Blue Stud
 
 Overview page plus four child pages. Each child page targets its own keyword cluster and gets its own title, meta description, H1, and 400 to 700 words of real copy.
 
-**Blinds & Shades** is the growth category and needs the most attention:
+**Blinds and Shades** is the growth category and needs the most attention:
 
 - Lafayette Interior Fashions is the sole source. Full catalog: blinds, shades, shutters, woven woods.
 - Expanding sections for the decision categories: light and glare control, privacy, motorization, child safety, room-by-room guidance.
@@ -246,7 +255,7 @@ Overview page plus four child pages. Each child page targets its own keyword clu
 
 ```
 Amy Clark        Founder
-Sam Clark        Web Development & Digital Strategy
+Sam Clark        Web Development and Digital Strategy
 Kelsee Etmans    Photographer
 ```
 

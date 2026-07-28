@@ -20,24 +20,23 @@ export interface Service {
 export const services: Service[] = [
   {
     name: 'Custom Drapery',
-    description:
-      "Drapery designed around the room's architecture and light, from fabric selection through installation.",
+    description: 'Drapery designed around your room and your light, from choosing the fabric to hanging it.',
     href: '/services/drapery',
     // Ivory House (2026-07-28): real drapery-header detail, replacing the
     // substitute hero crop this row shared with Soft Furnishings.
     photo: 'ivory-house-header-detail-1',
   },
   {
-    name: 'Blinds & Shades',
+    name: 'Blinds and Shades',
     description: 'Blinds and shades from the lines I represent, chosen for privacy, light, and finish.',
     href: '/services/blinds-shades',
     // Ivory House: the bay-window room's white wood blinds — the first
-    // dedicated Blinds & Shades photography this site has had.
+    // dedicated Blinds and Shades photography this site has had.
     photo: 'ivory-house-blinds-detail',
   },
   {
     name: 'Upholstery',
-    description: 'Upholstery and reupholstery that give well-made furniture a considered, finished life.',
+    description: 'Upholstery that gives furniture worth keeping another good life.',
     href: '/services/upholstery',
     // Ivory House: the reupholstered breakfast-room dining chair — the only
     // real finished-upholstery photography this site has had until now
@@ -47,7 +46,7 @@ export const services: Service[] = [
   },
   {
     name: 'Soft Furnishings',
-    description: 'Pillows and cushions, the personal layer of detail that finishes a room.',
+    description: 'Pillows and cushions, the last layer, and often the one that finishes the room.',
     href: '/services/soft-furnishings',
     // Ivory House: the kitchen island's rattan-stool cushions, all four rows
     // now carrying distinct photography instead of two sharing one crop.
