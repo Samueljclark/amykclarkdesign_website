@@ -19,7 +19,7 @@ import Quote from '../components/Quote.astro';
 import QuoteRotator from '../components/QuoteRotator.astro';
 import { projects } from '../data/projects';
 import { services } from '../data/services';
-import heroImage from '../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
+import { photos } from '../data/photos';
 
 // Second testimonial slot (5.1, amended). Every one of these is a real
 // fragment from a real review — nothing here is written for the site.
@@ -86,12 +86,16 @@ const rotatingQuotes = [
   },
 ];
 
+// Real photography (2026-07-28), replacing the substitute crop that carried
+// the hero since step 2. See IMAGE-MANIFEST.md for the full selection
+// record. Still a single-item array — the array shape stays reversible for
+// a real multi-image gallery later, but that is a bigger, separate decision
+// than "swap the placeholder," so it is not attempted here.
 const heroImages = [
   {
-    src: heroImage,
-    alt: 'Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa',
-    blurDataURL:
-      'data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQAwCdASoYAA4APu1orU6ppiSiMAgBMB2JZQAAJqLi3qVMQ9VAANjKqbeciNEkpMXDllsCpgoMYdl7ucLubhtqE1JLh7v3/75MyoCwt8lGS7+Oq0L5IIs0IK5IIrEHVgX8zHrArz/FAAAA',
+    src: photos['ivory-house-hero'].image,
+    alt: photos['ivory-house-hero'].alt,
+    blurDataURL: photos['ivory-house-hero'].blurDataURL,
   },
 ];
 

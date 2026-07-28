@@ -23,6 +23,16 @@ dist/
 # Netlify CLI local state, if it ever gets used.
 .netlify/
 
+# The Ivory House shoot's full ~27-frame rough-edit set (2026-07-28),
+# photographer Kelsee Etmans — 72MB. The photographer's own Drive folder is
+# the real archive for the full shoot; this repo tracks only the ten frames
+# actually selected, processed, and renamed (public/images/portfolio/
+# ivory-house/, src/assets/images/portfolio/ivory-house/). Selection record
+# and reasoning: IMAGE-MANIFEST.md. Kept on disk, never deleted — see that
+# file's own standing rule against ever deleting real photography — just not
+# duplicated into git history at full weight.
+source-photos/preeditstardustlnpics/
+
 # Claude Code's per-machine settings (absolute paths to this Mac, a permission
 # allowlist that means nothing elsewhere). `.claude/launch.json` IS committed —
 # it is the shared dev-server config.

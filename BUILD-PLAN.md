@@ -1461,3 +1461,111 @@ horizontal overflow. At 375px nothing changed — lead 375x211, supporting
 335x419, single column — because the pathology needed a wide viewport and mobile
 was never affected.
 
+
+## 2026-07-28: Ivory House — the first real project photography, and its first whole-house project
+
+Sam added a real client-house shoot (~27 rough-edit frames, photographer
+Kelsee Etmans) to `source-photos/preeditstardustlnpics/`. Every image slot
+that has run on crops of one substitute photo since step 2 draws on it now:
+Home hero, Portfolio (a second project, "Ivory House"), and all four
+ServiceList hover stages, each now carrying its own distinct real photo
+instead of two rows sharing one.
+
+**Ownership of what's in frame arrived in three passes over the session, each
+one broader than the last — worth recording so the reasoning is auditable,
+not just the conclusion.** Pass one: drapery plus one confirmed pillow. Pass
+two: drapery plus two named pillows (the round navy "ball" pillow, and the
+front pillow on the chair nearest the drapes). Pass three, the one actually
+used: whole-house, covering all four services — drapery throughout; the
+kitchen island's rattan-stool cushions; the reupholstered breakfast-room
+dining chairs (the only real finished-upholstery photography this site has);
+two sage lumbar pillows on the living-room barrel chairs; the bay-window
+room's white wood blinds; one sage banquette pillow; and the ball pillow.
+Confirmed NOT hers: the sheepskin armchair, the sofa, and the barrel/rattan
+chairs themselves (only their cushions are hers). Full frame-by-frame
+selection and disqualification record: IMAGE-MANIFEST.md.
+
+**This is a genuine interpretation call, not a mechanical wiring job**,
+flagged per the standing convention:
+- **Alt text vs. scope are two different jobs.** Several selected frames
+  necessarily show furniture Amy didn't make alongside work she did — a room
+  photograph can't crop out the sofa. Alt text (rule 10, accessibility)
+  describes what's actually in frame; the authorship claim lives in
+  `projects.ts`'s `scope` line and spec block (5.2), same separation the site
+  has always used. Nothing here is a new precedent, just the first time it's
+  had to carry this much weight in one project record.
+- **The fur-armchair frames were re-evaluated, not reused wholesale.** The
+  chair itself is confirmed not Amy's; three crops of it exist (25/26/27).
+  Only the tightest (27), where the ball pillow reads as sharp and central
+  rather than a small accent against a large fur field, was judged clean
+  enough to use. The other two were left out rather than stretched.
+- **A room-relationship question is flagged, not resolved by assumption.**
+  Amy's account puts the reupholstered dining chairs in the same room as the
+  bay-window blinds; the photographs read as two different spaces (different
+  floor, different window treatment, family photos visible in only one set of
+  frames). Both frames are used for their own independently-confirmed scope
+  regardless of the answer — see IMAGE-MANIFEST.md and ASK-AMY.md.
+
+**New project: "Ivory House."** Named by Sam after three rounds of naming
+proposals — the first two assumed a single-room scope that whole-house
+ownership then outgrew. Rejected along the way: "Pleated Light" (too
+abstract against the plainer "Collected Living Room"), "Orb & Ivory" (names
+the chandeliers, which aren't Amy's work, and the ampersand question is still
+open per decision 9), "Considered Rooms" ("considered" is already load-bearing
+site copy elsewhere). "Ivory House" names the drapery colour running
+throughout the house — real, Amy-made, and the shoot's unifying visual
+thread — and "House" signals whole-house scope plainly against the existing
+single-room project name.
+
+**Spec block, populated more completely than the first project's** — this is
+a real multi-service project, and 3.6 asks for exactly this once the facts
+exist: `treatment: "Drapery, blinds, reupholstered dining chairs, cushions and
+pillows"`, `rooms: "Living room, breakfast room, kitchen"`. `lining` and
+`hardware` stay unset — not established, not guessed, same pattern as the
+first project and as `business.ts`'s opening hours.
+
+**8 supporting images** (5.2's stated maximum), one lead. Not 9: an early
+draft included both living-room crops (01 and 02) as separate supporting
+images alongside the hero; since 01 is already the Home hero, its near-
+duplicate 02 covers the same room and was kept instead, keeping the count at
+the brief's ceiling rather than over by one.
+
+**OG image regenerated** from the new hero crop, replacing the file at the
+same path (`public/images/og/og-default.jpg`) — no code changes needed
+elsewhere, since every page's `ogImage` prop is already that literal string.
+
+**Repo weight, handled per Sam's explicit instruction.** The full ~27-frame
+rough-edit set is **not tracked in git** — `.gitignore` now excludes
+`source-photos/preeditstardustlnpics/` specifically, with the reasoning
+recorded there and in IMAGE-MANIFEST.md. The photographer's own Drive folder
+is the real archive for the full shoot; this repo tracks the ten selected,
+processed, renamed files only. Nothing was deleted from disk — the standing
+rule against deleting real photography holds; this is a git-tracking
+decision, not a retention one.
+
+**Filenames stripped of the street name throughout**, per rule 4 and 8.1 —
+source files were `stardust_ln_rough_edit-NN.jpg`; every selected file is
+renamed to describe what's actually in frame (e.g.
+`pinch-pleat-drapery-header-rings-crown-molding.jpg`,
+`houndstooth-reupholstered-dining-chair-breakfast-table.jpg`).
+
+**Verified in a real browser, both widths.** At 1440px: Home hero renders the
+real photo with the wordmark legible over it (the location line sits close to
+the chandelier at this crop — legible, but visually busier than the original
+substitute's clearer sky/wall area; flagged as a minor polish item, not fixed,
+since correcting it is a crop/composition judgment call rather than a bug).
+ServiceList's four hover-stage images confirmed distinct by inspecting the
+rendered `<img>` sources directly; hovering "Blinds & Shades" swapped in the
+real bay-window photo cleanly. Portfolio index shows both projects,
+asymmetric, no overflow. The Ivory House detail page renders 9 real image
+frames (1 lead + 8 supporting) with real alt text, scope line, and spec
+block. At 375px: zero horizontal overflow anywhere, including the detail
+page's supporting-image grid (the exact grid the step-3 auto-fit bug lived
+in) — confirmed it doesn't recur with 8 items, only ever showed with 1.
+Console clean on both pages at both widths.
+
+**Permission is still outstanding and blocking**, tracked in
+`LAUNCH_CHECKLIST.md` §1 on the identical holding pattern already used for
+the testimonials: written permission from both the photographer (copyright)
+and the homeowner (their house) has not been obtained. Wired in and visible
+for review; not cleared to publish.

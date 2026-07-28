@@ -66,28 +66,47 @@ a real photo, never a blank box or a generated placeholder — but the site is s
 running on a small pool of real photos, mostly one source shoot cropped a few
 different ways. More real photography is the single highest-leverage thing right now.
 
-**Two real pillow photos arrived 2026-07-26** and are live on the new Signature
-Pieces page — the first images on the site that are not standing in for
-something better. They are a phone capture and a social-media screenshot rather
-than studio work, so they want reshooting, but they prove the point: photographs
-of actual finished objects carry this site further than anything else we can
-add.
+**Two real pillow photos arrived 2026-07-26**, live on the Signature Pieces
+page, and **a real whole-house shoot arrived 2026-07-28** ("Ivory House,"
+photographer Kelsee Etmans — see IMAGE-MANIFEST.md for the full selection
+record). That second one is the big one: drapery, blinds, a reupholstered
+dining chair, and three confirmed pillows, across a real client house rather
+than crops of one substitute photo. Every service now has real photography
+for the first time.
+
+**Written permission is still outstanding from both the photographer and the
+homeowner, and it is blocking.** The photos are wired into the live build so
+Amy and Sam can see them in place, but nothing here has been cleared to
+publish — tracked in `LAUNCH_CHECKLIST.md` §1, same holding pattern as the
+testimonials.
+
+**One thing from that shoot needs a plain factual answer, not a permission:**
+Amy described the reupholstered dining chairs as being in the same room as
+the bay-window blinds. In the photographs these read as two different
+spaces — different flooring, different window treatment, and family
+photographs visible in one set of frames that aren't in the other. Doesn't
+block anything (each frame is captioned for its own confirmed work
+regardless), but worth a quick "same room or two rooms?" the next time this
+comes up.
 
 1. **The Fort Loramie shoot.** Needs to actually get booked before Sam leaves for
    college, plus written permission to photograph and publish. This is time-boxed in
    a way the others aren't.
-2. **More real projects, three shots each**: one wide room shot, one medium shot of
-   the treatment, one close detail (fabric, trim, hardware). Maps directly onto the
-   Portfolio detail template (`ProjectGallery.astro`), which already supports any
-   number of supporting images — the only thing missing is the photos. Get client
-   permission for anything identifiable.
+2. ~~**More real projects, three shots each**~~ **Partially resolved by the
+   Ivory House shoot** — a full second project, with a wide room shot, medium
+   treatment shots, and close details across drapery, blinds, upholstery, and
+   soft furnishings. Still worth more: a third project, and this one's own
+   final edited selects once the photographer delivers them (the live frames
+   are rough edits).
 3. **Her hands and her workroom.** Cutting table, machine, trim drawer, stacked
    fabric bolts, swatch books from real lines. One workroom photo is already live
    (the ottoman-stitching shot, now doing four jobs across the Portfolio detail page,
    About's origin section, Process, and a Journal post); more of these break up that
    repetition, which is now the most visible asset problem on the site.
-4. **At least one blinds/shades install** she's proud of, for the Blinds & Shades
-   page, which is built and currently illustrated by a reused drapery crop.
+4. ~~**At least one blinds/shades install** she's proud of~~ **Resolved
+   2026-07-28** — the Ivory House bay-window room, now live on the Blinds &
+   Shades page and ServiceList hover stage. First dedicated Blinds & Shades
+   photography this site has ever had.
 5. **An installation-in-progress shot** (ladder, level, dressing the folds) for
    Process, which is built and currently reuses the workroom ottoman shot.
 6. **Anything from the attic era** — surviving textiles, her grandmother's things, an
@@ -97,6 +116,10 @@ add.
    photographed: two lumbar pillows. It scales to as many as she has. Plain
    ground, even light, one straight-on shot each is enough — the piping and the
    pattern match are what the page is about.
+8. **A fabric or trim detail shot** — a swatch, a seam, a hem, a hand on the
+   cloth. The Ivory House shoot covers hardware and installed treatments well
+   but has nothing at this closer grain, and 3.1's whole "lookbook, not
+   portfolio" thesis leans on exactly this kind of detail.
 
 ## 3. Facts to confirm (short answers, could be one text thread)
 
@@ -160,3 +183,18 @@ add.
   one judgement call worth confirming: it carries no project detail, which is
   the standard every other quote here was selected against. Full text is in
   `SITE-COPY-EXPORT.md` if Amy would rather it were used.
+- **Written permission for the Ivory House photography.** The same holding
+  pattern as the testimonials, for a different reason: this is real,
+  identifiable client photography, not client testimony. Two separate
+  permissions are needed before launch — the **photographer** (copyright in
+  the images) and the **homeowner** (their actual house). Tracked in
+  `LAUNCH_CHECKLIST.md` §1. The photos are live in the build now so Amy and
+  Sam can review them in place; nothing about that implies either permission
+  is settled.
+- **Are the reupholstered dining chairs and the bay-window blinds actually in
+  the same room?** Amy described them that way, but the photographs read as
+  two different spaces (different floor, different window treatment, family
+  photos visible in one set of frames only). See IMAGE-MANIFEST.md's Ivory
+  House section for the specifics. Not blocking anything — each frame is
+  captioned for its own confirmed scope regardless — just worth a plain
+  answer.

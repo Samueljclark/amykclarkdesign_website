@@ -21,6 +21,7 @@ import type { ImageMetadata } from 'astro';
 import collectedLivingRoomImage from '../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
 import collectedLivingRoomLeadImage from '../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
 import ottomanStitchingImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
+import { photos } from './photos';
 
 export interface ProjectSpec {
   treatment?: string;
@@ -75,6 +76,87 @@ export const projects: Project[] = [
       treatment: 'Drapery, banded Roman shade',
       fabricHouse: 'the lines I represent',
       rooms: 'Living room',
+    },
+  },
+  {
+    // Ivory House (2026-07-28). The site's first whole-house project and
+    // first project shot by Kelsee, not a substitute crop. Confirmed scope
+    // per Amy, via Sam: drapery throughout; the kitchen island's rattan
+    // stool cushions; the reupholstered breakfast-room dining chairs; two
+    // sage lumbar pillows on the living room's barrel chairs; the white wood
+    // blinds in the bay-window breakfast room; one sage sofa pillow; and the
+    // round navy "ball" pillow. Everything else visible in these photos —
+    // the sofa, the barrel and rattan chairs themselves, the fur armchair,
+    // any pillow not named above — is not hers, per the same standing rule
+    // as `scope` on every project. Full selection record, what was
+    // disqualified and why, and the ownership reasoning behind each frame:
+    // IMAGE-MANIFEST.md.
+    //
+    // Two rooms in this shoot are described together in Amy's own account
+    // (the reupholstered dining chairs and the bay-window blinds, "that same
+    // room") but read as physically distinct spaces in the photographs —
+    // different floors, different window treatment, family photos visible
+    // in one that aren't in the other. Flagged as an open question in
+    // ASK-AMY.md rather than resolved by assumption; nothing here depends on
+    // the two rooms being the same space.
+    slug: 'ivory-house',
+    name: 'Ivory House',
+    image: photos['ivory-house-bay-window'].image,
+    alt: photos['ivory-house-bay-window'].alt,
+    blurDataURL: photos['ivory-house-bay-window'].blurDataURL,
+    scope:
+      "Amy made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three pillows shown here. She did not design or supply the furniture itself.",
+    lead: {
+      image: photos['ivory-house-bay-window'].image,
+      alt: photos['ivory-house-bay-window'].alt,
+      blurDataURL: photos['ivory-house-bay-window'].blurDataURL,
+    },
+    supporting: [
+      {
+        image: photos['ivory-house-living-room'].image,
+        alt: photos['ivory-house-living-room'].alt,
+        blurDataURL: photos['ivory-house-living-room'].blurDataURL,
+      },
+      {
+        image: photos['ivory-house-header-detail-1'].image,
+        alt: photos['ivory-house-header-detail-1'].alt,
+        blurDataURL: photos['ivory-house-header-detail-1'].blurDataURL,
+      },
+      {
+        image: photos['ivory-house-header-detail-2'].image,
+        alt: photos['ivory-house-header-detail-2'].alt,
+        blurDataURL: photos['ivory-house-header-detail-2'].blurDataURL,
+      },
+      {
+        image: photos['ivory-house-blinds-detail'].image,
+        alt: photos['ivory-house-blinds-detail'].alt,
+        blurDataURL: photos['ivory-house-blinds-detail'].blurDataURL,
+      },
+      {
+        image: photos['ivory-house-dining-chair'].image,
+        alt: photos['ivory-house-dining-chair'].alt,
+        blurDataURL: photos['ivory-house-dining-chair'].blurDataURL,
+      },
+      {
+        image: photos['ivory-house-kitchen-cushions'].image,
+        alt: photos['ivory-house-kitchen-cushions'].alt,
+        blurDataURL: photos['ivory-house-kitchen-cushions'].blurDataURL,
+      },
+      {
+        image: photos['ivory-house-lumbar-pillows'].image,
+        alt: photos['ivory-house-lumbar-pillows'].alt,
+        blurDataURL: photos['ivory-house-lumbar-pillows'].blurDataURL,
+      },
+      {
+        image: photos['ivory-house-ball-pillow'].image,
+        alt: photos['ivory-house-ball-pillow'].alt,
+        blurDataURL: photos['ivory-house-ball-pillow'].blurDataURL,
+      },
+    ],
+    spec: {
+      treatment: 'Drapery, blinds, reupholstered dining chairs, cushions and pillows',
+      fabricHouse: 'the lines I represent',
+      rooms: 'Living room, breakfast room, kitchen',
     },
   },
 ];

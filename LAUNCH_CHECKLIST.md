@@ -44,6 +44,16 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   the visit is paid and what it buys, and never that the fee credits toward the
   project (it does not). If Amy wants the amount published, that is a new
   decision.
+- [Amy][Sam] **Ivory House photography permissions — two separate people,
+  both required.** The whole-house shoot added 2026-07-28 (drapery, blinds,
+  reupholstered dining chair, cushions and pillows — see IMAGE-MANIFEST.md)
+  is wired into the Home hero, the Portfolio, and all four ServiceList hover
+  stages. **Neither the photographer's copyright permission nor the
+  homeowner's permission to publish photos of their house has been
+  obtained.** Same holding pattern as the testimonials: visible now for
+  review, not cleared to publish. This is the single biggest visual
+  commitment the site currently makes to real photography — get both
+  permissions before the real domain goes live, not after.
 
 ## 2. The temporary thing
 

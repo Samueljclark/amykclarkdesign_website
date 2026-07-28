@@ -20,6 +20,23 @@ import ottomanStitchingImage from '../assets/images/about/amy-hand-stitching-che
 import bandedRomanShadeImage from '../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
 import pleatedDraperyImage from '../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
 
+// Ivory House (2026-07-28) — the site's first real client-house shoot,
+// photographer Kelsee Etmans. See IMAGE-MANIFEST.md for the full selection
+// record: what was chosen from the ~27-frame set, what was disqualified and
+// why, and the ownership determinations behind each one. Publication
+// permission from both the photographer and the homeowner is still
+// outstanding — see LAUNCH_CHECKLIST.md.
+import ivoryHouseHeroImage from '../assets/images/portfolio/ivory-house/pinch-pleat-drapery-living-room-orb-chandelier.jpg';
+import ivoryHouseLivingRoomImage from '../assets/images/portfolio/ivory-house/pinch-pleat-drapery-living-room-french-doors-detail.jpg';
+import ivoryHouseHeaderDetail1Image from '../assets/images/portfolio/ivory-house/pinch-pleat-drapery-header-rings-crown-molding.jpg';
+import ivoryHouseHeaderDetail2Image from '../assets/images/portfolio/ivory-house/pinch-pleat-drapery-header-second-window.jpg';
+import ivoryHouseBayWindowImage from '../assets/images/portfolio/ivory-house/ivory-drapery-white-wood-blinds-bay-window-breakfast-room.jpg';
+import ivoryHouseBlindsDetailImage from '../assets/images/portfolio/ivory-house/white-wood-blinds-drapery-bay-window-detail.jpg';
+import ivoryHouseLumbarPillowsImage from '../assets/images/portfolio/ivory-house/sage-geometric-lumbar-pillows-cream-barrel-chairs.jpg';
+import ivoryHouseKitchenCushionsImage from '../assets/images/portfolio/ivory-house/botanical-cushions-rattan-counter-stools-kitchen-island.jpg';
+import ivoryHouseDiningChairImage from '../assets/images/portfolio/ivory-house/houndstooth-reupholstered-dining-chair-breakfast-table.jpg';
+import ivoryHouseBallPillowImage from '../assets/images/portfolio/ivory-house/round-knit-pillow-navy-olive-armchair.jpg';
+
 export interface Photo {
   image: ImageMetadata;
   alt: string;
@@ -32,6 +49,87 @@ export interface Photo {
 }
 
 export const photos = {
+  // Ivory House (2026-07-28). Alt text describes what is actually visible in
+  // frame, factually — per the site's standing convention, a scope CLAIM
+  // (what Amy made vs. what merely furnishes the room) belongs in the
+  // project's `scope` line and spec block, not in accessibility text. So a
+  // pillow trio or a whole room can be described honestly without asserting
+  // authorship of everything the alt text names.
+  'ivory-house-hero': {
+    image: ivoryHouseHeroImage,
+    publicPath: '/images/portfolio/ivory-house/pinch-pleat-drapery-living-room-orb-chandelier.jpg',
+    alt: 'Ivory pinch-pleat drapery on a brushed-nickel rod, framing French doors in a living room beneath a wire-orb crystal chandelier',
+    blurDataURL:
+      'data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JYwCdABwtMe/7n4INVvcXTUk/AAD4wKYHlWAYX5JIBBQ6zjgEsa6/TLvALju2rAAdGzx5+y4sJVWhZTUNNO09C6Qe13z+SP2inM2ZAn/O5ccJ7ifbNj/f/onL9Hq/4Wt/gknShh1T4AAA',
+  },
+  'ivory-house-living-room': {
+    image: ivoryHouseLivingRoomImage,
+    publicPath:
+      '/images/portfolio/ivory-house/pinch-pleat-drapery-living-room-french-doors-detail.jpg',
+    alt: 'Ivory pinch-pleat drapery framing French doors in a living room, with a wire-orb chandelier and an abstract painting on the near wall',
+    blurDataURL:
+      'data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAAAwBACdASoYABAAPu1iqU2ppaQiMAgBMB2JYwCdMoAC48Xcfw5Dt7hpBYAA3Z/E6Wmch9lo4oA6uaknGVZo+sTfkFCfR3cuJSOGLEXchMucWq44/CkTJQZ9GVBflKAlKJYid9y3R/NS2Au84fMS2Xvvni2x9WskyncGtoDEYsjl4/DxUv9jOH+BTUAAAA==',
+  },
+  'ivory-house-header-detail-1': {
+    image: ivoryHouseHeaderDetail1Image,
+    publicPath: '/images/portfolio/ivory-house/pinch-pleat-drapery-header-rings-crown-molding.jpg',
+    alt: 'Detail of ivory pinch-pleat drapery rings on a brushed-nickel rod, with crown molding above and the panel falling into a stacked pleat',
+    blurDataURL:
+      'data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoYABAAPu1mqk2ppaQiMAgBMB2JZQC7AFY5W5VmoJhCMMAAp34CPHXLdar4F07bJSstdMf+wTmEgiTXXDviHGNVkOvHF7n3b1m+1TsMSbup4AAA',
+  },
+  'ivory-house-header-detail-2': {
+    image: ivoryHouseHeaderDetail2Image,
+    publicPath: '/images/portfolio/ivory-house/pinch-pleat-drapery-header-second-window.jpg',
+    alt: 'Ivory pinch-pleat drapery header at a second window, showing pleat spacing and rod-and-ring hardware against white trim',
+    blurDataURL:
+      'data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAwCdASoYAA0APu1yrU+pp6QiMAgBMB2JYwC7AGf8DekQfgpRogAAxw35I7C2wzAP0GpQtdTunN3uvdk7+CjORUOVJYWGFdIHnm1gAAA=',
+  },
+  'ivory-house-bay-window': {
+    image: ivoryHouseBayWindowImage,
+    publicPath:
+      '/images/portfolio/ivory-house/ivory-drapery-white-wood-blinds-bay-window-breakfast-room.jpg',
+    alt: 'Ivory pinch-pleat drapery and white wood blinds dressing three bay windows in a breakfast room, beneath a wire-orb chandelier and ceiling medallion',
+    blurDataURL:
+      'data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAACwAwCdASoYAA0APu1mqk4ppaOiMAgBMB2JZwAASoCp8hrW6UGTYAD+2VdvhChwGIZaDbuSL//1xS+vUAOEq+WcinP61dSsqS81mC02GLSbEVI3q3f0OyIxFPDmmdQ6qwHNN1HH92UDJJ/0gJK3ezj7T540AAAA',
+  },
+  'ivory-house-blinds-detail': {
+    image: ivoryHouseBlindsDetailImage,
+    publicPath: '/images/portfolio/ivory-house/white-wood-blinds-drapery-bay-window-detail.jpg',
+    alt: 'White wood blinds beneath ivory pinch-pleat drapery in a bay-window breakfast room, with a wire-orb chandelier overhead',
+    blurDataURL:
+      'data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAACwAwCdASoYAA0APu1iqU2ppaOiMAgBMB2JZwAAQslIcb/1UfA7QAD+wiDk/8XDIwul6YMCeXX7dEEIxbgEQmdaswPWlSZJB04rSajdZeYl2NkLJ1EC3EgNoS2KAwJj54DVdZ23MJB1N0sSAhFo0MvSwx/2poOoEpiQwAAA',
+  },
+  'ivory-house-lumbar-pillows': {
+    image: ivoryHouseLumbarPillowsImage,
+    publicPath:
+      '/images/portfolio/ivory-house/sage-geometric-lumbar-pillows-cream-barrel-chairs.jpg',
+    alt: 'Two sage geometric-print lumbar pillows on a pair of cream barrel chairs, beside a console table',
+    blurDataURL:
+      'data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAAAQBACdASoYAA0APu1iqU2ppaQiMAgBMB2JZwCdACPfhNka66iuOY+UYADh6NibaLNAlWjY+C35+4iT0nOH6Vnb7qPj122kePVZhcmep/jtFbymrvaNuLW1Ly3Uhsrdol8/b9/Z0dajNYXHytFDjKTF+xL+fVeZfuzIoufpCKGl6eWudFFE/JyDr9ScjXka2mBVgAAA',
+  },
+  'ivory-house-kitchen-cushions': {
+    image: ivoryHouseKitchenCushionsImage,
+    publicPath:
+      '/images/portfolio/ivory-house/botanical-cushions-rattan-counter-stools-kitchen-island.jpg',
+    alt: 'Botanical-print seat cushions in peach and sage on cream, made for a row of rattan counter stools at a kitchen island',
+    blurDataURL:
+      'data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBdmUABCfEoMEwG52o0/ps9AAP5VknBiV667FmhPwHI/WtMvW61e4gxdE8+S6O2O0YLWFIg9/fgWw/oevdqIMezCWYINCSeeVBoUFG7hn/RY4xP04WCT3Y8vTGem2IAMhwYoP/QMBz0MOUJGRFY77nmgAAAA',
+  },
+  'ivory-house-dining-chair': {
+    image: ivoryHouseDiningChairImage,
+    publicPath:
+      '/images/portfolio/ivory-house/houndstooth-reupholstered-dining-chair-breakfast-table.jpg',
+    alt: 'A dining chair reupholstered in a rust-and-taupe houndstooth fabric, at a round table in a breakfast room',
+    blurDataURL:
+      'data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JYwCdABbpqsmqMmyGBOYgAAD+rugkvjG1SKQbJHHSDn1mp0a0ZbnRWdUDkOGx8PumBpXi8NO0yzZEZaUWX47Mx9t8G7sEq0C1WQ14go4GLxkJeJPoHbEQf7CPCXkZ9MO7xfIzjvs31AyAAAA=',
+  },
+  'ivory-house-ball-pillow': {
+    image: ivoryHouseBallPillowImage,
+    publicPath: '/images/portfolio/ivory-house/round-knit-pillow-navy-olive-armchair.jpg',
+    alt: 'A round knit pillow in navy and olive, resting on a shaggy cream armchair',
+    blurDataURL:
+      'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwAwCdASoYABAAPu1iqk2ppaQiMAgBMB2JYwC7ABuSKER1+K6zdo+YAP6n88tNwk5kOzYrNWLQFizF36uZ9ECp0hDGtpTA7+QeSmhKcVhDYHYvplsSoHzfhYh8atm9TrF/8Lcnn89tXTH+Rx2AAA==',
+  },
   // The two pillows added 2026-07-26 are the first photographs on the site
   // that are NOT placeholders: they are the actual finished objects, shot
   // against a plain ground, and they are what /signature-pieces shows.

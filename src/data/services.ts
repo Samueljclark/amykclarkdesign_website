@@ -23,27 +23,34 @@ export const services: Service[] = [
     description:
       "Drapery designed around the room's architecture and light, from fabric selection through installation.",
     href: '/services/drapery',
-    photo: 'pleated-drapery',
+    // Ivory House (2026-07-28): real drapery-header detail, replacing the
+    // substitute hero crop this row shared with Soft Furnishings.
+    photo: 'ivory-house-header-detail-1',
   },
   {
     name: 'Blinds & Shades',
     description: 'Blinds and shades from the lines I represent, chosen for privacy, light, and finish.',
     href: '/services/blinds-shades',
-    photo: 'banded-roman-shade',
+    // Ivory House: the bay-window room's white wood blinds — the first
+    // dedicated Blinds & Shades photography this site has had.
+    photo: 'ivory-house-blinds-detail',
   },
   {
     name: 'Upholstery',
     description: 'Upholstery and reupholstery that give well-made furniture a considered, finished life.',
     href: '/services/upholstery',
-    photo: 'ottoman-stitching',
+    // Ivory House: the reupholstered breakfast-room dining chair — the only
+    // real finished-upholstery photography this site has had until now
+    // (the ottoman-stitching photo elsewhere on the site is a workroom
+    // process shot, not a finished piece).
+    photo: 'ivory-house-dining-chair',
   },
   {
     name: 'Soft Furnishings',
     description: 'Pillows and cushions, the personal layer of detail that finishes a room.',
     href: '/services/soft-furnishings',
-    // Shares the drapery photo. It is the only one of the three that shows
-    // pillows and a cushioned seat at all; the two rows are non-adjacent, so
-    // the repeat never reads as a stuck image.
-    photo: 'pleated-drapery',
+    // Ivory House: the kitchen island's rattan-stool cushions, all four rows
+    // now carrying distinct photography instead of two sharing one crop.
+    photo: 'ivory-house-kitchen-cushions',
   },
 ];

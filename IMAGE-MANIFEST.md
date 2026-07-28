@@ -202,12 +202,150 @@ mismatched treatments before. Still not uniform — Amy's white brick and Sam's
 blue studio backdrop are different worlds — but the weakest asset is now
 clearly the remaining one.
 
+## 2026-07-28: the Ivory House shoot — the first non-substitute project photography
+
+Sam added roughly 27 rough-edit frames from a real client-house shoot
+(photographer: Kelsee Etmans) to `source-photos/preeditstardustlnpics/`. This
+is the first real project photography this build has had; every image slot
+that has run on crops of one substitute photo since step 2 draws from it now.
+The full ~27-frame set stays on disk (never deleted, per this file's standing
+rule) but is **not tracked in git** — see `.gitignore`'s note and the "what's
+tracked" table below. The photographer's own Drive folder is the real archive.
+
+**Ownership of what's in frame was established in stages, and got broader
+each time — worth recording plainly so the reasoning is traceable.** The
+session began under a narrower, drapery-and-two-pillows-only understanding;
+Sam then corrected it twice, ending at whole-house scope covering all four
+services. The **final, confirmed scope** is what's used throughout this
+manifest and `projects.ts`:
+
+**Confirmed as Amy's work:**
+1. Drapery, throughout the house.
+2. The kitchen island's rattan bar-stool cushions (floral/botanical print).
+3. The breakfast-room dining chairs — Amy reupholstered these (houndstooth/
+   tweed). The only real, finished-upholstery photography this site has.
+4. Two sage geometric lumbar pillows on the living room's cream barrel chairs.
+5. The white wood blinds in the bay-window breakfast room.
+6. One sage pillow among the banquette pillows in that same bay-window room.
+7. The round navy/olive knit "ball" pillow (on the sheepskin armchair).
+
+**Confirmed NOT Amy's:** the sheepskin/fur armchair itself, the living-room
+sofa, the barrel and rattan chairs themselves (only their cushions/pillows
+are hers), and any pillow not named above.
+
+**Alt text describes what's visible; the authorship claim lives in `scope`
+and the spec block, not in alt text.** Several selected frames necessarily
+show furniture Amy didn't make alongside work she did (a room photograph
+can't crop out the sofa) — consistent with how the site has always handled
+this (the existing "Collected Living Room" project's supporting image
+already includes furniture with no attributed maker). Rule 10's accessibility
+requirement and 5.2's scope-honesty requirement are two different jobs,
+handled in two different places, same as before.
+
+**One thing that reads as ambiguous and is flagged in ASK-AMY.md rather than
+resolved by guessing:** Amy's own account describes the reupholstered dining
+chairs as being "in the same room" as the bay-window blinds. In the
+photographs these read as two physically distinct spaces — different floor
+(hardwood vs. carpet), different window treatment (bare double-hung windows
+vs. full bay with blinds and drapery), and family photographs visible in the
+dining-chair frames that aren't present in the blinds frames. Both frames are
+used for their own confirmed, individual scope (Upholstery; Blinds & Shades)
+regardless of how the two rooms relate — nothing here depends on the answer —
+but the relationship itself is asked about rather than assumed.
+
+### Frames selected (10 of ~27), and why
+
+| # | File | Used for | Why this frame over its near-duplicates |
+|---|---|---|---|
+| 01 | `pinch-pleat-drapery-living-room-orb-chandelier.jpg` | Home hero | Cropped top-anchored from the original (full frame, trimmed ~250px off the bottom) to foreground the chandelier, drapery, and art rather than the seating group. Full chandelier visible, most generous headroom of the living-room set. |
+| 02 | `pinch-pleat-drapery-living-room-french-doors-detail.jpg` | Portfolio supporting | Alternate angle of the same room, used instead of the near-identical 05/06 (05 has a stray chandelier chain crossing the top of frame; 06 is a redundant vertical re-crop). |
+| 03 | `pinch-pleat-drapery-header-rings-crown-molding.jpg` | Portfolio supporting, Drapery ServiceList hover stage | The strongest, most unambiguous drapery-craft shot in the whole set: rod, rings, crown molding, panel falling into frame, nothing else competing for attention. |
+| 04 | `pinch-pleat-drapery-header-second-window.jpg` | Portfolio supporting | A second window's header detail, confirming the pleat/rod treatment repeats — kept distinct from 03 rather than a duplicate of the same window. |
+| 17 | `ivory-drapery-white-wood-blinds-bay-window-breakfast-room.jpg` | Portfolio lead | Cleanest, most complete version of the bay-window room among 15/16/17/18: full ceiling medallion and chandelier, all three windows' drapery+blinds symmetric, centerpiece anchoring the foreground. 15 and 16 are dimmer, earlier-in-sequence exposures of the same setup. |
+| 18 | `white-wood-blinds-drapery-bay-window-detail.jpg` | Portfolio supporting, Blinds & Shades ServiceList hover stage | Tighter crop of the same room as 17, chandelier and blinds more prominent — used as a second, distinct angle rather than reusing 17 twice. |
+| 19 | `sage-geometric-lumbar-pillows-cream-barrel-chairs.jpg` | Portfolio supporting | Cleanest of the near-duplicate pair 19/20; both sage lumbar pillows clearly in frame, no personal items visible. |
+| 22 | `botanical-cushions-rattan-counter-stools-kitchen-island.jpg` | Portfolio supporting, Soft Furnishings ServiceList hover stage | The single most distinctive frame in the whole set — closeup of the floral cushion print. Unambiguous, no competing subject. |
+| 24 | `houndstooth-reupholstered-dining-chair-breakfast-table.jpg` | Portfolio supporting, Upholstery ServiceList hover stage | Cleanest of 21/23/24: 21 shows family photographs on a counter in the background (a real privacy concern, not just a compositional one) and was excluded specifically for that reason; 23 and 24 don't show that counter. 24's tighter crop shows the chair fabric texture more clearly than 23. |
+| 27 | `round-knit-pillow-navy-olive-armchair.jpg` | Portfolio supporting | Tightest of the three fur-armchair crops (25/26/27); the ball pillow reads as sharp and central rather than a small accent lost in the chair's fur texture, which was the deciding factor once the pillow itself was confirmed hers. |
+
+### Disqualified, and on what grounds
+
+- **05, 06** — near-duplicates of 04 and 02 respectively, no distinct content.
+- **07, 08, 09** — near-duplicate archway views (sofa, chaise, console with
+  flowers, orb chandelier). Not used: with whole-house scope now covering
+  richer, more clearly-Amy's-work frames elsewhere, these added nothing that
+  8/17/18 didn't already cover, and the sofa/chaise are not Amy's.
+- **10–14** — tight crops of the living-room seating group (pillows, boucle
+  chair). Superseded once 19 gave a clean, confirmed-ownership pillow shot
+  from a different room; these mix confirmed and unconfirmed pillows in the
+  same frame at similar prominence, which is a harder scope-honesty case than
+  19 or 22.
+- **15, 16** — earlier, dimmer exposures of the same bay-window setup as 17/18.
+- **20** — a near-duplicate of 19.
+- **21, 23** — the breakfast-nook table setting. 21 excluded specifically for
+  showing family photographs in the background (privacy, not just
+  composition); 23 is a usable near-duplicate of 24, not needed alongside it.
+- **25, 26** — wider crops of the same fur-armchair setup as 27, where the fur
+  texture reads as more prominent than the pillow.
+
+### New file `src/assets/images/portfolio/ivory-house/` and `public/images/portfolio/ivory-house/`
+
+All ten selected frames, resized to 2000px on the long side, JPEG quality 88,
+in both locations per the site's existing hybrid image-serving convention.
+Blur-up placeholders generated the standard way (`sharp`, 24px wide, WebP).
+
+### What's tracked in git and what isn't
+
+| Path | Tracked? |
+|---|---|
+| `source-photos/preeditstardustlnpics/` (all ~27 rough-edit originals) | **No** — ignored via `.gitignore`, kept on disk. The photographer's Drive folder is the real archive for the full shoot. |
+| `src/assets/images/portfolio/ivory-house/` (10 selected, processed files) | Yes |
+| `public/images/portfolio/ivory-house/` (same 10, verbatim-served masters) | Yes |
+| `public/images/og/og-default.jpg` (replaced, see below) | Yes |
+
+### Slots this resolves
+
+| Slot | Before | Now |
+|---|---|---|
+| Home hero | Crop of the substitute photo (`pleated-drapery-living-room-french-doors-pool-view.jpg`) | Real Ivory House living-room photo (01) |
+| Portfolio index / detail lead | One project, one supporting image, both substitute crops | Two projects; Ivory House ships with a real lead (17) and 8 real supporting images |
+| ServiceList hover stage — Drapery | Substitute photo, shared with Soft Furnishings | Real drapery header detail (03) |
+| ServiceList hover stage — Blinds & Shades | Substitute photo | Real white wood blinds (18) — **first dedicated Blinds & Shades photography this site has had**, and the SEO growth priority per 5.3 |
+| ServiceList hover stage — Upholstery | Workroom process photo (ottoman-stitching), not a finished piece | Real reupholstered dining chair (24) — **first finished-upholstery photography this site has had** |
+| ServiceList hover stage — Soft Furnishings | Shared the Drapery substitute photo | Real kitchen cushion detail (22) — all four rows now distinct |
+| OG image | Crop of the substitute photo | New crop of the Ivory House hero image (01) |
+
+**Still on substitute photography, unresolved by this shoot:** the three
+Journal post heroes, the two location pages (`/cincinnati`,
+`/northern-kentucky`), and the Studio/About workroom images — all still use
+`pleated-drapery`/`banded-roman-shade`/`ottoman-stitching` from the original
+substitute set. Left alone deliberately; rewiring them was not part of this
+pass and each is a small, separate decision.
+
+**Permission is still outstanding and blocking.** Written permission from
+both the photographer (copyright) and the homeowner (their house) has not
+been obtained. Tracked in `LAUNCH_CHECKLIST.md` §1 alongside the testimonial
+permissions, on the identical holding pattern: wired in and visible now,
+must not go live on the real domain until both permissions are in hand.
+
 ## Asset requests, in priority order
 
-1. Kelsee's edited project photography (fills hero/ and portfolio/, the two blocking slots).
+1. ~~Kelsee's edited project photography (fills hero/ and portfolio/, the two
+   blocking slots).~~ **Landed 2026-07-28** — see the Ivory House section
+   above. Rough-edit frames, not final edits, but real and usable; the
+   photographer's final edited selects, when they arrive, are a straight
+   swap of the same ten files.
 2. **A real rectangular headshot for Kelsee.** Amy's landed 2026-07-27; Kelsee's is the last circle-crop avatar in the Studio row and the only thing still forcing the 1:1 crop.
 3. An early photograph of Amy for the origin section.
 4. **Proper photographs of the pillows on `/signature-pieces`**, and of any
    other finished pieces worth showing there. The two live now are honest and
    usable, but they are a phone capture and a social-media screenshot, not
    studio work — and this is the one page whose whole job is showing objects.
+5. **What the Ivory House shoot still does not cover**, carried over from the
+   original request list rather than invented fresh: no photo of Amy actually
+   working, no installation-in-progress shot, no fabric or trim detail shot
+   (swatch, seam, hem), and no second blinds/shades install beyond this one
+   room. Blinds & Shades finally has real photography as of this shoot, which
+   removes the single most urgent gap — the remaining four are the next
+   priorities for a future session with Amy or a future shoot. Also in
+   ASK-AMY.md's photography section.
