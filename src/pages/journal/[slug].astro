@@ -19,6 +19,7 @@
 // cannot carry the .link-underline class.
 
 import Base from '../../layouts/Base.astro';
+import ContactBand from '../../components/ContactBand.astro';
 import RevealImage from '../../components/RevealImage.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
@@ -110,10 +111,7 @@ const publishedLabel = new Intl.DateTimeFormat('en-US', {
     </section>
   </article>
 
-  <section class="section wrap contact-band bg-ground">
-    <p class="type-display contact-band__line">Ready to start your project?</p>
-    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
-  </section>
+  <ContactBand />
 </Base>
 
 <style>
@@ -130,60 +128,9 @@ const publishedLabel = new Intl.DateTimeFormat('en-US', {
     color: var(--ink-muted);
   }
 
-  /* ---- Rendered markdown ---- */
-  .prose {
-    max-width: var(--measure);
-  }
-
-  .prose :global(h2) {
-    font-weight: var(--weight-display);
-    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
-    line-height: 1.15;
-    letter-spacing: var(--tracking-display);
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  .prose :global(p + p) {
-    margin-top: 1rem;
-  }
-
-  /* global.css strips list markers site-wide (nav, galleries, the Studio row);
-     rendered prose is the one place a real list should read as one. */
-  .prose :global(ul),
-  .prose :global(ol) {
-    list-style: revert;
-    padding-inline-start: 1.5rem;
-    margin-top: 1rem;
-    max-width: var(--measure);
-  }
-  .prose :global(li + li) {
-    margin-top: 0.5rem;
-  }
-
-  /* 6.6, reproduced for markdown links: scaleX on a pseudo-element, in
-     --indigo, never text-decoration. */
-  .prose :global(a) {
-    position: relative;
-    display: inline;
-    text-decoration: none;
-  }
-  .prose :global(a)::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -0.15em;
-    height: 2px;
-    background: var(--indigo);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--link-underline-duration) ease;
-  }
-  .prose :global(a):hover::after,
-  .prose :global(a):focus-visible::after {
-    transform: scaleX(1);
-  }
+  /* Rendered markdown body: `.prose` and its h2/p/list/link treatment now
+     live in global.css (Phase 2 of the copy-bulk-swap work), shared with
+     every other markdown-driven page. Nothing journal-specific left here. */
 
   .journal-post__related {
     max-width: var(--measure);

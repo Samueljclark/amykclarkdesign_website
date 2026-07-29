@@ -1661,3 +1661,211 @@ per page, no heading-level skips, zero banned words (rule 5), zero em dash in vi
 no "William Morris," no unconfirmed "dealer" claim, no "two-storey" or "colour," and testimonial
 quotes correctly left in the clients' own third-person words rather than converted to Amy's first
 person (they're quotes from someone else, not her copy).
+
+## 2026-07-28/29: Copy made bulk-swappable — where Sam edits what
+
+Goal: change site copy by editing one obvious file instead of hunting through
+`.astro` templates. **Read this plainly first, because it's the honest
+framing for everything below:** a markdown file cannot be the literal live
+source without a fragile parsing layer sitting between it and the page. What
+actually got built is a copy layer that mirrors SITE-COPY-REWRITE.md's
+structure closely enough that changing a page's copy is a find-and-replace in
+one predictable file, not a rewrite of how the site works.
+
+### The split, and where it deviated from the brief
+
+**Long-form prose → a new `pages` content collection**, same mechanism as
+`journal` (glob loader, one markdown file per page, Zod schema in
+`content.config.ts`). Nine files in `src/content/pages/`: `drapery.md`,
+`blinds-shades.md`, `upholstery.md`, `soft-furnishings.md`, `about.md`,
+`process.md`, `cincinnati.md`, `northern-kentucky.md`, `contact.md`. Each
+carries frontmatter for the fixed fields (`seoTitle`, `description`,
+`eyebrow`, `title`, `lead` — an array of paragraph strings, not one string,
+so a multi-paragraph lead like Blinds and Shades' or Contact's doesn't need
+hand-rolled markdown just for a paragraph break) plus a markdown body for the
+flowing `##` prose sections.
+
+**Not every page's collection entry has body prose, and that's deliberate,
+not a gap:**
+- **Process** has no free text at all — its content is four numbered steps
+  (`steps: [{title, body}]` in frontmatter), which is structured data, not
+  prose that flows.
+- **Blinds and Shades** keeps its five accordion categories
+  (`decisionCategories`) and the one heading + sentence directly above them
+  (`decisionCategoriesHeading` / `decisionCategoriesIntro`) as frontmatter,
+  not markdown body — a plain paragraph can't become five independent
+  accordion panels without a parsing layer, and the heading/intro sits
+  between two pieces of an interactive component, which markdown's single
+  linear document can't cleanly interleave either.
+- **Contact** keeps its seven FAQ question/answer pairs (`faqs`) as
+  frontmatter for the same reason as the accordion, plus a second one:
+  `Faq.astro` generates FAQPage JSON-LD (8.2) straight from those exact
+  strings, so they have to stay real, typed data rather than something parsed
+  back out of freeform prose — splitting the copy from the schema
+  guarantees drift.
+
+`Faq.astro` changed from a hardcoded `const faqs` to a required `faqs` prop,
+fed by `contact.astro` from the collection entry. `Accordion.astro` itself
+was untouched — both consumers (blinds-shades, the FAQ) already passed it an
+`items` array; only where that array comes from changed.
+
+**About is the one page where the brief's own plan (one markdown file, images
+untouched) ran into a real interleaving problem, flagged rather than forced.**
+The pre-rewrite page put the origin/workroom photo *between* two prose
+sections ("Where it started" and "Every one of them is invented"). A single
+markdown document can't cleanly interleave a `<RevealImage>` mid-flow without
+a fragile parsing layer — so `about.md`'s body is all four `##` sections in
+one continuous document, and **the origin image moved** to sit after all of
+them, immediately before Studio. Workroom photo leading into the people who
+work in it reads fine as a sequence, but it is a real, visible reordering,
+not just a refactor — flagged in `about.astro`'s own header comment and
+worth Sam's or Amy's eyes if either would rather see it back in the middle
+badly enough to justify hand-splitting the page instead.
+
+**Short strings → mostly already fine where they already lived, deduplicated
+where they weren't.** The brief's list was nav labels, button text, footer
+lines, meta titles/descriptions, ServiceList one-liners, and form
+labels/select options. Checked each:
+- **ServiceList one-liners** (`src/data/services.ts`) and **form labels/select
+  options** (`ConsultationForm.astro`) were *already* single, well-organized
+  files holding exactly that copy and nothing else — four objects, thirty
+  lines. Moving them into a second file wouldn't have made them more
+  editable, just relocated. Left alone; noted here so it reads as a checked
+  box, not a skipped one.
+- **Nav labels were genuinely scattered** — `SiteNav.astro` and
+  `SiteFooter.astro` each hardcoded their own separate six-item array, so
+  changing a label meant remembering to edit both. New `src/data/nav.ts`
+  (`navItems`, `locationPages`), imported by both. One array now.
+- **The "Ready to start your project?" contact-band** wasn't in the brief's
+  list by name, but it was the single worst offender found: the exact same
+  three-line block, byte-for-byte identical, hardcoded into **eleven**
+  separate `.astro` files. New `ContactBand.astro` component replaces all
+  eleven. Not "short strings" in the brief's sense, but squarely inside its
+  goal — this is the line most likely to actually get edited (the site's one
+  CTA), and it used to require eleven coordinated edits to change once.
+- **Meta titles/descriptions** for the nine `pages`-collection pages moved
+  there with everything else. The remaining pages (Home, Portfolio index and
+  detail, Journal index, Signature Pieces, 404, Contact thank-you) keep theirs
+  inline — each is a single-purpose page with no duplication problem to
+  solve, so centralizing further would have been motion without a point.
+
+**`.prose` styling promoted from a page-scoped block to `global.css`.** The
+Journal already had exactly the h2/paragraph/list/link treatment every new
+markdown-driven page needed, written as a scoped style block in
+`journal/[slug].astro` using `:global()` on the elements `<Content />`
+renders (Astro can't scope markdown output the normal way). Moved verbatim
+into `global.css` as plain unscoped rules — `.prose h2` uses the identical
+clamp as `.text-page__subhead` on purpose, so a markdown `##` looks pixel-
+identical to a hand-written `<h2 class="text-page__subhead">`. Journal's own
+style block now holds only what's actually journal-specific
+(`.journal-post__heading`, `.journal-post__date`, `.journal-post__related*`).
+
+### `projects.ts` gained a `metaDescription` field, found during this pass
+
+Not part of the plan going in — found while wiring the collection. Every
+`<meta name="description">` on the site reads in **third person** ("Amy Clark
+designs, makes, and installs…") even on pages whose on-page body is first
+person; SITE-COPY-REWRITE.md does this consistently throughout (a search
+snippet reads better with the business name in it). But `portfolio/
+[slug].astro` fed one `scope` field to *both* the visible paragraph and the
+meta description, and the rewrite gives Collected Living Room two different
+sentences for those two jobs ("I chose the fabric…" on-page vs. "Amy selected
+the fabric…" for search). Rather than lose one voice or the other, `Project`
+gained an optional `metaDescription`, falling back to `scope` if unset. Both
+projects now carry one — Ivory House's pre-existing third-person `scope` text
+became its `metaDescription` verbatim, **shortened from 228 to 123
+characters** in the process, since it had been over 8.1's 155-character limit
+since the day it shipped and nobody had audited it until this pass.
+
+### `SITE-COPY-EXPORT.md` is now regenerable
+
+`scripts/export-site-copy.mjs` (`npm run export-copy`, after `npm run
+build`) rebuilds the export from the compiled `dist/` HTML, not from source —
+deliberately, since `dist/` is the one place guaranteed to reflect exactly
+what a visitor sees regardless of which of the three places (a `pages` entry,
+the `journal` collection, or one of the remaining hardcoded pages) a given
+line of copy actually lives in. It's a plain regex tag-walker over this
+codebase's known class names, not a real HTML parser — no dependency in
+`package.json` does that job, and adding one for a one-off script felt like
+the wrong tradeoff for a site this size.
+
+**One real bug caught and fixed while testing it, worth remembering:** the
+first version's `<p>` pattern (`<p[^>]*>`) also matched `<picture ...>` tags,
+since both start with the letter "p" — it silently swallowed an entire
+`<picture><source><img>` block as if it were paragraph text, which merged
+the testimonial section's heading into the first quote with no `**H2:**`
+marker and no visible symptom beyond "that one line reads oddly." Fixed with
+a lookahead requiring "p" to be followed by whitespace or `>`
+(`<p(?=[\s>])[^>]*>`), applied to the `<a class="btn">` pattern too as the
+same class of bug waiting to happen. A second bug — two of the regexes
+matching a `<section class="...">` opening tag required that exact literal
+class string with nothing else after it, which broke the moment Astro's
+`data-astro-cid-*` scoping attribute got appended — silently produced an
+empty Contact intro (H1 and all three lead paragraphs missing, no error).
+Both are the kind of failure the script's own header comment warns about:
+"wrong in an obvious way, not silently corrupt" — true here in hindsight, but
+only because the output was actually read line by line rather than just
+diffed for line count.
+
+**What it can't regenerate, and doesn't try to:** the "Every testimonial on
+file" section at the end (full, un-fragmented review text collected directly
+from Amy, most of it never rendered on the site at all) isn't in the compiled
+HTML by definition. The script detects and carries that section forward
+verbatim from whatever `SITE-COPY-EXPORT.md` already exists rather than
+dropping it.
+
+**What it doesn't guarantee:** byte-identical output to the original
+2026-07-27 hand-curated file in every cosmetic choice (e.g., whether a
+repeated list item's name and description share one bulleted line). That
+original was hand-built; this one is generated from real markup, and the two
+conventions don't always agree on formatting a given repeated block. The
+structure — page-by-page sections, `**H1:**`/`**H2:**`/`**BUTTON:**`/
+`**FIELD:**` markers — matches, which is what makes it still useful as a
+single skimmable reference and a diff target after a copy change.
+
+### Verification
+
+Built and manually checked incrementally — services first, then About and
+Process, then the two location pages, then Contact — rather than one large
+rewrite, per the brief's own instruction. `npm run build` clean at every
+stage (21 pages). After the full set landed: scripted sweep of the compiled
+`dist/` output for meta title/description length, `<h1>` count, heading-level
+skips, banned words, em dash in visible copy (found only inside HTML
+developer comments, not rendered text), "William Morris," the unconfirmed
+"dealer" claim, "two-storey," and "colour" — all clean, none reintroduced by
+this pass. Real-browser checks via the dev server, not just `dist/`: console-
+error sweep across ten navigated pages (zero errors on every one), 375px and
+desktop screenshots confirming the Blinds and Shades accordion still opens
+with its five categories in order, `document.documentElement.scrollWidth -
+clientWidth === 0` (no horizontal overflow) at 375px on About (the page with
+the moved image) and Contact (the page with the restructured form/FAQ pass).
+
+### Left alone, as instructed
+
+`journal` collection and its three posts, testimonials (`index.astro`'s
+`rotatingQuotes` plus the fixed Diane K. quote), `projects.ts`, `services.ts`,
+`business.ts`, `photos.ts`, `signaturePieces.ts`. None of these needed the
+copy-bulk-swap treatment — they're already either small, well-organized data
+files or, for the journal, already on the exact mechanism this phase gave
+everything else.
+
+### Where Sam edits what, in plain language
+
+- **A service page, About, Process, a location page, or the Contact intro
+  and FAQ:** edit the matching file in `src/content/pages/`. Title, meta
+  description, the label above the H1, the H1 itself, the intro
+  paragraph(s), and the body prose are all frontmatter or markdown in that
+  one file.
+- **The nav or footer link labels:** `src/data/nav.ts`.
+- **The "Ready to start your project?" line or its button:**
+  `src/components/ContactBand.astro` — one edit, all eleven pages update.
+- **A service's one-line description on Home/Services, or which photo its
+  hover state shows:** `src/data/services.ts`.
+- **The consultation form's labels, hints, or select options:**
+  `src/components/ConsultationForm.astro`.
+- **A Journal post, a testimonial, project details, or the signature
+  pieces:** unchanged from before this phase — still `src/content/journal/`,
+  `index.astro`'s testimonial arrays, `src/data/projects.ts`,
+  `src/data/signaturePieces.ts`.
+- **To check what actually changed after an edit:** `npm run build && npm run
+  export-copy`, then read or diff `SITE-COPY-EXPORT.md`.

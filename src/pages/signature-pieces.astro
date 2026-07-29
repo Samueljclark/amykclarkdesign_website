@@ -29,6 +29,7 @@
 // padded.
 
 import Base from '../layouts/Base.astro';
+import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
 import { photos } from '../data/photos';
 import { signaturePieces } from '../data/signaturePieces';
@@ -96,10 +97,7 @@ import { signaturePieces } from '../data/signaturePieces';
     </p>
   </section>
 
-  <section class="section wrap contact-band bg-ground">
-    <p class="type-display contact-band__line">Ready to start your project?</p>
-    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
-  </section>
+  <ContactBand />
 </Base>
 
 <style>

@@ -10,21 +10,14 @@
 // search icon, no phone number." The toggle icon is a custom-drawn SVG per
 // the ban on icon libraries (3.2).
 
+import { navItems } from '../data/nav';
+
 interface Props {
   currentPath: string;
   transparent?: boolean;
 }
 
 const { currentPath, transparent = true } = Astro.props;
-
-const navItems = [
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Services', href: '/services' },
-  { label: 'About', href: '/about' },
-  { label: 'Process', href: '/process' },
-  { label: 'Journal', href: '/journal' },
-  { label: 'Contact', href: '/contact' },
-];
 
 const isCurrent = (href: string) =>
   currentPath === href || currentPath.startsWith(`${href}/`);

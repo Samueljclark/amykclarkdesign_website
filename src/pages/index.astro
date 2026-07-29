@@ -12,6 +12,7 @@
 // (the first real body copy on the page), plus the meta description.
 
 import Base from '../layouts/Base.astro';
+import ContactBand from '../components/ContactBand.astro';
 import HeroGallery from '../components/HeroGallery.astro';
 import PortfolioStrip from '../components/PortfolioStrip.astro';
 import ServiceList from '../components/ServiceList.astro';
@@ -149,10 +150,7 @@ const heroImages = [
     </ul>
   </section>
 
-  <section class="section wrap contact-band bg-ground">
-    <p class="type-display contact-band__line">Ready to start your project?</p>
-    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
-  </section>
+  <ContactBand />
 </Base>
 
 <style>

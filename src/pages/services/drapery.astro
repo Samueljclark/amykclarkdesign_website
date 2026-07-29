@@ -4,6 +4,10 @@
 // curtains Cincinnati" — in title, H1, first paragraph, and meta description,
 // and nowhere else (8.3's own "do not stuff" rule).
 //
+// Copy sourced from the `pages` content collection (Phase 2 of the
+// copy-bulk-swap work, BUILD-PLAN.md) — src/content/pages/drapery.md is now
+// the one file to edit for this page's title, meta, lead, and body prose.
+//
 // Vendor naming, resolved 2026-07-26 (BUILD-PLAN.md decision 11): **Schumacher
 // is the only fabric house cleared for public naming.** Amy confirmed Stout and
 // Pollack are real lines she carries but are NOT yet cleared to be named
@@ -14,28 +18,31 @@
 // No pricing language anywhere (rule 1).
 
 import Base from '../../layouts/Base.astro';
+import ContactBand from '../../components/ContactBand.astro';
 import RevealImage from '../../components/RevealImage.astro';
+import { getEntry, render } from 'astro:content';
 import leadImage from '../../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
+
+const entry = await getEntry('pages', 'drapery');
+const { Content } = await render(entry);
+const { seoTitle, description, eyebrow, title, lead } = entry.data;
 ---
 
 <Base
-  title="Custom Drapery Cincinnati | Amy K Clark Design"
-  description="Custom drapery and curtains for Cincinnati and Northern Kentucky homes. Fabric selection, fabrication, and installation by Amy K Clark Design."
+  title={seoTitle}
+  description={description}
   ogImage="/images/og/og-default.jpg"
   transparentNav={false}
   breadcrumbs={[
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
-    { name: 'Custom Drapery', href: '/services/drapery' },
+    { name: title, href: '/services/drapery' },
   ]}
 >
   <section class="section wrap service-page__intro">
-    <p class="type-label service-page__eyebrow">Services</p>
-    <h1 class="type-display service-page__heading">Custom Drapery</h1>
-    <p class="service-page__lead">
-      Custom drapery for Cincinnati and Northern Kentucky homes, worked out in the room it belongs to.
-      I pick the fabric with you, settle the details, sew the panels, and hang them myself.
-    </p>
+    <p class="type-label service-page__eyebrow">{eyebrow}</p>
+    <h1 class="type-display service-page__heading">{title}</h1>
+    {lead.map((paragraph) => <p class="service-page__lead">{paragraph}</p>)}
   </section>
 
   <RevealImage
@@ -46,60 +53,11 @@ import leadImage from '../../assets/images/hero/pleated-drapery-living-room-fren
     sizes="100vw"
   />
 
-  <section class="section wrap service-page__body">
-    <h2 class="type-display service-page__subhead">It starts in your room</h2>
-    <p>
-      Drapery either works with a room or argues with it. Where the rod goes. How far the panels
-      stack back when they are open. How much wall they take up doing it. Those are the decisions
-      that make a room feel taller and finished instead of just covered.
-    </p>
-    <p>
-      I work them out standing in the room, at the hour the light matters most to you. Your
-      north-facing sitting room and your west-facing dining room want different weights and
-      different linings, even if the windows are identical.
-    </p>
-
-    <h2 class="type-display service-page__subhead">What the fabric will actually do</h2>
-    <p>
-      Fabric comes from Schumacher and the other lines I represent, and I choose it for how it
-      behaves rather than how it photographs. A linen that is gorgeous flat can fall like a wet
-      towel at length. A pattern you love in the hand can disappear the moment it is gathered.
-      Knowing that ahead of time is most of the job.
-    </p>
-    <p>
-      Lining gets settled in the same conversation. Interlining adds weight and makes a lighter
-      fabric hang like a heavier one. Blackout belongs in bedrooms. A sun-facing room needs
-      protection from fade. These are the choices that decide whether your drapery still looks
-      right in five years.
-    </p>
-
-    <h2 class="type-display service-page__subhead">Pleats, hardware, and trim</h2>
-    <p>
-      Pleat style sets the character. Euro pleats read cleaner and more current. French pleats hold
-      a deeper fold and lean traditional. Ripplefold moves as one continuous wave, which suits a
-      wide contemporary span.
-    </p>
-    <p>
-      Hardware gets chosen alongside the fabric, never after, because bracket projection and return
-      decide how the finished panel sits against your wall. Then the trim, which is my favorite
-      part. A contrast band down a leading edge. A return that closes tight to the frame so no
-      light sneaks around the side.
-    </p>
-
-    <h2 class="type-display service-page__subhead">I make it and I hang it</h2>
-    <p>
-      Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part
-      of the decisions. On installation day I dress and train every fold by hand so the panels fall
-      correctly from the start.
-    </p>
-    <p>
-      The hem hangs level. The pattern matches across panels. The stack clears the glass. None of
-      it announces itself, and you will notice all of it.
-    </p>
+  <section class="section wrap">
+    <div class="prose">
+      <Content />
+    </div>
   </section>
 
-  <section class="section wrap contact-band bg-ground">
-    <p class="type-display contact-band__line">Ready to start your project?</p>
-    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
-  </section>
+  <ContactBand />
 </Base>

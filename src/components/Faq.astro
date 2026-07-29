@@ -13,52 +13,28 @@
 // **The consultation fee amount appears nowhere here, and must not.** 5.7 and
 // rule 2: no amount until Amy confirms one, and no claim that the fee credits
 // toward the project, because it does not. ASK-AMY.md tracks the amount as an
-// open question. The answer below says the visit is paid and what it buys,
-// which is what the brief actually permits.
+// open question. The answers say the visit is paid and what it buys, which is
+// what the brief actually permits.
+//
+// `faqs` is a required prop as of Phase 2 (copy-bulk-swap, BUILD-PLAN.md)
+// rather than a hardcoded const — the questions and answers now live in
+// src/content/pages/contact.md, the one file to edit for this page's copy.
+// Still passed as a real prop, not read from the collection here, so this
+// component stays reusable and its only job stays "render FAQs + emit
+// FAQPage JSON-LD from whatever it's given."
 
 import Accordion from './Accordion.astro';
 
-const faqs = [
-  {
-    title: 'What happens at the consultation?',
-    content:
-      'I come to your home and work in the actual room. I measure the openings, look at the light at the hour it matters, and bring fabric to see against your walls, your floors, and the furniture already there. You leave knowing what the room needs and what I would do about it. It is a paid visit, and it is the design work rather than a sales call.',
-  },
-  {
-    title: 'Do I need to know what I want before I call?',
-    content:
-      'No. Most people know something in the room is not right and cannot name it, and finding that is part of what the consultation is for. Photographs of the room help more than anything else you can send ahead.',
-  },
-  {
-    title: 'Do you work with interior designers?',
-    content:
-      'Yes, regularly. Some clients come to me directly, and some come through a designer, a builder, or a project manager who hands the textile category over. I own the windows, the upholstery, and the soft furnishings. I am not a full-service interior design firm and I do not try to be.',
-  },
-  {
-    title: 'Who actually makes and installs the work?',
-    content:
-      'I do. I design the treatment, sew it in my own workroom, and install it myself. Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions.',
-  },
-  {
-    title: 'How long does a project take?',
-    content:
-      'It depends on the fabric more than the sewing. Fabric has to be ordered, and a mill can be quick or a pattern can be on back order. I confirm that before I promise you anything, so you get a real date rather than an optimistic one.',
-  },
-  {
-    // FLAG FOR AMY: this neighborhood list asserts where she actually works.
-    // DESIGN_BRIEF 8.4 permits naming these areas "where accurate" — carried
-    // over unchanged from the pre-rewrite copy, not newly invented, but still
-    // unconfirmed. See ASK-AMY.md.
-    title: 'Where do you work?',
-    content:
-      'Cincinnati, Northern Kentucky, and a small number of travel projects each year. Hyde Park, Indian Hill, Mariemont, Terrace Park, Wyoming, Anderson Township, Fort Mitchell, Fort Thomas, Villa Hills, Crestview Hills, Union, and Edgewood are all regular ground.',
-  },
-  {
-    title: 'Can you match something I already have?',
-    content:
-      'Usually. Matching an existing treatment, working a new piece around a fabric already in the room, or repeating a pattern across a seam so the join disappears is ordinary work here. Bring the piece or a photograph of it to the consultation.',
-  },
-];
+interface Faq {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  faqs: Faq[];
+}
+
+const { faqs } = Astro.props;
 
 const faqSchema = {
   '@context': 'https://schema.org',

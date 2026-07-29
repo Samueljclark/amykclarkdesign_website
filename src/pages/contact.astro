@@ -3,11 +3,15 @@
 // link. Its job is to filter." Three parts, in the brief's order: the paragraph
 // explaining what the consultation is, the form, then the FAQ.
 //
-// The intro paragraph is the most rule-bound copy on the site. 5.7: say it is a
-// paid in-home visit; do NOT say the fee credits toward the project (rule 2 —
-// it does not); do not apologise for the fee; do not state the amount until Amy
-// confirms one (open in ASK-AMY.md). The paragraph below does all four by
-// describing what the visit buys and stopping there.
+// Copy sourced from the `pages` content collection (Phase 2 of the
+// copy-bulk-swap work, BUILD-PLAN.md) — src/content/pages/contact.md is now
+// the one file to edit for this page's title, meta, the three lead
+// paragraphs, and all seven FAQ question/answer pairs. The intro paragraphs
+// are the most rule-bound copy on the site (5.7: say it is a paid in-home
+// visit; do NOT say the fee credits toward the project — rule 2, it does
+// not; do not apologise for the fee; do not state the amount until Amy
+// confirms one, open in ASK-AMY.md) — that file's own frontmatter comment
+// repeats the rule so it survives edits.
 //
 // **Two deliberate omissions, both interpretations rather than oversights:**
 // - No lead image. Every other text-led page opens with one, but 5.7 does not
@@ -21,11 +25,15 @@
 import Base from '../layouts/Base.astro';
 import ConsultationForm from '../components/ConsultationForm.astro';
 import Faq from '../components/Faq.astro';
+import { getEntry } from 'astro:content';
+
+const entry = await getEntry('pages', 'contact');
+const { seoTitle, description, eyebrow, title, lead, faqs } = entry.data;
 ---
 
 <Base
-  title="Schedule a Consultation | Amy K Clark Design"
-  description="Request an in-home consultation for custom drapery, blinds and shades, upholstery, or soft furnishings in Cincinnati and Northern Kentucky."
+  title={seoTitle}
+  description={description}
   ogImage="/images/og/og-default.jpg"
   transparentNav={false}
   breadcrumbs={[
@@ -34,18 +42,11 @@ import Faq from '../components/Faq.astro';
   ]}
 >
   <section class="section wrap text-page__intro">
-    <p class="type-label text-page__eyebrow">Contact</p>
-    <h1 class="type-display text-page__heading">Schedule a Consultation</h1>
-    <p class="text-page__lead">
-      Every project starts with an in-home visit. I come to your room, measure the openings myself,
-      see the light at the hour that matters, and put fabric against your walls and your furniture.
-      You come out of it knowing what the room needs and what I would do about it.
-    </p>
-    <p class="contact__lead-continued">It is a paid visit, because it is design work rather than a sales call.</p>
-    <p class="contact__lead-continued">
-      Tell me as much as you can below. The more I know before I come, the more useful the visit
-      will be.
-    </p>
+    <p class="type-label text-page__eyebrow">{eyebrow}</p>
+    <h1 class="type-display text-page__heading">{title}</h1>
+    {lead.map((paragraph, i) => (
+      <p class={i === 0 ? 'text-page__lead' : 'contact__lead-continued'}>{paragraph}</p>
+    ))}
   </section>
 
   <section class="section wrap contact__form-section" aria-labelledby="form-heading">
@@ -53,7 +54,7 @@ import Faq from '../components/Faq.astro';
     <ConsultationForm />
   </section>
 
-  <Faq />
+  <Faq faqs={faqs ?? []} />
 </Base>
 
 <style>

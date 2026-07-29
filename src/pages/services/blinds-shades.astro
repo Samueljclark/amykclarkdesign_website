@@ -17,67 +17,45 @@
 // description.
 //
 // Roman shades appear as a searchable term but route to manufactured
-// product, not Amy's workroom (5.3's own instruction) — the copy below says
-// so explicitly rather than leaving it ambiguous.
+// product, not Amy's workroom (5.3's own instruction) — src/content/pages/
+// blinds-shades.md's second lead paragraph says so explicitly.
+//
+// Copy sourced from the `pages` content collection (Phase 2 of the
+// copy-bulk-swap work, BUILD-PLAN.md) — that one markdown file holds the
+// title, meta, lead, the five accordion categories, AND the "An eighth of an
+// inch" body prose. The accordion categories are structured frontmatter
+// there, not markdown body, because a plain paragraph can't become five
+// independent accordion panels without a parsing layer — see that file's
+// own header comment.
 
 import Base from '../../layouts/Base.astro';
+import ContactBand from '../../components/ContactBand.astro';
 import RevealImage from '../../components/RevealImage.astro';
 import Accordion from '../../components/Accordion.astro';
+import { getEntry, render } from 'astro:content';
 import leadImage from '../../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
 
-const decisionCategories = [
-  {
-    title: 'Light and glare',
-    content:
-      'How much light a room should keep is a different question from how much it lets in. A west-facing room with a television needs glare handled at one specific hour. A kitchen usually wants every bit of daylight it can hold. Solar shades are rated by openness, and that number decides how much of your view survives when they are down.',
-  },
-  {
-    title: 'Privacy',
-    content:
-      'Privacy and light are not the same requirement, and treating them as one is the most common mistake here. A top-down bottom-up shade covers the lower half of the window and leaves the daylight coming in above it, which is usually exactly what a street-facing bedroom or bathroom wants. Sheers give you daytime privacy and then read completely differently after dark, once the lamps are on inside.',
-  },
-  {
-    title: 'Motorization',
-    content:
-      'Motorization earns its keep on tall windows, wide spans, and anything stranded above a stair or behind furniture, the treatments nobody ever adjusts because reaching them is a nuisance. It also lets a whole room drop on a schedule, ahead of the afternoon sun instead of after the room has already cooked. It is far easier to decide before drywall than after.',
-  },
-  {
-    title: 'Children and pets',
-    content:
-      'Cordless, in any house with young children or pets. Cordless lift, motorization, and tensioned continuous-loop mounts all take the hazard of a pull cord off the table. Worth deciding on purpose rather than by omission.',
-  },
-  {
-    title: 'Room by room',
-    content:
-      'Bathrooms and kitchens need something that shrugs off moisture and wipes clean. Bedrooms usually want room-darkening or blackout, often layered under drapery. Living rooms need something adjustable enough for a whole day of moving light. Woven woods warm up a room that reads flat. Shutters suit a window where the treatment should read as architecture rather than fabric.',
-  },
-];
+const entry = await getEntry('pages', 'blinds-shades');
+const { Content } = await render(entry);
+const { seoTitle, description, eyebrow, title, lead, decisionCategoriesHeading, decisionCategoriesIntro, decisionCategories } =
+  entry.data;
 ---
 
 <Base
-  title="Custom Blinds and Shades Cincinnati | Amy K Clark Design"
-  description="Custom blinds Cincinnati and custom shades Northern Kentucky. Lafayette blinds, shades, shutters, and woven woods, measured and installed."
+  title={seoTitle}
+  description={description}
   ogImage="/images/og/og-default.jpg"
   transparentNav={false}
   breadcrumbs={[
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
-    { name: 'Blinds and Shades', href: '/services/blinds-shades' },
+    { name: title, href: '/services/blinds-shades' },
   ]}
 >
   <section class="section wrap service-page__intro">
-    <p class="type-label service-page__eyebrow">Services</p>
-    <h1 class="type-display service-page__heading">Blinds and Shades</h1>
-    <p class="service-page__lead">
-      Blinds and shades for Cincinnati and Northern Kentucky homes, specified for the way you
-      actually use the room. Lafayette Interior Fashions is the one line I represent here, which
-      means blinds, shades, shutters, and woven woods all come from a single catalog I know cold.
-    </p>
-    <p class="service-page__lead">
-      Roman shades come from Lafayette as a manufactured product. If your room wants a fabric roman
-      made to order, a particular textile with a particular band, that is workroom work and I
-      handle it as custom drapery instead.
-    </p>
+    <p class="type-label service-page__eyebrow">{eyebrow}</p>
+    <h1 class="type-display service-page__heading">{title}</h1>
+    {lead.map((paragraph) => <p class="service-page__lead">{paragraph}</p>)}
   </section>
 
   <RevealImage
@@ -89,29 +67,15 @@ const decisionCategories = [
   />
 
   <section class="section wrap service-page__body">
-    <h2 class="type-display service-page__subhead">Decide these before anything is ordered</h2>
-    <p>
-      Most regret about blinds and shades comes from a decision nobody actually made. A shade
-      picked for how it looked in a showroom, not for what your window is doing at four in the
-      afternoon.
-    </p>
+    <h2 class="type-display service-page__subhead">{decisionCategoriesHeading}</h2>
+    <p>{decisionCategoriesIntro}</p>
 
     <Accordion items={decisionCategories} />
 
-    <h2 class="type-display service-page__subhead">An eighth of an inch</h2>
-    <p>
-      Blinds and shades are unforgiving about measurement in a way drapery is not. An eighth of an
-      inch decides whether an inside mount clears the frame or binds against it. I measure every
-      opening myself and install the finished product myself.
-    </p>
-    <p>
-      Windows in older Cincinnati and Northern Kentucky houses are almost never square. Allowing
-      for that correctly is what keeps a treatment from looking almost right.
-    </p>
+    <div class="prose">
+      <Content />
+    </div>
   </section>
 
-  <section class="section wrap contact-band bg-ground">
-    <p class="type-display contact-band__line">Ready to start your project?</p>
-    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
-  </section>
+  <ContactBand />
 </Base>

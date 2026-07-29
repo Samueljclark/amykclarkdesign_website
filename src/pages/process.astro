@@ -4,6 +4,12 @@
 // where numbering is permitted (3.6), which is why StepList.astro exists and
 // is used nowhere else.
 //
+// Copy sourced from the `pages` content collection (Phase 2 of the
+// copy-bulk-swap work, BUILD-PLAN.md) — src/content/pages/process.md is now
+// the one file to edit for this page's title, meta, lead, and all four
+// steps. No markdown body: this page's only content is the numbered list,
+// which is structured data (title + body per step), not free prose.
+//
 // **The consultation fee is deliberately not mentioned here.** 5.7 requires
 // the "paid in-home visit" paragraph on the Contact page and sets strict
 // rules around it (no amount until Amy confirms it, no claim that it credits
@@ -16,33 +22,19 @@
 // photo of Amy actually making something, which is what this page is about.
 
 import Base from '../layouts/Base.astro';
+import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
 import StepList from '../components/StepList.astro';
+import { getEntry } from 'astro:content';
 import leadImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
 
-const steps = [
-  {
-    title: 'Consultation',
-    body: 'I come to your room. I take the measurements, look at the light during the hours that actually matter to you, and we talk about how you use the room rather than how it photographs. Most of what shapes a project gets decided standing in it.',
-  },
-  {
-    title: 'Design and sourcing',
-    body: 'Fabric, lining, hardware, and construction get settled together, because each one decides the others. Memos come to your house so you are judging a textile against your walls and the things already in the room, never under showroom lighting.',
-  },
-  {
-    title: 'Fabrication and coordination',
-    body: 'I make the work myself, in my own workroom. If the project runs alongside a painter, a contractor, or a trade outside what I do, I work to their schedule so you are not the one coordinating it.',
-  },
-  {
-    title: 'Installation and finishing',
-    body: 'I hang the work myself. Panels get dressed and trained on the day, hardware is set so the returns close tight to the frame, and nothing gets called finished from the top of a ladder. The last thing I do is stand back in the doorway, where you will actually be looking at it from.',
-  },
-];
+const entry = await getEntry('pages', 'process');
+const { seoTitle, description, eyebrow, title, lead, steps } = entry.data;
 ---
 
 <Base
-  title="Process | Amy K Clark Design"
-  description="How a project runs with Amy K Clark Design: consultation, design and sourcing, fabrication and coordination, installation and finishing."
+  title={seoTitle}
+  description={description}
   ogImage="/images/og/og-default.jpg"
   transparentNav={false}
   breadcrumbs={[
@@ -51,12 +43,9 @@ const steps = [
   ]}
 >
   <section class="section wrap text-page__intro">
-    <p class="type-label text-page__eyebrow">Process</p>
-    <h1 class="type-display text-page__heading">Process</h1>
-    <p class="text-page__lead">
-      Four steps, in this order, every time. I carry the project through all four, which is why
-      nothing gets lost between one and the next.
-    </p>
+    <p class="type-label text-page__eyebrow">{eyebrow}</p>
+    <h1 class="type-display text-page__heading">{title}</h1>
+    {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
   </section>
 
   <RevealImage
@@ -71,8 +60,5 @@ const steps = [
     <StepList steps={steps} />
   </section>
 
-  <section class="section wrap contact-band bg-ground">
-    <p class="type-display contact-band__line">Ready to start your project?</p>
-    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
-  </section>
+  <ContactBand />
 </Base>

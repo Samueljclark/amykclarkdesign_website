@@ -224,6 +224,69 @@ p .link-underline::before,
   opacity: 0.45;
 }
 
+/* ---- Rendered markdown body copy. Originally written for the Journal
+   (step 6) as a page-scoped style block; promoted here in Phase 2 of the
+   copy-bulk-swap work so every markdown-driven page (the four service
+   pages, About, Process, both location pages) can reuse the exact same
+   heading/paragraph/list/link treatment instead of redeclaring it per page.
+   `.text-page__subhead`'s clamp (above) and this rule's `h2` clamp are the
+   same values on purpose — a markdown `##` should look identical to a
+   hand-written `<h2 class="text-page__subhead">`. ---- */
+.prose {
+  max-width: var(--measure);
+}
+
+.prose h2 {
+  font-weight: var(--weight-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-display);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose p + p {
+  margin-top: 1rem;
+}
+
+/* This file strips list markers site-wide (nav, galleries, the Studio row);
+   rendered prose is the one place a real list should read as one. */
+.prose ul,
+.prose ol {
+  list-style: revert;
+  padding-inline-start: 1.5rem;
+  margin-top: 1rem;
+  max-width: var(--measure);
+}
+.prose li + li {
+  margin-top: 0.5rem;
+}
+
+/* 6.6, reproduced for markdown links: scaleX on a pseudo-element, in
+   --indigo, never text-decoration. Paired with the resting hairline
+   (`.prose a::before`) above. */
+.prose a {
+  position: relative;
+  display: inline;
+  text-decoration: none;
+}
+.prose a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15em;
+  height: 2px;
+  background: var(--indigo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--link-underline-duration) ease;
+}
+.prose a:hover::after,
+.prose a:focus-visible::after {
+  transform: scaleX(1);
+}
+
 /* ---- 3.7 Signature shade reveal, values verbatim from the brief.
    Applied to every content image (RevealImage component, built with Home).
    JS (motion.js) adds .is-revealed once per element via IntersectionObserver;

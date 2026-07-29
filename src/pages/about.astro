@@ -3,13 +3,32 @@
 // Amy's story, the origin section anchored to her grandmother's attic, the
 // invention framing, the fabric lines, and the Studio row of three portraits.
 //
+// Copy sourced from the `pages` content collection (Phase 2 of the
+// copy-bulk-swap work, BUILD-PLAN.md) — src/content/pages/about.md is now
+// the one file to edit for this page's title, meta, lead, and all four body
+// sections. The Studio row's three names/roles stay here, not in the
+// collection: they're structured team data tightly coupled to three specific
+// image imports, the same reasoning `projects.ts` and `signaturePieces.ts`
+// already use for photo-linked data.
+//
+// **Layout change from the copy-bulk-swap work: the origin (workroom) image
+// moved.** It used to sit between "Where it started" and "Every one of them
+// is invented," splitting the body prose into two `<RevealImage>`-separated
+// halves. A single markdown document (matching every other page this phase
+// converted) can't cleanly interleave an image mid-flow without a fragile
+// parsing layer, so the image now sits after all four sections, immediately
+// before Studio — workroom photo leading into the people who work in it,
+// which reads fine as a sequence. Flagged here since it's a real, visible
+// reordering, not just a refactor. Revisit if Sam or Amy would rather have
+// it back in the middle badly enough to justify hand-splitting the page.
+//
 // **Known gap, deliberately not filled by invention.** 5.4.1 asks for "actual
 // detail about what she made and for whom," and 5.4.2 wants the attic section
 // to be specific. Those details exist only in Amy's head — ASK-AMY.md's first
-// item is the recorded conversation that produces them. The copy below is
-// written at exactly the level of detail that is actually established (the
-// attic, the trunks, taking things apart to see the construction) and stops
-// there rather than inventing a first object, a first client, or a childhood
+// item is the recorded conversation that produces them. The copy is written
+// at exactly the level of detail that is actually established (the attic,
+// the trunks, taking things apart to see the construction) and stops there
+// rather than inventing a first object, a first client, or a childhood
 // scene. Expand this section from her own words, do not embellish it.
 //
 // Fabric lines (5.4.4 / rule 8): "the lines I represent," and that stays as
@@ -24,12 +43,18 @@
 // machine, so the workroom shot stands in and is flagged in the manifest.
 
 import Base from '../layouts/Base.astro';
+import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
+import { getEntry, render } from 'astro:content';
 import leadImage from '../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
 import originImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
 import amyPortrait from '../assets/images/team/amy-clark.jpg';
 import samPortrait from '../assets/images/team/sam-clark.jpg';
 import kelseePortrait from '../assets/images/team/kelsee-etmans.jpg';
+
+const entry = await getEntry('pages', 'about');
+const { Content } = await render(entry);
+const { seoTitle, description, eyebrow, title, lead } = entry.data;
 
 const studio = [
   {
@@ -62,8 +87,8 @@ const studio = [
 ---
 
 <Base
-  title="About Amy Clark | Amy K Clark Design"
-  description="Amy Clark designs, makes, and installs custom window treatments, upholstery, and soft furnishings in Cincinnati and Northern Kentucky."
+  title={seoTitle}
+  description={description}
   ogImage="/images/og/og-default.jpg"
   transparentNav={false}
   breadcrumbs={[
@@ -72,12 +97,9 @@ const studio = [
   ]}
 >
   <section class="section wrap text-page__intro">
-    <p class="type-label text-page__eyebrow">About</p>
-    <h1 class="type-display text-page__heading">Amy Clark</h1>
-    <p class="text-page__lead">
-      Amy K Clark Design is one person. I design the treatment, I make it, and I install it, and I
-      am the same person at every stage.
-    </p>
+    <p class="type-label text-page__eyebrow">{eyebrow}</p>
+    <h1 class="type-display text-page__heading">{title}</h1>
+    {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
   </section>
 
   <RevealImage
@@ -88,25 +110,10 @@ const studio = [
     sizes="100vw"
   />
 
-  <section class="section wrap text-page__body">
-    <h2 class="type-display text-page__subhead">The part of your room I own</h2>
-    <p>
-      Windows, upholstery, pillows, cushions, trim. Not the floor plan and not the paint. That is a
-      narrower brief than a decorator's, on purpose, because it is the part of a room that has to be
-      made rather than bought.
-    </p>
-    <p>
-      Most projects start with a room somebody already likes and cannot quite finish. Usually I am
-      solving a problem you had not put into words yet, and pointing at the thing in the room that
-      could be so much better.
-    </p>
-
-    <h2 class="type-display text-page__subhead">Where it started</h2>
-    <p>
-      My grandmother's attic, and the trunks in it. I wanted to know how the things inside had been
-      put together, so I took them apart to find out. The construction came first. The trade came a
-      long time later.
-    </p>
+  <section class="section wrap">
+    <div class="prose">
+      <Content />
+    </div>
   </section>
 
   <RevealImage
@@ -116,31 +123,6 @@ const studio = [
     aspectRatio="16/9"
     sizes="100vw"
   />
-
-  <section class="section wrap text-page__body">
-    <h2 class="type-display text-page__subhead">Every one of them is invented</h2>
-    <p>
-      There is no guide for the window in front of me. Rooms are not standard. Houses here are
-      rarely square, a ceiling that runs out of level by half an inch changes what a treatment has
-      to do, and the published way of building something assumes an opening nobody actually has.
-    </p>
-    <p>
-      So I work every one of them out for the room it is going into. That is why I measure each
-      opening myself instead of sending somebody, and why the person who decided how a thing should
-      be built is the person who builds it.
-    </p>
-
-    <h2 class="type-display text-page__subhead">Fabric</h2>
-    <p>
-      Fabric comes from the lines I represent. The list is short and stays short, because knowing
-      what a cloth actually does at length is worth more than access to everything.
-    </p>
-    <p>
-      A memo sample gives you the color. It will not tell you how the piece hangs after a season of
-      being drawn every evening, and that is the part that decides whether your room still looks
-      right in five years.
-    </p>
-  </section>
 
   <section class="section wrap studio" aria-labelledby="studio-heading">
     <h2 id="studio-heading" class="type-display studio__heading">Studio</h2>
@@ -165,10 +147,7 @@ const studio = [
     </ul>
   </section>
 
-  <section class="section wrap contact-band bg-ground">
-    <p class="type-display contact-band__line">Ready to start your project?</p>
-    <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
-  </section>
+  <ContactBand />
 </Base>
 
 <style>
