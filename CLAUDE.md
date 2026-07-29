@@ -51,3 +51,10 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
   `main`. The single exception is Sam explicitly asking for a branch or a
   PR in so many words; otherwise `git commit` on `main` then
   `git push` is the whole workflow.
+- **Claude Code does not write final user-facing prose.** All visible site
+  copy lives in `src/content/pages/*.md` or another copy data file, never
+  inline in `.astro` components. Any prose Claude Code adds or changes must
+  be wrapped in an HTML comment reading `DRAFT COPY - NEEDS REWRITE`, and
+  every such block must be listed at the end of the session report so Sam
+  can hand it off to be rewritten properly. Structural text, alt text, and
+  meta descriptions are exempt from the marker.
