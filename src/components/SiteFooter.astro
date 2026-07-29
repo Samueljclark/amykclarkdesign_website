@@ -1,12 +1,17 @@
 ---
 // DESIGN_BRIEF.md 5.1: "Footer. Navigation, location pages, Instagram and
-// Facebook links, contact, service area line." Location pages live here
-// only, never in main nav (section 4). Business facts come from
+// Facebook links, contact, service area line." Business facts come from
 // src/data/business.ts, confirmed by Sam 2026-07-24. Email is still a
 // placeholder pending confirmation.
+//
+// The "Service Areas" column (links to /cincinnati and /northern-kentucky)
+// was removed 2026-07-29 per direct session instruction. Those two pages
+// still exist and remain in the sitemap; they are just no longer linked
+// from anywhere in the site chrome. src/data/nav.ts's `locationPages` is
+// left in place in case the link needs to come back.
 
 import { business } from '../data/business';
-import { navItems, locationPages } from '../data/nav';
+import { navItems } from '../data/nav';
 
 const year = new Date().getFullYear();
 ---
@@ -23,15 +28,6 @@ const year = new Date().getFullYear();
       <p class="type-label site-footer__heading">Site</p>
       <ul class="site-footer__list">
         {navItems.map((item) => (
-          <li><a href={item.href} class="link-underline">{item.label}</a></li>
-        ))}
-      </ul>
-    </nav>
-
-    <nav aria-label="Service areas">
-      <p class="type-label site-footer__heading">Service Areas</p>
-      <ul class="site-footer__list">
-        {locationPages.map((item) => (
           <li><a href={item.href} class="link-underline">{item.label}</a></li>
         ))}
       </ul>
@@ -76,7 +72,7 @@ const year = new Date().getFullYear();
   }
   @media (min-width: 768px) {
     .site-footer__grid {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr;
     }
   }
 
@@ -98,6 +94,23 @@ const year = new Date().getFullYear();
   .site-footer__list {
     display: grid;
     gap: 0.65rem;
+  }
+
+  /* Persistent affordance, same device as global.css's `p .link-underline::before`
+     (6.6's indigo scaleX draw is a hover-only effect and reads as unclickable
+     text at rest — see that file for the full rationale). Footer links get the
+     identical always-on 1px hairline so "these are links" doesn't depend on
+     hovering; the 2px --paper ::after (global.css's .bg-ground override) still
+     draws over it on hover/focus, so 6.6's device itself is untouched. */
+  .site-footer .link-underline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.15em;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.45;
   }
 
   .site-footer__bottom {
