@@ -37,6 +37,20 @@ import ivoryHouseKitchenCushionsImage from '../assets/images/portfolio/ivory-hou
 import ivoryHouseDiningChairImage from '../assets/images/portfolio/ivory-house/houndstooth-reupholstered-dining-chair-breakfast-table.jpg';
 import ivoryHouseBallPillowImage from '../assets/images/portfolio/ivory-house/round-knit-pillow-navy-olive-armchair.jpg';
 
+// Phase 3 (2026-07-29): five more frames from the same shoot, selected to
+// close the substitute-photo gap on the Journal heroes and the two location
+// pages. All five were part of the ~27-frame set but NOT among the original
+// ten (IMAGE-MANIFEST.md's "Frames selected" table) — some were disqualified
+// there specifically for portfolio use (near-duplicate framing, dimmer
+// exposure) but that reasoning doesn't carry over to a different job on a
+// different page; each was re-evaluated on its own for its new slot. Full
+// reasoning: IMAGE-MANIFEST.md's Phase 3 section.
+import ivoryHouseDraperyLengthImage from '../assets/images/portfolio/ivory-house/pinch-pleat-drapery-full-length-panel-crown-molding.jpg';
+import ivoryHouseReadingNookImage from '../assets/images/portfolio/ivory-house/pinch-pleat-drapery-reading-nook-french-doors.jpg';
+import ivoryHouseArchwayImage from '../assets/images/portfolio/ivory-house/living-room-archway-drapery-orb-chandelier.jpg';
+import ivoryHouseBayWindowTableImage from '../assets/images/portfolio/ivory-house/ivory-drapery-white-wood-blinds-bay-window-table.jpg';
+import ivoryHouseFabricDetailImage from '../assets/images/portfolio/ivory-house/houndstooth-fabric-detail-dining-chair.jpg';
+
 export interface Photo {
   image: ImageMetadata;
   alt: string;
@@ -129,6 +143,42 @@ export const photos = {
     alt: 'A round knit pillow in navy and olive, resting on a shaggy cream armchair',
     blurDataURL:
       'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwAwCdASoYABAAPu1iqk2ppaQiMAgBMB2JYwC7ABuSKER1+K6zdo+YAP6n88tNwk5kOzYrNWLQFizF36uZ9ECp0hDGtpTA7+QeSmhKcVhDYHYvplsSoHzfhYh8atm9TrF/8Lcnn89tXTH+Rx2AAA==',
+  },
+  'ivory-house-drapery-length': {
+    image: ivoryHouseDraperyLengthImage,
+    publicPath:
+      '/images/portfolio/ivory-house/pinch-pleat-drapery-full-length-panel-crown-molding.jpg',
+    alt: 'Ivory pinch-pleat drapery hanging full length from a brushed-nickel rod to the floor, beneath crown molding',
+    blurDataURL:
+      'data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQBACdASoYABAAPu1iqk2ppaQiMAgBMB2JYwCsAGYVu8Q6WvmCaoPUAAD+glnXCvPjO+kEHpNRY9gZgP0R8ug88NZO/rSKo2522sIsvBMuu829vbFa53ZYUwAAAA==',
+  },
+  'ivory-house-reading-nook': {
+    image: ivoryHouseReadingNookImage,
+    publicPath: '/images/portfolio/ivory-house/pinch-pleat-drapery-reading-nook-french-doors.jpg',
+    alt: 'Ivory pinch-pleat drapery beside French doors in a reading nook, with a floor lamp and a framed abstract painting',
+    blurDataURL:
+      'data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAAAwBgCdASoYACQAPu1srVAppiQiqqoBMB2JZwDEJFtoyuRAfyYrBIetzs3+mgW9PhcEWolB7O/RqelwAPsRPedX7luxZVJKB+pnRgzTgXjVxIXmA9NIpWtIhBtk7xhDBCK2Yao7aK3+qDD0XwHTgah+0+HglUh65KVoqOuj04WN+rqAU1aXwZac2+Ib3C6VBZdL6a0P4am74brXXXg3G9eufc7kjsDDgOjxjVl7lXhBIFvcAAA=',
+  },
+  'ivory-house-archway': {
+    image: ivoryHouseArchwayImage,
+    publicPath: '/images/portfolio/ivory-house/living-room-archway-drapery-orb-chandelier.jpg',
+    alt: 'A living room seen through a columned archway, ivory pinch-pleat drapery framing French doors beneath a wire-orb chandelier',
+    blurDataURL:
+      'data:image/webp;base64,UklGRsgAAABXRUJQVlA4ILwAAABwBQCdASoYACAAPu1mqk8ppaOiKA1RMB2JZQDCgEXe6bbTe4XK37WEqH2HG1dawy99xYeQAP7IqHO1TY89kdc0KOfwt84Mvi5fVmrgmVnlDthUHv7f76zoaH/kTzaXdKF9m0pd1TkaiEuch+rjZcdOn2d+UXdZG03zuNmNf5L/NMKZfqAHaBI6NSiFDoewfKWEY98IqKfx5BUDBdX1RqJtK5g35hwWHz+RlhaBcn9reYSrgWKYVr7oHAAAAA==',
+  },
+  'ivory-house-bay-window-table': {
+    image: ivoryHouseBayWindowTableImage,
+    publicPath: '/images/portfolio/ivory-house/ivory-drapery-white-wood-blinds-bay-window-table.jpg',
+    alt: 'Ivory pinch-pleat drapery and white wood blinds dressing bay windows in a breakfast room, with dining chairs set beneath a wire-orb chandelier',
+    blurDataURL:
+      'data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAADQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZQCdAd0ZApvWnfKpXHcg/hZ9vChgAAD9v01cAJqe77VKATiS4TybyELgeJz/iaXfSZ60zdDfInVHFFlbigQ7pkZ2Ay1ZLWtPnDj3EFuJ3Y7OOu/CY1DqHZk4GLQQ/fvSLYf+3+tWj5uGvMfJE8Nun61bOuOXQAA=',
+  },
+  'ivory-house-fabric-detail': {
+    image: ivoryHouseFabricDetailImage,
+    publicPath: '/images/portfolio/ivory-house/houndstooth-fabric-detail-dining-chair.jpg',
+    alt: 'Close detail of rust-and-taupe houndstooth upholstery fabric on a reupholstered dining chair',
+    blurDataURL:
+      'data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAwBQCdASoYABYAPuVgpk2pJaOiN/VYASAciWUAvzhE0qesmjCdq0NZ3tmUcLwmezujAAD+tZSvs0xuDR3rNpHH1KFrEnWKsGi+4w0McdHiBO7FeIj5P20M1QGihbXfS3n9/wfPrSCjEvlWhNT3NDC1bzC6d9UnRK0/qDK1qMciOvomxDkmL1VCzMCuuC6DaSffKcnvCEHS+ndsZtDdTyyDQAA=',
   },
   // The two pillows added 2026-07-26 are the first photographs on the site
   // that are NOT placeholders: they are the actual finished objects, shot

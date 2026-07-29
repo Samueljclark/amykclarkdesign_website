@@ -328,6 +328,108 @@ been obtained. Tracked in `LAUNCH_CHECKLIST.md` §1 alongside the testimonial
 permissions, on the identical holding pattern: wired in and visible now,
 must not go live on the real domain until both permissions are in hand.
 
+## 2026-07-29: Phase 3 — five more frames close the Journal/location-page gap
+
+Going in: three Journal post heroes, both location pages, and the About/
+Studio section were still on substitute photography (crops of the old
+pre-Ivory-House placeholder set), even though 17 of the shoot's ~27 frames
+had never been used anywhere. This pass re-examined all 17 individually
+against the standing selection rules (Amy's confirmed work only, scope-
+honest, no frames with family photographs visible) — not to reconsider the
+step-8 portfolio selection, but because a frame disqualified **for
+portfolio use specifically** isn't necessarily disqualified for a different
+job on a different page. Full frame-by-frame record below.
+
+**Five frames selected, five slots filled:**
+
+| # | File | Used for | Why |
+|---|---|---|---|
+| 23 | `houndstooth-fabric-detail-dining-chair.jpg` | Journal hero, "How to Read a Fabric" | **Not the original 21/23/24 crop** — extracted a new, tighter region from frame 23 focused purely on the houndstooth weave, since the previously-selected crop (a full table setting) read as a room shot, not a fabric-texture shot, and this post is specifically about reading weight, weave, and hand. Confirmed Amy's work (the reupholstered chairs), no family photos in this crop. |
+| 16 | `ivory-drapery-white-wood-blinds-bay-window-table.jpg` | Journal hero, "Drapery, Shades, or Blinds" | The only frame in the whole set showing drapery **and** blinds together in one shot, which is literally the post's subject. Disqualified from the step-8 portfolio pass only for being a dimmer, earlier exposure of the same setup as frames 17/18 (already used elsewhere) — that reasoning is about redundancy with 17/18, not about this frame being unusable, and nothing else in the set shows both treatments together. The dim exposure is real and is flagged in `PHOTO-EDIT-REQUEST.md` as worth Kelsee's final grade. |
+| 5 | `pinch-pleat-drapery-full-length-panel-crown-molding.jpg` | Journal hero, "What Actually Makes a Window Treatment Look Expensive" | A clean, well-exposed floor-to-ceiling drapery panel — fullness, length, and hem are the post's whole subject, and this frame shows exactly that rather than a header-only detail (which frame 03 already covers elsewhere). Disqualified from portfolio only as "near-duplicate of 04"; that redundancy doesn't apply to a Journal post using it for a different reason. |
+| 6 | `pinch-pleat-drapery-reading-nook-french-doors.jpg` | `/cincinnati` lead | A distinct, previously-unused room (not the archway living room already carrying the Home hero and three other slots). Drapery is the dominant, confirmed-Amy element; a chair is partly visible at the bottom edge but is not the frame's subject. Never evaluated in the step-8 pass (wasn't a portfolio candidate), so this is a first review, not a reversal. |
+| 7 | `living-room-archway-drapery-orb-chandelier.jpg` | `/northern-kentucky` lead | Same archway room as the Home hero (frames 01/02), a third angle. Disqualified from portfolio as a near-duplicate of 08/09 with "nothing 8/17/18 didn't already cover" — a fair reason not to use three near-identical shots on one project page, but it doesn't disqualify the room itself from a completely different page. The sofa and chaise visible are confirmed **not** Amy's (same determination as everywhere else on this site); the drapery framing the French doors is. |
+
+**Alt text describes what's visible; it does not claim authorship of
+furniture.** Same separation the site has used since the Ivory House
+selection (see above) — a room photograph can't crop out a sofa that isn't
+hers, and the accessibility description's job is different from a scope
+line's job.
+
+**Fourteen of the seventeen were reconsidered and left unused. Reasoning by
+group, not repeated per frame:**
+- **10–14** (tight crops of the living-room seating group): still carry the
+  same problem flagged at step 8 — they mix a confirmed pillow with
+  unconfirmed ones (the rust pillow, the patterned ones) at similar visual
+  prominence, and that ownership ambiguity doesn't go away just because the
+  destination page changed. Not used anywhere.
+- **15** (dim bay-window exposure): same room as the selected frame 16, but
+  16 is the better exposure of the pair and only one was needed.
+- **20** (near-duplicate of the already-used frame 19): no distinct content
+  to justify a second slot.
+- **21** (breakfast-nook table setting): **excluded outright, not just set
+  aside** — family photographs are visible on the counter in the
+  background. This is a hard rule, not a preference, and applies to every
+  possible use of this frame, not only portfolio.
+- **25, 26** (wider fur-armchair crops): the confirmed-hers ball pillow reads
+  as a small accent against a large expanse of fur in both; frame 27
+  (already live) is the tighter, cleaner crop and nothing was gained by
+  adding these too.
+- **8, 9** (near-duplicate archway angles to the now-used frame 7): redundant
+  with 7 for the same reason 7/8/9 were flagged as a near-duplicate set at
+  step 8; using all three anywhere would repeat the identical room three
+  times on top of the Home hero already using it.
+
+**Studio/About workroom images: no eligible frame exists, and none was
+forced in.** All ~27 frames are from one residential client shoot — none
+shows Amy at work, her hands, her cutting table, or her workroom. The
+`about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg`
+substitute (the only real photo of fabrication that exists on this machine)
+stays exactly where it is on `/about` and `/process`. This is the gap
+ASK-AMY.md's asset-request list has flagged since before this shoot
+arrived, and it is unchanged by this pass.
+
+### Hero composition — investigated, left as-is, reasoning below
+
+Flagged last session: on `/`, the "CINCINNATI/NKY BASED" location line and
+the "Amy K Clark Design" wordmark both sit close to (in places, directly
+over) the chandelier in the current hero image, at both 1440px and 375px.
+Confirmed real in a live render at both widths, not just in the abstract —
+at 1440×816 the location line's second line runs directly through the
+chandelier's crystal drops, and the wordmark's descenders cross its lower
+ironwork; at 375×812 the crop is tight enough that the chandelier occupies
+most of the visible frame and the location line has almost no clear
+background behind it.
+
+**Why no crop or frame swap fixes it:**
+- **No better-headroom frame exists.** The current hero (frame 01) was
+  already chosen at step 2 specifically because it has "the most generous
+  headroom" of the living-room set. The other angles of the same room
+  (frames 07/08/09, now that 07 is in use elsewhere) show the chandelier
+  *closer* to the top of frame, not further — switching would make the
+  overlap worse, not better.
+- **The site's text is centered; so is the chandelier.** `hero__center` is
+  horizontally centered by design, and the chandelier sits within a few
+  percent of dead-center horizontally in every candidate frame (it's hung
+  over the room's focal seating area, which is what a photographer centers
+  on). On a narrow viewport, `object-fit: cover` crops to the horizontal
+  center of the source — which means it crops **directly onto** the
+  chandelier by construction, regardless of which frame is used.
+- **There is almost no crop margin to redistribute at a realistic desktop
+  size.** The hero source is 2000×1143 (≈1.75:1); a typical 1440×816
+  desktop viewport is ≈1.76:1 — nearly identical, so `object-fit: cover`
+  crops next to nothing at that width. There's no meaningful slack for
+  `object-position` to shift.
+
+This was tested, not assumed: measured the actual rendered composition at
+1440×816 and 375×812 in a real browser, and worked the `object-fit: cover`
+crop math for both breakpoints against the source's actual pixel
+dimensions before concluding no CSS-level fix is available. **Left as-is.**
+The one real lever left is a human edit — a version of frame 01 cropped or
+composed to shrink or reposition the chandelier relative to the frame —
+which is outside what this pass can do and is flagged as the top item in
+`PHOTO-EDIT-REQUEST.md`.
+
 ## Asset requests, in priority order
 
 1. ~~Kelsee's edited project photography (fills hero/ and portfolio/, the two
@@ -341,11 +443,11 @@ must not go live on the real domain until both permissions are in hand.
    other finished pieces worth showing there. The two live now are honest and
    usable, but they are a phone capture and a social-media screenshot, not
    studio work — and this is the one page whose whole job is showing objects.
-5. **What the Ivory House shoot still does not cover**, carried over from the
-   original request list rather than invented fresh: no photo of Amy actually
-   working, no installation-in-progress shot, no fabric or trim detail shot
-   (swatch, seam, hem), and no second blinds/shades install beyond this one
-   room. Blinds & Shades finally has real photography as of this shoot, which
-   removes the single most urgent gap — the remaining four are the next
-   priorities for a future session with Amy or a future shoot. Also in
+5. **What the Ivory House shoot still does not cover**, unchanged by Phase 3
+   except for the fabric-detail item: no photo of Amy actually working, no
+   installation-in-progress shot, and no second blinds/shades install beyond
+   this one room. ~~No fabric or trim detail shot~~ **partially resolved
+   2026-07-29** — frame 23's tight houndstooth crop is real fabric-texture
+   detail, though it is upholstery fabric, not a drapery swatch, seam, or
+   hem, so a drapery-specific detail shot is still worth having. Also in
    ASK-AMY.md's photography section.

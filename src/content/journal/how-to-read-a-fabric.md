@@ -4,7 +4,7 @@ seoTitle: 'How to Read a Fabric | Amy K Clark Design'
 description: 'What weight, weave, and hand tell you about how a fabric will hang once it is made up, and what a memo sample will never show you.'
 publishDate: 2026-07-08
 relatedService: /services/drapery
-heroImage: ottoman-stitching
+heroImage: ivory-house-fabric-detail
 ---
 
 <!-- DRAFT — drafted from DESIGN_BRIEF.md 5.6 and SITE-COPY-REWRITE.md, pending Amy's review before launch. -->

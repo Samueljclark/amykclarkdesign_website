@@ -1869,3 +1869,84 @@ everything else.
   `src/data/signaturePieces.ts`.
 - **To check what actually changed after an edit:** `npm run build && npm run
   export-copy`, then read or diff `SITE-COPY-EXPORT.md`.
+
+## 2026-07-29: Phase 3 — five more Ivory House frames, closing the substitute-photo gap
+
+Full selection record, the frame-by-frame reasoning, and the disqualified-group
+writeups live in IMAGE-MANIFEST.md's new Phase 3 section — not duplicated here.
+Summary of what changed and why it's recorded this way:
+
+**Five slots moved off substitute photography:** the three Journal post
+heroes and both location-page leads. All five now show real Ivory House
+work instead of crops of the original placeholder photo. `src/data/photos.ts`
+gained five new entries (`ivory-house-fabric-detail`,
+`ivory-house-bay-window-table`, `ivory-house-drapery-length`,
+`ivory-house-reading-nook`, `ivory-house-archway`); the three journal `.md`
+files' `heroImage` field and `cincinnati.astro`/`northern-kentucky.astro`'s
+`lead` lookup were repointed at them.
+
+**One frame needed a real crop, not just a resize, and the first pass got
+that wrong before it got fixed.** The initial script resized all five
+selected frames to 2000px-long-side without any region cropping, on the
+theory that `object-fit: cover` at render time would handle framing the
+same way it already does for other non-16:9 sources on this site. That
+held for four of the five. It did not hold for frame 23 (destined for the
+"How to Read a Fabric" hero): the resized frame is a wide dining-table
+shot, and at that hero's 16:9 aspect ratio almost none of it gets cropped
+away, so what rendered was a table setting, not the fabric-texture close-up
+the post needed. Caught by actually looking at the output before treating
+the job as done, not by the build succeeding (a wrong-but-valid image is
+invisible to `npm run build`). Fixed with a real `sharp().extract()` crop
+of the houndstooth chair fabric specifically, re-resized and re-blurred
+from that crop. The other four frames' plain resize-only treatment was
+correct and is unchanged.
+
+**Dev-server verification hit a caching dead end, and it's worth recording
+so a future session doesn't lose time on it again.** After the crop fix,
+the Browser pane kept rendering the old (wrong) image on `/journal/
+how-to-read-a-fabric` — across a hard reload, a full dev-server restart,
+and even a `node_modules/.astro/assets` cache wipe, in both the original
+tab and a freshly opened one. Isolated with `curl` directly against the
+exact request URL the page issues (`/_image?href=...houndstooth-fabric-
+detail-dining-chair.jpg...`): the **server** returned the correct cropped
+image every time, confirmed by converting the AVIF response and reading
+the actual pixels. The Browser pane's own rendering was stale by a
+mechanism that didn't respond to any of the normal cache-busting moves
+tried — a tooling artifact on the automated browser's side, not a bug in
+the site. Verification for this phase leaned on `curl` + reading the
+source files directly + grepping the compiled `dist/` output instead,
+which is what actually confirmed correctness. Worth trying a full new
+`preview_start` (not just a new tab) first if this recurs.
+
+**The hero composition issue flagged last session (location line and
+wordmark sitting on top of the chandelier) was investigated properly, not
+skipped.** Measured the real rendered composition at 1440×816 and 375×812,
+worked through why `object-fit: cover` behaves the way it does against the
+source's actual 2000×1143 dimensions at each breakpoint, and checked
+whether any other candidate frame has better chandelier headroom (none
+does — frame 01 was already the best of the set, confirmed against the
+step-2 selection notes). Conclusion: this can't be fixed by a crop or an
+object-position tweak, because the site's centered text and the
+photograph's centered chandelier are structurally in tension, and there
+isn't crop margin at desktop width to redistribute even if that weren't
+true. Left as-is; flagged as the top item in `PHOTO-EDIT-REQUEST.md` since
+a human recompose during Kelsee's final edit is the only real lever.
+
+**Fourteen of the seventeen previously-unused frames were reconsidered and
+stayed unused**, most for the same reasons the step-8 portfolio pass
+already found (family photograph visible, ownership-ambiguous pillow
+combinations, near-duplicate framing) — those reasons don't expire just
+because the destination page changed. Full breakdown in
+IMAGE-MANIFEST.md.
+
+**About/Studio: confirmed no eligible frame exists**, rather than assumed.
+Every one of the ~27 frames is residential-room photography; none shows
+Amy at work. The workroom substitute stays exactly where it is on
+`/about` and `/process`.
+
+**Verified:** `npm run build` clean (21 pages). Scripted sweep of the
+compiled `dist/` output: meta title/description lengths, single `<h1>` per
+page, no heading-level skips, zero banned words, no "William Morris,"
+no "two-storey," no "colour" — all clean. `alt` text for all five new
+images confirmed correct via the compiled HTML directly (not the Browser
+pane, per the caching issue above).

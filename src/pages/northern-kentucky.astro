@@ -25,8 +25,8 @@
 // is now the one file to edit for this page's title, meta, lead, and body
 // prose (including its two inline links).
 //
-// Image: standing IMAGE-MANIFEST.md placeholder rule. Swap when Kelsee's
-// shoot lands.
+// Image: real Ivory House shoot photography (Phase 3, 2026-07-29), replacing
+// the substitute crop this page ran on since step 7. See IMAGE-MANIFEST.md.
 
 import Base from '../layouts/Base.astro';
 import ContactBand from '../components/ContactBand.astro';
@@ -34,7 +34,7 @@ import RevealImage from '../components/RevealImage.astro';
 import { photos } from '../data/photos';
 import { getEntry, render } from 'astro:content';
 
-const lead = photos['pleated-drapery'];
+const lead = photos['ivory-house-archway'];
 const entry = await getEntry('pages', 'northern-kentucky');
 const { Content } = await render(entry);
 const { seoTitle, description, eyebrow, title, lead: leadParagraphs } = entry.data;

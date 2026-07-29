@@ -28,8 +28,8 @@
 // copy-bulk-swap work, BUILD-PLAN.md) — src/content/pages/cincinnati.md is
 // now the one file to edit for this page's title, meta, lead, and body prose.
 //
-// Image: the standing IMAGE-MANIFEST.md placeholder rule — a real photograph,
-// never a blank box. Swap when Kelsee's shoot lands.
+// Image: real Ivory House shoot photography (Phase 3, 2026-07-29), replacing
+// the substitute crop this page ran on since step 7. See IMAGE-MANIFEST.md.
 
 import Base from '../layouts/Base.astro';
 import ContactBand from '../components/ContactBand.astro';
@@ -37,7 +37,7 @@ import RevealImage from '../components/RevealImage.astro';
 import { photos } from '../data/photos';
 import { getEntry, render } from 'astro:content';
 
-const lead = photos['banded-roman-shade'];
+const lead = photos['ivory-house-reading-nook'];
 const entry = await getEntry('pages', 'cincinnati');
 const { Content } = await render(entry);
 const { seoTitle, description, eyebrow, title, lead: leadParagraphs } = entry.data;

@@ -4,7 +4,7 @@ seoTitle: 'Drapery, Shades, or Blinds? | Amy K Clark Design'
 description: 'A room-by-room way to choose between drapery, shades, and blinds, starting from what the window actually has to do rather than from the product.'
 publishDate: 2026-07-16
 relatedService: /services/blinds-shades
-heroImage: banded-roman-shade
+heroImage: ivory-house-bay-window-table
 ---
 
 <!-- DRAFT — drafted from DESIGN_BRIEF.md 5.6 and SITE-COPY-REWRITE.md, pending Amy's review before launch. -->

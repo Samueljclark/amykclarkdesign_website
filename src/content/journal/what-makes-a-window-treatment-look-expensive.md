@@ -4,7 +4,7 @@ seoTitle: 'Why Drapery Looks Expensive | Amy K Clark Design'
 description: 'Fullness, length, stack, lining, and how a panel is dressed on installation day. The details that separate finished work from covered windows.'
 publishDate: 2026-07-24
 relatedService: /services/drapery
-heroImage: pleated-drapery
+heroImage: ivory-house-drapery-length
 ---
 
 <!-- DRAFT — drafted from DESIGN_BRIEF.md 5.6 and SITE-COPY-REWRITE.md, pending Amy's review before launch. -->
