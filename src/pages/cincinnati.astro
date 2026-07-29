@@ -8,18 +8,13 @@
 // Keyword target (8.3): "window treatments Cincinnati OH" — title, H1, first
 // paragraph, meta description. Once each, per 8.3's own "do not stuff" rule.
 //
-// Neighbourhoods (8.4): the brief's instruction is to name the areas
-// *naturally within the two location pages*, and explicitly NOT to build
-// twelve thin doorway pages, which Google penalises. The Cincinnati-side
-// names from 8.4's list appear here; the Kentucky-side ones are on
-// /northern-kentucky, so neither page is a duplicate of the other.
-//
-// **Nothing here claims a project in a named neighbourhood.** The brief
-// establishes these as where Amy's clients are concentrated, which supports
-// naming them as ground she covers — it does not establish a finished job on
-// any particular street, and inventing one would break rule 4 and be untrue.
-// **The neighborhood list itself has never been confirmed with Amy as
-// accurate** — flagged in ASK-AMY.md.
+// Cut down 2026-07-29 (session task): the Ohio-side neighborhood list (Hyde
+// Park, Indian Hill, Mariemont, Terrace Park, Wyoming, Anderson Township) and
+// the invented example rooms are removed — never confirmed with Amy as
+// accurate, flagged in ASK-AMY.md. Page is intentionally thin — h1, one intro
+// paragraph, one paragraph on the work, links to services and process — and
+// every remaining paragraph is marked DRAFT COPY - NEEDS REWRITE pending
+// Amy's actual words.
 //
 // Vendor naming: rule 8's "the lines I represent." Lafayette is named on its
 // own page only. No pricing language (rule 1).
@@ -56,6 +51,7 @@ const { seoTitle, description, eyebrow, title, lead: leadParagraphs } = entry.da
   <section class="section wrap text-page__intro">
     <p class="type-label text-page__eyebrow">{eyebrow}</p>
     <h1 class="type-display text-page__heading">{title}</h1>
+    <!-- DRAFT COPY - NEEDS REWRITE -->
     {leadParagraphs.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
   </section>
 

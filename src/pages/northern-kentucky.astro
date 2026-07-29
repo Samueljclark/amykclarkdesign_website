@@ -7,16 +7,17 @@
 // Keyword target (8.3): "custom drapery Northern Kentucky" — title, H1, first
 // paragraph, meta description, once each.
 //
-// Neighbourhoods (8.4): the Kentucky-side names from the brief's list — Fort
-// Mitchell, Fort Thomas, Villa Hills, Crestview Hills, Union, Edgewood. The
-// Ohio-side names are on /cincinnati. Splitting them is what keeps these two
-// pages genuinely different documents rather than the thin near-duplicates
-// 8.4 warns against. **This list has never been confirmed with Amy as
-// accurate** — flagged in ASK-AMY.md, same as /cincinnati's.
-//
-// Fort Wright is named here because it is where Amy actually is
-// (business.ts's `baseCity`) — the one geographic fact about the business
-// itself, as distinct from an address, which is never published.
+// Cut down 2026-07-29 (session task): the Kentucky-side neighborhood list
+// (Fort Mitchell, Fort Thomas, Villa Hills, Crestview Hills, Union, Edgewood),
+// the invented example rooms, and the Fort Wright/driving-distance copy are
+// all removed. None of it was ever confirmed with Amy — flagged in
+// ASK-AMY.md — and Fort Wright is a city-level "based in" claim, which the
+// site no longer states in any visible copy (business.ts's `baseCity` still
+// carries it for schema/areaServed purposes only). The only acceptable
+// location wording on this page now is "Cincinnati and Northern Kentucky."
+// Page is intentionally thin — h1, one intro paragraph, one paragraph on the
+// work, links to services and process — and every remaining paragraph is
+// marked DRAFT COPY - NEEDS REWRITE pending Amy's actual words.
 //
 // Vendor naming: rule 8's "the lines I represent." No pricing (rule 1).
 //
@@ -53,6 +54,7 @@ const { seoTitle, description, eyebrow, title, lead: leadParagraphs } = entry.da
   <section class="section wrap text-page__intro">
     <p class="type-label text-page__eyebrow">{eyebrow}</p>
     <h1 class="type-display text-page__heading">{title}</h1>
+    <!-- DRAFT COPY - NEEDS REWRITE -->
     {leadParagraphs.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
   </section>
 
