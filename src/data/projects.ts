@@ -64,7 +64,7 @@ export const projects: Project[] = [
     alt: 'Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead',
     blurDataURL:
       'data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA',
-    scope: 'I chose the fabric and made the drapery and the banded roman shade for this room.',
+    scope: 'Amy chose the fabric and made the drapery and the banded roman shade for this room.',
     metaDescription:
       'Amy selected the fabric and made the drapery and banded roman shade for this living room.',
     lead: {
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     ],
     spec: {
       treatment: 'Drapery, banded Roman shade',
-      fabricHouse: 'the lines I represent',
+      fabricHouse: 'the lines she represents',
       rooms: 'Living room',
     },
   },
@@ -114,7 +114,7 @@ export const projects: Project[] = [
     alt: photos['ivory-house-bay-window'].alt,
     blurDataURL: photos['ivory-house-bay-window'].blurDataURL,
     scope:
-      "I made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. I did not design or supply the furniture itself.",
+      "Amy made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. She did not design or supply the furniture itself.",
     metaDescription:
       'Amy made the drapery, reupholstered the dining chairs, and made the cushions and pillows shown in this whole-house project.',
     lead: {
@@ -166,7 +166,7 @@ export const projects: Project[] = [
     ],
     spec: {
       treatment: 'Drapery, blinds, reupholstered dining chairs, cushions and pillows',
-      fabricHouse: 'the lines I represent',
+      fabricHouse: 'the lines she represents',
       rooms: 'Living room, breakfast room, kitchen',
     },
   },

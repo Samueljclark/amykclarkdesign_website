@@ -4,11 +4,11 @@ description: 'Custom drapery in Northern Kentucky, plus blinds, shades, upholste
 eyebrow: Service area
 title: Custom Drapery in Northern Kentucky
 lead:
-  - 'I design, sew, and install custom drapery across Cincinnati and Northern Kentucky.'
+  - 'Amy designs, sews, and installs custom drapery across Cincinnati and Northern Kentucky.'
 ---
 
 <!-- DRAFT COPY - NEEDS REWRITE -->
-Drapery is the largest piece of fabric in most rooms and it sets the terms for the rest. Where the rod goes, how far the panels stack back, what the lining does to the light. Once that is settled, blinds and shades, upholstery, and the pillows and cushions can be worked around it rather than negotiated against it afterward. Fabric comes from the lines I represent, chosen for how it will hang in your specific room rather than how it reads in a book.
+Drapery is the largest piece of fabric in most rooms and it sets the terms for the rest. Where the rod goes, how far the panels stack back, what the lining does to the light. Once that is settled, blinds and shades, upholstery, and the pillows and cushions can be worked around it rather than negotiated against it afterward. Fabric comes from the lines she represents, chosen for how it will hang in your specific room rather than how it reads in a book.
 
 <!-- DRAFT COPY - NEEDS REWRITE -->
 Every project starts in your house. See [services](/services) for how that work gets built, or the [process](/process) for what happens in what order.

@@ -1,8 +1,9 @@
 // Home's ServiceList teaser and the /services overview page show the exact
 // same four entries (DESIGN_BRIEF.md 5.1, 5.3) — shared here so the name/
-// description/href triple isn't duplicated across two files. "The lines I
-// represent" stays generic here (rule 8); Lafayette is named by name only on
-// its own page, per 5.3.
+// description/href triple isn't duplicated across two files. "The lines she
+// represents" stays generic here (rule 8); Lafayette is named by name only on
+// its own page, per 5.3. Copy is third person as of the 2026-07-31 review.
+// DRAFT COPY - NEEDS REWRITE applies to all four `description` strings.
 
 import type { PhotoKey } from './photos';
 
@@ -28,7 +29,7 @@ export const services: Service[] = [
   },
   {
     name: 'Blinds and Shades',
-    description: 'Blinds and shades from the lines I represent, chosen for privacy, light, and finish.',
+    description: 'Blinds and shades from the lines she represents, chosen for privacy, light, and finish.',
     href: '/services/blinds-shades',
     // Ivory House: the bay-window room's white wood blinds — the first
     // dedicated Blinds and Shades photography this site has had.
