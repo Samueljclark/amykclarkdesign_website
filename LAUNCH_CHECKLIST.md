@@ -38,12 +38,48 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   the LocalBusiness JSON-LD omits `openingHoursSpecification` entirely rather
   than guessing. Google surfaces hours to people deciding whether to call, so a
   guess is worse than nothing. Fill in and the schema picks it up.
-- [Sam] **Contact email.** `business.ts` has `hello@amykclarkdesign.com` marked
-  as a placeholder. Confirm it exists and is monitored, or change it.
-- [Amy] **Consultation fee.** Deliberately not stated anywhere. `/contact` says
-  the visit is paid and what it buys, and never that the fee credits toward the
-  project (it does not). If Amy wants the amount published, that is a new
-  decision.
+- [Sam] **Google Voice business number — does not exist yet, and the site is
+  waiting on it.** Per the 2026-07-31 review, Amy's real mobile is not
+  published. `business.ts` carries a clearly-marked placeholder, the footer
+  renders no dialable number, and the LocalBusiness JSON-LD omits `telephone`
+  entirely rather than publishing a fake one. **Obtain the Google Voice number,
+  put it in `business.ts`, and the footer and the schema both pick it up.**
+  Until then the site has no phone contact route at all, which is a real gap on
+  a business whose audience skews toward calling.
+- [Sam] **Email addresses — `hello@` and `Amy@`.** Both need to be set up once
+  domain hosting is live; neither exists today. `business.ts` has
+  `hello@amykclarkdesign.com` marked as a placeholder and it is currently the
+  only contact route the footer offers. **Confirm it exists and is monitored
+  before launch**, and decide which of the two the site publishes (the footer
+  shows one address, not both).
+- [ ] **`/signature-pieces` must be gone.** Deleted in step 9a per the
+  2026-07-31 review, along with `signaturePieces.ts` and its inbound links from
+  `/portfolio` and `/services/soft-furnishings`. Already done — this line is
+  the pre-launch confirmation, not a task. Verify with:
+
+  ```bash
+  grep -rn "signature-pieces\|signaturePieces" src/ dist/
+  ```
+
+  Photo imports in `photos.ts` legitimately still reference the
+  `portfolio/signature-pieces/` **directory** on disk; that is a folder name,
+  not a route, and is fine. What must not appear is a page, a link, or a
+  sitemap entry.
+- [Amy] **Consultation fee.** Deliberately not stated anywhere, and the
+  2026-07-31 review hardened this: the amount is for Amy's internal reference
+  and a future automated confirmation email **only**, and does not go on the
+  site at all. `/contact` says the in-home visit is paid and what it buys, and
+  never that the fee credits toward the project (it does not). Publishing the
+  amount would now be a new decision *against* a standing one — DESIGN_BRIEF
+  §5.9 and §10 both encode it. Confirmation from Amy is tracked in ASK-AMY.md.
+- [ ] **The footer's "since" year is a placeholder.** The footer reads
+  `Serving Cincinnati and Northern Kentucky since [DATE — ask Amy]`. **This
+  cannot ship as written.** One word from Amy closes it (ASK-AMY.md); until
+  then the literal bracket text is live in the build. Verify with:
+
+  ```bash
+  grep -rn "ask Amy" src/ dist/
+  ```
 - [Amy][Sam] **Ivory House photography permissions — two separate people,
   both required.** The whole-house shoot added 2026-07-28 (drapery, blinds,
   reupholstered dining chair, cushions and pillows — see IMAGE-MANIFEST.md)

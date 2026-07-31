@@ -1950,3 +1950,155 @@ page, no heading-level skips, zero banned words, no "William Morris,"
 no "two-storey," no "colour" — all clean. `alt` text for all five new
 images confirmed correct via the compiled HTML directly (not the Browser
 pane, per the caching issue above).
+
+---
+
+## 2026-07-31: Kristen Hitch website review — decision log
+
+Present: Kristen Hitch, Amy Clark, Sam Clark. First outside review of the
+built site. Everything below is a decision taken in that meeting, not a
+proposal. `DESIGN_BRIEF.md` has been updated to match — where this log and
+the brief say the same thing, the brief is the authority and this entry is
+the record of *when and why*.
+
+**Next meeting: Thursday 2026-08-20, 2:00pm, Kenton County Public Library,
+Erlanger Branch.**
+
+### The decisions
+
+1. **Voice moves from first person to third person, site-wide.** "Amy
+   designs," "she makes," not "I design." This reverses the 2026-07-28
+   SITE-COPY-REWRITE.md pass, which moved the whole site the other way.
+   Reasoning: third person reads as an established studio rather than a
+   personal account, and it survives being lifted into ad copy, directory
+   listings, and referral contexts where a first-person "I" has no visible
+   speaker. Testimonials stay in the client's own voice.
+
+2. **Homepage section order: Portfolio → Services → About.** Lead with the
+   work, not with who made it. The differentiator block moves below Services.
+
+3. **One CTA button per section, maximum.** The duplicate `View Portfolio`
+   buttons go; the single portfolio link lives in the Portfolio card slot.
+   Two buttons competing in one viewport split the click.
+
+4. **A visible section header on every homepage card** — Portfolio,
+   Services, About, and the client-quote section. Several of these were
+   `visually-hidden` headings that existed only for screen readers, which
+   left sighted readers scrolling into unlabelled walls of images.
+
+5. **The client-quote section heading is `What Our Clients Say About Working
+   With Us`, and it is visible.** **Do not use the word "testimonials" as a
+   visible label** — it names the marketing device rather than the thing, and
+   it reads as permission to skip.
+
+6. **All service names render at identical font size and weight.** The
+   staggered *positions* are fine and stay — that is 3.5's asymmetry. Size
+   hierarchy is not fine: rendering one service bigger than another says one
+   matters more, which is not the message. (Kristen raised this against three
+   names specifically; applied to all four, since the objection is identical
+   for the fourth.)
+
+7. **"Cincinnati" comes out of the homepage hero.** It was the only text
+   competing with the photograph. Geography moves to one footer line:
+   `Serving Cincinnati and Northern Kentucky since [DATE — ask Amy]`.
+
+8. **Cincinnati / Northern Kentucky gets named on the Services page, the
+   About page, and as a note on the contact form** — where someone is
+   actually deciding whether Amy covers them.
+
+9. **Booking becomes a two-step funnel.** Step 1: **Complimentary Discovery
+   Call** (free, phone). Step 2: **In-Home Design Consultation** (paid, in
+   person, roughly 3 hours). The primary site-wide CTA is **"Schedule your
+   complimentary discovery call."** The site's job is step one.
+
+10. **Footer CTA changes from "Ready to start your project" to "Let's Get
+    Started."**
+
+11. **Portfolio entries get a short evocative non-identifying name plus a
+    brief problem/solution blurb, and each entry is trimmed to a tight small
+    collage rather than a long photo scroll.** The names already followed the
+    rule; the blurb is new, and the collage supersedes 5.2's previous "three
+    to eight supporting images" stacked full-width.
+
+12. **A new standalone `/blinds` landing page**, which may be hidden from the
+    main nav, to receive future targeted ad traffic. Blinds and shades is the
+    growth category and the one most likely to get ad spend.
+
+13. **Reduce the vertical white space between homepage sections.** Measured
+    on the real page, 3.5's spacing put a full empty screen between sections,
+    and readers took that as the end of the page and stopped scrolling.
+
+14. **Amy's real phone number does not go on the site.** A Google Voice
+    business number will be obtained; until it exists, the site carries a
+    placeholder and no dialable number anywhere, JSON-LD included.
+
+15. **`/signature-pieces` is removed, and full e-commerce is logged as
+    "revisit later," not active scope.** A placeholder shop showing two
+    pillows with no way to buy anything reads as an unfinished store rather
+    than as portfolio work. See the deferred item below.
+
+### The consultation fee — internal only, do not publish
+
+A consultation fee figure was discussed in this meeting. **It does not go on
+the website.** It is for Amy's internal reference and for a future automated
+confirmation email only. It must not appear in visible copy, in a meta tag,
+or in a comment anywhere in this repo. If it ever turns up in the build, that
+is a defect — flag it to Sam rather than shipping it. DESIGN_BRIEF §5.9
+carries the same instruction and §10 now has an acceptance checkbox for it.
+
+### Deferred — revisit later, not active scope
+
+- **Full e-commerce.** A Shopify-style backend with stock fabric and pillow
+  ordering. Real scope, real money, real ongoing operational load (stock,
+  fulfilment, returns, tax). Not now. `/signature-pieces` was a placeholder
+  gesturing at this and has been deleted rather than left to rot.
+- **The calendar booking tool** for the discovery call. Calendly vs. Google
+  Calendar is an open question with Amy (ASK-AMY.md). CTAs route to
+  `/contact` until it is answered.
+- **The automated confirmation email** after a discovery call is booked.
+  Backend decision, pending, and coupled to the calendar choice.
+
+---
+
+## Step 9: Implement the 2026-07-31 review decisions
+
+Everything in the decision log above, in code. Ordered so the destructive and
+structural work lands before the copy pass, and the copy pass runs once
+rather than twice over the same files.
+
+**9a. Remove Signature Pieces.** Delete `src/pages/signature-pieces.astro`
+and `src/data/signaturePieces.ts`. Remove the inbound links from
+`src/pages/portfolio/index.astro` and `src/content/pages/soft-furnishings.md`.
+The two pillow photographs stay in `photos.ts` and IMAGE-MANIFEST.md — they
+are real, they are Amy's, and they are the only studio-lit product frames the
+site has. Decision 15.
+
+**9b. Homepage restructure.** Section order Portfolio → Services → About.
+Visible headings on every section. Hero drops the location block and the
+`View Portfolio` button. Client-quote heading becomes visible and reads
+"What Our Clients Say About Working With Us." Home-scoped section spacing
+reduced. Decisions 2, 3, 4, 5, 7, 13.
+
+**9c. Booking funnel.** Every booking CTA becomes "Schedule your
+complimentary discovery call." ContactBand's line becomes "Let's Get
+Started." `/contact` describes the discovery call and the in-home
+consultation as two steps. Marked TODOs where the calendar tool and the
+confirmation email will attach. No fee amount. Decisions 9, 10.
+
+**9d. Third-person copy pass.** Every visible string on the site, across the
+`pages` and `journal` content collections, `services.ts`, `projects.ts`, and
+the components that still hold inline copy. Testimonials excluded. Decision 1.
+
+**9e. Service name sizing and geography.** Uniform size and weight on all
+service names, indents retained. Cincinnati / Northern Kentucky named on
+Services, About, and the contact form. Decisions 6, 8.
+
+**9f. Portfolio blurbs and collage.** A `blurb` field on each project, and
+detail-page galleries trimmed from a long stacked scroll to a compact
+collage. Decision 11.
+
+**9g. `/blinds` landing page, footer line, phone placeholder.** New unlinked
+landing page. Footer gains the "Serving Cincinnati and Northern Kentucky
+since [DATE]" line. Phone replaced with a Google Voice placeholder in
+`business.ts`, and `telephone` dropped from the LocalBusiness JSON-LD until a
+real number exists. Decisions 12, 7, 14.

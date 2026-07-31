@@ -123,8 +123,43 @@ comes up.
 
 ## 3. Facts to confirm (short answers, could be one text thread)
 
+### From the 2026-07-31 Kristen Hitch review — these four are the new ones
+
+- **What year does "serving Cincinnati and Northern Kentucky since ___" use?**
+  The hero's location line was removed in that review and replaced with a single
+  footer line carrying a founding year. **The placeholder cannot ship** — a
+  "since" with no year reads worse than no line at all, and this is now a
+  one-word blocker on the footer. Whatever she says is right: the year she
+  registered the business, the year she took her first paying client, the year
+  she started sewing for other people. Just needs to be a year she is happy to
+  stand behind publicly.
+- **Confirm the consultation fee stays off the website — correct?** The
+  understanding from the meeting is that the figure is for Amy's internal
+  reference and for a future automated confirmation email, and that it is
+  deliberately not published. Worth one plain confirmation, because it is easier
+  to add a number later than to un-publish one, and because DESIGN_BRIEF §5.9
+  and §10 now both encode "never publish it" as a hard rule that a future
+  session will enforce.
+- **Which calendar tool for the complimentary discovery call — Calendly or
+  Google Calendar?** Booking is now a two-step funnel (free phone discovery
+  call, then the paid in-home consultation) and the whole site's primary CTA
+  points at step one. Nothing is wired up yet and CTAs currently route to the
+  contact form. The question is really "what does Amy already look at every
+  day," since whichever tool this is has to be one she actually keeps open.
+  Blocks the booking integration and the automated confirmation email, which
+  is coupled to it.
+- **Where did she land on the three font options?** She was picking three for
+  the font exploration. **This is blocking the wordmark mockup** and nothing
+  else can move on that front until the three come back. If she has not had
+  time, three quick gut-reaction picks are more useful than a considered
+  answer that arrives after the next meeting.
+
+### Everything else
+
 - **Consultation fee amount.** Not stated anywhere in the current build —
-  DESIGN_BRIEF.md is explicit that no number gets published until Amy confirms one.
+  DESIGN_BRIEF.md is explicit that no number gets published until Amy confirms one,
+  and the 2026-07-31 review went further: the amount stays off the site entirely,
+  for internal and confirmation-email use only. See the confirmation question above.
 - **Vendor permissions — partly settled, and the rest is now specific.**
   **Schumacher is cleared** (Amy confirmed 2026-07-26) and is named on
   `/services/drapery`. **Stout and Pollack are not cleared** — real lines she
