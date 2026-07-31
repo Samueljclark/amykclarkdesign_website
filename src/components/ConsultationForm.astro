@@ -71,7 +71,7 @@ const referralSources = [
   'Facebook',
   'Referred by a friend or family member',
   'Referred by a designer or builder',
-  'Saw my work in a home',
+  'Saw her work in a home',
   'Houzz',
   'Other',
 ];
@@ -126,12 +126,19 @@ const referralSources = [
         aria-describedby="location-hint"
         required
       />
-      <span id="location-hint" class="field__hint">Your city or neighborhood.</span>
+      <!-- Service-area note, added 2026-07-31 (DESIGN_BRIEF 5.7). Geography
+           came out of the hero in the same review and has to be somewhere a
+           reader is actually deciding whether Amy covers them — which is
+           here, mid-form, next to the field asking where they live. -->
+      <!-- DRAFT COPY - NEEDS REWRITE -->
+      <span id="location-hint" class="field__hint">
+        Your city or neighborhood. Amy works throughout Cincinnati and Northern Kentucky.
+      </span>
     </p>
   </div>
 
   <p class="field consultation-form__field consultation-form__field--wide">
-    <label class="type-label field__label" for="room">Tell me about your room</label>
+    <label class="type-label field__label" for="room">Tell Amy about your room</label>
     <textarea id="room" name="room" rows="5" aria-describedby="room-hint" required></textarea>
     <span id="room-hint" class="field__hint">
       Which room, which windows, and what is not working about it now.
@@ -140,7 +147,7 @@ const referralSources = [
 
   <p class="field consultation-form__field consultation-form__field--wide">
     <label class="type-label field__label" for="about-you">
-      Tell me about you <span class="field__optional">Optional</span>
+      Tell Amy about you <span class="field__optional">Optional</span>
     </label>
     <textarea id="about-you" name="about-you" rows="4" aria-describedby="about-you-hint"></textarea>
     <span id="about-you-hint" class="field__hint">

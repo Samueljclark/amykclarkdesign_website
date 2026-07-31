@@ -44,10 +44,14 @@ const { images } = Astro.props;
   </div>
 
   <div class="hero__content wrap">
-    <div class="hero__location">
-      <p class="type-label hero__location-primary">Cincinnati/NKY Based</p>
-      <p class="type-label hero__location-secondary">Serving all areas</p>
-    </div>
+    {/* The location block that used to sit here ("Cincinnati/NKY Based" /
+        "Serving all areas") was removed in step 9b (2026-07-31 review). It was
+        the only text competing with the photograph, and the hero's whole job
+        is the photograph. Geography now lives as one line in the footer —
+        DESIGN_BRIEF 5.1 and 5.8. The empty div keeps the three-row grid
+        (auto / 1fr / auto) that centres the wordmark; without it the mark
+        rides high. */}
+    <div aria-hidden="true"></div>
 
     <div class="hero__center">
       <p class="type-display hero__mark">Amy K Clark Design</p>
@@ -60,9 +64,16 @@ const { images } = Astro.props;
         <a href="/services/drapery" class="type-label link-underline">Drapery</a>
         <a href="/services/blinds-shades" class="type-label link-underline">Shades</a>
       </nav>
+      {/* One CTA, not two (5.1, 2026-07-31 review). The secondary "View
+          Portfolio" button is gone: the Portfolio section is the very next
+          thing on the page and carries its own link, and two buttons in one
+          viewport split the click rather than doubling it.
+          TODO (backend, pending): this points at /contact until the calendar
+          booking tool for the discovery call is chosen — Calendly vs Google
+          Calendar is an open question with Amy (ASK-AMY.md). When it lands,
+          this href becomes the booking link. */}
       <div class="hero__ctas">
-        <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
-        <a href="/portfolio" class="btn btn-outline">View Portfolio</a>
+        <a href="/contact" class="btn btn-solid">Schedule your complimentary discovery call</a>
       </div>
       <div class="hero__scroll-cue" aria-hidden="true"></div>
     </div>
@@ -151,19 +162,6 @@ const { images } = Astro.props;
        document flow of its own. Bug found in Step 2 review: the location
        line rendered directly under the nav's wordmark link. */
     padding-block: calc(var(--nav-height) + 1.5rem) 2rem;
-  }
-
-  .hero__location {
-    justify-self: center;
-    text-align: center;
-    display: grid;
-    gap: 0.25rem;
-  }
-  .hero__location-primary {
-    opacity: 0.92;
-  }
-  .hero__location-secondary {
-    opacity: 0.65;
   }
 
   .hero__center {

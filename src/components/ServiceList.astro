@@ -42,13 +42,24 @@ import type { Service } from '../data/services';
 
 interface Props {
   services: Service[];
+  // Home shows a visible "Services" header on this card (5.1, 2026-07-31
+  // review). /services does not: that page already carries a visible <h1>
+  // reading "Services" and a second visible "Services" directly beneath it
+  // is a stutter, not a signpost. The heading still exists in both cases for
+  // heading order and assistive tech — only its visibility differs.
+  headingHidden?: boolean;
 }
 
-const { services } = Astro.props;
+const { services, headingHidden = false } = Astro.props;
 ---
 
 <section class="section wrap service-list" aria-labelledby="service-list-heading">
-  <h2 id="service-list-heading" class="visually-hidden">Services</h2>
+  <h2
+    id="service-list-heading"
+    class:list={[headingHidden ? 'visually-hidden' : 'type-label section-eyebrow']}
+  >
+    Services
+  </h2>
 
   <ul class="service-list__items">
     {services.map((service) => (
@@ -125,6 +136,20 @@ const { services } = Astro.props;
     color: var(--ink-muted);
   }
 
+  /* ---- Size hierarchy removed 2026-07-31 (Kristen Hitch review, 5.3).
+     Every service name now renders at ONE size and one weight. The four
+     per-row `font-size` clamps that used to live here made Custom Drapery
+     nearly twice the size of Soft Furnishings, which tells a reader that one
+     service matters more than another — not true, and not the message.
+
+     The staggered INDENTS below stay, and that is the explicit distinction
+     the review drew: varied position is 3.5's asymmetry and it is welcome;
+     varied scale is a claim about importance. Vary where a name sits, never
+     how big it is. Do not reintroduce per-row font sizes here. ---- */
+  .service-list__name {
+    font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.5rem);
+  }
+
   @media (min-width: 768px) {
     .service-list__item + .service-list__item {
       margin-top: 4.5rem;
@@ -140,18 +165,6 @@ const { services } = Astro.props;
     }
     .service-list__item:nth-child(4) {
       margin-left: 38%;
-    }
-    .service-list__item:nth-child(1) .service-list__name {
-      font-size: clamp(2.5rem, 1.4rem + 4.6vw, 5.25rem);
-    }
-    .service-list__item:nth-child(2) .service-list__name {
-      font-size: clamp(2rem, 1.2rem + 3.2vw, 3.75rem);
-    }
-    .service-list__item:nth-child(3) .service-list__name {
-      font-size: clamp(2.75rem, 1.5rem + 5.2vw, 6rem);
-    }
-    .service-list__item:nth-child(4) .service-list__name {
-      font-size: clamp(2rem, 1.3rem + 2.9vw, 3.5rem);
     }
   }
 
@@ -171,11 +184,23 @@ const { services } = Astro.props;
        The list column is deliberately narrower than the section so the rows'
        own indents resolve against it and leave the right-hand space clear.
        The gap absorbs the little that the widest name overhangs. */
+    /* Two children, auto-placed: the list takes column 1, the stage column 2. */
     .service-list {
       display: grid;
       grid-template-columns: 58% 1fr;
       column-gap: 5%;
       align-items: center;
+    }
+
+    /* Three children now, not two: the section heading became visible in the
+       2026-07-31 review and is therefore a real grid item. It has to span
+       both tracks explicitly — auto-placement would otherwise put it in
+       column 1 and push the list into column 2 and the hover stage onto a
+       second row, which is exactly what happened the first time. While the
+       heading was `visually-hidden` (position: absolute) it was out of flow
+       and this could not bite. */
+    .service-list > h2 {
+      grid-column: 1 / -1;
     }
 
     .service-list__stage {

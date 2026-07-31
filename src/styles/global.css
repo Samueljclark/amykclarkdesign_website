@@ -112,6 +112,21 @@ input, textarea, select {
   margin-top: 1rem;
 }
 
+/* ---- Visible section header on every homepage card (5.1, 2026-07-31
+   review). Portfolio, Services, About, and the client-quote section each get
+   one, so a reader scrolling always knows which section they are in. Several
+   of these were `visually-hidden` headings that existed only for screen
+   readers and heading order — correct for assistive tech, useless to a
+   sighted reader hitting an unlabelled wall of images.
+
+   Label style (3.4), which is what the brief specifies and what the rest of
+   the site's small structural text already uses. Not a new type role. */
+.section-eyebrow {
+  display: block;
+  color: var(--ink-muted);
+  margin-bottom: 2rem;
+}
+
 /* Repeated at the foot of Home and every service page (5.1 section 6). */
 .contact-band {
   display: grid;

@@ -43,22 +43,13 @@ import { projects } from '../../data/projects';
       ))}
     </ul>
 
-    {/* Entry point to /signature-pieces, which carries no top-level nav item
-        (DESIGN_BRIEF 4 caps the nav at six and it is full). This link and the
-        one on /services/soft-furnishings are the only two ways in. */}
-    <p class="portfolio-index__aside">
-      Finished pillows are on the <a href="/signature-pieces" class="link-underline">signature
-      pieces</a> page. Any of them can be made again.
-    </p>
+    {/* The /signature-pieces link that used to sit here is gone with the page
+        itself (step 9a, 2026-07-31 review). Nothing replaces it: the pillow
+        photography lives on /services/soft-furnishings, which is in the nav. */}
   </section>
 </Base>
 
 <style>
-  .portfolio-index__aside {
-    margin-top: 3rem;
-    color: var(--ink-muted);
-  }
-
   .portfolio-index__heading {
     max-width: 18ch;
     margin-bottom: 3rem;

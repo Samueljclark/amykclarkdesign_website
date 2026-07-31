@@ -114,20 +114,35 @@ const heroImages = [
 
   <HeroGallery images={heroImages} />
 
+  {/* Section order, 2026-07-31 review: Portfolio -> Services -> About. The
+      page leads with the work, not with who made it. The differentiator block
+      below is the About section and now sits after Services, where it reads
+      as the explanation for what you have just looked at rather than as a
+      preamble to it. */}
   <PortfolioStrip projects={projects} />
-
-  <section class="section wrap differentiator">
-    <h2 class="type-display differentiator__heading">A Designer's Eye, A Workroom's Understanding</h2>
-    <p class="differentiator__body">
-      I design your window treatments, I make them in my own workroom, and I install them myself. All
-      three, one person. An interior decorator does not make anything, and that is the whole difference.
-    </p>
-  </section>
 
   <ServiceList services={services} />
 
+  <section class="section wrap differentiator" aria-labelledby="differentiator-heading">
+    <p class="type-label section-eyebrow">About</p>
+    <h2 id="differentiator-heading" class="type-display differentiator__heading">
+      A Designer's Eye, A Workroom's Understanding
+    </h2>
+    <!-- DRAFT COPY - NEEDS REWRITE -->
+    <p class="differentiator__body">
+      Amy designs your window treatments, makes them in her own workroom, and installs them herself.
+      All three, one person. An interior decorator does not make anything, and that is the whole
+      difference.
+    </p>
+  </section>
+
   <section class="section wrap testimonial" aria-labelledby="testimonial-heading">
-    <h2 id="testimonial-heading" class="visually-hidden">What Clients Say</h2>
+    {/* Visible heading, and deliberately not the word "testimonials"
+        (5.1, 2026-07-31 review) — that names the marketing device rather
+        than the thing, and reads as permission to skip. */}
+    <h2 id="testimonial-heading" class="type-label section-eyebrow testimonial__heading">
+      What Our Clients Say About Working With Us
+    </h2>
     <ul class="testimonial__list">
       <li>
         <!-- Attribution format ("Diane K.") approved by Amy — her full name is
@@ -154,11 +169,30 @@ const heroImages = [
 </Base>
 
 <style>
+  /* ---- Home-scoped vertical rhythm (3.5's exception, 2026-07-31 review).
+     3.5's 160px/96px section spacing was measured on this page and judged too
+     generous *here specifically*: the gaps were tall enough that a reader hit
+     a screen with nothing on it and read that as the end of the page rather
+     than as a pause between sections.
+
+     Scoped with `:global` to Home's own sections rather than changed on the
+     `--space-section` token, because the token is right everywhere else —
+     long-form text pages (the four service children, About, Process, both
+     location pages) still want the full measure, and the brief's "if it feels
+     too sparse, it is close to right" still governs them. Roughly 0.65x. ---- */
+  :global(main > .section) {
+    padding-block: clamp(3.5rem, 7vw, 6.5rem);
+  }
+
   .differentiator__heading {
     max-width: 18ch;
   }
   .differentiator__body {
     margin-top: 1.5rem;
+  }
+
+  .testimonial__heading {
+    margin-bottom: 3rem;
   }
 
   /* Two quotes, the maximum 5.1 allows. Plain list, no cards, no rules, no

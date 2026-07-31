@@ -28,7 +28,3 @@ The edge sets the register. A knife edge is clean and quiet. A flange softens it
 Window seats, benches, and banquettes need cushions built to a real measurement rather than trimmed down to fit. Foam density gets chosen for how long people sit there. Dining chair seats take the most abuse in the house and get built accordingly. Outdoor cushions have to survive weather and then dry out properly.
 
 Past pillows and cushions, this covers table linens, bed skirts, shams, headboards, and the occasional piece that has no standard name and has to be invented for the space it goes in.
-
-## Pieces already made
-
-A few finished pillows are photographed on the [signature pieces](/signature-pieces) page. Any of them can be made again, in that fabric or in one chosen for your room.

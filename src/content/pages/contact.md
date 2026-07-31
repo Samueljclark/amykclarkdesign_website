@@ -1,36 +1,45 @@
 ---
-seoTitle: 'Schedule a Consultation | Amy K Clark Design'
-description: 'Request an in-home consultation for custom drapery, blinds and shades, upholstery, or soft furnishings in Cincinnati and Northern Kentucky.'
+seoTitle: 'Schedule a Discovery Call | Amy K Clark Design'
+description: 'Book a complimentary discovery call for custom drapery, blinds and shades, upholstery, or soft furnishings in Cincinnati and Northern Kentucky.'
 eyebrow: Contact
-title: Schedule a Consultation
-# 5.7's most rule-bound copy: say it's a paid in-home visit; never say the fee
-# credits toward the project (rule 2 — it does not); never apologize for the
-# fee; never state the amount until Amy confirms one (ASK-AMY.md).
+title: Schedule Your Complimentary Discovery Call
+# 5.7 and 5.9's most rule-bound copy. Booking is TWO steps as of the 2026-07-31
+# review: a free phone discovery call first, then the paid in-home design
+# consultation. This page's job is step one.
+#   - Never say the consultation fee credits toward the project (rule 2 — it
+#     does not).
+#   - Never apologise for the fee.
+#   - **NEVER state the fee amount.** Not "around," not a range, not in a
+#     comment. It is internal-only and belongs in the future confirmation
+#     email, not on this site (5.9). If a number appears here, that is a
+#     defect — flag it to Sam.
+# DRAFT COPY - NEEDS REWRITE (all three lead paragraphs below)
 lead:
-  - 'Every project starts with an in-home visit. I come to your room, measure the openings myself, see the light at the hour that matters, and put fabric against your walls and your furniture. You come out of it knowing what the room needs and what I would do about it.'
-  - 'It is a paid visit, because it is design work rather than a sales call.'
-  - 'Tell me as much as you can below. The more I know before I come, the more useful the visit will be.'
+  - 'It starts with a phone call, and the call is free. Fifteen minutes on what the room is doing wrong, what you have already tried, and whether Amy is the right person for it. No measuring, no fabric, no commitment.'
+  - 'If it sounds like a fit, the next step is the in-home design consultation: about three hours in your house, and a paid visit, because it is design work rather than a sales call. Amy measures the openings herself, sees the light at the hour that matters, and puts fabric against your walls and your furniture. You come out of it knowing what the room needs and what she would do about it.'
+  - 'Amy works throughout Cincinnati and Northern Kentucky. Tell her as much as you can below — the more she knows before the call, the more useful it will be.'
 # Below the form (5.7). Each answer also feeds FAQPage JSON-LD (see Faq.astro)
 # — structured here, not markdown, for the same reason blinds-shades.md's
 # accordion categories are structured: JSON-LD needs the exact strings, not
 # something parsed back out of prose. **No price answers, ever** — rule 1 and
 # 5.7 both apply to every entry below, not just the first.
+# DRAFT COPY - NEEDS REWRITE (every answer below — third-person conversion,
+# 2026-07-31, plus the two new booking-funnel answers)
 faqs:
-  - title: What happens at the consultation?
-    content: 'I come to your home and work in the actual room. I measure the openings, look at the light at the hour it matters, and bring fabric to see against your walls, your floors, and the furniture already there. You leave knowing what the room needs and what I would do about it. It is a paid visit, and it is the design work rather than a sales call.'
+  - title: What happens on the discovery call?
+    content: 'It is a short phone call and it costs nothing. Amy asks what the room is doing wrong, what you have already tried, and what you are hoping for. You get a straight answer about whether this is work she should be doing and what it would involve. If it is not a fit, she will say so on the call rather than after a visit.'
+  - title: What happens at the in-home consultation?
+    content: 'Amy comes to your home and works in the actual room for around three hours. She measures the openings, looks at the light at the hour it matters, and brings fabric to see against your walls, your floors, and the furniture already there. You leave knowing what the room needs and what she would do about it. It is a paid visit, and it is the design work rather than a sales call.'
   - title: Do I need to know what I want before I call?
-    content: 'No. Most people know something in the room is not right and cannot name it, and finding that is part of what the consultation is for. Photographs of the room help more than anything else you can send ahead.'
+    content: 'No. Most people know something in the room is not right and cannot name it, and finding that is part of what this is for. Photographs of the room help more than anything else you can send ahead.'
   - title: Do you work with interior designers?
-    content: 'Yes, regularly. Some clients come to me directly, and some come through a designer, a builder, or a project manager who hands the textile category over. I own the windows, the upholstery, and the soft furnishings. I am not a full-service interior design firm and I do not try to be.'
+    content: 'Yes, regularly. Some clients come to Amy directly, and some come through a designer, a builder, or a project manager who hands the textile category over. She owns the windows, the upholstery, and the soft furnishings. She is not a full-service interior design firm and does not try to be.'
   - title: Who actually makes and installs the work?
-    content: 'I do. I design the treatment, sew it in my own workroom, and install it myself. Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions.'
+    content: 'Amy does. She designs the treatment, sews it in her own workroom, and installs it herself. Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions.'
   - title: How long does a project take?
-    content: 'It depends on the fabric more than the sewing. Fabric has to be ordered, and a mill can be quick or a pattern can be on back order. I confirm that before I promise you anything, so you get a real date rather than an optimistic one.'
-  # FLAG FOR AMY: this neighborhood list asserts specific places she actually
-  # works. DESIGN_BRIEF 8.4 permits naming these "where accurate" — carried
-  # forward unchanged across sessions, never explicitly confirmed. ASK-AMY.md.
+    content: 'It depends on the fabric more than the sewing. Fabric has to be ordered, and a mill can be quick or a pattern can be on back order. Amy confirms that before promising you anything, so you get a real date rather than an optimistic one.'
   - title: Where do you work?
-    content: 'Cincinnati, Northern Kentucky, and a small number of travel projects each year. Hyde Park, Indian Hill, Mariemont, Terrace Park, Wyoming, Anderson Township, Fort Mitchell, Fort Thomas, Villa Hills, Crestview Hills, Union, and Edgewood are all regular ground.'
+    content: 'Cincinnati, Northern Kentucky, and a small number of travel projects each year.'
   - title: Can you match something I already have?
     content: 'Usually. Matching an existing treatment, working a new piece around a fabric already in the room, or repeating a pattern across a seam so the join disappears is ordinary work here. Bring the piece or a photograph of it to the consultation.'
 ---

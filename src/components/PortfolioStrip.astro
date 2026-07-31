@@ -20,7 +20,10 @@ const { projects } = Astro.props;
 ---
 
 <section class="section wrap portfolio-strip scroll-ease-target" aria-labelledby="portfolio-strip-heading">
-  <h2 id="portfolio-strip-heading" class="visually-hidden">Featured Projects</h2>
+  {/* Visible as of the 2026-07-31 review (5.1) — this was a
+      `visually-hidden` heading, which left sighted readers scrolling into an
+      unlabelled grid of photographs. */}
+  <h2 id="portfolio-strip-heading" class="type-label section-eyebrow">Portfolio</h2>
 
   <ul class="portfolio-strip__list">
     {projects.map((project) => (

@@ -39,7 +39,10 @@ import leadImage from '../../assets/images/hero/pleated-drapery-living-room-fren
     sizes="100vw"
   />
 
-  <ServiceList services={services} />
+  {/* Heading hidden here only: this page's own <h1> already reads "Services"
+      and a visible duplicate directly beneath it is a stutter. Home shows it
+      visibly (5.1). */}
+  <ServiceList services={services} headingHidden={true} />
 </Base>
 
 <style>

@@ -182,7 +182,12 @@ export const photos = {
   },
   // The two pillows added 2026-07-26 are the first photographs on the site
   // that are NOT placeholders: they are the actual finished objects, shot
-  // against a plain ground, and they are what /signature-pieces shows.
+  // against a plain ground. They were `/signature-pieces`' whole reason to
+  // exist; that page was deleted in step 9a (2026-07-31 review), and
+  // `canal-house-pillow` is now the lead image on /services/soft-furnishings,
+  // which previously ran on a substitute crop. `woven-dot-pillow` is
+  // currently unused — a real, cleared, studio-lit frame sitting available.
+  // The directory name below is a folder on disk, not a route.
   'canal-house-pillow': {
     image: canalHousePillowImage,
     publicPath:

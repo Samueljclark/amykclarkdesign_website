@@ -4,9 +4,27 @@
 // foot of the site — see BUILD-PLAN.md step 5). Previously this exact three
 // line block was hand-copied into eleven separate .astro files; changing the
 // line or the button text meant editing all eleven. One component now.
+//
+// Copy changed 2026-07-31 (Kristen Hitch review, DESIGN_BRIEF 5.8/5.9):
+//   - The line was "Ready to start your project?" — a question the reader can
+//     answer "no" to. Now "Let's Get Started," which is an invitation.
+//   - The button was "Schedule a Consultation," which asked for the paid
+//     in-home visit as the first step. Booking is now a two-step funnel and
+//     the site's job is step one: the free discovery call. This exact wording
+//     is the primary site-wide CTA and it should match everywhere.
+//
+// TODO (backend, pending — do not implement without a decision):
+//   1. The href points at /contact until the calendar booking tool for the
+//      discovery call is chosen. Calendly vs Google Calendar is an open
+//      question with Amy (ASK-AMY.md). When it is answered, this becomes the
+//      booking link and the qualification form stays as the fallback.
+//   2. The automated confirmation email after a booking is a separate,
+//      coupled decision. Not built. The consultation fee figure belongs in
+//      that email and NOWHERE on this site (5.9).
 ---
 
 <section class="section wrap contact-band bg-ground">
-  <p class="type-display contact-band__line">Ready to start your project?</p>
-  <a href="/contact" class="btn btn-solid">Schedule a Consultation</a>
+  <!-- DRAFT COPY - NEEDS REWRITE -->
+  <p class="type-display contact-band__line">Let's Get Started</p>
+  <a href="/contact" class="btn btn-solid">Schedule your complimentary discovery call</a>
 </section>

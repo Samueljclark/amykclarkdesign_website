@@ -8,18 +8,21 @@
 // Copy sourced from the `pages` content collection (Phase 2 of the
 // copy-bulk-swap work, BUILD-PLAN.md) — src/content/pages/soft-furnishings.md
 // is now the one file to edit for this page's title, meta, lead, and body
-// prose (including the inline link to /signature-pieces in its last section).
+// prose.
 //
-// Placeholder image per the IMAGE-MANIFEST.md standing rule: the living-room
-// detail crop is the only real photo showing pillows in place. Swap when
-// Kelsee's shoot lands.
+// Lead image, changed in step 9a (2026-07-31 review): this page ran on a
+// substitute living-room crop because the only real pillow photography lived
+// on /signature-pieces. That page is deleted, so the real frame comes here
+// instead — an actual finished pillow, studio-lit, rather than a crop of a
+// room that happens to contain pillows. Straight upgrade.
 
 import Base from '../../layouts/Base.astro';
 import ContactBand from '../../components/ContactBand.astro';
 import RevealImage from '../../components/RevealImage.astro';
 import { getEntry, render } from 'astro:content';
-import leadImage from '../../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
+import { photos } from '../../data/photos';
 
+const leadPhoto = photos['canal-house-pillow'];
 const entry = await getEntry('pages', 'soft-furnishings');
 const { Content } = await render(entry);
 const { seoTitle, description, eyebrow, title, lead } = entry.data;
@@ -43,9 +46,9 @@ const { seoTitle, description, eyebrow, title, lead } = entry.data;
   </section>
 
   <RevealImage
-    src={leadImage}
-    alt="Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead"
-    blurDataURL="data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA"
+    src={leadPhoto.image}
+    alt={leadPhoto.alt}
+    blurDataURL={leadPhoto.blurDataURL}
     aspectRatio="16/9"
     sizes="100vw"
   />
