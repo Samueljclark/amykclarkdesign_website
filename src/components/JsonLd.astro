@@ -58,7 +58,12 @@ if (localBusiness) {
     name: 'Amy K Clark Design',
     url: abs('/'),
     image: abs('/images/og/og-default.jpg'),
-    telephone: business.phone,
+    // `telephone` is spread in only when a real number exists (2026-07-31
+    // review, DESIGN_BRIEF 5.8/8.2). Amy's personal mobile is not published,
+    // and the Google Voice replacement does not exist yet. Omitting the
+    // property is correct and valid; publishing a placeholder to Google would
+    // not be, and a wrong number in a rich result is worse than none.
+    ...(business.phone ? { telephone: business.phone } : {}),
     description:
       'Custom drapery, blinds and shades, upholstery, and soft furnishings for Cincinnati and Northern Kentucky homes. Designed, made, and installed by Amy Clark.',
     address: {

@@ -20,8 +20,14 @@ const year = new Date().getFullYear();
   <div class="wrap section site-footer__grid">
     <div>
       <p class="type-label site-footer__mark">Amy K Clark Design</p>
-      <p class="site-footer__area">Cincinnati/NKY Based</p>
-      <p class="site-footer__area site-footer__area--secondary">Serving all areas</p>
+      <!-- The single service-area line (DESIGN_BRIEF 5.8, 2026-07-31 review),
+           replacing both the hero's location block and the two lines that used
+           to sit here ("Cincinnati/NKY Based" / "Serving all areas").
+           `servingSince` is a visible placeholder and is meant to look wrong
+           until Amy supplies the year — see business.ts. -->
+      <p class="site-footer__area">
+        Serving Cincinnati and Northern Kentucky since {business.servingSince}
+      </p>
     </div>
 
     <nav aria-label="Footer">
@@ -36,9 +42,14 @@ const year = new Date().getFullYear();
     <div>
       <p class="type-label site-footer__heading">Contact</p>
       <ul class="site-footer__list">
-        <li>
-          <a href={business.phoneHref} class="link-underline">{business.phone}</a>
-        </li>
+        {/* No phone row at all until a real Google Voice number exists
+            (business.ts). Rendering an empty or placeholder tel: link would
+            give a reader a dead tap target, which is worse than the absence. */}
+        {business.phone && business.phoneHref && (
+          <li>
+            <a href={business.phoneHref} class="link-underline">{business.phone}</a>
+          </li>
+        )}
         <li>
           <!-- CONFIRM WITH SAM: real contact email -->
           <a href={`mailto:${business.email}`} class="link-underline">{business.email}</a>
@@ -82,10 +93,6 @@ const year = new Date().getFullYear();
   .site-footer__area {
     max-width: 32ch;
     opacity: 0.7;
-  }
-  .site-footer__area--secondary {
-    margin-top: 0.25rem;
-    opacity: 0.5;
   }
   .site-footer__heading {
     margin-bottom: 1rem;

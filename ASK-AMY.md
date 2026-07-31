@@ -153,6 +153,20 @@ comes up.
   else can move on that front until the three come back. If she has not had
   time, three quick gut-reaction picks are more useful than a considered
   answer that arrives after the next meeting.
+- **The problem/solution blurb on each portfolio project — this now has a
+  visible slot and nothing real to put in it.** The same review added a short
+  "what the room needed, and what Amy did" paragraph to every project detail
+  page (DESIGN_BRIEF 5.2), and it is live on both projects today. **What is
+  live is not a story.** Both blurbs were written strictly from the confirmed
+  scope and the photographs, so they say what the work *is* and stop there —
+  they do not say what was wrong with the room, what the client asked for, or
+  why a fabric won, because none of that is on file. That was deliberate:
+  inventing it would break the "no fabrication" line this whole document
+  exists to hold. It also means the most persuasive slot on the two best
+  pages is currently doing the least work. Two minutes per project in the
+  recorded conversation (§1) fills both. Ivory House is the one worth doing
+  first — it is the whole-house project and the only one with real
+  photography across four categories.
 
 ### Everything else
 

@@ -3,8 +3,30 @@
 // BUILD-PLAN.md — not built yet). Update here, not inline in components.
 
 export const business = {
-  phone: '859-640-5814',
-  phoneHref: 'tel:+18596405814',
+  // PHONE — 2026-07-31 review. Amy's real mobile (859-640-5814) is NOT
+  // published: it is her personal number, and putting it on a public website
+  // is a decision nobody made deliberately. A Google Voice business number
+  // will replace it; it does not exist yet (LAUNCH_CHECKLIST.md).
+  //
+  // Both fields are null until it does, and everything that consumes them is
+  // written to handle null rather than to fall back to something: the footer
+  // renders no phone row at all, and the LocalBusiness JSON-LD omits
+  // `telephone` entirely. **Do not put a placeholder string like "Coming
+  // soon" or "(555)" here** — the footer would render it as a phone number
+  // and the schema would publish it to Google as one.
+  //
+  // TODO (Sam): obtain the Google Voice number, then set both fields. Format
+  // `phone` for display ('859-640-5814') and `phoneHref` as a tel: URI with
+  // the country code ('tel:+18596405814'). Nothing else needs changing.
+  phone: null as null | string,
+  phoneHref: null as null | string,
+
+  // The service-area line in the footer (DESIGN_BRIEF 5.8), replacing the
+  // hero's old location block. **`servingSince` is a placeholder and must not
+  // ship** — ASK-AMY.md is chasing the real year. The footer prints this
+  // string verbatim, brackets and all, so it stays visibly wrong on purpose
+  // rather than quietly defaulting to something plausible.
+  servingSince: '[DATE - ask Amy]',
 
   // Service-area business, no published street address (DESIGN_BRIEF.md 2:
   // "no client names, no addresses"). Fort Wright is the base city for

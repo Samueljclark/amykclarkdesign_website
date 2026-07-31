@@ -1,0 +1,141 @@
+---
+// STANDALONE BLINDS LANDING PAGE — DESIGN_BRIEF.md section 4, added in the
+// 2026-07-31 Kristen Hitch review (decision 12).
+//
+// **This page is deliberately unlinked.** It is not in the main nav, not in
+// the footer, and nothing on the site points at it. That is the design, not
+// an oversight: it exists to receive future targeted ad traffic for the
+// blinds and shades category, which 5.3 identifies as the growth category and
+// the one most likely to get ad spend. Someone arriving here clicked an ad
+// about blinds, so the page does one job — take that click to the discovery
+// call — without the rest of the site's navigation competing for it.
+//
+// It is NOT a replacement for /services/blinds-shades. That page is the real
+// content, stays in the nav, and owns the deep material (the five decision
+// categories, Lafayette, the accordion). This one is short on purpose.
+//
+// **Not a doorway page** in 8.4's sense, which is worth stating because the
+// shape is similar: 8.4 warns against building twelve thin pages targeting
+// twelve place names. This targets a product category, there is exactly one
+// of it, and it carries its own real copy rather than a find-and-replaced
+// template. It stays in the sitemap and is indexable — an ad landing page
+// that Google cannot see is a page that cannot also earn organic traffic.
+//
+// Vendor naming follows rule 7/8 exactly as the service page does: Lafayette
+// may be named as the source, but no "dealer"/"authorized"/"partner" claim
+// until Amy confirms one (ASK-AMY.md). No pricing (rule 1). No consultation
+// fee amount (5.9).
+//
+// TODO (backend, pending): the CTA points at /contact until the calendar
+// booking tool for the discovery call is chosen — Calendly vs Google Calendar
+// is open with Amy (ASK-AMY.md). This page is the one most likely to want a
+// direct booking link rather than the qualification form, since ad traffic is
+// colder and a form is more friction. Revisit when that decision lands.
+
+import Base from '../layouts/Base.astro';
+import RevealImage from '../components/RevealImage.astro';
+import { photos } from '../data/photos';
+
+const lead = photos['ivory-house-blinds-detail'];
+
+// The three points this page makes. Kept as data rather than inline markup so
+// the copy is swappable in one place, consistent with the content-collection
+// pattern the rest of the site uses.
+// DRAFT COPY - NEEDS REWRITE (all three, and the lead paragraph below).
+const points = [
+  {
+    title: 'Measured in your room, not off a plan',
+    body: 'An eighth of an inch decides whether an inside mount clears the frame or binds against it. Amy measures every opening herself, in the room, and installs the finished product herself.',
+  },
+  {
+    title: 'One catalog, known cold',
+    body: 'Blinds, shades, shutters, and woven woods all come from Lafayette Interior Fashions, the one line Amy represents in this category. A short list she knows well beats access to everything.',
+  },
+  {
+    title: 'Specified for how you use the room',
+    body: 'Light and glare, privacy, motorization, and child safety are four separate decisions, and most regret about blinds comes from one nobody actually made. Amy walks through them before anything is ordered.',
+  },
+];
+---
+
+<Base
+  title="Custom Blinds and Shades Cincinnati | Amy K Clark Design"
+  description="Custom blinds and shades for Cincinnati and Northern Kentucky homes, measured and installed by Amy Clark. Book a complimentary discovery call."
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Blinds and Shades', href: '/blinds' },
+  ]}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">Blinds and Shades</p>
+    <h1 class="type-display text-page__heading">Custom Blinds and Shades in Cincinnati</h1>
+    <!-- DRAFT COPY - NEEDS REWRITE -->
+    <p class="text-page__lead">
+      Measured, specified, and installed by the person who designs them. Amy Clark works throughout
+      Cincinnati and Northern Kentucky, and every opening gets measured in the room rather than
+      taken off a plan.
+    </p>
+    <a href="/contact" class="btn btn-solid blinds-lp__cta">
+      Schedule your complimentary discovery call
+    </a>
+  </section>
+
+  <RevealImage
+    src={lead.image}
+    alt={lead.alt}
+    blurDataURL={lead.blurDataURL}
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
+
+  <section class="section wrap" aria-labelledby="blinds-lp-points">
+    <h2 id="blinds-lp-points" class="type-label section-eyebrow">Why it lands right</h2>
+    <ul class="blinds-lp__points">
+      {points.map((point) => (
+        <li class="blinds-lp__point">
+          <h3 class="type-display blinds-lp__point-title">{point.title}</h3>
+          <p class="blinds-lp__point-body">{point.body}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section wrap contact-band bg-ground">
+    <!-- DRAFT COPY - NEEDS REWRITE -->
+    <p class="type-display contact-band__line">Let's Get Started</p>
+    <a href="/contact" class="btn btn-solid">Schedule your complimentary discovery call</a>
+  </section>
+</Base>
+
+<style>
+  .blinds-lp__cta {
+    margin-top: 2.5rem;
+  }
+
+  .blinds-lp__points {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .blinds-lp__point-title {
+    /* Interpolated Display size, same device the service and text pages use
+       for subheads — not a fourth type role (3.4). */
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    max-width: 20ch;
+  }
+
+  .blinds-lp__point-body {
+    margin-top: 1rem;
+    max-width: var(--measure);
+    color: var(--ink-muted);
+  }
+
+  @media (min-width: 900px) {
+    .blinds-lp__points {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 3rem 2.5rem;
+    }
+  }
+</style>

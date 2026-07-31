@@ -41,6 +41,14 @@ const { project } = Astro.props;
 
     <section class="section wrap project-detail__body">
       <h1 class="type-display project-detail__heading">{project.name}</h1>
+      {/* The problem/solution blurb (5.2, 2026-07-31 review), then the scope
+          statement. Order matters: the blurb says what the work is, the scope
+          line says how much of the room was Amy's — which only makes sense
+          once you know what was done. `scope` is never optional and never
+          merged into the blurb; it is the sentence that stops the page
+          implying she designed the whole house. */}
+      <!-- DRAFT COPY - NEEDS REWRITE -->
+      <p class="project-detail__blurb">{project.blurb}</p>
       <p class="project-detail__scope">{project.scope}</p>
       <SpecBlock spec={project.spec} />
     </section>
@@ -51,9 +59,16 @@ const { project } = Astro.props;
   .project-detail__heading {
     max-width: 18ch;
   }
-  .project-detail__scope {
+  .project-detail__blurb {
     max-width: var(--measure);
     margin-top: 1.5rem;
+  }
+  /* The scope line sits quieter than the blurb above it: it is a disclosure,
+     not the pitch. Muted, same treatment as other meta text (3.3). */
+  .project-detail__scope {
+    max-width: var(--measure);
+    margin-top: 1.25rem;
     margin-bottom: 3rem;
+    color: var(--ink-muted);
   }
 </style>

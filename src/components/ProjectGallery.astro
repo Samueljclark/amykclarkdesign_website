@@ -1,8 +1,17 @@
 ---
-// Project detail page image flow (DESIGN_BRIEF.md 5.2): a lead image, then
-// three to eight supporting images. Lead is full-bleed (3.5); supporting
-// images sit in a quiet grid — the brief only asks for asymmetry on index
-// listings (Home strip, Portfolio index), not the detail page's own gallery.
+// Project detail page image flow (DESIGN_BRIEF.md 5.2). Lead is full-bleed
+// (3.5); the supporting frames below it are a COLLAGE, not a scroll.
+//
+// Changed 2026-07-31 (Kristen Hitch review). 5.2 previously asked for "three
+// to eight supporting images" and this component rendered them as a grid of
+// tiles up to 32rem wide — in practice a long vertical stack that asked the
+// reader to scroll a gallery before reaching the copy. The brief now says "a
+// tight, small collage — not a long photo scroll," and this is that: smaller
+// tiles, tighter gutters, capped overall width, and mixed tile heights so the
+// set reads as one arranged group rather than a queue.
+//
+// Tile count is a data decision, not a layout one — see projects.ts, where
+// Ivory House was cut from eight frames to four.
 
 import RevealImage from './RevealImage.astro';
 import type { ProjectImage } from '../data/projects';
@@ -29,14 +38,16 @@ const { lead, supporting, leadTransitionName } = Astro.props;
 
 {supporting.length > 0 && (
   <ul class="wrap project-gallery__list">
-    {supporting.map((item) => (
+    {supporting.map((item, i) => (
       <li class="project-gallery__item">
         <RevealImage
           src={item.image}
           alt={item.alt}
           blurDataURL={item.blurDataURL}
-          aspectRatio="4/5"
-          sizes="(min-width: 768px) 40vw, 90vw"
+          {/* Alternating portrait/landscape tiles are what make this read as
+              a collage rather than a uniform contact sheet. */}
+          aspectRatio={i % 2 === 0 ? '4/5' : '1/1'}
+          sizes="(min-width: 900px) 22vw, (min-width: 600px) 44vw, 90vw"
         />
       </li>
     ))}
@@ -44,19 +55,33 @@ const { lead, supporting, leadTransitionName } = Astro.props;
 )}
 
 <style>
+  /* The collage. Two columns on mobile so even the smallest screen sees a
+     group rather than a column, four at desktop. `minmax(0, 1fr)` tracks
+     rather than the old `auto-fit` + 32rem max: the tiles are deliberately
+     small and the container is capped, so the single-item blow-up that
+     `auto-fit` + `1fr` used to cause (a 1249x1561 image at 1345px, taller
+     than the viewport) cannot happen here — one item in a 2-column grid
+     takes one 2-column-width track, not the whole row. */
   .project-gallery__list {
     display: grid;
-    gap: 3rem 1.5rem;
-    /* The track max is 32rem, not `1fr`, and that matters. With `auto-fit`,
-       a `1fr` max is a trap on a single item: auto-fit collapses the empty
-       tracks to 0 and the one surviving track absorbs the entire row. At
-       1345px that rendered a 1249x1561 image — taller than the viewport, and
-       on a short laptop screen roughly two screens tall. Capping the max
-       lets one item render at a sane size while three or more still fill the
-       row exactly as before. The bug only appears while a collection holds a
-       single item, which is the state the portfolio and this gallery are
-       actually in today. */
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 32rem));
-    margin-top: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+    /* Capped and centred: a collage that runs the full width of a 2560px
+       display is a scroll again, just horizontal. */
+    max-width: 60rem;
+  }
+
+  /* Nudge alternating tiles down so the group is arranged rather than
+     aligned — 3.5's asymmetry, at collage scale. Inert at one item. */
+  .project-gallery__item:nth-child(even) {
+    margin-top: 1.75rem;
+  }
+
+  @media (min-width: 900px) {
+    .project-gallery__list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
   }
 </style>

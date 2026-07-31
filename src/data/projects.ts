@@ -51,6 +51,20 @@ export interface Project {
   // back to `scope` if unset.
   scope: string;
   metaDescription?: string;
+  // The problem/solution blurb (5.2, added in the 2026-07-31 review): what the
+  // room needed and what Amy did about it, two or three sentences, sitting
+  // above `scope` on the detail page.
+  //
+  // **WARNING — the blurbs currently in this file are written strictly from
+  // what is already established in IMAGE-MANIFEST.md and Amy's own confirmed
+  // scope, and no further.** They describe what the work IS. They do not
+  // describe what was wrong with the room beforehand, what the client wanted,
+  // or why a fabric was chosen, because none of that is on file for either
+  // project. That is exactly the material ASK-AMY.md §1 is trying to get out
+  // of one recorded conversation. Do not fill the gap by inventing a
+  // narrative — an invented "the room was dark and cold" is worse than a
+  // short blurb, and 5.2's whole point is that these are real projects.
+  blurb: string;
   lead: ProjectImage;
   supporting: ProjectImage[];
   spec: ProjectSpec;
@@ -67,6 +81,11 @@ export const projects: Project[] = [
     scope: 'Amy chose the fabric and made the drapery and the banded roman shade for this room.',
     metaDescription:
       'Amy selected the fabric and made the drapery and banded roman shade for this living room.',
+    // DRAFT COPY - NEEDS REWRITE. Two layered treatments on one opening, which
+    // is the only thing here established by the photographs and the confirmed
+    // scope. What the room needed BEFORE, and why this fabric, are not on file.
+    blurb:
+      'A wall of French doors carrying two treatments at once: pleated drapery for the frame and softness, and a banded roman shade behind it for the light. Amy chose the fabric and made both.',
     lead: {
       image: collectedLivingRoomLeadImage,
       alt: 'Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa',
@@ -117,11 +136,36 @@ export const projects: Project[] = [
       "Amy made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. She did not design or supply the furniture itself.",
     metaDescription:
       'Amy made the drapery, reupholstered the dining chairs, and made the cushions and pillows shown in this whole-house project.',
+    // DRAFT COPY - NEEDS REWRITE. Strictly the confirmed scope, restated as
+    // prose. This is a whole-house project and the one place a real
+    // problem/solution story would earn the most — it is the first thing to
+    // replace once Amy has been recorded (ASK-AMY.md §1).
+    blurb:
+      'One house, four categories, one person. Drapery throughout, white wood blinds in the bay-window breakfast room, the breakfast room chairs reupholstered, and cushions and pillows to finish. Amy made all of it and installed all of it.',
     lead: {
       image: photos['ivory-house-bay-window'].image,
       alt: photos['ivory-house-bay-window'].alt,
       blurDataURL: photos['ivory-house-bay-window'].blurDataURL,
     },
+    // Trimmed from eight supporting frames to four, 2026-07-31 (5.2: "a tight,
+    // small collage — not a long photo scroll"). Eight full-width frames made
+    // the reader scroll a gallery to reach the point of the page.
+    //
+    // The four kept are one per category of work, so the set still proves the
+    // whole-house claim without repeating itself:
+    //   living-room       — the wide room shot, drapery in context
+    //   header-detail-1   — drapery construction, close
+    //   dining-chair      — the upholstery
+    //   kitchen-cushions  — the soft furnishings
+    // The blinds are already the lead image (the bay window), so a second
+    // blinds frame would be the one duplicate in the set.
+    //
+    // Dropped, and why: `header-detail-2` is near-identical framing to
+    // detail-1; `blinds-detail` duplicates the lead; `lumbar-pillows` and
+    // `ball-pillow` are two more soft-furnishings frames where
+    // kitchen-cushions already carries the category. All four remain in
+    // photos.ts and IMAGE-MANIFEST.md — they are cut from this page, not from
+    // the site's asset record.
     supporting: [
       {
         image: photos['ivory-house-living-room'].image,
@@ -134,16 +178,6 @@ export const projects: Project[] = [
         blurDataURL: photos['ivory-house-header-detail-1'].blurDataURL,
       },
       {
-        image: photos['ivory-house-header-detail-2'].image,
-        alt: photos['ivory-house-header-detail-2'].alt,
-        blurDataURL: photos['ivory-house-header-detail-2'].blurDataURL,
-      },
-      {
-        image: photos['ivory-house-blinds-detail'].image,
-        alt: photos['ivory-house-blinds-detail'].alt,
-        blurDataURL: photos['ivory-house-blinds-detail'].blurDataURL,
-      },
-      {
         image: photos['ivory-house-dining-chair'].image,
         alt: photos['ivory-house-dining-chair'].alt,
         blurDataURL: photos['ivory-house-dining-chair'].blurDataURL,
@@ -152,16 +186,6 @@ export const projects: Project[] = [
         image: photos['ivory-house-kitchen-cushions'].image,
         alt: photos['ivory-house-kitchen-cushions'].alt,
         blurDataURL: photos['ivory-house-kitchen-cushions'].blurDataURL,
-      },
-      {
-        image: photos['ivory-house-lumbar-pillows'].image,
-        alt: photos['ivory-house-lumbar-pillows'].alt,
-        blurDataURL: photos['ivory-house-lumbar-pillows'].blurDataURL,
-      },
-      {
-        image: photos['ivory-house-ball-pillow'].image,
-        alt: photos['ivory-house-ball-pillow'].alt,
-        blurDataURL: photos['ivory-house-ball-pillow'].blurDataURL,
       },
     ],
     spec: {
