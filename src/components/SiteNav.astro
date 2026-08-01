@@ -94,6 +94,11 @@ const isCurrent = (href: string) =>
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* A real minimum gap between the wordmark and the first nav item. Without
+       it they touched at exactly 768px — reported during step 2 and left
+       unfixed until now, because with six items it was a one-pixel-wide
+       cosmetic problem. With seven it is not. */
+    gap: 1.5rem;
     min-height: var(--nav-height);
   }
 
@@ -143,7 +148,22 @@ const isCurrent = (href: string) =>
     color: var(--ink);
   }
 
-  @media (min-width: 768px) {
+  /* ---- The horizontal row switches on at 900px, not 768px (changed
+     2026-08-01 with the seventh nav item).
+
+     Measured at 768px with seven items: the wordmark ended at x=200 and the
+     link row ran to x=829 against a 768px viewport — the last two items were
+     off-screen. It did not show up as document overflow because `.site-nav`
+     is `position: fixed` and fixed elements do not contribute to
+     `scrollWidth`, so the usual overflow check reports clean while the nav is
+     visibly clipped. Worth remembering: measure the nav's own right edge
+     against the viewport, not `scrollWidth`.
+
+     Seven items plus the wordmark need roughly 890px to sit comfortably, so
+     768-899px now gets the hamburger panel instead of a squeezed row. The gap
+     is fluid rather than fixed at 2rem so the row is not tight the moment it
+     appears. ---- */
+  @media (min-width: 900px) {
     .site-nav__toggle {
       display: none;
     }
@@ -156,7 +176,7 @@ const isCurrent = (href: string) =>
     }
     .site-nav__list {
       flex-direction: row;
-      gap: 2rem;
+      gap: clamp(1.25rem, 2.2vw, 2rem);
       padding: 0;
     }
     .site-nav__panel .site-nav__list a {

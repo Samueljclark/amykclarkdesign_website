@@ -120,11 +120,42 @@ input, textarea, select {
    sighted reader hitting an unlabelled wall of images.
 
    Label style (3.4), which is what the brief specifies and what the rest of
-   the site's small structural text already uses. Not a new type role. */
+   the site's small structural text already uses. Not a new type role.
+
+   ---- Enlarged 2026-08-01 (step 10c). ----
+   These labels were added in the July 31 review for one reason: so a reader
+   scrolling Home always knows which section they are in. At the Label role's
+   literal 11px in `--ink-muted` they did not do that job — they read as
+   captions, and a caption is something you skip.
+
+   What changed, and what deliberately did not:
+   - **Size**, 11px -> 14px at 375px, 18px at 1280px and up. Still nowhere
+     near the display headings they sit above (36-92px), so the hierarchy is
+     unambiguous by size alone.
+   - **Colour**, `--ink-muted` -> `--ink`. This is most of the "visual weight"
+     Sam asked for. Muting a 14px cap label is what made these disappear.
+   - **Letter-spaced uppercase caps stay**, per the brief and per the request.
+     Tracking is still 0.18em, so the treatment is the Label role at a larger
+     size rather than a different treatment.
+   - **Weight stays 500** (`.type-label`'s own). Making these bolder as well
+     as darker and larger would start competing with the headings underneath.
+   - `line-height` moves off `.type-label`'s 1, because the longest of these
+     ("What Our Clients Say About Working With Us") wraps to two and three
+     lines at narrow widths and caps on a line-height of 1 collide.
+
+   This is the shared class, so `/blinds`' one section marker ("Why it lands
+   right") picks the change up too. That is the same kind of element doing the
+   same job, so it is consistent rather than collateral.
+
+   Source order matters here: `.type-label` (tokens.css) and `.section-eyebrow`
+   (this file) are both single-class selectors, and this file is imported
+   second in Base.astro. Do not reorder those imports. */
 .section-eyebrow {
   display: block;
-  color: var(--ink-muted);
-  margin-bottom: 2rem;
+  color: var(--ink);
+  font-size: clamp(0.875rem, 0.78rem + 0.42vw, 1.125rem);
+  line-height: 1.35;
+  margin-bottom: 2.25rem;
 }
 
 /* Repeated at the foot of Home and every service page (5.1 section 6). */
