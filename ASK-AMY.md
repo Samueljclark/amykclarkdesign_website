@@ -123,16 +123,13 @@ comes up.
 
 ## 3. Facts to confirm (short answers, could be one text thread)
 
-### From the 2026-07-31 Kristen Hitch review — these four are the new ones
+### From the 2026-07-31 Kristen Hitch review
 
-- **What year does "serving Cincinnati and Northern Kentucky since ___" use?**
-  The hero's location line was removed in that review and replaced with a single
-  footer line carrying a founding year. **The placeholder cannot ship** — a
-  "since" with no year reads worse than no line at all, and this is now a
-  one-word blocker on the footer. Whatever she says is right: the year she
-  registered the business, the year she took her first paying client, the year
-  she started sewing for other people. Just needs to be a year she is happy to
-  stand behind publicly.
+*(The "since ___" year question that used to head this list is **resolved** —
+Sam supplied **2021** on 2026-08-01. `business.ts`'s `servingSince` carries
+it and the footer reads "Serving Cincinnati and Northern Kentucky since
+2021". No placeholder string remains anywhere on the site.)*
+
 - **Confirm the consultation fee stays off the website — correct?** The
   understanding from the meeting is that the figure is for Amy's internal
   reference and for a future automated confirmation email, and that it is

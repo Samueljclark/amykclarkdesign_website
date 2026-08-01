@@ -22,11 +22,12 @@ export const business = {
   phoneHref: null as null | string,
 
   // The service-area line in the footer (DESIGN_BRIEF 5.8), replacing the
-  // hero's old location block. **`servingSince` is a placeholder and must not
-  // ship** — ASK-AMY.md is chasing the real year. The footer prints this
-  // string verbatim, brackets and all, so it stays visibly wrong on purpose
-  // rather than quietly defaulting to something plausible.
-  servingSince: '[DATE - ask Amy]',
+  // hero's old location block. **Resolved 2026-08-01: 2021**, supplied by Sam.
+  // This was the last visible placeholder string on the site; the footer
+  // prints it verbatim, so it now reads "Serving Cincinnati and Northern
+  // Kentucky since 2021". The corresponding open question is removed from
+  // ASK-AMY.md and the LAUNCH_CHECKLIST blocker is closed.
+  servingSince: '2021',
 
   // Service-area business, no published street address (DESIGN_BRIEF.md 2:
   // "no client names, no addresses"). Fort Wright is the base city for

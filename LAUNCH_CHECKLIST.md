@@ -72,10 +72,11 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   never that the fee credits toward the project (it does not). Publishing the
   amount would now be a new decision *against* a standing one — DESIGN_BRIEF
   §5.9 and §10 both encode it. Confirmation from Amy is tracked in ASK-AMY.md.
-- [ ] **The footer's "since" year is a placeholder.** The footer reads
-  `Serving Cincinnati and Northern Kentucky since [DATE — ask Amy]`. **This
-  cannot ship as written.** One word from Amy closes it (ASK-AMY.md); until
-  then the literal bracket text is live in the build. Verify with:
+- [x] ~~**The footer's "since" year is a placeholder.**~~ **Resolved
+  2026-08-01: 2021**, supplied by Sam. `business.ts`'s `servingSince` carries
+  the real year and the footer reads `Serving Cincinnati and Northern Kentucky
+  since 2021`. No bracket placeholder remains in source or in the build.
+  Confirm with:
 
   ```bash
   grep -rn "ask Amy" src/ dist/
