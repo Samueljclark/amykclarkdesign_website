@@ -53,12 +53,18 @@ const { images } = Astro.props;
         rides high. */}
     <div aria-hidden="true"></div>
 
+    {/* The centre row now carries only the opening line — a transient element
+        that fades out after ~3.8s and is then removed from the DOM. The
+        wordmark moved OUT of here in step 10a: white type in the dead centre
+        of the frame sat on the lightest part of the photograph (a pale wall,
+        in every hero crop this site has used), and the middle of the mark
+        disappeared into it entirely. See `.hero__mark` below. */}
     <div class="hero__center">
-      <p class="type-display hero__mark">Amy K Clark Design</p>
       <p class="hero__opening-line" data-hero-opening-line>The little details make all the difference.</p>
     </div>
 
     <div class="hero__bottom">
+      <p class="hero__mark">Amy K Clark Design</p>
       <nav class="hero__words" aria-label="Featured categories">
         <a href="/services/upholstery" class="type-label link-underline">Upholstery</a>
         <a href="/services/drapery" class="type-label link-underline">Drapery</a>
@@ -138,6 +144,18 @@ const { images } = Astro.props;
     100% { filter: brightness(1); }
   }
 
+  /* 5.1 asks for "a subtle scrim gradient rather than a hard overlay so the
+     image stays clean," and step 8's audit confirmed this is the ONE gradient
+     in the whole bundle (3.2 bans them otherwise). It stays one gradient —
+     the bottom ramp below is deepened, not supplemented with a second layer.
+
+     Why the bottom got heavier in step 10a: the wordmark, the three word
+     links, and the CTA now all sit in the lower third, and every hero
+     photograph this site has used is LIGHT down there (a pale sofa and a
+     stone floor in the current one). The old ramp reached only 55% ground at
+     the very bottom edge and was still fully transparent at 55% height, so
+     the band the wordmark actually occupies carried almost no scrim at all.
+     The top ramp is unchanged — it exists for the nav, which has not moved. */
   .hero__scrim {
     position: absolute;
     inset: 0;
@@ -146,8 +164,9 @@ const { images } = Astro.props;
       to bottom,
       color-mix(in srgb, var(--ground) 35%, transparent) 0%,
       transparent 22%,
-      transparent 55%,
-      color-mix(in srgb, var(--ground) 55%, transparent) 100%
+      transparent 44%,
+      color-mix(in srgb, var(--ground) 64%, transparent) 68%,
+      color-mix(in srgb, var(--ground) 84%, transparent) 100%
     );
   }
 
@@ -172,9 +191,56 @@ const { images } = Astro.props;
     gap: 0.75rem;
   }
 
+  /* ---- The wordmark. Rebuilt in step 10a as a legibility fix, NOT as the
+     final brand mark — Amy is still choosing between three candidate
+     typefaces and that decision is logged as blocking in ASK-AMY.md. Nothing
+     here should be read as a decision about what the mark eventually is.
+
+     What was wrong: `type-display` at up to 92px, white, centred in the dead
+     middle of the frame. The vertical centre of a room photograph is where
+     the wall is, and a wall is the brightest thing in the picture, so the
+     middle of the wordmark vanished into it while the ends stayed readable.
+
+     Three changes, all of them Amy's own stated direction (July 31 review,
+     relayed by Sam — this direction is NOT in DESIGN_BRIEF.md today; step 10
+     adds it):
+       1. Anchored to the bottom of the frame, not floating in the centre.
+          The lower third is darker in every crop, and it is now backed by the
+          deepened scrim ramp above.
+       2. All caps with wide tracking.
+       3. Thinner.
+
+     On (3), specifically: this is the **Label role (3.4) scaled up**, not a
+     fourth type role and not a weight outside the system. Label is uppercase
+     with 0.18em tracking at weight 500; this is the same treatment at 400,
+     which is the lighter of the two weights 3.4 permits, with the tracking
+     opened further. Going below 400 in the variable file was considered and
+     rejected on the merits rather than on the rule: sub-400 strokes on
+     light-on-photograph type are exactly what disappears against a busy
+     image, which is the defect being fixed. `--hero-mark-weight` is here so
+     that is a one-value change if Amy wants it lighter anyway.
+
+     Size is deliberately well below the Display clamp. A wordmark that has to
+     survive an arbitrary photograph behind it wants to be small, wide, and
+     dense rather than large and open. ---- */
   .hero__mark {
-    margin: 0;
-    opacity: 0.92;
+    --hero-mark-weight: 400;
+    margin: 0 0 0.35rem;
+    font-weight: var(--hero-mark-weight);
+    font-size: clamp(1rem, 0.55rem + 2.1vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    /* Letter-spacing adds a trailing space AFTER the final letter, so the
+       glyphs sit half a space left of true centre. Half the tracking, not the
+       whole of it: measured in-browser at 1280px, `text-indent` shifts a
+       centred line by its full value, so 0.26em over-corrected by exactly the
+       same 4.6px it was meant to remove. 0.13em brings the glyph run's optical
+       centre to within ~2px of the viewport centre (measured at 1280px:
+       642.3 against 640; the residue is the final N's side bearing). */
+    text-indent: 0.13em;
+    text-align: center;
+    max-width: 100%;
   }
 
   .hero__opening-line {

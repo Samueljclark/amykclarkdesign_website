@@ -87,16 +87,31 @@ const rotatingQuotes = [
   },
 ];
 
-// Real photography (2026-07-28), replacing the substitute crop that carried
-// the hero since step 2. See IMAGE-MANIFEST.md for the full selection
-// record. Still a single-item array — the array shape stays reversible for
-// a real multi-image gallery later, but that is a bigger, separate decision
-// than "swap the placeholder," so it is not attempted here.
+// Hero photograph — swapped in step 10a (2026-08-01) at Sam's request, from
+// `ivory-house-hero` to `banded-roman-shade`. This is the wide room frame
+// that was the full-bleed lead image on /about until this change: drapery
+// and a banded roman shade on a wall of French doors opening onto the pool
+// and patio. /about is now deliberately left with no lead image rather than
+// having something arbitrary substituted in (see about.astro).
+//
+// **If this is the wrong frame, the other candidate is
+// `photos['pleated-drapery']`** — `hero/pleated-drapery-living-room-french-
+// doors-pool-view.jpg`, the same room shot wider, currently the lead on
+// /services and /services/drapery and the lead image on the Collected Living
+// Room project page. It was NOT on /about, which is what settled it. One
+// key change here swaps to it.
+//
+// Still a single-item array. The array shape stays reversible for a real
+// multi-image gallery later; that remains a separate decision.
 const heroImages = [
   {
-    src: photos['ivory-house-hero'].image,
-    alt: photos['ivory-house-hero'].alt,
-    blurDataURL: photos['ivory-house-hero'].blurDataURL,
+    src: photos['banded-roman-shade'].image,
+    // Hero-specific alt rather than photos.ts's shared string: this frame
+    // renders as a much wider crop here (a full-screen 100svh box) than it
+    // does in the 4:5 and 16/9 slots the shared alt was written for, so the
+    // pool and patio beyond the doors are a real part of what is visible.
+    alt: 'A living room wall of French doors dressed with pleated drapery and a banded roman shade, opening onto a pool and stone patio, with a crystal chandelier overhead',
+    blurDataURL: photos['banded-roman-shade'].blurDataURL,
   },
 ];
 

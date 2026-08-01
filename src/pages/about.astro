@@ -46,7 +46,6 @@ import Base from '../layouts/Base.astro';
 import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
 import { getEntry, render } from 'astro:content';
-import leadImage from '../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
 import originImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
 import amyPortrait from '../assets/images/team/amy-clark.jpg';
 import samPortrait from '../assets/images/team/sam-clark.jpg';
@@ -102,13 +101,18 @@ const studio = [
     {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
   </section>
 
-  <RevealImage
-    src={leadImage}
-    alt="Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead"
-    blurDataURL="data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA"
-    aspectRatio="16/9"
-    sizes="100vw"
-  />
+  {/* The full-bleed lead image that used to sit here is GONE, deliberately
+      (step 10a, 2026-08-01). That frame — the banded roman shade on the wall
+      of French doors — is now the Home hero, and running the same photograph
+      as the first image on two pages reads as a shortage rather than as a
+      motif. Nothing was substituted in its place: every other real photograph
+      on the site is already doing three or four jobs, and picking one
+      arbitrarily to fill a hole is how the substitute-photo problem got as
+      wide as it is. The page opens on the intro copy and reaches its first
+      image at the workroom shot below.
+      This is the one page on the site with no lead image. Give it a real one
+      when Kelsee delivers — a portrait of Amy or a workroom frame would both
+      be right here. */}
 
   <section class="section wrap">
     <div class="prose">
