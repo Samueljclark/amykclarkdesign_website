@@ -75,6 +75,117 @@ input, textarea, select {
   scroll-margin-top: var(--nav-height);
 }
 
+/* ===========================================================================
+   HOMEPAGE SCROLL SNAP
+   ===========================================================================
+
+   ---------------------------------------------------------------------------
+   THE KILL SWITCH IS THE NEXT LINE. Set `--home-scroll-snap` to `none` and
+   scroll snapping is off site-wide. That is the whole off-switch; nothing
+   else needs touching, and every rule below is inert without it.
+   --------------------------------------------------------------------------- */
+:root {
+  --home-scroll-snap: y proximity;
+}
+
+/* ---------------------------------------------------------------------------
+   THIS REVERSES A PRIOR REMOVAL, AND THAT WAS DELIBERATE ON BOTH SIDES.
+   ---------------------------------------------------------------------------
+   BUILD-PLAN.md step 2 records that `scroll-snap-type: y proximity` was the
+   FIRST implementation of the hero-to-portfolio transition and was taken out
+   again because it "felt aggressive on trackpad — small scrolls got pulled
+   back to the hero instead of easing forward, the opposite of forgiving for a
+   less scroll-dexterous audience." Kristen Hitch raised snapping again as an
+   accessibility concern in the 2026-07-31 review and asked to revisit it only
+   once the site is closer to finished.
+
+   Sam asked for it anyway on 2026-08-01, aware of both. This block exists on
+   his instruction; the objections above are the reason the kill switch is one
+   line and the reason `proximity` is non-negotiable here.
+
+   **The specific 2026-07-25 failure is designed out rather than hoped away:
+   the hero carries no `scroll-snap-align` at all.** That failure was a snap
+   point sitting at scroll position 0 — a 40px nudge off the top came to rest
+   nearer the hero's own centre than anything else and got dragged backwards.
+   With no snap point at the top of the document there is nothing to drag back
+   to, and `.hero` does not carry `.section`, so the selector below excludes it
+   by construction rather than by an exception someone has to remember.
+   `initHeroScrollEase()` in motion.js still owns that first transition and is
+   untouched.
+
+   ---------------------------------------------------------------------------
+   SECTION HEIGHT VARIABILITY — the open problem, and what was done about it.
+   ---------------------------------------------------------------------------
+   Measured on the real page at 1280x900, as a percentage of the viewport:
+   portfolio 186%, services 127%, About 85%, client quotes 57%, contact 39%.
+   Two sections are nearly twice the viewport and two are well under half.
+
+   **No shared `min-height` was added, and that is the substantive decision.**
+   It was the obvious move (Sam suggested 70-85vh) and the arithmetic says it
+   backfires. A `min-height` cannot add space to a short section without
+   putting that space on screen: at 70svh the client-quote section grows from
+   512px to 630px and the contact band from 349px to 630px, so consecutive
+   snap points end up 630px apart with only ~300px of content between them.
+   That is the exact failure the 2026-07-31 review already fixed once — a
+   reader hitting a screen with almost nothing on it and reading it as the end
+   of the page. Padding sections out to make snapping feel even would undo it.
+
+   What actually makes variable heights work is that the two problems solve
+   themselves:
+
+   1. **Oversized sections need no special handling, by spec.** CSS Scroll
+      Snap says a snap area larger than the snapport in an axis does not have
+      to align at all — every scroll position where the area covers the
+      snapport is valid. So portfolio and services scroll freely through their
+      middles and only snap near their ends. Verified in-browser rather than
+      taken on trust.
+   2. **Short sections centre correctly without help.** Measured at every
+      snap point rather than assumed:
+        - client quotes (512px): three sections in view. The About portrait
+          and caption sit above, "Let's Get Started" from the contact band
+          sits below. A stop that still says the page continues.
+        - contact band (349px): two sections in view, six neighbouring
+          elements on screen.
+        - About (765px): its own content fills 62% of the viewport with the
+          rest split evenly above and below. Only its neighbours' padding is
+          in frame, not their content — so this one snap point does NOT show
+          adjacent copy. It still reads as a full stop rather than an empty
+          screen, which is why it was left alone; if it ever needs to, the
+          fix is content in that section, not a taller box.
+
+   So the answer to height variability is centre alignment plus `proximity`
+   plus leaving the sections the height their content actually wants.
+
+   `proximity`, never `mandatory`: it snaps when a reader comes to rest near a
+   point and never takes the scroll away from them mid-gesture. It is what
+   makes variable heights workable and it is the single thing in this block
+   that must not be changed.
+
+   `scroll-snap-stop: normal` is the initial value and is stated anyway, so
+   nobody has to check whether a fast flick can pass through several sections.
+   It can.
+   --------------------------------------------------------------------------- */
+html[data-scroll-snap] {
+  scroll-snap-type: var(--home-scroll-snap);
+}
+
+html[data-scroll-snap] main > .section {
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+}
+
+/* Fully off under reduced motion. This needs its own rule: 6.8's global block
+   collapses animation and transition durations, and `scroll-snap-type` is
+   neither — it would have survived that rule untouched. */
+@media (prefers-reduced-motion: reduce) {
+  html[data-scroll-snap] {
+    scroll-snap-type: none;
+  }
+  html[data-scroll-snap] main > .section {
+    scroll-snap-align: none;
+  }
+}
+
 /* ---- Text-led page shell. Originally written for the four service child
    pages (5.3); About and Process (5.4, 5.5) are the same shape, so the
    `.text-page__*` names below are the general form and `.service-page__*`
