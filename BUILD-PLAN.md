@@ -2102,3 +2102,397 @@ landing page. Footer gains the "Serving Cincinnati and Northern Kentucky
 since [DATE]" line. Phone replaced with a Google Voice placeholder in
 `business.ts`, and `telephone` dropped from the LocalBusiness JSON-LD until a
 real number exists. Decisions 12, 7, 14.
+
+---
+
+## Step 10: Sam's 2026-08-01 batch — done, pending your review
+
+Eleven tasks in one session, run on Opus 5 at Sam's explicit instruction
+(overriding CLAUDE.md's Sonnet 5 pin for this session only). Built and
+verified between each; committed in seven groups rather than one.
+
+Ordering note: the tasks were given as 1–11 but built as **1, 2, 3, 4, 6, 7,
+8, 9, 5, 10, 11**. Scroll snapping (5) was moved after the portfolio grid and
+About restructure (8) and the journal layout (9) because those two change the
+homepage's section heights, which is the exact input the snapping decision
+turns on. Tuning snap behaviour against heights that were about to change
+would have meant doing it twice.
+
+**10a. Hero: wordmark legibility, and a new photograph.**
+`HeroGallery.astro`, `index.astro`, `about.astro`.
+
+The centred white wordmark sat on the brightest part of every hero crop — the
+vertical centre of a room photograph is the wall — and its middle disappeared
+into it while the ends stayed readable. Rebuilt to Amy's own July 31
+direction, which **was not recorded in DESIGN_BRIEF.md and is now** (5.1): all
+caps, wide tracking, thinner, anchored to the bottom of the frame.
+
+Implemented as the **Label role scaled up** — uppercase, tracking opened to
+0.26em, weight 400 rather than Label's 500, at a size well below the Display
+clamp. Weight 400 is the lighter of the two 3.4 permits, and going below it in
+the variable file was rejected on the merits rather than on the rule:
+sub-400 strokes in light type over a busy photograph are precisely what
+disappears, which is the defect being fixed. `--hero-mark-weight` makes that a
+one-value change if Amy wants it lighter anyway.
+
+The single hero scrim's lower ramp was deepened (still one gradient — step 8's
+audit established that as the only gradient in the bundle and it stays true)
+to cover the band the wordmark, the word links, and the CTA now occupy.
+
+**Measured, not eyeballed.** A canvas sample of the real photograph composited
+with the scrim's computed alpha, across the full glyph band at 25/50/75% of
+cap height: worst pixel **4.73:1 at 375px** and **4.90:1 at 1280px**, medians
+5.99 and 6.68. Zero horizontal overflow at both widths. One line at both
+widths (258px of 335px available at 375px).
+
+One small thing worth remembering: `letter-spacing` adds a trailing space
+after the final glyph, so centred tracked text sits half a space left of true
+centre — and `text-indent` shifts a centred line by its **full** value, not
+half. `0.26em` over-corrected by exactly the 4.6px it was meant to remove;
+`0.13em` is right.
+
+**Hero photograph swapped** to
+`portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg`,
+the frame that was the full-bleed lead on `/about`. Hero-specific alt text,
+because the 100svh crop shows the pool and patio that the shared alt (written
+for 4:5 and 16/9 slots) does not.
+
+*Ambiguity resolved, and flagged.* The instruction described "the wide
+full-room shot currently used as the full-bleed image on the About page." Two
+files fit parts of that: the About lead above, and
+`hero/pleated-drapery-living-room-french-doors-pool-view.jpg`, which is
+genuinely the wider full-room frame but was **not** on `/about` (it leads
+`/services` and `/services/drapery`). The positional identifier is checkable
+and the descriptive one is not, so the About lead won. One key change in
+`index.astro` swaps to the other; the alternative is named in a comment there.
+
+`/about` is now the one page on the site with no lead image. Nothing was
+substituted — every other real photograph is already doing three or four jobs
+and filling a hole arbitrarily is how the substitute-photo problem got this
+wide.
+
+**10b. `/blinds` in the nav.** `nav.ts`, `SiteNav.astro`.
+
+Seven items now: Portfolio, Services, **Blinds**, About, Process, Journal,
+Contact. This reverses two things DESIGN_BRIEF section 4 said as of July 31 —
+a six-item cap, and `/blinds` being deliberately unlinked from nav and footer
+("intentional, not an oversight"). Both are updated there. The page's job as
+an ad landing page is unchanged.
+
+Label is "Blinds", not "Blinds and Shades": a seven-item row cannot afford a
+three-word label. The footer's Site column picks it up too, since it renders
+the same array — not asked for in so many words, but a footer that silently
+omits one nav item is a new inconsistency rather than a smaller change.
+
+**A real bug, and the reason it was invisible.** At 768px the seven-item row
+ran to x=829 against a 768px viewport with the last two items off-screen.
+**It did not register as document overflow, because `.site-nav` is
+`position: fixed` and fixed elements do not contribute to `scrollWidth`** — so
+the standard overflow check that the step 8 acceptance pass used reports clean
+while the nav is visibly clipped. Measure the nav's own right edge against
+`innerWidth`, not `scrollWidth`.
+
+Fixed by moving the horizontal row's breakpoint from 768px to **900px**
+(768–899px gets the hamburger panel) and making the item gap fluid
+(`clamp(1.25rem, 2.2vw, 2rem)`). Also added a real 1.5rem gap between the
+wordmark and the list, which closes the wordmark/Portfolio collision reported
+in step 2 and never fixed.
+
+Verified: 1280px one row with 385px clear; 900px one row with 101px clear;
+768px hamburger; 375px panel opens to 292px with all seven items against a
+384px max-height, nothing clipped.
+
+**10c. Homepage section labels sized up.** `global.css`.
+
+`.section-eyebrow` was the Label role's literal 11px in `--ink-muted`. These
+labels were added in the July 31 review specifically so a reader always knows
+which section they are in, and at that size they read as captions. Now 14px at
+375px / 18px at 1280px, in `--ink`. Uppercase, 0.18em tracking, weight 500 all
+unchanged — the Label role at a larger size, not a different treatment.
+`line-height` moves off `.type-label`'s 1, because the longest of them wraps
+and caps on a line-height of 1 collide.
+
+All four homepage labels confirmed identical in the rendered page (17.86px,
+`rgb(28,26,22)`, 3.21px tracking, weight 500, uppercase). `/blinds`' one
+section marker shares the class and picks it up.
+
+**10d. Process: the discovery call as an explicit first step.**
+`src/content/pages/process.md`, `process.astro`.
+
+Five numbered steps, not 5.5's four. The page opened at "Consultation" and
+never named the complimentary discovery call, so nothing on it conveyed that
+5.9's two-step funnel exists or that the call and the consultation are
+different things that both happen. Steps 1 and 2 are now those two
+conversations under their full names; 5.5's other three names are untouched.
+5.9 is newer and more specific, from the same review, so it wins — and
+DESIGN_BRIEF 5.5 is updated rather than quietly deviated from.
+
+**No fee, no amount, no cost framing.** The distinction is carried by
+"complimentary" (5.9's own word, and the site's CTA wording), by place, and by
+length. Swept the built page: zero pricing terms, zero banned words in visible
+copy — the one `transform` match is inside Astro's own view-transition
+keyframes, not prose. Numerals render 01–05.
+
+**10e. Footer year.** `business.ts`, ASK-AMY.md, LAUNCH_CHECKLIST.md.
+`servingSince` is **2021**. The footer reads "Serving Cincinnati and Northern
+Kentucky since 2021"; no bracket placeholder remains in source or build. This
+was the last visible placeholder string on the site.
+
+**10f. Uniform portfolio grid.** `global.css`, `PortfolioStrip.astro`,
+`portfolio/index.astro`, `projects.ts`.
+
+The two cards carried `nth-child` margin-tops of 4rem and 2rem per 3.5's
+varied vertical offsets. That device needs the four to six items the brief
+assumed; with two, one offset card against one flush card reads as scattered.
+Replaced with equal boxes, one 4:5 ratio, one baseline, aligned captions.
+
+**Two explicit columns rather than `auto-fit`**, which with four items at
+1280px resolved to three tracks and dropped the fourth onto a row by itself —
+the same scattered look by a different mechanism. The old track cap
+(`minmax(min(100%, 20rem), 32rem)`) existed to work around `auto-fit`'s
+single-item collapse, documented at length in step 3; with an explicit column
+count that trap cannot occur and the workaround is gone.
+
+Defined once as `.portfolio-grid` in `global.css` and consumed by both pages,
+because the requirement is that the two pages *match* — two scoped style
+blocks that agree today are the thing that drifts.
+
+**Two placeholder entries, and how they are kept safe.** `placeholderProjects`
+in `projects.ts` is deliberately **not** a `Project[]` and deliberately not in
+the `projects` array. That is the whole safety mechanism:
+`portfolio/[slug].astro` builds with `getStaticPaths` over `projects`, so the
+placeholders generate no detail page, no route, no sitemap entry, and no
+BreadcrumbList. Verified: 2 portfolio routes, 19 sitemap URLs, zero
+placeholder matches in the sitemap. They render as inert tinted blocks reading
+"Placeholder — no image", captioned "Placeholder Project 01/02". No invented
+room, fabric, treatment, client, or story.
+
+Verified at 1280px: 4 cards, all 500x625, two rows, captions aligned at y=935
+and y=1634, zero overflow. At 375px: one per row, zero overflow.
+
+**10g. Home About section: portrait right.** `index.astro`, `global.css`.
+
+Copy left, 4:5 portrait right capped at 24rem and pushed to the right edge,
+collapsing to one column below 900px (the same breakpoint the nav now uses —
+one number for "wide enough for two things side by side"). Name and role sit
+beneath the portrait in the Studio row's existing pattern. DOM order is copy
+then portrait, so a screen reader meets the content before the image.
+
+**FLAGGED, and worth Sam's eyes.** The instruction stated there is no headshot
+of Amy yet and asked for a clearly-marked placeholder slot, so that is what
+was built. **A real professional headshot of Amy already exists in this repo**
+— `src/assets/images/team/amy-clark.jpg`, 1600x1072 against white brick,
+landed 2026-07-27 and live in the `/about` Studio row today. If the
+instruction meant "nothing from Kelsee's shoot" rather than "no photo of Amy
+at all," dropping that file in is a one-line change. Noted in the code, in
+IMAGE-MANIFEST.md, and in LAUNCH_CHECKLIST.md rather than silently
+substituted.
+
+Verified at 1280px: copy 48–711, portrait 848–1232, portrait right of copy,
+zero overflow. At 375px: stacked, zero overflow.
+
+**10h. Journal index: alternating, not the services stagger.**
+`journal/index.astro`.
+
+The list ran the same progressive stagger as the services list, which with
+three entries means **no two cards align with each other**. Three baselines
+across three items reads as a mistake.
+
+**Chose alternating (middle offset, outer two inline) over a flat uniform
+row.** Two reasons. It is *symmetric* — outer two aligned, middle displaced,
+is a pattern with a centre, and a reader resolves that as intent immediately
+in a way a progressive stagger never allows; three is exactly the count where
+that reads. And the portfolio grid went uniform in the same batch, so a
+uniform journal would leave 3.5's asymmetry preference surviving nowhere on
+the site. One deliberate offset, in the one place the item count supports it.
+
+Offset is **down** (no negative margin reaching back toward the lead
+paragraph), a single restrained 3rem replacing two different values, and it
+applies only in the three-column layout — in a single column an offset is just
+a larger gap. Columns are explicit at three rather than `auto-fit`, which with
+three items drops to two tracks near 1000px and orphans the third, destroying
+the centre the pattern depends on.
+
+Verified at 1280px: cards at y=40 / 88 / 40, all 379px wide, no overflow.
+
+**10i. Homepage scroll snapping.** `global.css`, `Base.astro`, `index.astro`.
+Full write-up and the conflict it reverses are in the decision log below.
+
+**10j. Scroll affordance sweep.** `portfolio/[slug].astro`,
+`journal/[slug].astro`.
+
+Audited all 20 pages at 1280x800 by loading each into a 1280x800 iframe and
+measuring, at scroll position 0, how many non-hidden text elements inside
+`<main>` are in view and what percentage of the viewport is photograph. (An
+iframe rather than 20 navigations: `location.href` from inside the page tears
+down the execution context mid-script.)
+
+**Two pages failed**, both project detail pages: **zero words** in the first
+viewport, 88% and 90% photograph. The template opened on a full-bleed 16/9
+lead with the H1 below both it and the collage. These had been reported as
+fixed in an earlier session — what was fixed then was the long photo scroll,
+not this.
+
+Fixed by moving the title block above the lead image: a `Portfolio` eyebrow
+linking back to the index, then the H1, then the photograph. That is exactly
+the journal post template's shape, so the site keeps **one** pattern for
+article-shaped pages. Now 2 text elements and 53% photograph on both. The
+shared-element morph from the index card is intact — the lead still carries
+its transition scope and a matching `view-transition-name`.
+
+**The other 18 passed, journal post pages included.** They were flagged as
+opening on a large image with no signal underneath; measured, they show the
+Journal eyebrow, the H1 and the date above the fold with the lead image cut
+off by the fold behind them. What they *did* do badly was the spirit of it:
+the 16/9 lead is 720px tall at 1280px, putting the first line of prose 880px
+below the title with nothing in between saying what the post was about. Added
+the post's existing `description` as a standfirst — the same string the index
+card already shows, so no new copy, only newly visible.
+
+All 21 pages build with exactly one `<h1>`. Zero console errors.
+
+**10k. Docs.** DESIGN_BRIEF.md (new 6.9, plus 3.5, 4, 5.1, 5.2, 5.5, 5.6,
+6.8 and six acceptance criteria), BUILD-PLAN.md (this step and the decision
+log below), ASK-AMY.md, LAUNCH_CHECKLIST.md, IMAGE-MANIFEST.md.
+
+---
+
+## 2026-08-01: decision log
+
+### 1. Scroll snapping is back on the homepage. This reverses a prior removal.
+
+**The conflict, stated plainly, because it is real on both sides.**
+
+- BUILD-PLAN step 2 records that `scroll-snap-type: y proximity` was the
+  **first** implementation of the hero-to-portfolio transition and was removed
+  on 2026-07-25 because it "felt aggressive on trackpad — small scrolls got
+  pulled back to the hero instead of easing forward, the opposite of forgiving
+  for a less scroll-dexterous audience." The scroll-ease in `motion.js` exists
+  because snapping was taken out.
+- Kristen Hitch raised snapping again as an **accessibility concern** in the
+  2026-07-31 review and asked to revisit it only once the site is closer to
+  finished.
+- Sam asked for it on 2026-08-01, aware of both, and asked for the conflict to
+  be recorded rather than argued. It is built.
+- **Amy has not been asked.** That is now an open question in ASK-AMY.md.
+
+**Where the kill switch lives:** the `--home-scroll-snap` custom property at
+the top of the scroll-snap block in **`src/styles/global.css`**. Set it to
+`none` and snapping is off site-wide. One line; every other rule is inert
+without it. `DESIGN_BRIEF.md` 6.9 carries the same pointer.
+
+**Specification.** `scroll-snap-type: y proximity` on `<html>`,
+`scroll-snap-align: center` and `scroll-snap-stop: normal` on
+`main > .section`. Opted in per page by a bare `data-scroll-snap` attribute on
+`<html>`, set only by Home via a new `scrollSnap` prop on `Base.astro`.
+Confirmed that Astro's ClientRouter tracks that attribute across real
+client-side navigation — Home has it, `/about` does not, back to Home has it
+again, with no stale state.
+
+**The 2026-07-25 failure is designed out, not hoped away.** That failure was a
+snap point sitting at scroll position 0: a small nudge off the top came to
+rest nearer the hero's own centre than anything else and got dragged back.
+**The hero carries no `scroll-snap-align` at all.** `.hero` does not carry
+`.section`, so `main > .section` excludes it by construction rather than by an
+exception someone has to remember, and `initHeroScrollEase()` still owns that
+first transition untouched. Measured: a 50px scroll off the top, with the ease
+already spent, stays at 50.
+
+**Section height variability — the open design problem, and the answer.**
+Measured on the real page at 1280x900, as a percentage of the viewport:
+
+| Section | Height | % of viewport |
+|---|---|---|
+| Portfolio | 1673px | 186% |
+| Services | 1145px | 127% |
+| About | 765px | 85% |
+| Client quotes | 512px | 57% |
+| Contact band | 349px | 39% |
+
+**No shared `min-height` was added, and that is the substantive decision.** It
+was the obvious move and the arithmetic says it backfires. A `min-height`
+cannot add space to a short section without putting that space on screen: at
+70svh the client-quote section grows 512 -> 630 and the contact band 349 ->
+630, so consecutive snap points end up 630px apart with only ~300px of content
+between them. That is the exact failure the July 31 review already fixed once
+(decision 13, the homepage vertical-rhythm reduction) — a reader hitting a
+screen with almost nothing on it and reading it as the end of the page.
+Padding sections out to make snapping feel even would undo it.
+
+What makes variable heights work instead:
+
+1. **Oversized sections need no handling, by spec.** CSS Scroll Snap says a
+   snap area larger than the snapport in an axis does not have to align —
+   every scroll position where the area covers the snapport is valid. So
+   Portfolio and Services scroll freely through their middles and engage only
+   near their ends. **Verified in Chrome rather than taken on trust:** scrolled
+   to ±70px either side of their notional centres, both held position exactly,
+   delta 0, in both directions.
+2. **Short sections centre correctly without help**, because the space around
+   a centred short section is not empty — it is filled by the neighbours.
+   Measured at every snap point:
+   - Client quotes (512px): three sections in view; the About portrait and
+     caption above, "Let's Get Started" below.
+   - Contact band (349px): two sections in view, six neighbouring elements.
+   - About (765px): its own content fills 62% of the viewport. **This one snap
+     point shows only its neighbours' padding, not their content** — stated
+     because it is the exception to the claim above. It still reads as a full
+     stop rather than an empty screen. If it ever stops doing so, the fix is
+     content in that section, not a taller box.
+
+**Verified.** Snaps to centre from **both** directions on all three
+under-viewport sections (±70px lands on the exact centre). Oversized sections
+do not snap. Reduced motion proven by flipping the media condition to `all` in
+the live CSSOM and reading computed values — `scroll-snap-type: none`,
+`scroll-snap-align: none`, restored clean afterwards; the pane cannot emulate
+the media feature itself, so this isolates the only thing actually in question,
+which is cascade order and specificity. Zero console errors. Zero horizontal
+overflow across the entire scroll range at 375px.
+
+**An honest verdict, since it was asked for.** Having built it: this is a
+better fit for this page than the 2026-07-25 attempt was, and the reason is
+that the failure then was structural (a snap point at zero) rather than a
+property of snapping itself. On the current page it is *subtle to the point of
+being hard to notice* — three of the five sections are either oversized or
+close to it, so most of a scroll down Home never touches a snap point at all,
+and the effect concentrates in the last third of the page. That is the
+`proximity` design working, not a fault, but it does mean the feature is
+buying less than it appears to. The thing that would make it earn its keep is
+sections closer to one viewport each, which is a content question (real
+project photography, a shorter portfolio grid) rather than a CSS one. **The
+accessibility objection is not answered by anything above** — it is mitigated
+by `proximity` and by the reduced-motion switch, not resolved, and Amy's view
+on it is the open question.
+
+### 2. Uniform portfolio grid, overriding 3.5's asymmetry preference
+
+Applied to Home's strip and `/portfolio` alike, defined once. 3.5's varied
+offsets need four to six items to read as intent; the site has two real
+projects. Recorded in DESIGN_BRIEF 3.5 and 5.2 as a named exception rather
+than a repeal — revisit if the portfolio ever carries six real projects.
+
+The journal index keeps the site's only remaining asymmetry (10h), which was
+part of the reason for choosing the alternating layout there.
+
+### 3. Seven nav items, and `/blinds` is no longer unlinked
+
+Reverses DESIGN_BRIEF section 4's six-item cap and its statement that
+`/blinds` being unlinked was "intentional, not an oversight." Seven is the new
+ceiling — the row needed the horizontal breakpoint moved to 900px to fit, and
+an eighth item does not fit at any width worth supporting.
+
+### 4. Five process steps, not four
+
+Reverses 5.5's four-step list to accommodate 5.9's two-step booking funnel,
+which is newer and more specific and came out of the same July 31 review. No
+fee, amount, or cost framing on the page; "complimentary" carries the
+distinction.
+
+### 5. Two grey-box placeholders now exist, against IMAGE-MANIFEST's standing rule
+
+The manifest's rule is that every image slot carries a real photograph rather
+than a grey box, so Amy can see where the media goes. The two placeholder
+project cards and the About portrait slot deliberately break it: Sam asked for
+holes that are unmistakably holes, one set for layout review and one waiting
+on a specific delivery. Both are recorded in IMAGE-MANIFEST.md and
+LAUNCH_CHECKLIST.md §1, and the portfolio pair is a hard launch blocker.

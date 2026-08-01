@@ -134,7 +134,8 @@ Body copy is always left-aligned. Never centered, never justified.
 - Full-bleed by default. Images break the container; text does not.
 - Text columns are narrow. 58ch maximum, and often much less.
 - Vertical rhythm is generous to the point of feeling almost empty. Section spacing at 160px desktop, 96px mobile. If it feels too sparse, it is close to right. **Exception, added 2026-07-31: the homepage runs tighter than this.** Measured on the real page, these values put a full empty screen between homepage sections, and readers took that as the end of the page and stopped scrolling. Home gets its own reduced section spacing (5.1); long-form text pages keep the full measure.
-- Asymmetry over grids. Portfolio images sit at varied scales and vertical offsets rather than in a uniform tile grid.
+- Asymmetry over grids, **with two named exceptions added 2026-08-01.** The preference stands as the default and still governs the services list, the project-detail collage, and the journal index's single centre offset. It does **not** govern the portfolio any more: the portfolio grid on Home and on `/portfolio` is a **uniform grid** — equal boxes, one aspect ratio, one baseline, aligned captions (5.1, 5.2). Varied offsets need four to six items before they read as intent; below that they read as scattered, which is what two projects at two different heights actually looked like. Revisit if the portfolio ever carries six real projects.
+- **No page may present only a photograph above the fold (added 2026-08-01, standing requirement).** At 1280px wide, the first viewport of every page must contain something other than an image: a heading, a line of text, a partially visible next element, or an explicit scroll cue. This is Kristen Hitch's overarching structural note from the July 31 review — the site assumes people will scroll and they will not — and it is a rule, not a one-off fix. It applies to every page that exists now and every page added later. The homepage hero is the one deliberate near-exception and it satisfies the rule anyway: the wordmark, the three word links, the CTA, and the scroll cue are all in the first viewport over the image.
 - Navigation is a thin horizontal line. Transparent over the hero, solid on scroll. No dropdowns, no search icon, no phone number in the header.
 
 ## 3.6 Structural devices
@@ -191,11 +192,15 @@ This is the one memorable thing about the site. Everything else stays quiet so t
 
 Location pages exist for search only and live in the footer, not the main nav. **They do not conflict with the no-geography project naming rule.** Project names are placeless for brand reasons. The site still has to be findable.
 
-**`/blinds` is a standalone landing page for paid traffic (added 2026-07-31).** Blinds and shades is the growth category (5.3) and the one most likely to get targeted ad spend. This page is a single-purpose destination for that traffic: it does **not** appear in the main nav or the footer, and it carries one job — take an ad click to the discovery call. Being unlinked from the rest of the site is intentional, not an oversight. It is not a doorway page in 8.4's sense: it targets a product category rather than a place, and there is exactly one of it.
+**`/blinds` is a standalone landing page for paid traffic (added 2026-07-31).** Blinds and shades is the growth category (5.3) and the one most likely to get targeted ad spend. This page is a single-purpose destination for that traffic and it carries one job — take an ad click to the discovery call. It is not a doorway page in 8.4's sense: it targets a product category rather than a place, and there is exactly one of it.
+
+**`/blinds` is now IN the main nav (revised 2026-08-01, Sam's instruction).** This reverses the line above, which said the page "does not appear in the main nav or the footer" and that being unlinked "is intentional, not an oversight." It is linked from both now, as `Blinds`, positioned directly after `Services` so the two "what she does" entries sit together. The label is deliberately not "Blinds and Shades": a seven-item row cannot afford a three-word label. Its job as an ad landing page is unchanged — it is simply no longer unlinked.
 
 **`/signature-pieces` is removed (2026-07-31).** It was never a brief requirement — an interpretation call added 2026-07-26 as a placeholder for eventual e-commerce. The review cut it: a placeholder shop showing two pillows with no way to buy anything reads as an unfinished store rather than as portfolio work. Full e-commerce (a Shopify-style backend, stock fabric and pillow ordering) is logged as **revisit later, not active scope** — see BUILD-PLAN.md's decision log. Do not rebuild this page unless that decision gets made deliberately.
 
-Main nav, six items maximum: Portfolio, Services, About, Process, Journal, Contact.
+Main nav, **seven items as of 2026-08-01**: Portfolio, Services, Blinds, About, Process, Journal, Contact. This raises the previous hard cap of six, on Sam's instruction, to admit `/blinds`. Treat seven as the new ceiling — the row was already the tightest thing in the site chrome, and adding the seventh item required moving the horizontal nav's breakpoint from 768px to 900px (below that it is the hamburger panel) because the seven-item row overflowed a 768px viewport by 61px. An eighth item does not fit at any width worth supporting.
+
+The footer's "Site" column mirrors this list exactly and is fed by the same array (`src/data/nav.ts`).
 
 ---
 
@@ -216,7 +221,18 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
    scrolling always knows which section they are in. Several of these were
    previously `visually-hidden` headings that existed only for screen readers
    and heading order — that failed sighted readers, who hit an unlabelled wall
-   of images. Label style, per the rest of the site.
+   of images.
+
+   **Sized up 2026-08-01.** Label style at its literal 11px in `--ink-muted`
+   did not accomplish what these were added for — at that size they read as
+   captions, and a caption is something a reader skips. They now render at
+   **14px at 375px, 18px at 1280px and up, in `--ink`**, still uppercase, still
+   0.18em tracked, still weight 500: the Label role at a larger size, not a
+   different treatment and not a fourth type role. They must stay clearly
+   subordinate to the display headings beneath them (36–92px), which they are
+   by size alone. Every homepage section label uses the identical treatment;
+   `/blinds`' one section marker shares it, being the same element doing the
+   same job.
 2. **One CTA button per section, maximum.** Duplicate `View Portfolio`
    buttons are removed; the single portfolio link lives in the Portfolio card
    slot and nowhere else. Two competing buttons in one viewport split the
@@ -227,7 +243,14 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
 - Full viewport height. The image fills the entire screen.
 - The only thing above it is the navigation line. No headline block, no descriptor paragraph, no stacked copy. Amy was explicit and repeated it.
 - **No location line in the hero (REVISED 2026-07-31).** The `Cincinnati/NKY Based` / `Serving all areas` block is removed. Geography belongs at the foot of the page, not stamped over the first photograph — it was the only text competing with the image, and the hero's whole job is the image. The service area now reads as one footer line: `Serving Cincinnati and Northern Kentucky since [DATE — ask Amy]`. See 5.8.
-- `Amy K Clark Design` centered over the image, semi-transparent, legible over photography. Use a subtle scrim gradient rather than a hard overlay so the image stays clean.
+- **The hero photograph is the wide room frame with drapery and a banded roman shade on a wall of French doors opening onto the pool and patio** — `portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg` (changed 2026-08-01, replacing the Ivory House living-room frame). That photograph was the full-bleed lead image on `/about` until this change; `/about` now deliberately has no lead image rather than an arbitrary substitute, and is the one page on the site without one.
+- **`Amy K Clark Design` is anchored to the bottom of the frame, not centred in it (revised 2026-08-01).** It was centred, white, and set in the Display role at up to 92px, and it was nearly invisible: the vertical centre of a room photograph is the wall, the wall is the brightest thing in the picture, and the middle of the wordmark disappeared into it while the ends stayed readable. The treatment is now **Amy's own stated direction from the July 31 review, which had never been written down here**: all caps, wide letter-spacing, thinner, anchored to the top or bottom of the frame rather than floating in the dead centre.
+
+  In practice that is the **Label role (3.4) scaled up** — uppercase with the tracking opened to 0.26em, at weight 400 rather than Label's 500, which is the lighter of the two weights 3.4 permits. It is deliberately far below the Display clamp: a mark that has to survive an arbitrary photograph behind it wants to be small, wide, and dense rather than large and open. Going below weight 400 was considered and rejected on the merits, not on the rule — sub-400 strokes in light type over a busy image are exactly what disappears, which is the defect being fixed.
+
+  Use a subtle scrim gradient rather than a hard overlay so the image stays clean. There is exactly one gradient in the whole bundle and this is it; its lower ramp is deepened to cover the band the wordmark, the word links, and the CTA now occupy. Measured against the composited image, the worst pixel across the full glyph band gives 4.73:1 at 375px and 4.90:1 at 1280px.
+
+  **None of this is the final wordmark.** Amy is still choosing between three candidate typefaces and that decision is logged as blocking in ASK-AMY.md. This is a legibility fix using the existing typeface.
 - Three plain word links along the bottom: **Upholstery, Drapery, Shades**. Label style.
 - **One CTA only (REVISED 2026-07-31):** the primary booking CTA (5.9). The secondary `View Portfolio` button is removed from the hero — the Portfolio section is the very next thing on the page and carries its own link.
 - A small quiet scroll cue at the very bottom.
@@ -241,11 +264,21 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
 
 **The opening line.** `The little details make all the difference.` appears over the first frame, fades in at 400ms, holds 2.5s, fades out over 900ms as the second image arrives. Once per session, stored in sessionStorage. Amy's own idea and the best one in the meeting.
 
-**Section 2: Portfolio.** Visible heading. Four to six projects, asymmetric, shade-reveal on scroll. Project name in Label style beneath each. **One** link to the full portfolio — this is the site's only `View Portfolio`-style button.
+**Section 2: Portfolio.** Visible heading. Four to six projects, shade-reveal on scroll. Project name in Label style beneath each. **One** link to the full portfolio — this is the site's only `View Portfolio`-style button.
+
+**Uniform grid, not asymmetric (revised 2026-08-01).** Equal-size boxes on a shared baseline, one 4:5 aspect ratio, captions aligned; two columns from 700px up, capped so a two-up grid does not turn each card into a 580px-wide billboard. This supersedes "asymmetric" here and the same treatment applies to `/portfolio` (5.2), defined once so the two pages cannot drift. Reasoning is in 3.5: the offsets need four to six items to read as intent and the site has two.
+
+**Two placeholder cards are live on both pages and must not ship.** "Placeholder Project 01" and "Placeholder Project 02" — tinted grey blocks, no photograph, no invented room or fabric or client, no detail pages, not in the sitemap. They exist only so the four-card two-row layout can be reviewed before real projects three and four arrive. LAUNCH_CHECKLIST.md §1.
 
 **Section 3: Services.** Visible heading. Four entries in this order: Custom Drapery, Blinds and Shades, Upholstery, Soft Furnishings. Name and one line each. Not a card grid with icons. (Moved ahead of the differentiator 2026-07-31.)
 
 **Section 4: About / the differentiator.** Visible heading. Heading: `A Designer's Eye, A Workroom's Understanding`. Body underneath uses Amy's own framing about designing, fabricating, and installing, and the line that a decorator does not make anything. Short. Two sentences. (Moved below Services 2026-07-31 — the page leads with work, not with who made it.)
+
+**Two columns: copy left, portrait of Amy right (added 2026-08-01).** The section label spans the full width; beneath it the heading and body sit in the left column and a 4:5 portrait sits in the right, capped at 24rem and pushed to the right edge. Her name and role sit beneath the portrait in the Studio row's existing pattern. It collapses to one column below 900px, copy above portrait — DOM order is copy first, so a screen reader meets the section's actual content before the image.
+
+**The portrait is currently a clearly-marked placeholder slot**, sized and positioned exactly as the real photo will be. It is replaced, not deleted, when a headshot lands. Note that a real professional headshot of Amy already exists in the repo and is live in the `/about` Studio row — see IMAGE-MANIFEST.md and LAUNCH_CHECKLIST.md §1.
+
+**Scroll snapping (added 2026-08-01, and it reverses a prior removal).** Home — and only Home — carries `scroll-snap-type: y proximity` with `scroll-snap-align: center` and `scroll-snap-stop: normal` on each section. See 6.9 for the full specification, the reversal it represents, and where the kill switch lives.
 
 **Section 5: Testimonials.** **Two quotes visible at once**, Newsreader light, large, attributed by first name and last initial only. No stars, no cards, no avatars. The first slot is fixed and never changes — it is the anchor. The second slot rotates through more than two real quotes over time, cross-dissolving on section 6.1's timing, so the section shows two at a time but draws on a larger pool. (Amended 2026-07-27; this line previously read "Two quotes maximum," which the rotation would otherwise contradict.)
 
@@ -259,7 +292,7 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
 
 ## 5.2 Portfolio
 
-Index is an asymmetric image list. Project name only. No teaser copy.
+Index is a **uniform grid** — equal boxes, one 4:5 ratio, one baseline, aligned captions, identical to Home's portfolio section (5.1) and defined once so the two pages cannot drift. Project name only. No teaser copy. **This replaces "an asymmetric image list" (revised 2026-08-01); the reasoning is in 3.5.** The two placeholder cards named in 5.1 render here too, so the two pages match in content as well as layout, and must be removed before launch.
 
 **Detail pages (REVISED 2026-07-31).** Each project gets:
 
@@ -268,6 +301,7 @@ Index is an asymmetric image list. Project name only. No teaser copy.
 - **A tight, small collage of images — not a long photo scroll.** This is the substantive change. Detail pages were running eight-plus supporting images in a full-width vertical stack, which asks the reader to scroll through a gallery to reach the point. Trim each project to a small set of frames arranged as a compact collage. The previous "three to eight supporting images" instruction is superseded; fewer, tighter, and arranged rather than stacked.
 - The spec block, unchanged.
 - **State Amy's scope explicitly on every project** so the site never implies she designed the whole house. Unchanged and still non-negotiable.
+- **The title block sits ABOVE the lead image (added 2026-08-01):** a `Portfolio` eyebrow that links back to the index, then the H1, then the full-bleed photograph. The page previously opened on the photograph with the H1 below both it and the collage, which put zero words in the first viewport at 1280x800 — a direct failure of 3.5's scroll-affordance rule. This is the same shape the journal post template uses, deliberately, so the site has one pattern for article-shaped pages rather than two.
 
 Names are evocative and non-geographic. No leading "The." Garden Room, Blue Study, Collected Living Room.
 
@@ -307,12 +341,19 @@ Headshots from `/public/images/team/`. Name in Label style, role beneath in `--i
 
 ## 5.5 Process
 
-Four numbered steps. This is the only page where numbering is permitted.
+**Five numbered steps as of 2026-08-01**, revised from four. This is the only page where numbering is permitted.
 
-1. Consultation
-2. Design and sourcing
-3. Fabrication and coordination
-4. Installation and finishing
+1. Complimentary discovery call
+2. In-home design consultation
+3. Design and sourcing
+4. Fabrication and coordination
+5. Installation and finishing
+
+**Why this changed.** The page opened at "Consultation" and never named the discovery call, so nothing on it conveyed that 5.9's two-step funnel exists, that the call and the consultation are different things, or that both happen. Steps 1 and 2 are now 5.9's two steps under their full names; the other three keep the names this section has always given them and should not be renamed without checking here first. 5.9 is newer and more specific than the original four-step list, from the same July 31 review, so it wins.
+
+**The distinction between steps 1 and 2 must be unmistakable and must never be drawn with money.** Step 1: complimentary, by phone, short, Amy has seen photos of the space beforehand, nothing is measured or designed. Step 2: in the client's home, about three hours, where the project actually gets decided, and it comes after the call rather than instead of it.
+
+**No fee, no amount, and no cost framing anywhere on this page** — rule 1, 5.9, and §10's acceptance checkbox all apply, and earlier passes caught five rule-1 violations that named no figure and were still cost framing. "Complimentary" on step 1 is the site's own sanctioned word (it is the primary CTA's wording). Do not add "paid", "free", "no charge", or a figure to step 2 to sharpen the contrast. `/contact` remains the only page that describes the in-home visit as paid.
 
 ## 5.6 Design Journal
 
@@ -325,6 +366,10 @@ Launch posts, all of which serve search and all of which came out of Amy's own m
 - What actually makes a window treatment look expensive
 
 Each post internally links to at least one service page.
+
+**Index layout: alternating, with the middle entry offset (set 2026-08-01).** Three cards in a row, outer two aligned on a shared baseline, the middle one dropped by a single restrained 3rem. Three columns from 900px up, one column below, and the offset applies only in the three-column layout. **Do not use the services list's progressive stagger here** — that was what this replaced, and with three entries it left no two cards aligned with each other, which reads as a mistake rather than as a composition. The alternating version is symmetric, so a reader resolves it as intent; three is exactly the count where that works. It is also the only asymmetry left on the site now that the portfolio grid is uniform (3.5).
+
+**Post pages open with the eyebrow, the H1, a one-line standfirst, and the date, then the lead image.** The standfirst is the post's own `description` — the same string the index card shows — not a second piece of copy. It exists because the 16/9 lead is 720px tall at 1280px, which put the first line of prose 880px below the title with nothing in between saying what the post was about.
 
 ## 5.7 Contact
 
@@ -456,7 +501,60 @@ Native lazy loading below the fold. Blur-up placeholder from a 20px-wide inline 
 }
 ```
 
-Plus: hero gallery advances by instant swap, shade reveals render fully visible on load, no scale on hover.
+Plus: hero gallery advances by instant swap, shade reveals render fully visible on load, no scale on hover, **and scroll snapping is off entirely (6.9).**
+
+## 6.9 Homepage scroll snapping
+
+Added 2026-08-01 on Sam's instruction. **Home only.**
+
+```
+scroll-snap-type:  y proximity        (on <html>, never mandatory)
+scroll-snap-align: center             (on each homepage section)
+scroll-snap-stop:  normal             (a fast flick passes through several)
+```
+
+**The kill switch is the `--home-scroll-snap` custom property in
+`src/styles/global.css`.** Set it to `none` and snapping is off site-wide.
+That is the entire off-switch; every other rule is inert without it.
+
+**This reverses a prior removal, and both sides of that were deliberate.**
+`scroll-snap-type: y proximity` was the *first* implementation of the
+hero-to-portfolio transition and was taken out again on 2026-07-25 because it
+felt aggressive on a trackpad: small scrolls got pulled back to the hero
+instead of easing forward, which is the opposite of forgiving for an audience
+the brief puts at 40 to 85. Kristen Hitch raised snapping again as an
+accessibility concern in the July 31 review and asked to revisit it only once
+the site is closer to finished. Sam asked for it anyway, aware of both. **Amy
+has not been asked and that question is open in ASK-AMY.md.**
+
+Three things make this a different proposition from the 2026-07-25 attempt,
+and none of them may be quietly dropped:
+
+1. **`proximity`, never `mandatory`.** It snaps when a reader comes to rest
+   near a point and never takes the scroll away from them mid-gesture. This is
+   the single most important detail and it is what makes variable section
+   heights workable at all.
+2. **The hero carries no `scroll-snap-align`.** The 2026-07-25 failure was a
+   snap point at scroll position 0 dragging a small nudge backwards; with no
+   snap point at the top of the document there is nothing to drag back to. The
+   hero is excluded by construction rather than by an exception someone has to
+   remember, and the existing hero scroll-ease still owns that first
+   transition.
+3. **Off entirely under `prefers-reduced-motion`**, by its own rule.
+   6.8's global block only collapses animation and transition durations, and
+   `scroll-snap-type` is neither — it would have survived that rule untouched.
+
+**Section heights vary and no `min-height` was added to even them out.** That
+was the obvious move and the arithmetic says it backfires: padding a short
+section out puts the padding on screen, which recreates the "empty screen
+reads as the end of the page" failure the July 31 review already fixed
+(5.1's vertical rhythm note). Instead, sections keep the height their content
+wants. Oversized sections need no handling because the spec relaxes them — a
+snap area larger than the snapport does not have to align, so they scroll
+freely through their middles — and short sections centre correctly on their
+own because the space around them is filled by their neighbours. **If a snap
+point ever feels empty, the fix is content in that section, not a taller
+box.**
 
 ---
 
@@ -574,7 +672,12 @@ The build is done when all of the following are true:
 - [ ] **All service names render at identical size and weight**; only their indents vary
 - [ ] **No phone number resolves to Amy's personal mobile**, on the page or in JSON-LD
 - [ ] **`/signature-pieces` returns 404 and is linked from nowhere**
-- [ ] The footer's "since" line carries a real year, not the placeholder
+- [x] The footer's "since" line carries a real year, not the placeholder — **2021, resolved 2026-08-01**
+- [ ] **No page presents only a photograph above the fold** (3.5). At 1280px the first viewport of every page carries a heading, a line of text, a partially visible next element, or a scroll cue
+- [ ] **The hero wordmark is legible over the photograph at 375px and 1280px** — all caps, letter-spaced, anchored to the bottom of the frame, on a scrim
+- [ ] **The two placeholder portfolio entries are gone**, and the About section's portrait placeholder has been replaced with a real photograph
+- [ ] **Scroll snapping is `proximity`, never `mandatory`; the hero carries no snap alignment; and it is off entirely under `prefers-reduced-motion`** (6.9)
+- [ ] **The Process page names the discovery call and the in-home consultation as separate steps, in that order, with no cost framing on either** (5.5)
 - [ ] Consultation form requires budget and attribution
 - [ ] Blinds accordion animates smoothly
 - [ ] Studio section renders three real headshots
