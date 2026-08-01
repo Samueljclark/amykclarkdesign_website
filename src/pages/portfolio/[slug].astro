@@ -5,6 +5,21 @@
 // is the project name — no visually-hidden-H1 pattern here, that was Home's
 // hero-specific workaround for its own "no headline block" rule (5.1), which
 // doesn't apply on this page.
+//
+// **The title block moved above the lead image, 2026-08-01 (step 10j).** The
+// page used to open on a full-bleed 16/9 photograph with the H1 below it and
+// below the collage. Measured at 1280x800, that put **zero words** in the
+// first viewport on both project pages — 88% and 90% of the screen was
+// photograph and nothing on it said the page continued. That is precisely
+// Kristen Hitch's structural note from the July 31 review ("the site assumes
+// people will scroll and they will not"), and it is now a standing
+// requirement in DESIGN_BRIEF: no page may present only a photograph above
+// the fold.
+//
+// The shape now matches the journal post template exactly — eyebrow that
+// links back to the index, H1, then the image — so this is the site's one
+// pattern for "an article-shaped page", not a second one. The blurb, scope
+// line, and spec block stay below the collage where they were.
 
 import Base from '../../layouts/Base.astro';
 import ProjectGallery from '../../components/ProjectGallery.astro';
@@ -33,6 +48,13 @@ const { project } = Astro.props;
   ]}
 >
   <article>
+    <section class="section wrap text-page__intro">
+      <p class="type-label text-page__eyebrow">
+        <a href="/portfolio" class="link-underline">Portfolio</a>
+      </p>
+      <h1 class="type-display project-detail__heading">{project.name}</h1>
+    </section>
+
     <ProjectGallery
       lead={project.lead}
       supporting={project.supporting}
@@ -40,7 +62,6 @@ const { project } = Astro.props;
     />
 
     <section class="section wrap project-detail__body">
-      <h1 class="type-display project-detail__heading">{project.name}</h1>
       {/* The problem/solution blurb (5.2, 2026-07-31 review), then the scope
           statement. Order matters: the blurb says what the work is, the scope
           line says how much of the room was Amy's — which only makes sense
@@ -59,9 +80,10 @@ const { project } = Astro.props;
   .project-detail__heading {
     max-width: 18ch;
   }
+  /* No top margin any more: the blurb is now the first thing in its own
+     section rather than following the H1 directly. */
   .project-detail__blurb {
     max-width: var(--measure);
-    margin-top: 1.5rem;
   }
   /* The scope line sits quieter than the blurb above it: it is a disclosure,
      not the pitch. Muted, same treatment as other meta text (3.3). */

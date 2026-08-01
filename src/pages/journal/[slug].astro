@@ -83,6 +83,20 @@ const publishedLabel = new Intl.DateTimeFormat('en-US', {
         <a href="/journal" class="link-underline">Journal</a>
       </p>
       <h1 class="type-display journal-post__heading">{post.data.title}</h1>
+      {/* Standfirst, added 2026-08-01 (step 10j). This is the post's existing
+          `description` — the same string the journal index already shows
+          under each card and the same one that goes in <meta name=
+          "description">. Not new copy; it is only newly visible here.
+
+          Why it is here: these pages already passed the scroll-affordance
+          check on the letter of it (measured at 1280x800 — eyebrow, title and
+          date are all above the fold, with the lead image cut off by the fold
+          behind them). What they did badly was the spirit. The lead image is
+          a full-bleed 16/9, which at 1280px is 720px tall, so the first line
+          of actual prose sat 880px below the title and a reader had nothing
+          telling them what the post was about before committing to that
+          scroll. One line of summary is the cheapest thing that fixes it. */}
+      <p class="journal-post__standfirst">{post.data.description}</p>
       <p class="type-label journal-post__date">
         <time datetime={publishedISO}>{publishedLabel}</time>
       </p>
@@ -121,6 +135,11 @@ const publishedLabel = new Intl.DateTimeFormat('en-US', {
        full Display clamp. Same Display role, page-appropriate range. */
     font-size: clamp(1.875rem, 1.4rem + 1.9vw, 3.25rem);
     max-width: 34ch;
+  }
+
+  .journal-post__standfirst {
+    max-width: var(--measure);
+    margin-top: 1.5rem;
   }
 
   .journal-post__date {
