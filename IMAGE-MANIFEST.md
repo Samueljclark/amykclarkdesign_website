@@ -44,6 +44,25 @@ exists so it doesn't need repeating each time.
 
 `og/` is filled — see the real-files table above. It stands in as the site-wide default until Kelsee's photography allows a more deliberate, art-directed OG image (or per-page ones).
 
+### Two grey-box placeholder slots, added 2026-08-01 (step 10)
+
+These are the **only two places on the site that break the standing rule
+above**, and both do so deliberately, on Sam's instruction. Everywhere else,
+a slot with no real file still gets the closest real photograph.
+
+| Slot | What it is | When it goes |
+|---|---|---|
+| Home About section, portrait right of the copy — `.differentiator__portrait-slot` in `src/pages/index.astro` | A tinted 4:5 block sized and positioned exactly as the real portrait will be, reading "Portrait placeholder — awaiting Kelsee's headshot". **Replaced, not deleted.** | When Kelsee delivers a headshot of Amy. |
+| Two fake portfolio cards on Home and `/portfolio` — `placeholderProjects` in `src/data/projects.ts` | "Placeholder Project 01" and "Placeholder Project 02", tinted 4:5 blocks reading "Placeholder — no image". They exist so the four-card, two-row uniform grid can be reviewed before real projects three and four arrive. Not links, no detail pages, not in the sitemap. **Deleted, not replaced.** | Before launch, unconditionally. LAUNCH_CHECKLIST §1. |
+
+**Flag on the portrait slot:** a real professional headshot of Amy already
+exists in this repo — `src/assets/images/team/amy-clark.jpg`, 1600x1072,
+against white brick, landed 2026-07-27 (see the section below) and live in
+the Studio row on `/about` today. The instruction for step 10 stated that no
+headshot exists yet and asked for a placeholder, so a placeholder is what was
+built. If that meant "nothing from Kelsee's shoot" rather than "no photo of
+Amy at all," using the existing file here is a one-line change.
+
 ## Correction, found during the Home build (step 2)
 
 Both `photo-shoot-banded-roman-shade-living-room.jpg` and `photo-shoot-leaded-glass-entry-door.jpg` are **behind-the-scenes shots of the photographer mid-shoot**, not clean room photography: the roman-shade image has Kelsee crouched in the foreground with a camera and a baby safety gate fills the bottom third of the frame; the entry-door image has her standing in the doorway waving at the camera, and shows no window treatment at all (it's an entry door). The original manifest entry noted "Kelsee shooting a client room" but still recorded both as viable hero/portfolio substitutes without flagging that the photographer and gate are the dominant subject — worth knowing if similar shoot-day photos turn up elsewhere, since this manifest's own text description undersold the problem until the actual pixels were checked.

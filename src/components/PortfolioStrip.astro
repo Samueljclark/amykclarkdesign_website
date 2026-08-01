@@ -1,16 +1,26 @@
 ---
-// Home section 2 (DESIGN_BRIEF.md 5.1): "Four to six projects, asymmetric,
-// shade-reveal on scroll. Project name in Label style beneath each. One link
-// to the full portfolio." No teaser copy on these cards — that rule is
-// stated explicitly for the /portfolio index (5.2) and applies here too,
-// since a strip card is even smaller than an index card.
+// Home section 2 (DESIGN_BRIEF.md 5.1): "Four to six projects, shade-reveal
+// on scroll. Project name in Label style beneath each. One link to the full
+// portfolio." No teaser copy on these cards — that rule is stated explicitly
+// for the /portfolio index (5.2) and applies here too, since a strip card is
+// even smaller than an index card.
 //
-// Only one real project exists right now (src/data/projects.ts); the
-// nth-child offsets below are written for the eventual 4-6 so the layout
-// doesn't need revisiting when more land in step 3.
+// **The asymmetric offsets are gone as of 2026-08-01 (step 10f).** Each card
+// used to carry an `nth-child` `margin-top` of 4rem or 2rem per 3.5's
+// "varied vertical offsets"; with two real projects that read as scattered
+// rather than composed. The grid, the card, and the caption now all come from
+// `.portfolio-grid` in global.css, shared with the /portfolio index so the
+// two pages cannot drift. Full reasoning is in that file's comment.
+//
+// **Two placeholder cards render after the real ones and must be deleted
+// before launch** — `placeholderProjects` in src/data/projects.ts,
+// LAUNCH_CHECKLIST.md §1. They are inert tinted blocks, not links and not
+// photographs, and they have no detail page because they are not `Project`
+// records.
 
 import RevealImage from './RevealImage.astro';
 import type { Project } from '../data/projects';
+import { placeholderProjects } from '../data/projects';
 
 interface Props {
   projects: Project[];
@@ -25,20 +35,37 @@ const { projects } = Astro.props;
       unlabelled grid of photographs. */}
   <h2 id="portfolio-strip-heading" class="type-label section-eyebrow">Portfolio</h2>
 
-  <ul class="portfolio-strip__list">
+  <ul class="portfolio-grid portfolio-strip__list">
     {projects.map((project) => (
-      <li class="portfolio-strip__item">
-        <a href={`/portfolio/${project.slug}`} class="portfolio-strip__link">
+      <li>
+        <a href={`/portfolio/${project.slug}`} class="portfolio-grid__link portfolio-strip__link">
           <RevealImage
             src={project.image}
             alt={project.alt}
             blurDataURL={project.blurDataURL}
             aspectRatio="4/5"
-            sizes="(min-width: 768px) 40vw, 90vw"
+            sizes="(min-width: 700px) 32vw, 90vw"
             class="portfolio-strip__image"
           />
-          <span class="type-label portfolio-strip__name">{project.name}</span>
+          <span class="type-label portfolio-grid__name portfolio-strip__name">{project.name}</span>
         </a>
+      </li>
+    ))}
+
+    {/* ===================================================================
+        PLACEHOLDER CARDS — DELETE BEFORE LAUNCH (step 10f, 2026-08-01).
+        Layout review only: they exist so the four-card, two-row grid can be
+        judged before real project three and four arrive. Not links, not
+        photographs, no detail pages, not in the sitemap. Delete this block
+        and the `placeholderProjects` import above together with the array in
+        src/data/projects.ts. Tracked in LAUNCH_CHECKLIST.md §1.
+        =================================================================== */}
+    {placeholderProjects.map((placeholder) => (
+      <li>
+        <div class="placeholder-slot portfolio-grid__placeholder">
+          <span class="type-label">Placeholder — no image</span>
+        </div>
+        <span class="type-label portfolio-grid__name">{placeholder.name}</span>
       </li>
     ))}
   </ul>
@@ -49,29 +76,13 @@ const { projects } = Astro.props;
 </section>
 
 <style>
-  .portfolio-strip__list {
-    display: grid;
-    gap: 3rem 1.5rem;
-    /* The track max is 32rem, not `1fr`, and that matters. With `auto-fit`,
-       a `1fr` max is a trap on a single item: auto-fit collapses the empty
-       tracks to 0 and the one surviving track absorbs the entire row. At
-       1345px that rendered a 1249x1561 image — taller than the viewport, and
-       on a short laptop screen roughly two screens tall. Capping the max
-       lets one item render at a sane size while three or more still fill the
-       row exactly as before. The bug only appears while a collection holds a
-       single item, which is the state the portfolio and this gallery are
-       actually in today. */
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 32rem));
-  }
-
-  .portfolio-strip__link {
-    display: block;
-  }
-
+  /* Grid, card, and caption all come from `.portfolio-grid` (global.css),
+     shared with the /portfolio index. The old `auto-fit` track sizing and the
+     `nth-child` vertical offsets both lived here and are both gone — see that
+     file for why, including the `auto-fit` single-item trap the track cap
+     used to work around, which no longer applies now the column count is
+     explicit. Only the hover treatment (6.4) is strip-specific. */
   .portfolio-strip__name {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--ink-muted);
     opacity: 0.6;
     transform: translateY(0);
     transition:
@@ -101,18 +112,6 @@ const { projects } = Astro.props;
   @media (prefers-reduced-motion: reduce) {
     .portfolio-strip__link:hover .portfolio-strip__image :global(.reveal-image__img) {
       transform: none;
-    }
-  }
-
-  /* Asymmetry (3.5): alternate vertical offsets once there's more than one
-     card per row. Single-item state today renders flush, which is correct —
-     asymmetry needs a second item to read against. */
-  @media (min-width: 768px) {
-    .portfolio-strip__item:nth-child(3n+2) {
-      margin-top: 4rem;
-    }
-    .portfolio-strip__item:nth-child(3n+3) {
-      margin-top: 2rem;
     }
   }
 </style>

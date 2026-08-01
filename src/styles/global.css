@@ -158,6 +158,86 @@ input, textarea, select {
   margin-bottom: 2.25rem;
 }
 
+/* ---- The uniform portfolio grid (added 2026-08-01, step 10f).
+   Shared by Home's PortfolioStrip and the /portfolio index. Those two are
+   deliberately separate components (the index has a real <h1> and no "View
+   Full Portfolio" CTA), but Sam's requirement is that the two pages MATCH,
+   so the grid itself is defined once here rather than as two copies of the
+   same CSS in two scoped style blocks waiting to drift apart.
+
+   **This overrides DESIGN_BRIEF 3.5 and 5.2, on Sam's instruction**, and the
+   brief is updated in step 10 to match. 3.5 asks for "asymmetry over grids...
+   varied scales and vertical offsets rather than a uniform tile grid," and
+   5.2 calls the index "an asymmetric image list." Both were built: each card
+   carried an `nth-child` `margin-top` of 4rem or 2rem. With only two projects
+   on file, one offset card against one flush card read as scattered rather
+   than as composed — the device needs four to six items before it reads as
+   intent, which is exactly the count the brief assumed and the site does not
+   have. Equal boxes, one aspect ratio, one baseline, captions aligned.
+
+   Two columns rather than `auto-fit`: `auto-fit` with four items at 1280px
+   resolved to three tracks and dropped the fourth onto a row by itself, which
+   is the same scattered look by a different mechanism. The width cap keeps a
+   two-up grid from turning each card into a 580px-wide billboard. ---- */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem 1.5rem;
+  /* Equal-height rows, so a card whose caption wraps to two lines does not
+     shorten the image beside it. The shared baseline is the point. */
+  align-items: start;
+}
+
+@media (min-width: 700px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 64rem;
+  }
+}
+
+.portfolio-grid__link {
+  display: block;
+}
+
+.portfolio-grid__name {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--ink-muted);
+}
+
+/* ---- PLACEHOLDER IMAGE SLOTS — none of these ship (added 2026-08-01).
+   A tinted block standing in for a photograph that does not exist yet. It has
+   to stay obviously fake, which is what the dashed hairline and the word
+   "placeholder" inside the box are for: it reads as a hole in the page even
+   in a screenshot with no caption visible, and it can never be mistaken for
+   art direction. Colours are mixed from existing tokens only, so no new value
+   enters the palette (3.3).
+
+   Note that this deliberately breaks IMAGE-MANIFEST.md's standing rule that
+   every image slot carries a real photograph rather than a grey box. That
+   rule exists so Amy can see where the media goes; these two cases are the
+   opposite situation — Sam asked for holes that are unmistakably holes, one
+   set for layout review and one waiting on a specific person's delivery.
+
+   Two consumers, and they come out at different times:
+     - `.portfolio-grid__placeholder` — the two fake project cards. Deleted at
+       launch, with the entries themselves (LAUNCH_CHECKLIST §1).
+     - `.differentiator__portrait-slot` — Home's About portrait. Replaced the
+       day Kelsee delivers a headshot, not deleted. ---- */
+.placeholder-slot {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  text-align: center;
+  background: color-mix(in srgb, var(--ink) 9%, var(--paper));
+  border: 1px dashed var(--rule);
+  color: var(--ink-muted);
+}
+
+.portfolio-grid__placeholder {
+  aspect-ratio: 4 / 5;
+}
+
 /* Repeated at the foot of Home and every service page (5.1 section 6). */
 .contact-band {
   display: grid;

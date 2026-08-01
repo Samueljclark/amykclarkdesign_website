@@ -1,15 +1,23 @@
 ---
-// Portfolio index (DESIGN_BRIEF.md 5.2): "an asymmetric image list. Project
-// name only. No teaser copy." Same asymmetric nth-child treatment as Home's
-// PortfolioStrip (3.5), not shared as a component with it — this page has a
-// real, visible <h1> and no "View Full Portfolio" CTA (it's already the full
-// list), unlike the strip's visually-hidden heading and homepage teaser
-// role. Ships with the one real project until Kelsee's photography lands
-// (see projects.ts, same flagged shortfall as the Home strip in step 2).
+// Portfolio index (DESIGN_BRIEF.md 5.2): project name only, no teaser copy.
+// Still not shared as a component with Home's PortfolioStrip — this page has
+// a real, visible <h1> and no "View Full Portfolio" CTA (it's already the
+// full list).
+//
+// **Uniform grid as of 2026-08-01 (step 10f), not 5.2's "asymmetric image
+// list".** The `nth-child` vertical offsets are gone and the grid, card, and
+// caption come from `.portfolio-grid` in global.css — the same rules Home's
+// strip uses, so "the two pages match" is guaranteed by one definition rather
+// than by two style blocks that agree today. Reasoning and the brief
+// deviation are recorded in that file's comment.
+//
+// **Two placeholder cards render after the real ones and must be deleted
+// before launch** (LAUNCH_CHECKLIST.md §1). They carry no detail page and no
+// sitemap entry because they are not `Project` records — see projects.ts.
 
 import Base from '../../layouts/Base.astro';
 import RevealImage from '../../components/RevealImage.astro';
-import { projects } from '../../data/projects';
+import { projects, placeholderProjects } from '../../data/projects';
 ---
 
 <Base
@@ -25,20 +33,36 @@ import { projects } from '../../data/projects';
   <section class="section wrap">
     <h1 class="type-display portfolio-index__heading">Portfolio</h1>
 
-    <ul class="portfolio-index__list">
+    <ul class="portfolio-grid">
       {projects.map((project) => (
-        <li class="portfolio-index__item">
-          <a href={`/portfolio/${project.slug}`} class="portfolio-index__link">
+        <li>
+          <a href={`/portfolio/${project.slug}`} class="portfolio-grid__link">
             <RevealImage
               src={project.image}
               alt={project.alt}
               blurDataURL={project.blurDataURL}
               aspectRatio="4/5"
-              sizes="(min-width: 768px) 40vw, 90vw"
+              sizes="(min-width: 700px) 32vw, 90vw"
               transitionName={`project-photo-${project.slug}`}
             />
-            <span class="type-label portfolio-index__name">{project.name}</span>
+            <span class="type-label portfolio-grid__name">{project.name}</span>
           </a>
+        </li>
+      ))}
+
+      {/* =================================================================
+          PLACEHOLDER CARDS — DELETE BEFORE LAUNCH (step 10f, 2026-08-01).
+          Same two entries the Home strip renders, so the two pages match in
+          content as well as in layout. Delete this block and the
+          `placeholderProjects` import together with the array in
+          src/data/projects.ts. Tracked in LAUNCH_CHECKLIST.md §1.
+          ================================================================= */}
+      {placeholderProjects.map((placeholder) => (
+        <li>
+          <div class="placeholder-slot portfolio-grid__placeholder">
+            <span class="type-label">Placeholder — no image</span>
+          </div>
+          <span class="type-label portfolio-grid__name">{placeholder.name}</span>
         </li>
       ))}
     </ul>
@@ -55,38 +79,7 @@ import { projects } from '../../data/projects';
     margin-bottom: 3rem;
   }
 
-  .portfolio-index__list {
-    display: grid;
-    gap: 3rem 1.5rem;
-    /* The track max is 32rem, not `1fr`, and that matters. With `auto-fit`,
-       a `1fr` max is a trap on a single item: auto-fit collapses the empty
-       tracks to 0 and the one surviving track absorbs the entire row. At
-       1345px that rendered a 1249x1561 image — taller than the viewport, and
-       on a short laptop screen roughly two screens tall. Capping the max
-       lets one item render at a sane size while three or more still fill the
-       row exactly as before. The bug only appears while a collection holds a
-       single item, which is the state the portfolio and this gallery are
-       actually in today. */
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 32rem));
-  }
-
-  .portfolio-index__link {
-    display: block;
-  }
-
-  .portfolio-index__name {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--ink-muted);
-  }
-
-  /* Asymmetry (3.5): same pattern as PortfolioStrip, inert with one item. */
-  @media (min-width: 768px) {
-    .portfolio-index__item:nth-child(3n+2) {
-      margin-top: 4rem;
-    }
-    .portfolio-index__item:nth-child(3n+3) {
-      margin-top: 2rem;
-    }
-  }
+  /* The grid, the card, and the caption all live in `.portfolio-grid`
+     (global.css), shared with Home's strip. Nothing index-specific remains
+     beyond the heading above. */
 </style>

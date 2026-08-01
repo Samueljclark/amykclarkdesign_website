@@ -138,17 +138,54 @@ const heroImages = [
 
   <ServiceList services={services} />
 
+  {/* About / the differentiator (5.1 section 4). Restructured 2026-08-01
+      (step 10g): copy left, portrait right, collapsing to one column below
+      900px. DOM order is copy then portrait, so a screen reader meets the
+      section's actual content before the image. */}
   <section class="section wrap differentiator" aria-labelledby="differentiator-heading">
     <p class="type-label section-eyebrow">About</p>
-    <h2 id="differentiator-heading" class="type-display differentiator__heading">
-      A Designer's Eye, A Workroom's Understanding
-    </h2>
-    <!-- DRAFT COPY - NEEDS REWRITE -->
-    <p class="differentiator__body">
-      Amy designs your window treatments, makes them in her own workroom, and installs them herself.
-      All three, one person. An interior decorator does not make anything, and that is the whole
-      difference.
-    </p>
+
+    <div class="differentiator__grid">
+      <div class="differentiator__copy">
+        <h2 id="differentiator-heading" class="type-display differentiator__heading">
+          A Designer's Eye, A Workroom's Understanding
+        </h2>
+        <!-- DRAFT COPY - NEEDS REWRITE -->
+        <p class="differentiator__body">
+          Amy designs your window treatments, makes them in her own workroom, and installs them
+          herself. All three, one person. An interior decorator does not make anything, and that is
+          the whole difference.
+        </p>
+      </div>
+
+      <!-- =====================================================================
+           PORTRAIT PLACEHOLDER — AWAITING KELSEE ETMANS' HEADSHOT.
+           This slot is sized and positioned exactly as the real portrait will
+           be (4:5, right column, capped at 24rem). Replace the tinted block
+           with a <RevealImage> carrying the real photo and its blur-up string,
+           and delete the .differentiator__portrait-slot rules. Tracked in
+           LAUNCH_CHECKLIST.md §1 and IMAGE-MANIFEST.md's asset requests.
+
+           **FLAG FOR SAM — a real headshot of Amy already exists in this
+           repo.** `src/assets/images/team/amy-clark.jpg` is a 1600x1072
+           professional portrait against white brick (landed 2026-07-27, see
+           BUILD-PLAN) and it is live right now in the Studio row on /about.
+           The instruction for this step said there is no headshot yet and to
+           build a placeholder, so a placeholder is what this is — but if that
+           was about Kelsee's shoot specifically rather than about no photo
+           existing at all, dropping the existing file in here is a one-line
+           change and this comment can go with it.
+           ===================================================================== -->
+      <figure class="differentiator__portrait">
+        <div class="placeholder-slot differentiator__portrait-slot">
+          <span class="type-label">Portrait placeholder — awaiting Kelsee's headshot</span>
+        </div>
+        <figcaption class="differentiator__portrait-caption">
+          <p class="type-label">Amy Clark</p>
+          <p class="type-label differentiator__portrait-role">Founder</p>
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="section wrap testimonial" aria-labelledby="testimonial-heading">
@@ -199,11 +236,49 @@ const heroImages = [
     padding-block: clamp(3.5rem, 7vw, 6.5rem);
   }
 
+  /* Copy left, portrait right (step 10g). One column below 900px, which is
+     the same breakpoint the nav switches at — one number for "this viewport
+     is wide enough for two things side by side," rather than a second one
+     invented here. The portrait column is capped at 24rem and pushed to the
+     right edge, so at 1280px it stays a portrait rather than becoming a
+     440px-wide slab, and the heading keeps enough width not to wrap into a
+     column of single words. */
+  .differentiator__grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .differentiator__grid {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: start;
+    }
+    .differentiator__portrait {
+      justify-self: end;
+      max-width: 24rem;
+      width: 100%;
+    }
+  }
+
   .differentiator__heading {
     max-width: 18ch;
   }
   .differentiator__body {
     margin-top: 1.5rem;
+  }
+
+  /* 4:5, matching every other portrait-shaped image on the site (the
+     portfolio cards, the journal cards, ServiceList's hover stage). */
+  .differentiator__portrait-slot {
+    aspect-ratio: 4 / 5;
+  }
+  .differentiator__portrait-caption {
+    margin-top: 1rem;
+  }
+  .differentiator__portrait-role {
+    margin-top: 0.5rem;
+    color: var(--ink-muted);
   }
 
   .testimonial__heading {

@@ -65,6 +65,33 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   `portfolio/signature-pieces/` **directory** on disk; that is a folder name,
   not a route, and is fine. What must not appear is a page, a link, or a
   sitemap entry.
+- [ ] **The two placeholder portfolio entries must be removed.** Added
+  2026-08-01 (step 10f) purely so the uniform four-card, two-row grid could be
+  reviewed with only two real projects on file. They render on **both** Home's
+  portfolio strip and the `/portfolio` index as tinted grey blocks captioned
+  "Placeholder Project 01" and "Placeholder Project 02". They are not links,
+  they have no detail pages, and they are not in the sitemap — they are not
+  `Project` records, which is what keeps them out of `getStaticPaths`. **They
+  are still visible to anyone who loads either page, so this is a hard
+  blocker, not a tidy-up.** To remove: delete the `placeholderProjects` array
+  in `src/data/projects.ts`, its two imports, the two render blocks in
+  `src/components/PortfolioStrip.astro` and `src/pages/portfolio/index.astro`,
+  and the `.portfolio-grid__placeholder` rule in `src/styles/global.css`.
+  Verify with:
+
+  ```bash
+  grep -rn "placeholderProjects\|Placeholder Project" src/ dist/
+  ```
+- [Amy] **Amy's real headshot must replace the placeholder slot in Home's
+  About section.** The section leads with copy left and a portrait right; the
+  portrait is currently a tinted 4:5 block reading "Portrait placeholder —
+  awaiting Kelsee's headshot" (`.differentiator__portrait-slot` in
+  `src/pages/index.astro`). Replace it with a `<RevealImage>` carrying the
+  real photo, its alt text, and a blur-up string, then delete the slot's own
+  CSS rule. **Note:** a real professional headshot of Amy is already in the
+  repo (`src/assets/images/team/amy-clark.jpg`, live in the `/about` Studio
+  row). If that one is acceptable, this is a one-line change rather than a
+  wait on Kelsee — see IMAGE-MANIFEST.md.
 - [Amy] **Consultation fee.** Deliberately not stated anywhere, and the
   2026-07-31 review hardened this: the amount is for Amy's internal reference
   and a future automated confirmation email **only**, and does not go on the

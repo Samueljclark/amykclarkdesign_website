@@ -70,6 +70,38 @@ export interface Project {
   spec: ProjectSpec;
 }
 
+// ===========================================================================
+// PLACEHOLDER PROJECTS — DELETE BEFORE LAUNCH (added 2026-08-01, step 10f)
+// ===========================================================================
+// Two fake entries so Sam can see how the uniform portfolio grid holds across
+// two rows with four cards instead of two. They exist for layout review and
+// nothing else.
+//
+// **They are deliberately NOT `Project` records and deliberately NOT in the
+// `projects` array below**, and that is the whole safety mechanism:
+// `portfolio/[slug].astro` builds its pages with `getStaticPaths` over
+// `projects`, so keeping these out of it means no detail page, no route, no
+// sitemap entry, no BreadcrumbList, and nothing for Google to index. They are
+// rendered only by the two grid views (Home's PortfolioStrip and the
+// /portfolio index) as inert, unlinked, tinted blocks.
+//
+// **No invented content.** No room, no fabric, no treatment, no client, no
+// story — nothing that could be mistaken for a record of real work. A name
+// that says "placeholder" and a grey box, and that is the entire entry.
+//
+// TO REMOVE: delete this array, delete the two `placeholderProjects` imports
+// and the blocks that render them in `PortfolioStrip.astro` and
+// `pages/portfolio/index.astro`, and delete the `.portfolio-grid__placeholder`
+// rules in `global.css`. Tracked in LAUNCH_CHECKLIST.md §1.
+export interface PlaceholderProject {
+  name: string;
+}
+
+export const placeholderProjects: PlaceholderProject[] = [
+  { name: 'Placeholder Project 01' },
+  { name: 'Placeholder Project 02' },
+];
+
 export const projects: Project[] = [
   {
     slug: 'collected-living-room',
