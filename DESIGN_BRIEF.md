@@ -278,7 +278,7 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
 
 **The portrait is currently a clearly-marked placeholder slot**, sized and positioned exactly as the real photo will be. It is replaced, not deleted, when a headshot lands. Note that a real professional headshot of Amy already exists in the repo and is live in the `/about` Studio row — see IMAGE-MANIFEST.md and LAUNCH_CHECKLIST.md §1.
 
-**Scroll snapping (added 2026-08-01, and it reverses a prior removal).** Home — and only Home — carries `scroll-snap-type: y proximity` with `scroll-snap-align: center` and `scroll-snap-stop: normal` on each section. See 6.9 for the full specification, the reversal it represents, and where the kill switch lives.
+**Scroll behaviour on Home is settled and there is no scroll snapping.** The hero's one-time auto-scroll is the whole of it. See 6.9 — that section is now a closed decision, not a specification.
 
 **Section 5: Testimonials.** **Two quotes visible at once**, Newsreader light, large, attributed by first name and last initial only. No stars, no cards, no avatars. The first slot is fixed and never changes — it is the anchor. The second slot rotates through more than two real quotes over time, cross-dissolving on section 6.1's timing, so the section shows two at a time but draws on a larger pool. (Amended 2026-07-27; this line previously read "Two quotes maximum," which the rotation would otherwise contradict.)
 
@@ -501,60 +501,35 @@ Native lazy loading below the fold. Blur-up placeholder from a 20px-wide inline 
 }
 ```
 
-Plus: hero gallery advances by instant swap, shade reveals render fully visible on load, no scale on hover, **and scroll snapping is off entirely (6.9).**
+Plus: hero gallery advances by instant swap, shade reveals render fully visible on load, no scale on hover, **and the hero's one-time auto-scroll does not run at all (6.9).**
 
-## 6.9 Homepage scroll snapping
+## 6.9 Scroll behaviour — SETTLED, do not revisit
 
-Added 2026-08-01 on Sam's instruction. **Home only.**
+**Closed decision, 2026-08-02.** Scroll behaviour on this site is one thing
+and one thing only:
 
-```
-scroll-snap-type:  y proximity        (on <html>, never mandatory)
-scroll-snap-align: center             (on each homepage section)
-scroll-snap-stop:  normal             (a fast flick passes through several)
-```
+**The hero's one-time auto-scroll.** From a fresh load at the very top, the
+first real downward scroll past a 40px threshold eases the rest of the way
+into the first section and then removes its own listener. It fires **at most
+once per page view**, never scrolls backward, and is disabled entirely under
+`prefers-reduced-motion`. Implementation and full spec: `initHeroScrollEase()`
+in `src/scripts/motion.js`, plus `.scroll-ease-target` in `global.css`.
 
-**The kill switch is the `--home-scroll-snap` custom property in
-`src/styles/global.css`.** Set it to `none` and snapping is off site-wide.
-That is the entire off-switch; every other rule is inert without it.
+**There is no section-level scroll snapping, anywhere, and there is not going
+to be.** `scroll-snap-type` appears nowhere in the codebase.
 
-**This reverses a prior removal, and both sides of that were deliberate.**
-`scroll-snap-type: y proximity` was the *first* implementation of the
-hero-to-portfolio transition and was taken out again on 2026-07-25 because it
-felt aggressive on a trackpad: small scrolls got pulled back to the hero
-instead of easing forward, which is the opposite of forgiving for an audience
-the brief puts at 40 to 85. Kristen Hitch raised snapping again as an
-accessibility concern in the July 31 review and asked to revisit it only once
-the site is closer to finished. Sam asked for it anyway, aware of both. **Amy
-has not been asked and that question is open in ASK-AMY.md.**
+**Do not add, extend, or re-propose scroll snapping unless Sam asks for it in
+so many words.** This is not a preference to be weighed against a better
+implementation. It has now been built and removed twice — once on 2026-07-25,
+and again on 2026-08-02 after Sam evaluated the 2026-08-01 build on real
+hardware. Both implementations measured correctly; measuring correctly was
+never the question. It is the wrong feel for this site and for an audience the
+brief puts at 40 to 85, and Kristen Hitch's accessibility objection from the
+July 31 review still stands unanswered.
 
-Three things make this a different proposition from the 2026-07-25 attempt,
-and none of them may be quietly dropped:
-
-1. **`proximity`, never `mandatory`.** It snaps when a reader comes to rest
-   near a point and never takes the scroll away from them mid-gesture. This is
-   the single most important detail and it is what makes variable section
-   heights workable at all.
-2. **The hero carries no `scroll-snap-align`.** The 2026-07-25 failure was a
-   snap point at scroll position 0 dragging a small nudge backwards; with no
-   snap point at the top of the document there is nothing to drag back to. The
-   hero is excluded by construction rather than by an exception someone has to
-   remember, and the existing hero scroll-ease still owns that first
-   transition.
-3. **Off entirely under `prefers-reduced-motion`**, by its own rule.
-   6.8's global block only collapses animation and transition durations, and
-   `scroll-snap-type` is neither — it would have survived that rule untouched.
-
-**Section heights vary and no `min-height` was added to even them out.** That
-was the obvious move and the arithmetic says it backfires: padding a short
-section out puts the padding on screen, which recreates the "empty screen
-reads as the end of the page" failure the July 31 review already fixed
-(5.1's vertical rhythm note). Instead, sections keep the height their content
-wants. Oversized sections need no handling because the spec relaxes them — a
-snap area larger than the snapport does not have to align, so they scroll
-freely through their middles — and short sections centre correctly on their
-own because the space around them is filled by their neighbours. **If a snap
-point ever feels empty, the fix is content in that section, not a taller
-box.**
+The same instruction is recorded in BUILD-PLAN.md's decision log and in
+CLAUDE.md's session rules. It is in three places because it has come back
+twice already.
 
 ---
 
@@ -676,7 +651,7 @@ The build is done when all of the following are true:
 - [ ] **No page presents only a photograph above the fold** (3.5). At 1280px the first viewport of every page carries a heading, a line of text, a partially visible next element, or a scroll cue
 - [ ] **The hero wordmark is legible over the photograph at 375px and 1280px** — all caps, letter-spaced, anchored to the bottom of the frame, on a scrim
 - [ ] **The two placeholder portfolio entries are gone**, and the About section's portrait placeholder has been replaced with a real photograph
-- [ ] **Scroll snapping is `proximity`, never `mandatory`; the hero carries no snap alignment; and it is off entirely under `prefers-reduced-motion`** (6.9)
+- [ ] **`scroll-snap-type` appears nowhere in the codebase**, and the hero's one-time auto-scroll is the only scroll behaviour on the site (6.9)
 - [ ] **The Process page names the discovery call and the in-home consultation as separate steps, in that order, with no cost framing on either** (5.5)
 - [ ] Consultation form requires budget and attribution
 - [ ] Blinds accordion animates smoothly

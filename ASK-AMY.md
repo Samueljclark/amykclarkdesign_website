@@ -123,36 +123,6 @@ comes up.
 
 ## 3. Facts to confirm (short answers, could be one text thread)
 
-### New 2026-08-01
-
-- **Does Amy approve reintroducing scroll snapping on the homepage, given it
-  was removed once already for accessibility reasons?** This is the only
-  question in this document where the site currently ships something she has
-  not been asked about, so it is worth a plain answer rather than leaving it
-  to be noticed.
-
-  The history matters and she should hear it: scroll snapping was the *first*
-  way the homepage handled the move off the hero, and it was **taken out on
-  2026-07-25** because small trackpad scrolls got dragged backwards instead of
-  easing forward — the opposite of forgiving for an audience the brief puts at
-  40 to 85. **Kristen raised it again as an accessibility concern in the July
-  31 meeting** and asked to revisit it only once the site was closer to
-  finished. Sam asked for it anyway on 2026-08-01, aware of both, and it is
-  live on Home now.
-
-  What is different this time, so the answer is informed rather than a
-  re-litigation: it uses `proximity` rather than `mandatory`, which means it
-  settles a section into place when you stop scrolling near one and **never
-  takes the scroll away from you mid-gesture**; the hero is deliberately
-  excluded, which is what caused the original problem; and it turns itself off
-  completely for anyone whose device is set to reduce motion.
-
-  The useful thing to ask is not "do you approve of scroll snapping" — it is
-  **"scroll down the homepage on your own laptop and your own phone and tell
-  me whether it feels helpful or fussy."** If it is fussy, it is one line to
-  switch off (`--home-scroll-snap` in `src/styles/global.css`) and nothing
-  else on the site depends on it.
-
 ### From the 2026-07-31 Kristen Hitch review
 
 *(The "since ___" year question that used to head this list is **resolved** —

@@ -37,12 +37,6 @@ interface Props {
   ogType?: 'website' | 'article';
   noindex?: boolean;
   transparentNav?: boolean;
-  // Opts a page into the homepage scroll-snap treatment (global.css). Only
-  // Home sets it. It renders as a bare `data-scroll-snap` attribute on
-  // <html>, which is what the CSS keys off — the kill switch is the
-  // `--home-scroll-snap` custom property in global.css, not this prop, so
-  // turning snapping off does not mean editing every page that opted in.
-  scrollSnap?: boolean;
   // Structured data (8.2). Assembled here rather than by each page adding its
   // own `slot="head"` element, so <head> stays in one place and no page can
   // quietly ship without a breadcrumb. JsonLd.astro emits nothing when none of
@@ -66,7 +60,6 @@ const {
   ogType = 'website',
   noindex = false,
   transparentNav = true,
-  scrollSnap = false,
   localBusiness = false,
   breadcrumbs,
   article,
@@ -77,7 +70,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" data-scroll-snap={scrollSnap ? '' : undefined}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -2496,3 +2496,47 @@ project cards and the About portrait slot deliberately break it: Sam asked for
 holes that are unmistakably holes, one set for layout review and one waiting
 on a specific delivery. Both are recorded in IMAGE-MANIFEST.md and
 LAUNCH_CHECKLIST.md §1, and the portfolio pair is a hard launch blocker.
+
+---
+
+## 2026-08-02: scroll snapping — built, evaluated, rejected. CLOSED.
+
+**Resolved. Do not reopen without Sam asking in so many words.**
+
+Section-level scroll snapping was built on 2026-08-01 (step 10i), reviewed by
+Sam on real hardware, and **removed on 2026-08-02**. The hero's one-time
+auto-scroll is retained exactly as it was and is now the only scroll behaviour
+on the site.
+
+**What was removed:** the `--home-scroll-snap` custom property, the
+`html[data-scroll-snap]` rules and their reduced-motion counterparts (all in
+`global.css`), the `scrollSnap` prop and the `data-scroll-snap` attribute on
+`<html>` (`Base.astro`), and the `scrollSnap={true}` opt-in on Home
+(`index.astro`). `scroll-snap-type` now appears nowhere in the codebase.
+
+**What was NOT touched:** `initHeroScrollEase()` in `motion.js` and
+`.scroll-ease-target` in `global.css`. Verified after removal — from a fresh
+load, a 60px scroll carried the page to **828px, exactly the portfolio
+strip's top minus the nav height**; returning to the top and scrolling 60px
+again left it at 60, so it still fires at most once per page view. All five
+homepage sections parked 70px off their centres and none moved.
+
+**Why this is worth recording rather than just doing.** This is the *second*
+time snapping has been built and taken out — the first was 2026-07-25, and
+step 10i's implementation was specifically engineered around that failure (the
+hero deliberately carried no `scroll-snap-align`, so the "small scroll gets
+dragged backwards" problem could not recur; it was measured and confirmed
+absent). **Both implementations measured correctly. Measuring correctly was
+never the question.** It is the wrong feel for this site and this audience,
+and Kristen Hitch's accessibility objection from the July 31 review was never
+answered by anything either build did.
+
+The step 10i write-up already said the honest version of this — that the
+effect was "subtle to the point of being hard to notice" and that what would
+make it earn its keep is content rather than CSS. Sam's evaluation reached the
+same place faster.
+
+**Recorded in three places on purpose:** DESIGN_BRIEF 6.9 (rewritten from a
+specification into a closed decision), CLAUDE.md's session rules, and here. A
+decision that has been reversed twice needs to be findable by whoever is about
+to propose it a third time.

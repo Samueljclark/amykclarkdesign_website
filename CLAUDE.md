@@ -36,6 +36,15 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
   Browser-based visual testing for the final acceptance pass only.
 - Run /clear before starting each new step in BUILD-PLAN.md.
 - Run /cost at the end of each step.
+- **Scroll behavior on this site is a settled decision. Hero one-time
+  auto-scroll only, no section snapping. Do not modify or propose changes to
+  scroll behavior unless Sam specifically asks for it.** The hero ease is
+  `initHeroScrollEase()` in `src/scripts/motion.js` plus `.scroll-ease-target`
+  in `global.css`; leave both alone. Section-level `scroll-snap-type` has been
+  built and removed twice (2026-07-25 and 2026-08-02) — both implementations
+  worked correctly and were still rejected, so "but this one is done properly"
+  is not a reason to try again. Full reasoning: DESIGN_BRIEF.md 6.9 and
+  BUILD-PLAN.md's 2026-08-02 decision entry.
 - After finishing any real change (a build step, a bug fix, a content or
   copy update, a documentation update), commit it to git with a clear,
   descriptive commit message before ending your turn — don't wait to be
