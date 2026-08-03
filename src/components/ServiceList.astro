@@ -102,6 +102,9 @@ const { services, headingHidden = false } = Astro.props;
               sizes="(min-width: 1200px) 37vw, 1px"
               loading="lazy"
               class="service-list__layer-img"
+              {...(service.objectPosition
+                ? { style: `object-position:${service.objectPosition}` }
+                : {})}
             />
           </div>
         );

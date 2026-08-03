@@ -16,6 +16,11 @@ export interface Service {
   // The site has three usable photographs, so one of them is shared by two
   // services — recorded in IMAGE-MANIFEST.md rather than hidden here.
   photo: PhotoKey;
+  // Optional `object-position` for the hover stage's 4:5 crop. Only set it
+  // where the default centre crop puts the wrong thing in frame — a wide
+  // room photograph cropped to 4:5 keeps only its middle ~44%, which is not
+  // always where the subject is. Leave unset otherwise.
+  objectPosition?: string;
 }
 
 export const services: Service[] = [
@@ -44,6 +49,21 @@ export const services: Service[] = [
     // (the ottoman-stitching photo elsewhere on the site is a workroom
     // process shot, not a finished piece).
     photo: 'ivory-house-dining-chair',
+    // The source is 2000x1103 and the chair sits in its LEFT third; the table,
+    // the bowls and the placemats fill the centre and right. A 4:5 crop keeps
+    // only the middle ~44% of the width, so the default centred crop framed
+    // the table setting and sliced the chair — on the one row whose entire
+    // subject is the chair. Pulling the crop window left makes the
+    // reupholstered piece the subject and leaves a sliver of table edge for
+    // context. Vertical is untouched: a 4:5 crop of a 1.81:1 source uses the
+    // full frame height, so only the horizontal term does any work here.
+    //
+    // 14% was picked by comparing renders at 1280px, not calculated: 24% put
+    // the chair in frame but still left it fighting the table for the centre,
+    // and below about 10% the chair's own left edge starts getting clipped.
+    // At 14% the chair sits centrally and the table edge and window read as
+    // context behind it, which is what an upholstery tile should say.
+    objectPosition: '14% 50%',
   },
   {
     name: 'Soft Furnishings',
