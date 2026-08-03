@@ -32,6 +32,7 @@ She is not a full-service interior designer and the site must never say she is. 
 standard):** the site speaks about Amy in the **third person** ("Amy designs," "she makes," "the
 lines she represents"), not as Amy in the first person. The 2026-07-28 SITE-COPY-REWRITE.md pass
 moved the whole site into first person; this decision reverses that and is now the standard.
+(That document is archived at `docs/archive/2026-07-28-SITE-COPY-REWRITE.md`.)
 Rationale from the review: third person reads as an established studio rather than a personal
 account, and it keeps the copy usable in contexts (ads, directory listings, referrals) where a
 first-person "I" has no visible speaker. Client testimonials are the one exception: they stay in

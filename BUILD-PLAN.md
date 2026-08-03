@@ -1576,7 +1576,9 @@ for review; not cleared to publish.
 
 ## 2026-07-28: SITE-COPY-REWRITE.md merged — the site is now first person
 
-`SITE-COPY-REWRITE.md` had sat in the project root, untracked, since a session before Ivory
+*(Relocated 2026-08-03: this document now lives at `docs/archive/2026-07-28-SITE-COPY-REWRITE.md`. It is archived history, not current guidance — its first-person copy standard was reversed by the 2026-07-31 review.)*
+
+`docs/archive/2026-07-28-SITE-COPY-REWRITE.md` had sat in the project root, untracked, since a session before Ivory
 House — a full rewrite of every page's copy in Amy's own voice, first person throughout, roughly
 half the prior word count, written before Ivory House existed. Merged in, not overwritten: Ivory
 House's project record, images, scope line, and spec block are untouched, and both testimonial
@@ -1777,7 +1779,7 @@ became its `metaDescription` verbatim, **shortened from 228 to 123
 characters** in the process, since it had been over 8.1's 155-character limit
 since the day it shipped and nobody had audited it until this pass.
 
-### `SITE-COPY-EXPORT.md` is now regenerable
+### `docs/handoff/SITE-COPY-EXPORT.md` is now regenerable
 
 `scripts/export-site-copy.mjs` (`npm run export-copy`, after `npm run
 build`) rebuilds the export from the compiled `dist/` HTML, not from source —
@@ -1811,7 +1813,7 @@ diffed for line count.
 file" section at the end (full, un-fragmented review text collected directly
 from Amy, most of it never rendered on the site at all) isn't in the compiled
 HTML by definition. The script detects and carries that section forward
-verbatim from whatever `SITE-COPY-EXPORT.md` already exists rather than
+verbatim from whatever `docs/handoff/SITE-COPY-EXPORT.md` already exists rather than
 dropping it.
 
 **What it doesn't guarantee:** byte-identical output to the original
@@ -1868,7 +1870,7 @@ everything else.
   `index.astro`'s testimonial arrays, `src/data/projects.ts`,
   `src/data/signaturePieces.ts`.
 - **To check what actually changed after an edit:** `npm run build && npm run
-  export-copy`, then read or diff `SITE-COPY-EXPORT.md`.
+  export-copy`, then read or diff `docs/handoff/SITE-COPY-EXPORT.md`.
 
 ## 2026-07-29: Phase 3 — five more Ivory House frames, closing the substitute-photo gap
 
@@ -1929,7 +1931,7 @@ step-2 selection notes). Conclusion: this can't be fixed by a crop or an
 object-position tweak, because the site's centered text and the
 photograph's centered chandelier are structurally in tension, and there
 isn't crop margin at desktop width to redistribute even if that weren't
-true. Left as-is; flagged as the top item in `PHOTO-EDIT-REQUEST.md` since
+true. Left as-is; flagged as the top item in `docs/handoff/PHOTO-EDIT-REQUEST.md` since
 a human recompose during Kelsee's final edit is the only real lever.
 
 **Fourteen of the seventeen previously-unused frames were reconsidered and
@@ -2540,3 +2542,86 @@ same place faster.
 specification into a closed decision), CLAUDE.md's session rules, and here. A
 decision that has been reversed twice needs to be findable by whoever is about
 to propose it a third time.
+
+---
+
+## 2026-08-03: repo root reorganized
+
+Documentation only. **No site behaviour, styling, copy, or content changed**;
+the build produced 21 pages before and 21 pages after.
+
+The root had accumulated eleven loose markdown files over about three weeks and
+it was no longer possible to tell, from a directory listing, which ones govern
+the build and which are one-off artifacts. Parts of this project are being
+handed to other people, so the root needed to be legible to someone who has
+never opened it.
+
+### The structure
+
+```
+/                          governing docs only — these do not move
+  CLAUDE.md                how work gets done here
+  DESIGN_BRIEF.md          the authority
+  BUILD-PLAN.md            build order, status, decision log
+  ASK-AMY.md               open questions for Amy
+  LAUNCH_CHECKLIST.md      what happens between "built" and "live"
+  IMAGE-MANIFEST.md        every image and its slot
+
+docs/
+  README.md                the four categories, and the reading order for
+                           someone new. Entry point for a newcomer.
+  handoff/                 generated artifacts for people outside this repo
+    PHOTO-EDIT-REQUESTS.md
+    PHOTO-EDIT-REQUEST.md
+    SITE-COPY-FOR-REVIEW.md
+    SITE-COPY-EXPORT.md
+  archive/                 superseded, YYYY-MM-DD- prefixed, never deleted
+    2026-07-28-SITE-COPY-REWRITE.md
+  notes/                   meeting notes, research, scratch (empty at creation)
+```
+
+The same convention is now a session rule in CLAUDE.md so new documents land in
+the right place instead of at the root.
+
+### Decisions worth recording
+
+**`SITE-COPY-EXPORT.md` went to `handoff/`, not `archive/`, and this was not
+the obvious call.** It predates `SITE-COPY-FOR-REVIEW.md` and looks superseded.
+It is not dead: `scripts/export-site-copy.mjs` still generates it and
+`npm run export-copy` still exists. Archiving it would have meant the next run
+of that script dropped a fresh copy back at the repo root and quietly undid the
+reorganization. The script's `outPath` now points at `docs/handoff/` and carries
+a comment saying so. **If the export workflow is ever retired, move the file to
+`archive/` and retire the script together** — one without the other reintroduces
+the mess.
+
+**The two photo-edit files were both kept.** `PHOTO-EDIT-REQUESTS.md` (plural,
+the full inventory) states in its own text that it does not supersede
+`PHOTO-EDIT-REQUEST.md` (singular, the shorter priority note). Deciding
+otherwise would have been a content judgment rather than an organizing one.
+**Their names differ by one character and they now sit in the same folder** —
+that is a trap for anyone new and is flagged for Sam to resolve by consolidating
+or renaming.
+
+**Narrative references were not rewritten.** Ten sentences across BUILD-PLAN,
+DESIGN_BRIEF and ASK-AMY mention `SITE-COPY-REWRITE.md` by name in prose about
+what it did, rather than as a path. Rewriting each into
+`docs/archive/2026-07-28-SITE-COPY-REWRITE.md's process page shortens...` would
+have damaged readability for no navigational gain — the archived file keeps its
+original name after the date prefix, so grep still finds it. Instead, path-style
+(backticked) references were updated everywhere, and a one-line relocation
+pointer was added at the three places a reader is most likely to start.
+
+### Left at the root deliberately
+
+**`.section`** — a zero-byte file, git-tracked, almost certainly created by a
+stray shell redirect on 2026-08-01. It is not a document and fits none of the
+four categories, so per the instruction it was left in place and flagged rather
+than forced somewhere. It is safe to `git rm`.
+
+**No root `README.md` was created.** One was not asked for and the root is now
+self-explanatory; `docs/README.md` carries the orientation material.
+
+`legacy-static/LAUNCH-CHECKLIST.md` also stays where it is — it is part of the
+archived v1 snapshot, and pulling one file out of that folder would damage the
+snapshot's integrity for no benefit.

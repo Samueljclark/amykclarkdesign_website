@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Regenerates SITE-COPY-EXPORT.md from the built site (Phase 2 of the
+// Regenerates docs/handoff/SITE-COPY-EXPORT.md from the built site (Phase 2 of the
 // copy-bulk-swap work, BUILD-PLAN.md). Run `npm run build` first — this
 // script reads compiled HTML out of `dist/`, not source files, because
 // `dist/` is the one place that is guaranteed to reflect exactly what a
@@ -39,7 +39,10 @@ import path from 'node:path';
 
 const rootDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const distDir = path.join(rootDir, 'dist');
-const outPath = path.join(rootDir, 'SITE-COPY-EXPORT.md');
+// Output moved out of the repo root 2026-08-03 with the docs reorganization.
+// This path is load-bearing: leave it pointing at docs/handoff/ or the next
+// `npm run export-copy` drops the file back at the root and undoes the tidy.
+const outPath = path.join(rootDir, 'docs', 'handoff', 'SITE-COPY-EXPORT.md');
 
 if (!existsSync(distDir)) {
   console.error('dist/ not found. Run `npm run build` first, then re-run this script.');

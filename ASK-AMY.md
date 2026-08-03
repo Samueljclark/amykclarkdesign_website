@@ -208,7 +208,7 @@ it and the footer reads "Serving Cincinnati and Northern Kentucky since
   went in. Flagged in `Faq.astro`. Worth a plain "is this still the real
   list?" alongside the other quick-confirm items here.
 - **The site's copy was rewritten in Amy's own first-person voice
-  (SITE-COPY-REWRITE.md, merged 2026-07-28) but has not been reviewed by
+  (`docs/archive/2026-07-28-SITE-COPY-REWRITE.md`, merged 2026-07-28) but has not been reviewed by
   her.** Same holding pattern as the Journal drafts below and the
   testimonials — it reads like her, but nothing on the site today is
   actually her own reviewed words except what came directly from a
@@ -245,7 +245,7 @@ it and the footer reads "Serving Cincinnati and Northern Kentucky since
 - **kimmybbarn's review is on file but deliberately unused**, and this is the
   one judgement call worth confirming: it carries no project detail, which is
   the standard every other quote here was selected against. Full text is in
-  `SITE-COPY-EXPORT.md` if Amy would rather it were used.
+  `docs/handoff/SITE-COPY-EXPORT.md` if Amy would rather it were used.
 - **Written permission for the Ivory House photography.** The same holding
   pattern as the testimonials, for a different reason: this is real,
   identifiable client photography, not client testimony. Two separate

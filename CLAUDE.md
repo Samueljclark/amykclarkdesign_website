@@ -36,6 +36,23 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
   Browser-based visual testing for the final acceptance pass only.
 - Run /clear before starting each new step in BUILD-PLAN.md.
 - Run /cost at the end of each step.
+- **Where documents live (set 2026-08-03). Do not put new loose markdown at
+  the repo root.**
+  - **Governing docs stay at the repo root and do not move:** this file,
+    `DESIGN_BRIEF.md`, `BUILD-PLAN.md`, `ASK-AMY.md`, `LAUNCH_CHECKLIST.md`,
+    `IMAGE-MANIFEST.md`. Their paths are referenced here, in each other, and in
+    Sam's working prompts, so moving one breaks things quietly.
+  - **Generated handoff artifacts go in `docs/handoff/`** — anything produced
+    to hand to someone outside this repo (a photographer, a copywriter, a
+    reviewer). If a script generates it, point the script at that folder.
+  - **Superseded documents go in `docs/archive/`** with a `YYYY-MM-DD-` prefix
+    on the filename. **Never delete them.** Losing context is the expensive
+    mistake; disk space is not the problem.
+  - **Notes and reference material go in `docs/notes/`** — meeting notes,
+    research, scratch documents. Things that informed a decision without being
+    authoritative.
+  - `docs/README.md` explains all four categories and is the entry point for
+    anyone new to the repo.
 - **Scroll behavior on this site is a settled decision. Hero one-time
   auto-scroll only, no section snapping. Do not modify or propose changes to
   scroll behavior unless Sam specifically asks for it.** The hero ease is

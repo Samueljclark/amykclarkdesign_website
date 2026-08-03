@@ -35,7 +35,7 @@ the ceilings and walls read cool grey. Both are normal for daylight interiors
 shot against bright windows. They are called out individually where they are
 worst.
 
-**Related file:** `PHOTO-EDIT-REQUEST.md` (singular) already in this project
+**Related file:** `docs/handoff/PHOTO-EDIT-REQUEST.md` (singular) already in this project
 is a shorter, friendlier note about which frames matter most and in what
 order. It is not superseded — this file is the detailed version, that one is
 the priority summary.

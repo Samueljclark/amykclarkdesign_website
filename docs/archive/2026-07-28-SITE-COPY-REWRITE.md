@@ -1,7 +1,7 @@
 # Amy K Clark Design — Site Copy Rewrite
 
 Every page of amykclarkdesign.com, rewritten in Amy's voice. Same structure and
-same page order as SITE-COPY-EXPORT.md so the two can be read side by side.
+same page order as docs/handoff/SITE-COPY-EXPORT.md so the two can be read side by side.
 
 Three things changed everywhere:
 
