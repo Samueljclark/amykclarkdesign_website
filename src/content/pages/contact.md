@@ -17,7 +17,10 @@ title: Schedule Your Complimentary Discovery Call
 lead:
   - 'It starts with a phone call, and the call is free. Fifteen minutes on what the room is doing wrong, what you have already tried, and whether Amy is the right person for it. No measuring, no fabric, no commitment.'
   - 'If it sounds like a fit, the next step is the in-home design consultation: about three hours in your house, and a paid visit, because it is design work rather than a sales call. Amy measures the openings herself, sees the light at the hour that matters, and puts fabric against your walls and your furniture. You come out of it knowing what the room needs and what she would do about it.'
-  - 'Amy works throughout Cincinnati and Northern Kentucky. Tell her as much as you can below — the more she knows before the call, the more useful it will be.'
+  # Em dash removed 2026-08-02 and the sentence rebuilt around its absence
+  # rather than swapped for an en dash or a comma splice. DRAFT COPY - NEEDS
+  # REWRITE still applies to this paragraph like the two above it.
+  - 'Amy works throughout Cincinnati and Northern Kentucky. Tell her as much as you can below. The more she knows before the call, the more useful it will be.'
 # Below the form (5.7). Each answer also feeds FAQPage JSON-LD (see Faq.astro)
 # — structured here, not markdown, for the same reason blinds-shades.md's
 # accordion categories are structured: JSON-LD needs the exact strings, not
