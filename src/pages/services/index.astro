@@ -5,11 +5,20 @@
 // near-identical list component. Real visible <h1> here (unlike Home's
 // hero-specific visually-hidden one).
 
+// **No lead image as of 2026-08-02, deliberately.** This page led on
+// `hero/pleated-drapery-living-room-french-doors-pool-view.jpg`, which is now
+// the homepage hero. Running the same photograph as the first image on Home
+// and on Services reads as a shortage rather than as a motif. Nothing was
+// substituted in its place, on Sam's explicit instruction — every other real
+// photograph on this site is already doing three or four jobs, and filling a
+// hole with the nearest available frame is how that got as bad as it is.
+// The ServiceList below carries four photographs on its hover stage at
+// desktop widths, so this page is not imageless in practice.
+// Give it a real lead when Kelsee delivers.
+
 import Base from '../../layouts/Base.astro';
 import ServiceList from '../../components/ServiceList.astro';
-import RevealImage from '../../components/RevealImage.astro';
 import { services } from '../../data/services';
-import leadImage from '../../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
 ---
 
 <Base
@@ -32,13 +41,8 @@ import leadImage from '../../assets/images/hero/pleated-drapery-living-room-fren
     </p>
   </section>
 
-  <RevealImage
-    src={leadImage}
-    alt="Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa"
-    blurDataURL="data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQAwCdASoYAA4APu1orU6ppiSiMAgBMB2JZQAAJqLi3qVMQ9VAANjKqbeciNEkpMXDllsCpgoMYdl7ucLubhtqE1JLh7v3/75MyoCwt8lGS7+Oq0L5IIs0IK5IIrEHVgX8zHrArz/FAAAA"
-    aspectRatio="16/9"
-    sizes="100vw"
-  />
+  {/* The full-bleed lead image that used to sit here is gone — see the header
+      comment. It is not replaced. */}
 
   {/* Heading hidden here only: this page's own <h1> already reads "Services"
       and a visible duplicate directly beneath it is a stutter. Home shows it

@@ -17,6 +17,11 @@ import type { ImageMetadata } from 'astro';
 import canalHousePillowImage from '../assets/images/portfolio/signature-pieces/tapestry-canal-house-lumbar-pillow-navy-piping.jpg';
 import wovenDotPillowImage from '../assets/images/portfolio/signature-pieces/woven-dot-lumbar-pillow-blue-ochre-piping.jpg';
 import ottomanStitchingImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
+// Amy's professional headshot (1600x1072, white-painted brick, natural light).
+// Moved in here 2026-08-02 when it gained a second consumer: it now fills
+// Home's About-section portrait as well as the /about Studio row, so the alt
+// text and blur-up string must exist in one copy rather than two.
+import amyPortraitImage from '../assets/images/team/amy-clark.jpg';
 import bandedRomanShadeImage from '../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
 import pleatedDraperyImage from '../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
 
@@ -202,6 +207,22 @@ export const photos = {
     alt: 'Lumbar pillow in a blue-grey textured weave with a small cream and ochre dot motif, finished with ochre contrast piping',
     blurDataURL:
       'data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACQAwCdASoYAA8APu1iqU2ppaOiMAgBMB2JZwC7ACIA3qvi3vUAAP5b746SPHIaltkFx/tsuof+YG3rOxdujkzrBavse5qd18G2vr62P8lPqgAA',
+  },
+  // Real, and the only portrait of Amy that exists. It is a few years old and
+  // that is explicitly not a blocker (Sam, 2026-08-02) — it goes in. A newer
+  // headshot from Kelsee replaces it in place when she delivers one; nothing
+  // about this entry is a placeholder.
+  //
+  // Landscape 3:2. In Home's 4:5 portrait slot `object-fit: cover` uses the
+  // full frame height and crops horizontally to the middle ~54%, which keeps
+  // Amy centred with margin on both sides — no `object-position` override
+  // needed. The /about Studio row crops it square, also centred.
+  'amy-portrait': {
+    image: amyPortraitImage,
+    publicPath: '/images/team/amy-clark.jpg',
+    alt: 'Amy Clark, founder of Amy K Clark Design, in a navy dress against a white-painted brick wall',
+    blurDataURL:
+      'data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZQDImYvq26U2FB3I/Bd+AAD+7UhLLgKV84pGZXTkhAd/SQPQtyVj1Aas1OMeYp4N8s/12mgNRDs9nQLR4/EtxCbS9ijwP0CRXcutExgAAA==',
   },
   'ottoman-stitching': {
     image: ottomanStitchingImage,

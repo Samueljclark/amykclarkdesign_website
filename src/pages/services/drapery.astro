@@ -17,11 +17,18 @@
 // clearance to print them, and rule 8 governs until each rep confirms.
 // No pricing language anywhere (rule 1).
 
+// **No lead image as of 2026-08-02, deliberately.** This page led on
+// `hero/pleated-drapery-living-room-french-doors-pool-view.jpg`, which is now
+// the homepage hero, and the same photograph opening both Home and the
+// drapery page reads as a shortage rather than as a motif. Nothing was
+// substituted, on Sam's explicit instruction — see services/index.astro for
+// the same note and the same reasoning. This is the drapery page and it wants
+// a real drapery lead more than any other page on the site; it is first in
+// line when Kelsee delivers.
+
 import Base from '../../layouts/Base.astro';
 import ContactBand from '../../components/ContactBand.astro';
-import RevealImage from '../../components/RevealImage.astro';
 import { getEntry, render } from 'astro:content';
-import leadImage from '../../assets/images/hero/pleated-drapery-living-room-french-doors-pool-view.jpg';
 
 const entry = await getEntry('pages', 'drapery');
 const { Content } = await render(entry);
@@ -45,13 +52,8 @@ const { seoTitle, description, eyebrow, title, lead } = entry.data;
     {lead.map((paragraph) => <p class="service-page__lead">{paragraph}</p>)}
   </section>
 
-  <RevealImage
-    src={leadImage}
-    alt="Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa"
-    blurDataURL="data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQAwCdASoYAA4APu1orU6ppiSiMAgBMB2JZQAAJqLi3qVMQ9VAANjKqbeciNEkpMXDllsCpgoMYdl7ucLubhtqE1JLh7v3/75MyoCwt8lGS7+Oq0L5IIs0IK5IIrEHVgX8zHrArz/FAAAA"
-    aspectRatio="16/9"
-    sizes="100vw"
-  />
+  {/* The full-bleed lead image that used to sit here is gone — see the header
+      comment. It is not replaced. */}
 
   <section class="section wrap">
     <div class="prose">

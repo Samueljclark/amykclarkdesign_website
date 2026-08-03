@@ -44,24 +44,30 @@ exists so it doesn't need repeating each time.
 
 `og/` is filled — see the real-files table above. It stands in as the site-wide default until Kelsee's photography allows a more deliberate, art-directed OG image (or per-page ones).
 
-### Two grey-box placeholder slots, added 2026-08-01 (step 10)
+### One grey-box placeholder, and one photo due an upgrade
 
-These are the **only two places on the site that break the standing rule
-above**, and both do so deliberately, on Sam's instruction. Everywhere else,
-a slot with no real file still gets the closest real photograph.
+**The portrait slot in Home's About section is FILLED with a real photograph
+as of 2026-08-02.** It held a tinted placeholder block for exactly one day
+(step 10g, 2026-08-01, built on the stated understanding that no headshot
+existed). Amy's real professional headshot does exist —
+`src/assets/images/team/amy-clark.jpg`, 1600x1072, white-painted brick,
+landed 2026-07-27 — and it is now in that slot, cropped 4:5 by `object-fit:
+cover` from the landscape original. It being a few years old is explicitly
+not a blocker (Sam, 2026-08-02).
+
+The photograph now lives in `src/data/photos.ts` as `amy-portrait`, because
+it has two consumers: Home's About section and the `/about` Studio row.
+**When Kelsee delivers a newer headshot, it is a replacement in one place** —
+swap the file or repoint that entry and regenerate its blur-up string, and
+both surfaces update. This is a photo upgrade, not a placeholder removal, and
+nothing is blocked on it.
+
+**One real grey-box placeholder remains**, and it is the only place on the
+site that breaks the standing rule above:
 
 | Slot | What it is | When it goes |
 |---|---|---|
-| Home About section, portrait right of the copy — `.differentiator__portrait-slot` in `src/pages/index.astro` | A tinted 4:5 block sized and positioned exactly as the real portrait will be, reading "Portrait placeholder — awaiting Kelsee's headshot". **Replaced, not deleted.** | When Kelsee delivers a headshot of Amy. |
 | Two fake portfolio cards on Home and `/portfolio` — `placeholderProjects` in `src/data/projects.ts` | "Placeholder Project 01" and "Placeholder Project 02", tinted 4:5 blocks reading "Placeholder — no image". They exist so the four-card, two-row uniform grid can be reviewed before real projects three and four arrive. Not links, no detail pages, not in the sitemap. **Deleted, not replaced.** | Before launch, unconditionally. LAUNCH_CHECKLIST §1. |
-
-**Flag on the portrait slot:** a real professional headshot of Amy already
-exists in this repo — `src/assets/images/team/amy-clark.jpg`, 1600x1072,
-against white brick, landed 2026-07-27 (see the section below) and live in
-the Studio row on `/about` today. The instruction for step 10 stated that no
-headshot exists yet and asked for a placeholder, so a placeholder is what was
-built. If that meant "nothing from Kelsee's shoot" rather than "no photo of
-Amy at all," using the existing file here is a one-line change.
 
 ## Correction, found during the Home build (step 2)
 

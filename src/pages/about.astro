@@ -46,8 +46,9 @@ import Base from '../layouts/Base.astro';
 import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
 import { getEntry, render } from 'astro:content';
+import { photos } from '../data/photos';
+import leadImage from '../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
 import originImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
-import amyPortrait from '../assets/images/team/amy-clark.jpg';
 import samPortrait from '../assets/images/team/sam-clark.jpg';
 import kelseePortrait from '../assets/images/team/kelsee-etmans.jpg';
 
@@ -57,12 +58,14 @@ const { seoTitle, description, eyebrow, title, lead } = entry.data;
 
 const studio = [
   {
-    image: amyPortrait,
-    alt: 'Amy Clark, founder of Amy K Clark Design, in a navy dress against a white-painted brick wall',
+    // Sourced from photos.ts as of 2026-08-02: this portrait gained a second
+    // consumer (Home's About section), so its alt text and blur-up string
+    // live in one place rather than two copies that can drift.
+    image: photos['amy-portrait'].image,
+    alt: photos['amy-portrait'].alt,
     name: 'Amy Clark',
     role: 'Founder',
-    blurDataURL:
-      'data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZQDImYvq26U2FB3I/Bd+AAD+7UhLLgKV84pGZXTkhAd/SQPQtyVj1Aas1OMeYp4N8s/12mgNRDs9nQLR4/EtxCbS9ijwP0CRXcutExgAAA==',
+    blurDataURL: photos['amy-portrait'].blurDataURL,
   },
   {
     image: samPortrait,
@@ -101,18 +104,20 @@ const studio = [
     {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
   </section>
 
-  {/* The full-bleed lead image that used to sit here is GONE, deliberately
-      (step 10a, 2026-08-01). That frame — the banded roman shade on the wall
-      of French doors — is now the Home hero, and running the same photograph
-      as the first image on two pages reads as a shortage rather than as a
-      motif. Nothing was substituted in its place: every other real photograph
-      on the site is already doing three or four jobs, and picking one
-      arbitrarily to fill a hole is how the substitute-photo problem got as
-      wide as it is. The page opens on the intro copy and reaches its first
-      image at the workroom shot below.
-      This is the one page on the site with no lead image. Give it a real one
-      when Kelsee delivers — a portrait of Amy or a workroom frame would both
-      be right here. */}
+  {/* RESTORED 2026-08-02. This image was removed on 2026-08-01 for exactly one
+      reason: step 10a had made it the homepage hero, and the same photograph
+      opening two pages reads as a shortage. The hero was corrected to a
+      different frame on 2026-08-02, so that reason no longer exists and the
+      page gets its original lead back. Flagged rather than done silently —
+      if /about was better without a lead image, deleting this block again is
+      the whole change. */}
+  <RevealImage
+    src={leadImage}
+    alt="Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead"
+    blurDataURL="data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA"
+    aspectRatio="16/9"
+    sizes="100vw"
+  />
 
   <section class="section wrap">
     <div class="prose">
