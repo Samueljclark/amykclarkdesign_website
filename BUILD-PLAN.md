@@ -1931,7 +1931,7 @@ step-2 selection notes). Conclusion: this can't be fixed by a crop or an
 object-position tweak, because the site's centered text and the
 photograph's centered chandelier are structurally in tension, and there
 isn't crop margin at desktop width to redistribute even if that weren't
-true. Left as-is; flagged as the top item in `docs/handoff/PHOTO-EDIT-REQUEST.md` since
+true. Left as-is; flagged in `docs/handoff/PHOTO-EDIT-REQUESTS.md` (entry A2) since
 a human recompose during Kelsee's final edit is the only real lever.
 
 **Fourteen of the seventeen previously-unused frames were reconsidered and
@@ -2572,11 +2572,11 @@ docs/
                            someone new. Entry point for a newcomer.
   handoff/                 generated artifacts for people outside this repo
     PHOTO-EDIT-REQUESTS.md
-    PHOTO-EDIT-REQUEST.md
     SITE-COPY-FOR-REVIEW.md
     SITE-COPY-EXPORT.md
   archive/                 superseded, YYYY-MM-DD- prefixed, never deleted
     2026-07-28-SITE-COPY-REWRITE.md
+    2026-08-04-PHOTO-EDIT-REQUEST.md
   notes/                   meeting notes, research, scratch (empty at creation)
 ```
 
@@ -2603,6 +2603,11 @@ otherwise would have been a content judgment rather than an organizing one.
 that is a trap for anyone new and is flagged for Sam to resolve by consolidating
 or renaming.
 
+*Resolved 2026-08-04 — see the consolidation entry at the end of this file.*
+The plural is canonical, the singular is archived at
+`docs/archive/2026-08-04-PHOTO-EDIT-REQUEST.md`, and `docs/handoff/` now holds
+exactly one photo-edit file.
+
 **Narrative references were not rewritten.** Ten sentences across BUILD-PLAN,
 DESIGN_BRIEF and ASK-AMY mention `SITE-COPY-REWRITE.md` by name in prose about
 what it did, rather than as a path. Rewriting each into
@@ -2625,3 +2630,38 @@ self-explanatory; `docs/README.md` carries the orientation material.
 `legacy-static/LAUNCH-CHECKLIST.md` also stays where it is — it is part of the
 archived v1 snapshot, and pulling one file out of that folder would damage the
 snapshot's integrity for no benefit.
+
+## 2026-08-04: photo-edit docs consolidated to one file
+
+The one-character-apart filename trap flagged on 2026-08-03 is closed.
+**`PHOTO-EDIT-REQUESTS.md` (plural) is canonical.** The singular is archived at
+`docs/archive/2026-08-04-PHOTO-EDIT-REQUEST.md` and `docs/handoff/` now holds
+exactly one photo-edit file.
+
+**The singular was not merely redundant — it was stale, which is what settled
+it.** Its top-priority item was frame 01, described as "the big, full-screen
+photo at the very top of the homepage" and the social-share image. Frame 01
+stopped being the hero on 1 August 2026. The plural's own entry (A2) already
+records it as unused, and the plural's ordering correctly leads with A9 and B1.
+Sending both files would have handed Kelsee two different answers to "what
+matters most."
+
+**What did merge.** The plural is an inventory of photographs *in the website
+project*, so it structurally covered only 15 of the 27 delivered frames. The
+singular carried the disposition of the other twelve, and that content is real
+and current. It is now a short section near the top of the plural file:
+
+- **09 and 11** — unplaced but strong; worth finishing for a future page or
+  Instagram.
+- **21** — never to be used. Personal photographs visible in the background.
+  This is the one entry with a privacy reason rather than an editorial one, and
+  losing it would have been the expensive loss.
+- **08, 10, 12, 13, 14, 15, 20, 25, 26** — near-duplicates of frames already
+  requested; deliberately not asked for.
+
+The priority *ordering* was not merged. The plural's "If time is limited, this
+is the order" already covers it and is the more current of the two.
+
+References repointed: `IMAGE-MANIFEST.md` (two, now citing entries A9 and A2
+directly), `BUILD-PLAN.md` (the frame-01 wordmark note, plus the file tree and
+the superseded 2026-08-03 decision), and `docs/README.md`.

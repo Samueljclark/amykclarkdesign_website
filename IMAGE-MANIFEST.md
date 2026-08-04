@@ -370,7 +370,7 @@ job on a different page. Full frame-by-frame record below.
 | # | File | Used for | Why |
 |---|---|---|---|
 | 23 | `houndstooth-fabric-detail-dining-chair.jpg` | Journal hero, "How to Read a Fabric" | **Not the original 21/23/24 crop** — extracted a new, tighter region from frame 23 focused purely on the houndstooth weave, since the previously-selected crop (a full table setting) read as a room shot, not a fabric-texture shot, and this post is specifically about reading weight, weave, and hand. Confirmed Amy's work (the reupholstered chairs), no family photos in this crop. |
-| 16 | `ivory-drapery-white-wood-blinds-bay-window-table.jpg` | Journal hero, "Drapery, Shades, or Blinds" | The only frame in the whole set showing drapery **and** blinds together in one shot, which is literally the post's subject. Disqualified from the step-8 portfolio pass only for being a dimmer, earlier exposure of the same setup as frames 17/18 (already used elsewhere) — that reasoning is about redundancy with 17/18, not about this frame being unusable, and nothing else in the set shows both treatments together. The dim exposure is real and is flagged in `docs/handoff/PHOTO-EDIT-REQUEST.md` as worth Kelsee's final grade. |
+| 16 | `ivory-drapery-white-wood-blinds-bay-window-table.jpg` | Journal hero, "Drapery, Shades, or Blinds" | The only frame in the whole set showing drapery **and** blinds together in one shot, which is literally the post's subject. Disqualified from the step-8 portfolio pass only for being a dimmer, earlier exposure of the same setup as frames 17/18 (already used elsewhere) — that reasoning is about redundancy with 17/18, not about this frame being unusable, and nothing else in the set shows both treatments together. The dim exposure is real and is flagged in `docs/handoff/PHOTO-EDIT-REQUESTS.md` (entry A9) as worth Kelsee's final grade. |
 | 5 | `pinch-pleat-drapery-full-length-panel-crown-molding.jpg` | Journal hero, "What Actually Makes a Window Treatment Look Expensive" | A clean, well-exposed floor-to-ceiling drapery panel — fullness, length, and hem are the post's whole subject, and this frame shows exactly that rather than a header-only detail (which frame 03 already covers elsewhere). Disqualified from portfolio only as "near-duplicate of 04"; that redundancy doesn't apply to a Journal post using it for a different reason. |
 | 6 | `pinch-pleat-drapery-reading-nook-french-doors.jpg` | `/cincinnati` lead | A distinct, previously-unused room (not the archway living room already carrying the Home hero and three other slots). Drapery is the dominant, confirmed-Amy element; a chair is partly visible at the bottom edge but is not the frame's subject. Never evaluated in the step-8 pass (wasn't a portfolio candidate), so this is a first review, not a reversal. |
 | 7 | `living-room-archway-drapery-orb-chandelier.jpg` | `/northern-kentucky` lead | Same archway room as the Home hero (frames 01/02), a third angle. Disqualified from portfolio as a near-duplicate of 08/09 with "nothing 8/17/18 didn't already cover" — a fair reason not to use three near-identical shots on one project page, but it doesn't disqualify the room itself from a completely different page. The sofa and chaise visible are confirmed **not** Amy's (same determination as everywhere else on this site); the drapery framing the French doors is. |
@@ -452,8 +452,8 @@ crop math for both breakpoints against the source's actual pixel
 dimensions before concluding no CSS-level fix is available. **Left as-is.**
 The one real lever left is a human edit — a version of frame 01 cropped or
 composed to shrink or reposition the chandelier relative to the frame —
-which is outside what this pass can do and is flagged as the top item in
-`docs/handoff/PHOTO-EDIT-REQUEST.md`.
+which is outside what this pass can do and is flagged in
+`docs/handoff/PHOTO-EDIT-REQUESTS.md` (entry A2).
 
 ## Asset requests, in priority order
 

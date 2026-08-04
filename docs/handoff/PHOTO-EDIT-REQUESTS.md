@@ -35,10 +35,37 @@ the ceilings and walls read cool grey. Both are normal for daylight interiors
 shot against bright windows. They are called out individually where they are
 worst.
 
-**Related file:** `docs/handoff/PHOTO-EDIT-REQUEST.md` (singular) already in this project
-is a shorter, friendlier note about which frames matter most and in what
-order. It is not superseded — this file is the detailed version, that one is
-the priority summary.
+**This file is now the single photo-edit request.** An earlier, shorter note
+(`PHOTO-EDIT-REQUEST.md`, singular) was folded into this one on 4 August 2026
+and moved to `docs/archive/2026-08-04-PHOTO-EDIT-REQUEST.md`. Everything it
+asked for is here. Do not send both.
+
+---
+
+## Priority
+
+The working order is at the end of this file, under **"If time is limited,
+this is the order."** It supersedes the ordering in the archived note, which
+still treated frame 01 as the homepage hero — that stopped being true on
+1 August 2026, when the hero changed to B1.
+
+## The twelve frames that are not in this inventory
+
+The original delivery was **27 frames**. Fifteen are in the website project
+and each has an entry below. The remaining twelve were never brought into the
+project, so they have no entry — but they were covered by the archived note
+and that disposition is still current:
+
+- **Frames 09 and 11** — not placed anywhere on the site, but strong shots.
+  Frame 09 is another angle of the living room through the archway; frame 11
+  is the corner chair with the artwork and the floor lamp. **Worth finishing
+  anyway**, for a future page or for Amy's Instagram.
+- **Frame 21** — **deliberately not used and not requested.** Personal
+  photographs are visible in the background, so it cannot appear on the site.
+- **Frames 08, 10, 12, 13, 14, 15, 20, 25, 26** — **not requested.** Each is
+  very close to a frame already asked for above (same room, same setup, or
+  nearly the same crop), so finishing both would be double work for no visible
+  difference on the site.
 
 ---
 
