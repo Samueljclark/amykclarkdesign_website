@@ -7,8 +7,17 @@
    =========================================================================== */
 
 /* ---- 3.4 Typefaces: self-hosted woff2, font-display: swap (section 7) ----
-   Primary: Archivo variable, weights 400 and 500 only.
-   Secondary: Newsreader light (300), testimonial quotes only. */
+   TWO faces on this site, and no others. Changed 2026-08-04 — see
+   DESIGN_BRIEF 3.4 and BUILD-PLAN's dated entry for the reasoning.
+
+   Display: Bodoni Moda variable, the Didone. Amy sent a Didot screenshot and
+     Didot has no OFL or otherwise free webfont; Bodoni Moda is the licensed
+     Didone that carries the same high-contrast hairline look.
+   Body / nav / UI: Archivo variable, weights 400 and 500 only. A
+     neo-grotesque, so it honours Amy's Helvetica direction.
+
+   Newsreader was removed on the same date. It was a third face doing a job
+   the display face now does. */
 @font-face {
   font-family: 'Archivo';
   src: url('/fonts/archivo-variable.woff2') format('woff2-variations');
@@ -16,10 +25,16 @@
   font-style: normal;
   font-display: swap;
 }
+/* Carries both an optical-size (6-96) and a weight (400-900) axis. The opsz
+   axis is the reason this file is used rather than the 26 KB weight-only cut:
+   a Didone at a text optical size has visibly thicker hairlines, which is
+   exactly the quality Amy responded to. `font-optical-sizing: auto` is the
+   CSS default, so the browser maps opsz from the used font-size on its own
+   and no font-variation-settings are needed anywhere. */
 @font-face {
-  font-family: 'Newsreader';
-  src: url('/fonts/newsreader-300.woff2') format('woff2');
-  font-weight: 300;
+  font-family: 'Bodoni Moda';
+  src: url('/fonts/bodoni-moda-variable.woff2') format('woff2-variations');
+  font-weight: 400 900; /* usage is restricted to 400 */
   font-style: normal;
   font-display: swap;
 }
@@ -37,7 +52,16 @@
 
   /* ---- 3.4 Type ---- */
   --font-primary: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-quote: 'Newsreader', Georgia, serif; /* testimonial quotes only */
+  /* The Didone. Display role, and the testimonial quotes that used to be
+     Newsreader.
+
+     Deliberately NOT `Didot, 'Bodoni Moda', ...`. macOS ships a Didot and
+     naming it first would render this site one way on Amy's and Sam's Macs
+     and another way for most visitors, with different metrics and a lighter
+     colour. Amy asked for uniform; a face that changes per platform is the
+     opposite, and it would also mean the two people reviewing the site see a
+     version almost nobody else gets. Self-hosted, one rendering, everywhere. */
+  --font-display: 'Bodoni Moda', 'Times New Roman', serif;
 
   /* Display: 400, clamp 40px to 92px, tracking -0.025em, line-height 1.02.
      Middle term derived to hit 40px at 375px viewport and 92px at 1440px:
@@ -105,10 +129,16 @@ body {
 }
 
 .type-display {
+  font-family: var(--font-display);
   font-weight: var(--weight-display);
   font-size: var(--text-display);
   line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
+  /* Archivo's -0.025em was a grotesque's tracking. A Didone at display size
+     is already tightly fitted and negative tracking closes the hairlines into
+     the stems, which is the one thing that makes this face look cheap.
+     Relaxed to 0 for the display role only; --tracking-display is unchanged
+     and still describes the grotesque. */
+  letter-spacing: 0;
 }
 
 .type-label {
@@ -119,9 +149,14 @@ body {
   text-transform: uppercase;
 }
 
+/* Testimonial quotes. Was Newsreader 300 until 2026-08-04; now the display
+   face, which is what removed the third typeface from the site. Bodoni Moda's
+   lightest weight is 400, so the old 300 is gone — at quote size the Didone
+   reads lighter than Newsreader did at 300 regardless, because the opsz axis
+   thins the hairlines automatically. */
 .type-quote {
-  font-family: var(--font-quote);
-  font-weight: 300;
+  font-family: var(--font-display);
+  font-weight: 400;
 }
 
 /* Body copy is always left-aligned. Never centered, never justified (3.4). */

@@ -1,9 +1,13 @@
 ---
-// Home section 5 (DESIGN_BRIEF.md 5.1): "Two quotes maximum, Newsreader
-// light, large, attributed by first name and last initial only. No stars,
-// no cards, no avatars." Left-aligned per 3.4's body-copy rule, applied here
-// too rather than centering the quote as testimonial sections conventionally
-// do.
+// Home section 5 (DESIGN_BRIEF.md 5.1): "two quotes visible at once, large,
+// attributed by first name and last initial only. No stars, no cards, no
+// avatars." Left-aligned per 3.4's body-copy rule, applied here too rather
+// than centering the quote as testimonial sections conventionally do.
+//
+// The quote face was Newsreader light until 2026-08-04. It is now the display
+// face (Bodoni Moda) via `.type-quote`, which is what took the site from three
+// typefaces to two. Nothing here needs to change if that decision is revisited
+// — the face is chosen in tokens.css, not in this component.
 
 interface Props {
   quote: string;

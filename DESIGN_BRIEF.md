@@ -112,21 +112,31 @@ This is the one real risk in the direction and it is justified: Amy sells color 
 
 Amy asked for Helvetica, a maximum of three faces, minimal and uniform and premium.
 
-**Use one family in three roles, plus one second family for a single narrow purpose.** Restraint reads as more expensive than variety, and single-grotesque discipline is the actual signature of the fashion houses she likes.
+**Amended 2026-08-04. The display face is now a Didone, not the grotesque.** Amy sent a screenshot of **Didot** that she liked. That input postdates the Helvetica instruction, so it supersedes it for the display role. **This is not a re-litigation of the Helvetica direction and should not be treated as one** — her three-face ceiling and the "uniform and very premium" requirement are both intact, and Archivo still carries body, nav, and every UI surface, so the neo-grotesque direction still governs everything except headings. The count went **down**, from three faces to two. Full reasoning and the measured evidence are in BUILD-PLAN.md's 2026-08-04 entry.
 
-**Primary: Archivo**, self-hosted variable, weights 400 and 500 only.
+**Two families. Display in the Didone, everything else in the grotesque.** Restraint reads as more expensive than variety, and the discipline of one grotesque against one display face is the actual signature of the fashion houses she likes.
+
+**Display: Bodoni Moda**, self-hosted variable, weight 400 only.
+
+Didot itself is not available to this project. There is no OFL or otherwise freely licensed Didot webfont; the real ones (Linotype, HTF) are commercial licenses nobody has bought. Bodoni Moda is the licensed Didone (OFL-1.1, self-hosted from `@fontsource-variable/bodoni-moda`) and carries the same high-contrast hairline look Amy responded to. **`Didot` is deliberately not named in the font stack** — macOS ships a Didot, so naming it would render the site one way on Amy's and Sam's Macs and another way for everyone else. One rendering, everywhere.
+
+The file carries an optical-size axis as well as a weight axis, which is why it is the 46 KB cut rather than the 26 KB weight-only one. A Didone at a text optical size has visibly thicker hairlines, and the hairlines are the entire reason to use this face. `font-optical-sizing: auto` is the CSS default, so the browser maps the axis from the used font-size and nothing needs setting by hand.
+
+**Body, nav, and UI: Archivo**, self-hosted variable, weights 400 and 500 only.
 
 Archivo is chosen because it has a real grotesque skeleton with a variable width axis, and because Inter, Poppins, and Montserrat are the tells of a template build. If budget appears later, Söhne or Neue Haas Grotesk are the paid upgrades and swap in cleanly.
 
 Three roles, and nothing outside them:
 
-| Role | Spec |
-|---|---|
-| **Display** | 400 weight, clamp 40px to 92px, letter-spacing -0.025em, line-height 1.02 |
-| **Label** | 500 weight, 11px, uppercase, letter-spacing 0.18em, used for nav, eyebrows, section markers, spec blocks, form labels |
-| **Body** | 400 weight, 16 to 17px, line-height 1.65, letter-spacing 0, max-width 58ch |
+| Role | Face | Spec |
+|---|---|---|
+| **Display** | Bodoni Moda | 400 weight, clamp 40px to 92px, letter-spacing 0, line-height 1.02 |
+| **Label** | Archivo | 500 weight, 11px, uppercase, letter-spacing 0.18em, used for nav, eyebrows, section markers, spec blocks, form labels |
+| **Body** | Archivo | 400 weight, 16 to 17px, line-height 1.65, letter-spacing 0, max-width 58ch |
 
-**Secondary: Newsreader**, light weight, used **only** for testimonial quotes. Not Playfair, not Cormorant, not Lora. Nowhere else on the site.
+Display tracking changed from -0.025em to 0 in the same amendment. The negative value was a grotesque's tracking; a Didone at display size is already tightly fitted, and closing it further pushes the hairlines into the stems, which is the single thing that makes this face look cheap.
+
+**Testimonial quotes use the display face**, at 400. *Superseded 2026-08-04: this role used to be **Newsreader** light, and Newsreader was the third family. It is now removed from the project entirely — the font file, the `@font-face`, the `--font-quote` token, and the npm dependency.* The old rule ("not Playfair, not Cormorant, not Lora") still holds in spirit: no fourth face, and no second serif.
 
 Body copy is always left-aligned. Never centered, never justified.
 
@@ -249,9 +259,15 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
 
   In practice that is the **Label role (3.4) scaled up** — uppercase with the tracking opened to 0.26em, at weight 400 rather than Label's 500, which is the lighter of the two weights 3.4 permits. It is deliberately far below the Display clamp: a mark that has to survive an arbitrary photograph behind it wants to be small, wide, and dense rather than large and open. Going below weight 400 was considered and rejected on the merits, not on the rule — sub-400 strokes in light type over a busy image are exactly what disappears, which is the defect being fixed.
 
-  Use a subtle scrim gradient rather than a hard overlay so the image stays clean. There is exactly one gradient in the whole bundle and this is it; its lower ramp is deepened to cover the band the wordmark, the word links, and the CTA now occupy. Measured against the composited image, the worst pixel across the full glyph band gives 4.73:1 at 375px and 4.90:1 at 1280px.
+  Use a subtle scrim gradient rather than a hard overlay so the image stays clean. There is exactly one gradient in the whole bundle and this is it; its lower ramp is deepened to cover the band the wordmark, the word links, and the CTA now occupy.
+
+  **Re-measured 2026-08-04 against the current hero photograph: worst pixel across the full glyph band is 7.55:1 at 375px and 4.77:1 at 1280px** (real 3.3 palette; 7.39 and 4.68 under the temporary cream preview theme, which is slightly worse and still passes). Both widths clear WCAG AA and AAA — at 375px the mark renders 16.7px/400, which is normal-size text needing 4.5:1 for AA and 7:1 for AAA; at 1280px it renders 35.7px/400, which is large text needing 3:1 and 4.5:1.
+
+  *The previously recorded figures were 4.73:1 at 375px and 4.90:1 at 1280px.* The 1280px number barely moved. The 375px number improved substantially because **the hero photograph was replaced after that measurement was taken**, and the narrow portrait crop of the current frame is darker behind the glyph band than the old one was. The old figures described a photograph that is no longer on the site.
 
   **None of this is the final wordmark.** Amy is still choosing between three candidate typefaces and that decision is logged as blocking in ASK-AMY.md. This is a legibility fix using the existing typeface.
+
+  **The 2026-08-04 Didone change did not touch the wordmark**, and this is by design rather than by luck: `.hero__mark` is the Label role scaled up, so it renders in Archivo and never carried `.type-display`. Confirmed from computed style, not from reading the CSS. **Adopting Bodoni Moda therefore does not answer the open wordmark question** — that decision is still blocked on Amy.
 - Three plain word links along the bottom: **Upholstery, Drapery, Shades**. Label style.
 - **One CTA only (REVISED 2026-07-31):** the primary booking CTA (5.9). The secondary `View Portfolio` button is removed from the hero — the Portfolio section is the very next thing on the page and carries its own link.
 - A small quiet scroll cue at the very bottom.
@@ -637,7 +653,7 @@ The build is done when all of the following are true:
 - [ ] Gallery shows one image at a time and cross-fades, with no sliding motion
 - [ ] The opening line fades in and out over the first frame, once per session
 - [ ] Every image on the site enters with the shade reveal
-- [ ] Two typeface families in three roles, and no others
+- [ ] Two typeface families in three roles, and no others — Bodoni Moda (Display, and testimonial quotes) and Archivo (Label, Body). Verified 2026-08-04: `document.fonts` reports exactly these two families and no third.
 - [ ] `--indigo` appears only on focus rings and hover underlines
 - [ ] No cream, no terracotta, no gradient, no icon library, no emoji, no border-radius above 2px
 - [ ] Zero pricing language anywhere in the codebase, including comments

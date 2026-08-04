@@ -92,14 +92,26 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL.href} />
 
-    <!-- Section 7: self-hosted woff2, font-display: swap, preload the two
-         used weights. Both Archivo weights (400/500) live in one variable
-         file, so one preload covers them. Newsreader is quote-only and
-         below the fold on every page, so it loads unpreloaded via
-         @font-face in tokens.css. -->
+    <!-- Section 7: self-hosted woff2, font-display: swap. Two faces, two
+         preloads, and no others exist. Both Archivo weights (400/500) live in
+         one variable file, and Bodoni Moda's weight and optical-size axes live
+         in one file too, so one preload each covers every use.
+
+         Bodoni Moda is preloaded because it carries the Display role, and on
+         all twenty non-home pages the display-role <h1> is above the fold.
+         (Home is the one page where it is not: its <h1> is visually hidden and
+         the wordmark is Archivo. Preloading is still the right trade for one
+         page against twenty.) -->
     <link
       rel="preload"
       href="/fonts/archivo-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/bodoni-moda-variable.woff2"
       as="font"
       type="font/woff2"
       crossorigin

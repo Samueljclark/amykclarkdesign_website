@@ -16,8 +16,8 @@ repo conflicts with DESIGN_BRIEF.md or BUILD-PLAN.md, those two win.
 
 ## Stack
 Astro, static output, hosted on Netlify. Netlify Forms for the contact
-form. Fonts self-hosted (Archivo variable + Newsreader 300). Node pinned
-to 24.18.0 in netlify.toml.
+form. Fonts self-hosted (Archivo variable + Bodoni Moda variable). Node
+pinned to 24.18.0 in netlify.toml.
 
 ## legacy-static/ is archived, not a reference
 An earlier plain-HTML version of this site (different palette, different
@@ -53,6 +53,19 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
     authoritative.
   - `docs/README.md` explains all four categories and is the entry point for
     anyone new to the repo.
+- **Typography is two faces and that is a settled decision (set 2026-08-04).
+  Bodoni Moda for the Display role and testimonial quotes, Archivo for
+  everything else. Do not add a third face, and do not restore Newsreader.**
+  Amy's ceiling is three; the site uses two and that headroom is deliberate,
+  not an invitation. **Didot supersedes the Meeting 3 "Helvetica" note for the
+  display face specifically**, because Amy sent the Didot screenshot after that
+  meeting and later direct input from her wins. Helvetica still governs body,
+  nav, and UI, which is what Archivo is. Real Didot is not licensable here, so
+  Bodoni Moda is the stand-in Didone; `Didot` is deliberately absent from the
+  font stack so macOS does not render this site differently from everywhere
+  else. Full reasoning: DESIGN_BRIEF.md 3.4 and BUILD-PLAN.md's 2026-08-04
+  entry. **This is logged so it is not re-litigated** — if it comes up again,
+  read those two entries before changing anything.
 - **Scroll behavior on this site is a settled decision. Hero one-time
   auto-scroll only, no section snapping. Do not modify or propose changes to
   scroll behavior unless Sam specifically asks for it.** The hero ease is

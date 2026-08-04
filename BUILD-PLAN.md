@@ -2665,3 +2665,141 @@ is the order" already covers it and is the more current of the two.
 References repointed: `IMAGE-MANIFEST.md` (two, now citing entries A9 and A2
 directly), `BUILD-PLAN.md` (the frame-01 wordmark note, plus the file tree and
 the superseded 2026-08-03 decision), and `docs/README.md`.
+
+## 2026-08-04: typography reduced to two faces, display role moves to a Didone
+
+**Decision change, and it is a change to a previously-recorded decision, so the
+old entries above are amended rather than overwritten.** DESIGN_BRIEF 3.4 and
+its acceptance criterion both carry dated amendments; the superseded text is
+still readable in place.
+
+### What changed
+
+| | Before | After |
+|---|---|---|
+| Display | Archivo 400, tracking -0.025em | **Bodoni Moda** 400, tracking 0 |
+| Label | Archivo 500 | Archivo 500 (unchanged) |
+| Body | Archivo 400 | Archivo 400 (unchanged) |
+| Testimonial quotes | Newsreader 300 | **Bodoni Moda** 400 |
+| **Total families** | **3** | **2** |
+
+### Why Didot supersedes the Helvetica instruction, and why that is not a reversal
+
+Amy's confirmed ruling was Helvetica direction, **three typefaces maximum**,
+uniform and very premium. She later sent a screenshot of **Didot** that she
+liked. That is direct input from Amy and it postdates the Helvetica note, so it
+wins for the display face.
+
+**It is not a reversal of the Helvetica direction and must not be recorded as
+one.** Archivo is a neo-grotesque and still carries body, nav, labels, forms,
+buttons and the hero wordmark — every surface except headings and quotes.
+Her three-face ceiling was never approached: the site went from three faces to
+**two**. Both of her stated constraints came out intact.
+
+**"One family rather than three" was not treated as binding.** It is a working
+recommendation awaiting Amy, not a confirmed decision, so it did not override
+her actual ruling. Two faces sits inside the confirmed ceiling either way.
+
+### Why Bodoni Moda and not Didot
+
+There is no OFL or otherwise freely licensed Didot webfont. The real ones
+(Linotype Didot, HTF Didot) are commercial licenses nobody on this project has
+bought, and shipping an unlicensed webfont is not an option. **Bodoni Moda**
+(OFL-1.1, `@fontsource-variable/bodoni-moda`, self-hosted) is the licensed
+Didone and carries the same high-contrast hairline character Amy responded to.
+
+**`Didot` is deliberately NOT in the font stack.** macOS ships a Didot. Naming
+it first would mean Amy and Sam — the two people reviewing this site, both on
+Macs — see a face that most visitors never get, with different metrics and a
+lighter colour. That is the opposite of the uniformity she asked for, and it is
+a QA trap besides. Self-hosted, one rendering, everywhere.
+
+The 46 KB optical-size cut is used rather than the 26 KB weight-only cut. A
+Didone at a text optical size has visibly thicker hairlines, and the hairlines
+are the whole reason to use this face. `font-optical-sizing: auto` is the CSS
+default, so the axis maps from font-size automatically and no
+`font-variation-settings` appear anywhere.
+
+### Newsreader was dropped, not narrowed
+
+The brief to this session allowed either dropping it or scoping it to
+testimonial quotes only. **Dropped**, because Bodoni Moda is itself a serif:
+keeping Newsreader would have put two serifs on the site doing overlapping
+editorial jobs, which reads as indecision rather than restraint, and would have
+spent the entire remaining headroom under Amy's three-face ceiling on a face
+nobody asked for. The quotes moved to the display face, which a Didone is
+better suited to than Newsreader was.
+
+Removed completely: `public/fonts/newsreader-300.woff2`, its `@font-face`, the
+`--font-quote` token, and the `@fontsource/newsreader` dependency. Net weight is
+roughly flat — 23 KB out, 46 KB in, against 34.9 KB of Archivo that is unchanged.
+
+### Verified, in a real browser rather than by reading CSS
+
+- `document.fonts` reports exactly **two** families, Archivo and Bodoni Moda.
+  No third face loads on any page.
+- Interior `<h1>` computes `"Bodoni Moda", "Times New Roman", serif`;
+  `<body>` computes Archivo. `font-optical-sizing` is `auto`.
+- Testimonial quote computes Bodoni Moda 400.
+- Zero console errors. Build clean at 21 pages, sitemap still 19 URLs.
+
+### Wordmark contrast: unchanged, and here is why
+
+`.hero__mark` is the **Label role scaled up**, so it renders in Archivo and has
+never carried `.type-display`. Confirmed from computed style. The display-face
+change could not have affected it.
+
+Measured anyway, worst pixel across the full glyph band, composited image plus
+scrim:
+
+| Width | Mark renders | WCAG class | AA / AAA needed | Real palette | Cream preview theme |
+|---|---|---|---|---|---|
+| 375px | 16.7px / 400 | normal | 4.5:1 / 7:1 | **7.55:1** | 7.39:1 |
+| 1280px | 35.7px / 400 | large | 3:1 / 4.5:1 | **4.77:1** | 4.68:1 |
+
+Both widths pass AA and AAA, under both palettes.
+
+**The previously recorded figures (4.73:1 and 4.90:1) described a photograph
+that is no longer on the site** — the hero was replaced after that measurement.
+DESIGN_BRIEF 5.1 now carries the new numbers and that explanation.
+
+**Adopting Bodoni Moda does not answer the open wordmark question.** ASK-AMY.md
+still logs Amy choosing between three candidate typefaces as blocking the
+wordmark mockup, and that is still blocked. See the conflict note below.
+
+### Conflict recorded, not resolved
+
+**ASK-AMY.md still asks "where did she land on the three font options?" and
+calls it blocking.** The Didot screenshot may be her answer to exactly that
+question, or it may be one of three she is still weighing. This session was
+instructed to treat Didot as confirmed for the display face and did so.
+**What Didot does not settle is the wordmark**, which is a separate decision on
+a separate element that does not use the display role. Left open in ASK-AMY.md
+rather than quietly closed.
+
+### Font salvage from the deleted "Selected Work" section
+
+Amy liked the typeface "Selected Work" was set in and asked for it as the
+section-label face. **Found, and the answer is more useful than expected.**
+
+"Selected Work" survives in exactly one place: `legacy-static/index.html:88`,
+as `<span class="eyebrow">Selected Work</span>` sitting above an
+`<h2>Recent Projects</h2>`. It was never in `src/` in any commit.
+
+`.eyebrow` (`legacy-static/css/style.css:108`) **declares no font-family of its
+own.** It inherits from `body` (line 44), which is `var(--sans)`, which line 20
+defines as `"Inter", -apple-system, "Segoe UI", sans-serif`.
+
+**So the label itself was set in Inter — a neo-grotesque.** If that is what she
+liked, **Archivo already honours it** and the current section labels need no
+change at all. Archivo was chosen over Inter deliberately (3.4: Inter, Poppins
+and Montserrat are the tells of a template build), and it is the same genre.
+
+**The ambiguity worth flagging to Sam:** directly beneath that label sat
+"Recent Projects" in **Fraunces**, the legacy serif — a far more distinctive
+face than Inter, and quite plausibly the thing she actually pointed at. The two
+readings give completely different answers.
+
+**Neither face was added.** Fraunces is outside the final set and CLAUDE.md
+forbids pulling typography out of `legacy-static/` regardless. Flagged for Sam
+to confirm with Amy which of the two she meant.
