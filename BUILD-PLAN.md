@@ -2752,16 +2752,27 @@ change could not have affected it.
 Measured anyway, worst pixel across the full glyph band, composited image plus
 scrim:
 
-| Width | Mark renders | WCAG class | AA / AAA needed | Real palette | Cream preview theme |
+| Viewport | Mark renders | WCAG class | AA / AAA needed | Real palette | Cream preview theme |
 |---|---|---|---|---|---|
-| 375px | 16.7px / 400 | normal | 4.5:1 / 7:1 | **7.55:1** | 7.39:1 |
-| 1280px | 35.7px / 400 | large | 3:1 / 4.5:1 | **4.77:1** | 4.68:1 |
+| 375 x 812 | 16.7px / 400 | normal | 4.5:1 / 7:1 | **7.55:1** | 7.39:1 |
+| 1280 x 800 | 35.7px / 400 | large | 3:1 / 4.5:1 | **4.77:1** | 4.68:1 |
+| 1280 x 1024 | 35.7px / 400 | large | 3:1 / 4.5:1 | **5.16:1** (median 10.56) | not sampled |
 
-Both widths pass AA and AAA, under both palettes.
+Every case passes AA and AAA, under both palettes.
 
-**The previously recorded figures (4.73:1 and 4.90:1) described a photograph
-that is no longer on the site** — the hero was replaced after that measurement.
-DESIGN_BRIEF 5.1 now carries the new numbers and that explanation.
+**Quote these with a viewport height, never a width alone.** The hero is
+`100vh` and the photograph is `object-fit: cover`, so viewport height changes
+the crop and slides the wordmark to a different point on the scrim ramp: 0.675
+of the way down at 1280x800 against 0.717 at 1280x1024. That alone moves the
+worst pixel from 4.77 to 5.16. The 2026-08-02 entry's 5.49 at "1280px" is the
+same measurement at an unrecorded height, which is why it does not line up with
+either figure here.
+
+**DESIGN_BRIEF 5.1 was two days stale and is now corrected.** It still carried
+4.73:1 and 4.90:1, which were measured against the hero photograph that
+2026-08-02 replaced. That entry re-measured at 7.30 and 5.49 but only updated
+BUILD-PLAN, so the brief kept quoting figures for a photograph the site no
+longer used.
 
 **Adopting Bodoni Moda does not answer the open wordmark question.** ASK-AMY.md
 still logs Amy choosing between three candidate typefaces as blocking the

@@ -261,9 +261,19 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
 
   Use a subtle scrim gradient rather than a hard overlay so the image stays clean. There is exactly one gradient in the whole bundle and this is it; its lower ramp is deepened to cover the band the wordmark, the word links, and the CTA now occupy.
 
-  **Re-measured 2026-08-04 against the current hero photograph: worst pixel across the full glyph band is 7.55:1 at 375px and 4.77:1 at 1280px** (real 3.3 palette; 7.39 and 4.68 under the temporary cream preview theme, which is slightly worse and still passes). Both widths clear WCAG AA and AAA — at 375px the mark renders 16.7px/400, which is normal-size text needing 4.5:1 for AA and 7:1 for AAA; at 1280px it renders 35.7px/400, which is large text needing 3:1 and 4.5:1.
+  **Re-measured 2026-08-04 against the current hero photograph. Worst pixel across the full glyph band, real 3.3 palette:**
 
-  *The previously recorded figures were 4.73:1 at 375px and 4.90:1 at 1280px.* The 1280px number barely moved. The 375px number improved substantially because **the hero photograph was replaced after that measurement was taken**, and the narrow portrait crop of the current frame is darker behind the glyph band than the old one was. The old figures described a photograph that is no longer on the site.
+  | Viewport | Worst | Median | Mark renders | WCAG class | AA / AAA needed |
+  |---|---|---|---|---|---|
+  | 375 x 812 | **7.55:1** | — | 16.7px / 400 | normal | 4.5:1 / 7:1 |
+  | 1280 x 800 | **4.77:1** | — | 35.7px / 400 | large | 3:1 / 4.5:1 |
+  | 1280 x 1024 | **5.16:1** | 10.56:1 | 35.7px / 400 | large | 3:1 / 4.5:1 |
+
+  Every case passes AA and AAA. Under the temporary cream preview theme the same measurements are 7.39 and 4.68, slightly worse and still passing.
+
+  **These numbers are viewport-height dependent and must be quoted with a height, not just a width.** The hero is `100vh` and the photograph is `object-fit: cover`, so a taller viewport crops the frame differently and slides the wordmark to a different point on the scrim ramp — 0.675 of the way down at 1280x800 against 0.717 at 1280x1024. That single change moves the worst pixel from 4.77 to 5.16.
+
+  *This paragraph previously recorded 4.73:1 at 375px and 4.90:1 at 1280px.* Those were measured against **a hero photograph that is no longer on the site**. BUILD-PLAN's 2026-08-02 entry re-measured the replacement at 7.30 and 5.49 and this file was never updated to match, so the figures here were stale by two days. Corrected above.
 
   **None of this is the final wordmark.** Amy is still choosing between three candidate typefaces and that decision is logged as blocking in ASK-AMY.md. This is a legibility fix using the existing typeface.
 
