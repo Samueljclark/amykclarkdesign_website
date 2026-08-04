@@ -61,7 +61,7 @@ const publishedLabel = new Intl.DateTimeFormat('en-US', {
   transparentNav={false}
   breadcrumbs={[
     { name: 'Home', href: '/' },
-    { name: 'Journal', href: '/journal' },
+    { name: 'Design Journal', href: '/journal' },
     { name: post.data.title, href: `/journal/${post.id}` },
   ]}
   article={{
@@ -80,7 +80,7 @@ const publishedLabel = new Intl.DateTimeFormat('en-US', {
   <article>
     <section class="section wrap text-page__intro">
       <p class="type-label text-page__eyebrow">
-        <a href="/journal" class="link-underline">Journal</a>
+        <a href="/journal" class="link-underline">Design Journal</a>
       </p>
       <h1 class="type-display journal-post__heading">{post.data.title}</h1>
       {/* Standfirst, added 2026-08-01 (step 10j). This is the post's existing

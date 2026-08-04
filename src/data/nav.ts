@@ -23,13 +23,27 @@
 // footer's "Site" column has always been a mirror of this array, and a footer
 // that silently omits one nav item is a new inconsistency rather than a
 // smaller change. Split this into two arrays if that turns out to be wrong.
+// **'Journal' became 'Design Journal' 2026-08-04**, per Meeting 3's confirmed
+// register. It is the only two-word label in the list, which is a real tension
+// with the same register's "nav: thin, horizontal, 6-7 words" line — on a
+// literal word count this list is now eight, not seven.
+//
+// It was changed anyway because the rename is explicit and because it measurably
+// fits: at 900px, the narrowest width the horizontal nav renders at, the gap
+// between the wordmark and the first item goes from 101.3px to 42.6px and the
+// document does not overflow (scrollWidth stays 900). Measured in a browser, not
+// estimated.
+//
+// **If Sam reads "6-7 words" as a hard count, revert this one label and nothing
+// else changes** — the page's own H1, eyebrow, breadcrumb and back-link all say
+// "Design Journal" independently of this array.
 export const navItems = [
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Services', href: '/services' },
   { label: 'Blinds', href: '/blinds' },
   { label: 'About', href: '/about' },
   { label: 'Process', href: '/process' },
-  { label: 'Journal', href: '/journal' },
+  { label: 'Design Journal', href: '/journal' },
   { label: 'Contact', href: '/contact' },
 ];
 
