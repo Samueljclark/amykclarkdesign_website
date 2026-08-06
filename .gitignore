@@ -7,8 +7,10 @@ dist/
 # Astro's local cache (content collection types, image transform cache).
 .astro/
 
-# Secrets. Nothing in this project uses env vars today; this is here so that
-# stays true by accident as well as on purpose. Netlify Forms needs no keys.
+# Secrets. As of 2026-08-05 this project has exactly ONE secret:
+# RESEND_API_KEY, used by netlify/functions/submission-created.js to send the
+# two consultation emails. **It is set in the Netlify UI and must never be
+# written to a file in this repo.** Netlify Forms itself still needs no keys.
 .env
 .env.*
 !.env.example

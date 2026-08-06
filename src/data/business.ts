@@ -58,4 +58,30 @@ export const business = {
 
   // CONFIRM WITH SAM: real contact email. Still a placeholder.
   email: 'hello@amykclarkdesign.com',
+
+  // ---------------------------------------------------------------------
+  // BOOKING LINK — DELIBERATELY NOT PUBLIC. Added 2026-08-05.
+  // ---------------------------------------------------------------------
+  // Amy's appointment-scheduling URL (Google Calendar appointment schedule).
+  // Empty until she creates one; see LAUNCH_CHECKLIST.md.
+  //
+  // **This must never appear on any page of the website, and never in the
+  // client autoresponder.** Meeting 3 §12.1 confirmed the public CTA leads to
+  // the qualification form, not to a calendar, because Amy needs leads
+  // filtered before they can take a slot from her. Publishing this URL
+  // anywhere on the site reverses that decision by accident.
+  //
+  // The only place it is allowed to appear is inside the notification email
+  // sent to Amy herself, merged into the one-click reply draft she edits and
+  // sends by hand. That is stage two: she has already read the submission and
+  // decided she wants to see this person.
+  //
+  // The function that builds that draft
+  // (`netlify/functions/submission-created.js`) omits the whole line when this
+  // is empty, so setting it later is a one-line change here and nothing else.
+  //
+  // If you ever need to prove it has not leaked:
+  //   npm run build && grep -r "$(node -e "...")" dist/
+  // The report for 2026-08-05 records dist/ containing zero occurrences.
+  bookingUrl: '',
 };

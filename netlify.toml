@@ -1,6 +1,17 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  # The consultation form's two emails. `submission-created.js` in here is
+  # invoked automatically by Netlify on every form submission — the filename is
+  # the trigger, so there is no webhook to configure and nothing in the
+  # dashboard that can be switched off by accident.
+  functions = "netlify/functions"
+
+[functions]
+  # esbuild reads the TypeScript import of src/data/business.ts directly, which
+  # is what lets `bookingUrl` have exactly one home in this repo instead of
+  # being duplicated into an environment variable.
+  node_bundler = "esbuild"
 
 [build.environment]
   # Pinned to the Node version actually on PATH locally (/usr/local/bin/node

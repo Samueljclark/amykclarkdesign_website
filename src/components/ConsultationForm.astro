@@ -88,9 +88,33 @@ const referralSources = [
   data-astro-reload
   data-consultation-form
 >
-  <!-- Honeypot (section 7). Hidden from sight and from the accessibility tree;
-       Netlify discards any submission that fills it. Not `display: none` on the
-       input alone — some autofill implementations still populate those. -->
+  {/* **LOAD-BEARING. Do not remove.** Netlify routes an incoming POST to the
+      right form by reading a `form-name` value out of the REQUEST BODY, not
+      from the form's `name` attribute. Without this hidden input the browser
+      posts a body with no `form-name` in it, Netlify cannot match it to a
+      registered form, and the submission is dropped with no error anywhere:
+      the visitor still lands on the thank-you page and still believes it
+      worked.
+
+      Netlify's post-processing normally injects this itself when it detects a
+      static form at deploy time, which is why the form looked correct for so
+      long. That injection is a build-time step that can silently not happen.
+      Declaring it explicitly costs one line and removes the dependency —
+      Netlify skips its own injection when the input is already present, so
+      there is no risk of a duplicate.
+
+      The value MUST stay identical to the form's `name` attribute above.
+
+      This is a `{/* */}` comment, not an HTML one, so it stays in the source
+      for whoever reads this next without shipping to every visitor. */}
+  <input type="hidden" name="form-name" value="consultation" />
+
+  {/* Honeypot (section 7). Hidden from sight and from the accessibility tree;
+      Netlify discards any submission that fills it. Not `display: none` on the
+      input alone — some autofill implementations still populate those.
+      Named by `netlify-honeypot` on the form tag above; Netlify accepts that
+      spelling and `data-netlify-honeypot` equally, and `netlify-honeypot` is
+      the one in Netlify's own documentation. */}
   <p class="consultation-form__honeypot" aria-hidden="true">
     <label>
       Do not fill this in
@@ -209,6 +233,30 @@ const referralSources = [
     />
     <span id="photos-hint" class="field__hint">
       Photographs of the room help more than anything else you can send.
+    </span>
+  </p>
+
+  <!-- Added 2026-08-05. Amy asks this by hand on every discovery call: what
+       else in the room has to be worked around. It is the last gap between
+       what the form captures and what she actually needs before a visit.
+       Optional on purpose — it is a prompt, not a hurdle, and someone who does
+       not know the answer yet should not be blocked by it. Sits directly under
+       the photo upload because the honest answer to it is usually another
+       photograph. -->
+  <p class="field consultation-form__field consultation-form__field--wide">
+    <label class="type-label field__label" for="existing-colors">
+      <!-- DRAFT COPY - NEEDS REWRITE -->
+      What else is in the room <span class="field__optional">Optional</span>
+    </label>
+    <textarea
+      id="existing-colors"
+      name="existing-colors"
+      rows="3"
+      aria-describedby="existing-colors-hint"></textarea>
+    <!-- DRAFT COPY - NEEDS REWRITE -->
+    <span id="existing-colors-hint" class="field__hint">
+      The sofa, the flooring, the wall color, anything staying in the room that the
+      fabric has to live with. Photographs of these help too.
     </span>
   </p>
 
