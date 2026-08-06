@@ -159,9 +159,89 @@ grep -rn "TEMPORARY" src/ astro.config.mjs
   - `data-astro-reload` on the form is load-bearing — Astro's ClientRouter
     would otherwise replay the POST through its own fetch and Netlify's form
     handler would never see it. **Do not remove that attribute.**
-  - Set up a notification email for new submissions.
+  - The hidden `<input name="form-name" value="consultation">` is equally
+    load-bearing and was missing until 2026-08-05. **Do not remove it.**
+
+### 3a. The form backend — three hard blockers, all in the Netlify UI
+
+Added 2026-08-05. The code side of the form was audited and is correct; every
+item below is a dashboard setting **only Sam can do**, and the form silently
+drops submissions until all three are done. Nothing in the repo can prove any
+of them.
+
+- [Sam] **1. Form detection must be enabled.**
+  **Netlify → Site configuration → Forms → Form detection → Enable.**
+  Off by default on newer Netlify sites. With it off, the deploy succeeds, the
+  form renders perfectly, the visitor reaches the thank-you page, and the
+  submission goes nowhere. Confirm the form appears by name (`consultation`)
+  under **Forms** after the first deploy that follows enabling it — detection
+  happens at deploy time, so **enabling it does not retroactively register the
+  form; you must redeploy afterwards.**
+
+- [Sam] **2. A notification email address must be configured.**
+  **Netlify → Site configuration → Forms → Form notifications → Add
+  notification → Email notification.** Without this, submissions are stored but
+  nobody is told. Point it at the mailbox Amy actually reads.
+  This is separate from, and a deliberate backstop for, the richer notification
+  the function sends — if Resend ever fails, Netlify's own email still arrives.
+
+- [Sam] **3. A real end-to-end test submission must be received.**
+  Submit the live form with a real address, then confirm **all three** landed:
+  the entry under **Netlify → Forms → consultation**; Netlify's own
+  notification email; and both function emails (the client confirmation and
+  Amy's one-click reply). Then open Amy's mailto link and check it opens a
+  populated draft. **Nothing is proven until this is done on the real domain.**
+
+- [Sam] **4. `RESEND_API_KEY` must be set, or no function email sends at all.**
+  **Netlify → Site configuration → Environment variables → Add a variable →
+  Key `RESEND_API_KEY`.** Get it from resend.com. The sending domain must be
+  verified inside Resend or Resend rejects the send.
+  The function logs `RESEND_API_KEY is not set` and returns success when it is
+  missing, so **a missing key looks like silence, not like an error**. Check
+  **Netlify → Logs → Functions → submission-created** if emails stop.
+  - Optional overrides, both with working defaults in the function:
+    `RESEND_FROM_EMAIL` and `AMY_NOTIFICATION_EMAIL`.
+  - **The key pasted into chat on 2026-08-05 should be rotated in Resend
+    before launch** — a chat transcript is not a secret store. It was never
+    written to this repo.
 - [ ] Confirm the file-upload field works on the deployed form (it needs
   `enctype="multipart/form-data"`, which is set).
+### 3b. Booking — stage two, and deliberately not on the website
+
+Added 2026-08-05. The public CTA leads to the qualification form, never to a
+calendar (Meeting 3 §12.1): Amy needs leads filtered before they can take a
+slot. Booking happens **after** she has read a submission and decided she wants
+to see that person, via the link merged into her one-click reply.
+
+- [Sam][Amy] **Create a Google Calendar appointment schedule under Amy's own
+  Google account**, then paste the URL into `bookingUrl` in
+  `src/data/business.ts`. Until it is set, the booking line is omitted from her
+  reply draft entirely and nothing looks broken.
+
+  Google was chosen over Calendly and the rest for one reason: **Amy already
+  uses Google every day.** It writes to her real calendar, and she can change
+  her own availability in an interface she already knows, without touching code
+  and without another login. That matters more than any feature comparison,
+  because this has to keep working after Sam leaves for college.
+
+  - ⚠️ **Confirm which Google account first.** Appointment scheduling differs
+    between free personal Google accounts and Workspace accounts — the feature
+    set, and historically whether it exists at all, are not the same. **Verify
+    on Amy's actual account before relying on it**, not on a description of it.
+  - **Her stated windows are Thursday, Friday, Saturday 2-6pm — pending her
+    confirmation.** Do not build anything that assumes these until she confirms.
+  - Once live, this is the only place availability lives. That is the point:
+    it removes stale availability from every message and every page.
+
+- [ ] **`bookingUrl` must stay off the public site.** It is not imported by any
+  page. Verify with:
+
+  ```bash
+  npm run build && grep -rn "calendar.app.google\|bookingUrl" dist/
+  ```
+
+  Confirmed zero occurrences in `dist/` on 2026-08-05.
+
 - [ ] **Server-side validation does not exist** (BUILD-PLAN decision 14).
   DESIGN_BRIEF §7 asks for it; Netlify Forms accepts whatever is POSTed. The
   honeypot is in place. Closing this properly means a Netlify Function —

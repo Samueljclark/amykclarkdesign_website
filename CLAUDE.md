@@ -66,6 +66,18 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
   else. Full reasoning: DESIGN_BRIEF.md 3.4 and BUILD-PLAN.md's 2026-08-04
   entry. **This is logged so it is not re-litigated** — if it comes up again,
   read those two entries before changing anything.
+- **The no-pricing rule governs the public website, not transactional email
+  (set 2026-08-05).** The rule is unchanged for every page: no prices, no
+  ranges, no "starting at", and **the consultation fee appears nowhere on the
+  site, including `/contact/thank-you`**. The only dollar figures on any page
+  are the budget `<option>` values on `/contact`, which DESIGN_BRIEF 5.7
+  requires.
+  **An email to someone who has already submitted the qualification form is not
+  the public site.** They asked, they are past the filter, and the fee is
+  exactly what they need next. It is permitted there and only there.
+  **The fee lives in exactly one constant: `CONSULTATION_FEE` in
+  `netlify/functions/submission-created.js`.** Changing it is that one line and
+  nothing else. Do not repeat the figure anywhere, including comments.
 - **Scroll behavior on this site is a settled decision. Hero one-time
   auto-scroll only, no section snapping. Do not modify or propose changes to
   scroll behavior unless Sam specifically asks for it.** The hero ease is

@@ -471,15 +471,43 @@ roughly three-hour, in-person design visit. 5.7's rules all still apply to it:
 never say the fee credits toward the project, never apologize for it.
 
 **The consultation fee amount does not go on the site.** The figure discussed
-in the 2026-07-31 review is for Amy's internal reference and for a future
-automated confirmation email only. **It must not appear in any visible copy,
-any meta tag, or any comment in this repo.** If it ever shows up in the build,
-that is a defect — flag it to Sam rather than publishing it.
+in the 2026-07-31 review is for Amy's internal reference and for the automated
+confirmation email only. **It must not appear in any visible copy, any meta
+tag, or any comment in this repo.** If it ever shows up in the build, that is a
+defect — flag it to Sam rather than publishing it.
 
-**Not yet built, deliberately:** the calendar booking tool for the discovery
-call (Calendly vs. Google Calendar is an open question in ASK-AMY.md) and the
-automated confirmation email. Both are backend decisions still pending. CTAs
-route to `/contact` in the meantime and the components carry marked TODOs.
+### Where the fee is permitted, and where it lives (2026-08-05)
+
+**The no-pricing rule governs the public website. Transactional email is not
+the public website.** Someone who has submitted the qualification form has
+asked, and has already passed the filter this page exists to be; the fee is the
+next thing they need to know. It is permitted in that email and nowhere else.
+
+The distinction is not a loophole and does not widen. Specifically:
+
+- **Every page of the site, including `/contact/thank-you`, stays at zero.**
+  The thank-you page is still the public site — the visitor reaches it by
+  navigation, not by asking. The only dollar figures anywhere in `dist/` are
+  5.7's budget `<option>` values on `/contact`.
+- **The fee lives in exactly one constant:** `CONSULTATION_FEE` in
+  **`netlify/functions/submission-created.js`**. Changing it is that one line
+  and nothing else, on purpose — a number duplicated across a template, a doc
+  and a comment is a number that goes stale in one of them.
+- The client-facing email body is one constant in that same file, and it is the
+  only place that reply text exists.
+
+**Built 2026-08-05:** the automated confirmation email, plus a second
+notification to Amy carrying every submitted field and a one-click `mailto:`
+reply. `netlify/functions/submission-created.js`; see
+`docs/handoff/FORM-AND-AUTOREPLY.md` for the non-technical description.
+
+**Still not built, deliberately:** the calendar booking tool. Resolved as
+**Google Calendar appointment scheduling under Amy's own account** (she already
+uses Google daily, and she can edit her own availability without touching
+code). `business.ts`'s `bookingUrl` holds it, empty until she creates one.
+**It is deliberately never public** — the CTA leads to the form, not a calendar
+(§12.1), and the link appears only in Amy's own reply draft, after she has read
+the submission and decided she wants the appointment.
 
 ---
 
@@ -667,7 +695,7 @@ The build is done when all of the following are true:
 - [ ] `--indigo` appears only on focus rings and hover underlines
 - [ ] No cream, no terracotta, no gradient, no icon library, no emoji, no border-radius above 2px
 - [ ] Zero pricing language anywhere in the codebase, including comments
-- [ ] **The consultation fee amount appears nowhere** — not in copy, not in a meta tag, not in a comment (5.9)
+- [ ] **The consultation fee amount appears nowhere on the site** — not in copy, not in a meta tag, not in a comment, and not on `/contact/thank-you` (5.9). It is permitted in transactional email only, in the single `CONSULTATION_FEE` constant in `netlify/functions/submission-created.js`. Verified 2026-08-05: the only dollar figures in `dist/` are `/contact`'s budget `<option>` values.
 - [ ] **All visible copy is third person** (Amy/she), testimonials excepted
 - [ ] **Homepage order is Portfolio → Services → About**, every section has a visible heading, and no section carries two CTA buttons
 - [ ] **Every booking CTA reads `Schedule your complimentary discovery call`**
