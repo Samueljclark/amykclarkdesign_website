@@ -1,0 +1,39 @@
+---
+// Terms of Use (added 2026-08-06, final pre-launch quality pass). Same
+// status and reasoning as privacy.astro — a legal utility page, no lead
+// image, no ContactBand, footer-only link, noindex. See that file's header
+// comment for the full reasoning; not repeated here.
+//
+// src/content/pages/terms.md is the one file to edit.
+
+import Base from '../layouts/Base.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('pages', 'terms');
+const { Content } = await render(entry);
+const { seoTitle, description, eyebrow, title, lead: leadParagraphs } = entry.data;
+---
+
+<Base
+  title={seoTitle}
+  description={description}
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  noindex
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Terms of Use', href: '/terms' },
+  ]}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">{eyebrow}</p>
+    <h1 class="type-display text-page__heading">{title}</h1>
+    {leadParagraphs.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
+  </section>
+
+  <section class="section wrap">
+    <div class="prose">
+      <Content />
+    </div>
+  </section>
+</Base>

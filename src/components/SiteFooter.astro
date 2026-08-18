@@ -66,6 +66,19 @@ const year = new Date().getFullYear();
 
   <div class="wrap site-footer__bottom">
     <p class="type-label">&copy; {year} Amy K Clark Design</p>
+    {/* Privacy Policy and Terms of Use, added 2026-08-06. Deliberately NOT in
+        navItems / the main nav or the "Site" column above — DESIGN_BRIEF
+        section 4 caps the main nav, and legal pages are conventionally
+        footer-only. This bottom bar, next to the copyright line, is the
+        standard place for them. Both pages carry noindex and are excluded
+        from the sitemap (astro.config.mjs); linking them here still makes
+        them fully reachable and fully crawlable via this link, which is what
+        keeps them from being an orphaned page rather than just an unindexed
+        one. */}
+    <p class="type-label site-footer__legal">
+      <a href="/privacy" class="link-underline">Privacy Policy</a>
+      <a href="/terms" class="link-underline">Terms of Use</a>
+    </p>
   </div>
 </footer>
 
@@ -123,8 +136,16 @@ const year = new Date().getFullYear();
   .site-footer__bottom {
     padding-block: 1.5rem;
     border-top: 1px solid color-mix(in srgb, var(--paper) 15%, var(--ground));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
   }
   .site-footer__bottom p {
     opacity: 0.5;
+  }
+  .site-footer__legal {
+    display: flex;
+    gap: 1.5rem;
   }
 </style>

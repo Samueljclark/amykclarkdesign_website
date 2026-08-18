@@ -1,0 +1,53 @@
+---
+// Privacy Policy (added 2026-08-06, final pre-launch quality pass). Not a
+// DESIGN_BRIEF page — a legal utility page, the same status as /404. No lead
+// image and no ContactBand: this is not a page meant to sell anything, and a
+// decorative photo or a discovery-call pitch would be an odd thing to put
+// next to a data-handling disclosure.
+//
+// Copy sourced from the `pages` content collection, same mechanism as every
+// other long-form page (BUILD-PLAN.md Phase 2) —
+// src/content/pages/privacy.md is the one file to edit. That file's own
+// DRAFT COPY comment carries the full disclaimer: this is a starting
+// template, not legal advice, and needs a human read before launch.
+//
+// Linked from the footer only (SiteFooter.astro's bottom bar), never the
+// main nav — DESIGN_BRIEF section 4 caps the main nav and legal pages are
+// conventionally footer-only.
+//
+// noindex: a privacy policy and terms page add nothing to search relevance
+// and Google's own guidance treats boilerplate legal pages as low-value
+// content; keeping them out of the sitemap avoids diluting it. They are
+// still fully reachable and fully real pages, just not indexed.
+
+import Base from '../layouts/Base.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('pages', 'privacy');
+const { Content } = await render(entry);
+const { seoTitle, description, eyebrow, title, lead: leadParagraphs } = entry.data;
+---
+
+<Base
+  title={seoTitle}
+  description={description}
+  ogImage="/images/og/og-default.jpg"
+  transparentNav={false}
+  noindex
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Privacy Policy', href: '/privacy' },
+  ]}
+>
+  <section class="section wrap text-page__intro">
+    <p class="type-label text-page__eyebrow">{eyebrow}</p>
+    <h1 class="type-display text-page__heading">{title}</h1>
+    {leadParagraphs.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
+  </section>
+
+  <section class="section wrap">
+    <div class="prose">
+      <Content />
+    </div>
+  </section>
+</Base>
