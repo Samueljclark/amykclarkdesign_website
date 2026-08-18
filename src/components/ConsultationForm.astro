@@ -105,8 +105,10 @@ const referralSources = [
 
       The value MUST stay identical to the form's `name` attribute above.
 
-      This is a `{/* */}` comment, not an HTML one, so it stays in the source
-      for whoever reads this next without shipping to every visitor. */}
+      This is a curly-brace JS comment, not an HTML one, so it stays in the
+      source for whoever reads this next without shipping to every visitor.
+      (An HTML comment here bled through to the rendered page once already —
+      see BUILD-PLAN.md. Do not swap this back to <!-- --> .) */}
   <input type="hidden" name="form-name" value="consultation" />
 
   {/* Honeypot (section 7). Hidden from sight and from the accessibility tree;
