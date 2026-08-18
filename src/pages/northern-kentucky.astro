@@ -16,8 +16,8 @@
 // carries it for schema/areaServed purposes only). The only acceptable
 // location wording on this page now is "Cincinnati and Northern Kentucky."
 // Page is intentionally thin — h1, one intro paragraph, one paragraph on the
-// work, links to services and process — and every remaining paragraph is
-// marked DRAFT COPY - NEEDS REWRITE pending Amy's actual words.
+// work, links to services and process. First person as of the 2026-08-17
+// voice rewrite (SITE-COPY-REWRITE.md), implemented 2026-08-18.
 //
 // Vendor naming: rule 8's "the lines I represent." No pricing (rule 1).
 //
@@ -54,7 +54,6 @@ const { seoTitle, description, eyebrow, title, lead: leadParagraphs } = entry.da
   <section class="section wrap text-page__intro">
     <p class="type-label text-page__eyebrow">{eyebrow}</p>
     <h1 class="type-display text-page__heading">{title}</h1>
-    <!-- DRAFT COPY - NEEDS REWRITE -->
     {leadParagraphs.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
   </section>
 

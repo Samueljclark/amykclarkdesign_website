@@ -7,9 +7,21 @@ relatedService: /services/blinds-shades
 heroImage: ivory-house-bay-window-table
 ---
 
-<!-- DRAFT COPY - NEEDS REWRITE -->
-<!-- DRAFT — drafted from DESIGN_BRIEF.md 5.6, pending Amy's review before
-     launch. Converted first person -> third person 2026-07-31 (review). -->
+<!-- First person as of the 2026-08-17 voice rewrite (SITE-COPY-REWRITE.md),
+     implemented 2026-08-18. Supersedes the third-person conversion noted
+     here after the 2026-07-31 review. Still pending Amy's own review of the
+     underlying material before launch (DESIGN_BRIEF.md 5.6).
+
+     [NOTE, not implemented]: SITE-COPY-REWRITE.md's on-page standfirst for
+     this post reads "A room-by-room way to choose, starting from what the
+     window actually has to do rather than from the product." — shorter than
+     its own "Meta description:" line, which keeps "between drapery, shades,
+     and blinds." Every other post in that document gives identical text for
+     both. Treated as accidental drift from hand-editing the same sentence
+     twice rather than a deliberate split, since splitting would need a new
+     field this task was not authorized to add. Kept in sync at the longer,
+     explicitly-labeled "Meta description" text, unchanged from the live
+     site. Flagged for Sam rather than resolved silently. -->
 
 Most people come to this question backwards. They decide they want roman shades, then work out which windows get them. Turn it around, because drapery, shades, and blinds are not three styles of the same thing. They solve different problems, and your room will tell you which problem you have.
 
@@ -57,6 +69,6 @@ The opposite is also true. A window that is off-center, oddly proportioned, or t
 
 ## Where each one comes from
 
-One practical difference worth knowing. [Blinds and shades](/services/blinds-shades) are manufactured products, specified and ordered to the measurements of your opening, including roman shades, which come from the manufacturer built to spec rather than out of Amy's workroom. [Drapery](/services/drapery) is made by hand for your window, which is why the fabric range is wide open and the details are all yours to decide.
+One practical difference worth knowing. [Blinds and shades](/services/blinds-shades) are manufactured products, specified and ordered to the measurements of your opening, including roman shades, which come from the manufacturer built to spec rather than out of my workroom. [Drapery](/services/drapery) is made by hand for your window, which is why the fabric range is wide open and the details are all yours to decide.
 
 That is why a room usually ends up with both, and why the two decisions are best made at the same time. The shade and the drapery have to agree about where the light is going.

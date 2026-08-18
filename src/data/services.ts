@@ -1,9 +1,9 @@
 // Home's ServiceList teaser and the /services overview page show the exact
 // same four entries (DESIGN_BRIEF.md 5.1, 5.3) — shared here so the name/
-// description/href triple isn't duplicated across two files. "The lines she
-// represents" stays generic here (rule 8); Lafayette is named by name only on
-// its own page, per 5.3. Copy is third person as of the 2026-07-31 review.
-// DRAFT COPY - NEEDS REWRITE applies to all four `description` strings.
+// description/href triple isn't duplicated across two files. "The one line I
+// represent" stays generic here (rule 8, Lafayette unnamed pending Amy's rep
+// call — see SITE-COPY-REWRITE.md). Copy is first person as of the
+// 2026-08-17 voice rewrite (SITE-COPY-REWRITE.md, implemented 2026-08-18).
 
 import type { PhotoKey } from './photos';
 
@@ -26,7 +26,7 @@ export interface Service {
 export const services: Service[] = [
   {
     name: 'Custom Drapery',
-    description: 'Drapery designed around your room and your light, from choosing the fabric to hanging it.',
+    description: 'Worked out in your room, for your light. I choose the fabric with you, sew the panels, and hang them.',
     href: '/services/drapery',
     // Ivory House (2026-07-28): real drapery-header detail, replacing the
     // substitute hero crop this row shared with Soft Furnishings.
@@ -34,7 +34,7 @@ export const services: Service[] = [
   },
   {
     name: 'Blinds and Shades',
-    description: 'Blinds and shades from the lines she represents, chosen for privacy, light, and finish.',
+    description: 'Blinds, shades, shutters, and woven woods from the one line I represent, chosen for privacy, light, and finish.',
     href: '/services/blinds-shades',
     // Ivory House: the bay-window room's white wood blinds — the first
     // dedicated Blinds and Shades photography this site has had.
@@ -42,7 +42,7 @@ export const services: Service[] = [
   },
   {
     name: 'Upholstery',
-    description: 'Upholstery that gives furniture worth keeping another good life.',
+    description: 'For the furniture worth keeping. I will tell you if a piece is not.',
     href: '/services/upholstery',
     // Ivory House: the reupholstered breakfast-room dining chair — the only
     // real finished-upholstery photography this site has had until now
@@ -67,7 +67,7 @@ export const services: Service[] = [
   },
   {
     name: 'Soft Furnishings',
-    description: 'Pillows and cushions, the last layer, and often the one that finishes the room.',
+    description: 'Pillows and cushions. The last layer, and usually the one that finishes the room.',
     href: '/services/soft-furnishings',
     // Ivory House: the kitchen island's rattan-stool cushions, all four rows
     // now carrying distinct photography instead of two sharing one crop.

@@ -49,7 +49,12 @@ export interface Project {
   // business, matching the pattern every other page's meta tag already
   // follows even though its own on-page body copy is first person. Falls
   // back to `scope` if unset.
-  scope: string;
+  //
+  // Optional as of 2026-08-18: Collected Living Room omits it (SITE-COPY-
+  // REWRITE.md — the line repeated the blurb's own last sentence). Every
+  // other project should still carry one; the field only became optional to
+  // support that one deliberate cut, not as an invitation to skip it.
+  scope?: string;
   metaDescription?: string;
   // The problem/solution blurb (5.2, added in the 2026-07-31 review): what the
   // room needed and what Amy did about it, two or three sentences, sitting
@@ -110,14 +115,18 @@ export const projects: Project[] = [
     alt: 'Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead',
     blurDataURL:
       'data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA',
-    scope: 'Amy chose the fabric and made the drapery and the banded roman shade for this room.',
+    // scope intentionally omitted — SITE-COPY-REWRITE.md: the live page
+    // repeated the same fact in a second paragraph ("Amy chose the fabric
+    // and made the drapery and the banded roman shade for this room"), which
+    // just restates the blurb's own last sentence. Cut; one credit line is
+    // confident, two is nervous.
     metaDescription:
-      'Amy selected the fabric and made the drapery and banded roman shade for this living room.',
-    // DRAFT COPY - NEEDS REWRITE. Two layered treatments on one opening, which
-    // is the only thing here established by the photographs and the confirmed
-    // scope. What the room needed BEFORE, and why this fabric, are not on file.
+      'Pleated drapery and a banded roman shade for a wall of French doors. I chose the fabric and made both.',
+    // Two layered treatments on one opening, which is the only thing here
+    // established by the photographs and the confirmed scope. What the room
+    // needed BEFORE, and why this fabric, are not on file.
     blurb:
-      'A wall of French doors carrying two treatments at once: pleated drapery for the frame and softness, and a banded roman shade behind it for the light. Amy chose the fabric and made both.',
+      'A wall of French doors carrying two treatments at once: pleated drapery for the frame and the softness, and a banded roman shade behind it for the light. I chose the fabric and made both.',
     lead: {
       image: collectedLivingRoomLeadImage,
       alt: 'Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa',
@@ -164,16 +173,22 @@ export const projects: Project[] = [
     image: photos['ivory-house-bay-window'].image,
     alt: photos['ivory-house-bay-window'].alt,
     blurDataURL: photos['ivory-house-bay-window'].blurDataURL,
+    // scope kept, deliberately, with the two-paragraph structure intact
+    // (SITE-COPY-REWRITE.md): the second paragraph here is doing honest
+    // scope-of-work disclosure the photography strategy requires, not
+    // repeating the blurb the way Collected Living Room's did. The boundary
+    // line is softened from "She did not design or supply the furniture
+    // itself" into one that owns the boundary instead of apologizing for it.
     scope:
-      "Amy made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. She did not design or supply the furniture itself.",
+      "I made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. The furniture itself is not mine to claim.",
     metaDescription:
-      'Amy made the drapery, reupholstered the dining chairs, and made the cushions and pillows shown in this whole-house project.',
-    // DRAFT COPY - NEEDS REWRITE. Strictly the confirmed scope, restated as
-    // prose. This is a whole-house project and the one place a real
-    // problem/solution story would earn the most — it is the first thing to
-    // replace once Amy has been recorded (ASK-AMY.md §1).
+      'Drapery throughout, reupholstered dining chairs, and cushions and pillows to finish. I made and installed all of it.',
+    // Strictly the confirmed scope, restated as prose. This is a whole-house
+    // project and the one place a real problem/solution story would earn the
+    // most — it is the first thing to replace once Amy has been recorded
+    // (ASK-AMY.md §1).
     blurb:
-      'One house, four categories, one person. Drapery throughout, white wood blinds in the bay-window breakfast room, the breakfast room chairs reupholstered, and cushions and pillows to finish. Amy made all of it and installed all of it.',
+      'One house, four categories, one person. Drapery throughout, white wood blinds in the bay-window breakfast room, the breakfast room chairs reupholstered, and cushions and pillows to finish. I made all of it and installed all of it.',
     lead: {
       image: photos['ivory-house-bay-window'].image,
       alt: photos['ivory-house-bay-window'].alt,

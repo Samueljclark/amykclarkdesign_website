@@ -65,12 +65,17 @@ const { project } = Astro.props;
       {/* The problem/solution blurb (5.2, 2026-07-31 review), then the scope
           statement. Order matters: the blurb says what the work is, the scope
           line says how much of the room was Amy's — which only makes sense
-          once you know what was done. `scope` is never optional and never
-          merged into the blurb; it is the sentence that stops the page
-          implying she designed the whole house. */}
-      <!-- DRAFT COPY - NEEDS REWRITE -->
+          once you know what was done.
+
+          `scope` became genuinely optional 2026-08-18 (SITE-COPY-REWRITE.md):
+          Collected Living Room's scope line was cut because it repeated the
+          blurb's own last sentence ("one credit line is confident, two is
+          nervous"). Ivory House keeps its scope line — there the second
+          paragraph is doing real disclosure work the blurb doesn't cover.
+          Same "don't render what isn't there" pattern SpecBlock.astro already
+          uses for `lining`/`hardware`. */}
       <p class="project-detail__blurb">{project.blurb}</p>
-      <p class="project-detail__scope">{project.scope}</p>
+      {project.scope && <p class="project-detail__scope">{project.scope}</p>}
       <SpecBlock spec={project.spec} />
     </section>
   </article>
