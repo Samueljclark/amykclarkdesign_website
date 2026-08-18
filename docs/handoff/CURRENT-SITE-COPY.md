@@ -1,35 +1,39 @@
 # Current Site Copy — Amy K Clark Design
 
-Extracted verbatim from the production build (`npm run build` -> `dist/`) on 2026-08-06.
-This file is self-contained: every page's copy is below in full, in reading order, with no
-references back to the repository. Paste this whole file into a separate conversation for a
-voice/copy rewrite pass.
+Extracted verbatim from the production build (`npm run build` -> `dist/`) on 2026-08-18, after
+implementing SITE-COPY-REWRITE.md's first-person voice rewrite (2026-08-17 pass). Supersedes the
+2026-08-06 extraction, which was the pre-rewrite copy this file used to hold.
 
-**Total word count across all 21 pages: 8382**
+This file is self-contained: every page's copy is below in full, in reading order, with no
+references back to the repository. It is a record of what is actually live, not input for a
+rewrite pass — the rewrite already happened. Paste it into a separate conversation if another
+pass is ever needed.
+
+**Total word count across all 21 pages: 8535**
 
 ## Word count per page
 
-- Home (/): 296
-- About (/about): 431
-- Process (/process): 438
-- Services overview (/services): 182
-- Custom Drapery (/services/drapery): 483
-- Blinds and Shades (/services/blinds-shades): 574
-- Upholstery (/services/upholstery): 440
-- Soft Furnishings (/services/soft-furnishings): 480
-- Blinds landing page (/blinds): 246
-- Portfolio index (/portfolio): 86
-- Collected Living Room (/portfolio/collected-living-room): 123
-- Ivory House (/portfolio/ivory-house): 148
-- Cincinnati (/cincinnati): 227
-- Northern Kentucky (/northern-kentucky): 207
-- Design Journal index (/journal): 224
-- Journal: How to Read a Fabric (/journal/how-to-read-a-fabric): 892
-- Journal: Drapery, Shades, or Blinds (/journal/drapery-shades-or-blinds): 920
-- Journal: What Makes a Window Treatment Look Expensive (/journal/what-makes-a-window-treatment-look-expensive): 900
-- Contact (/contact): 859
-- Thank You (/contact/thank-you): 123
-- 404 (/404): 103
+- Home (/): 310
+- About (/about): 466
+- Process (/process): 432
+- Services overview (/services): 198
+- Custom Drapery (/services/drapery): 492
+- Blinds and Shades (/services/blinds-shades): 586
+- Upholstery (/services/upholstery): 448
+- Soft Furnishings (/services/soft-furnishings): 491
+- Blinds landing page (/blinds): 252
+- Portfolio index (/portfolio): 91
+- Collected Living Room (/portfolio/collected-living-room): 117
+- Ivory House (/portfolio/ivory-house): 151
+- Cincinnati (/cincinnati): 232
+- Northern Kentucky (/northern-kentucky): 210
+- Design Journal index (/journal): 229
+- Journal: How to Read a Fabric (/journal/how-to-read-a-fabric): 896
+- Journal: Drapery, Shades, or Blinds (/journal/drapery-shades-or-blinds): 924
+- Journal: What Makes a Window Treatment Look Expensive (/journal/what-makes-a-window-treatment-look-expensive): 905
+- Contact (/contact): 864
+- Thank You (/contact/thank-you): 131
+- 404 (/404): 110
 
 ## How to read this file
 
@@ -47,20 +51,19 @@ it's", "more than just", "whether you're", "at the end of the day", "in today's"
 "unlock(s)", "seamless(ly)", "journey", "dive into", "game-changer") plus a manual read of the
 full extraction for constructions the pattern list would miss.
 
-**Zero `[AI-TELL]` flags were found anywhere on the site.** Both the automated scan and the
+**Zero `[AI-TELL]` flags were found anywhere on the site.** Both the automated scan and a
 manual read came back clean -- no "it's not X, it's Y" constructions, no rule-of-three padding,
-no stock transitional phrases. This is consistent with the voice-polish passes already recorded
-in BUILD-PLAN.md (2026-07-26 and 2026-08-02), which removed exactly these patterns from the
-four service pages. Nothing to flag does not mean nothing to improve on a rewrite pass -- it
-means this particular checklist of generic tells did not turn anything up.
+no stock transitional phrases, in either the 2026-08-06 extraction or this one. Consistent with
+the voice-polish passes already recorded in BUILD-PLAN.md and with SITE-COPY-REWRITE.md's own
+2026-08-17 pass, which reworked the whole site into first person without introducing any.
 
 ---
 ## Home (/)
 
-**Word count:** 296
+**Word count:** 310
 
 **Meta title:** Custom Window Treatments Cincinnati | Amy K Clark Design
-**Meta description:** Custom drapery, blinds and shades, and upholstery for Cincinnati and Northern Kentucky homes, designed, made, and installed by Amy Clark.
+**Meta description:** Custom drapery, blinds and shades, and upholstery for Cincinnati and Northern Kentucky homes. I design it, make it, and install it myself.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -86,18 +89,18 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** View Full Portfolio
 - **[H2]** Services
 - **[SPAN]** Custom Drapery
-- **[P]** Drapery designed around your room and your light, from choosing the fabric to hanging it.
+- **[P]** Worked out in your room, for your light. I choose the fabric with you, sew the panels, and hang them.
 - **[SPAN]** Blinds and Shades
-- **[P]** Blinds and shades from the lines she represents, chosen for privacy, light, and finish.
+- **[P]** Blinds, shades, shutters, and woven woods from the one line I represent, chosen for privacy, light, and finish.
 - **[SPAN]** Upholstery
-- **[P]** Upholstery that gives furniture worth keeping another good life.
+- **[P]** For the furniture worth keeping. I will tell you if a piece is not.
 - **[SPAN]** Soft Furnishings
-- **[P]** Pillows and cushions, the last layer, and often the one that finishes the room.
+- **[P]** Pillows and cushions. The last layer, and usually the one that finishes the room.
 - **[P]** About
 - **[H2]** A Designer's Eye, A Workroom's Understanding
-- **[P]** Amy designs your window treatments, makes them in her own workroom, and installs them herself. All three, one person. An interior decorator does not make anything, and that is the whole difference.
+- **[P]** I design your window treatments, make them in my own workroom, and install them myself. All three, one person. A decorator does not make anything. That is the whole difference.
 - **[FIGCAPTION]** Amy Clark Founder
-- **[H2]** What Our Clients Say About Working With Us
+- **[H2]** In Their Words
 - **[BLOCKQUOTE]** …made my house into a home.
 - **[FIGCAPTION]** Diane K.
 - **[BLOCKQUOTE]** She even matches complicated designs on the seams.
@@ -125,13 +128,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## About (/about)
 
-**Word count:** 431
+**Word count:** 466
 
 **Meta title:** About Amy Clark | Amy K Clark Design
-**Meta description:** Amy Clark designs, makes, and installs custom window treatments, upholstery, and soft furnishings in Cincinnati and Northern Kentucky.
+**Meta description:** I design, make, and install custom window treatments, upholstery, and soft furnishings in Cincinnati and Northern Kentucky. One person, every stage.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -144,17 +149,18 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** About
 - **[H1]** Amy Clark
-- **[P]** Amy K Clark Design is one person. Amy designs the treatment, makes it, and installs it, and she is the same person at every stage. She works throughout Cincinnati and Northern Kentucky.
-- **[H2]** The part of your room she owns
-- **[P]** Windows, upholstery, pillows, cushions, trim. Not the floor plan and not the paint. That is a narrower brief than a decorator’s, on purpose, because it is the part of a room that has to be made rather than bought.
-- **[P]** Most projects start with a room somebody already likes and cannot quite finish. Usually Amy is solving a problem you had not put into words yet, and pointing at the thing in the room that could be so much better.
+- **[P]** Amy K Clark Design is one person. I design the treatment, I make it, and I install it, and I am the same person at every stage. I work throughout Cincinnati and Northern Kentucky.
+- **[H2]** The part of your room I own
+- **[P]** Windows, upholstery, pillows, cushions, trim. Not the floor plan, not the paint. It is a narrower brief than a decorator’s, on purpose. It is the part of a room that has to be made rather than bought.
+- **[P]** Most projects start with a room somebody already loves and cannot quite finish. Usually I am solving a problem you had not put into words yet, and pointing at the thing that could be so much better.
 - **[H2]** Where it started
-- **[P]** Her grandmother’s attic, and the trunks in it. She wanted to know how the things inside had been put together, so she took them apart to find out. The construction came first. The trade came a long time later.
+- **[P]** My grandmother’s attic, and the trunks in it. I wanted to know how the things inside had been put together, so I took them apart to find out. The construction came first. The trade came a long time later.
 - **[H2]** Every one of them is invented
-- **[P]** There is no guide for the window in front of her. Rooms are not standard. Houses here are rarely square, a ceiling that runs out of level by half an inch changes what a treatment has to do, and the published way of building something assumes an opening nobody actually has.
-- **[P]** So she works every one of them out for the room it is going into. That is why she measures each opening herself instead of sending somebody, and why the person who decided how a thing should be built is the person who builds it.
+- **[P]** There is no guide for the window in front of me. Rooms are not standard. Houses here are rarely square, a ceiling that runs out of level by half an inch changes what a treatment has to do, and the published way of building something assumes an opening nobody actually has.
+- **[P]** So I work every one out for the room it is going into. That is why I measure each opening myself instead of sending somebody, and why the person who decided how a thing should be built is the person who builds it.
 - **[H2]** Fabric
-- **[P]** Fabric comes from the lines she represents. The list is short and stays short, because knowing what a cloth actually does at length is worth more than access to everything.
+- **[P]** Fabric comes from the lines I represent. The list is short and stays short, because knowing what a cloth actually does at length is worth more than access to everything.
+- **[P]** Schumacher opened that door for me when this studio was very small, and I have not forgotten it. It is the key to a design world I never had access to before.
 - **[P]** A memo sample gives you the color. It will not tell you how the piece hangs after a season of being drawn every evening, and that is the part that decides whether your room still looks right in five years.
 - **[H2]** Studio
 - **[FIGCAPTION]** Amy Clark Founder
@@ -177,13 +183,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Process (/process)
 
-**Word count:** 438
+**Word count:** 432
 
 **Meta title:** Process | Amy K Clark Design
-**Meta description:** How a project runs with Amy K Clark Design: a complimentary discovery call, an in-home consultation, design, fabrication, and installation.
+**Meta description:** How a project runs with me: a complimentary discovery call, an in-home design consultation, design, fabrication, and installation. I carry all five steps.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -196,23 +204,23 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Process
 - **[H1]** Process
-- **[P]** Two conversations happen before any work starts, and they are not the same thing. The first is a short phone call and it is complimentary. The second is a design consultation in your home, and it is where the project actually gets decided.
-- **[P]** Five steps, in this order, every time. Amy carries the project through all five, which is why nothing gets lost between one and the next.
+- **[P]** Two conversations happen before any work starts, and they are not the same thing. The first is a short phone call, and it is complimentary. The second is a design consultation in your home, and it is where the project actually gets decided.
+- **[P]** Five steps, in this order, every time. I carry the project through all five, which is why nothing gets lost between one and the next.
 - **[P]** 01
 - **[H2]** Complimentary discovery call
-- **[P]** A short phone call, and it is complimentary. Send photos of the room beforehand and Amy will have looked at them before she rings. She asks what the room is, what is not working about it, and what you want it to do. Nothing is measured and nothing is designed on this call. It exists so that both of you know whether the project is a fit before either of you gives it an afternoon.
+- **[P]** A short phone call. Send photos of the room beforehand and I will have looked at them before I ring. I ask what the room is, what is not working, and what you want it to do. Nothing gets measured and nothing gets designed on this call. It exists so we both know whether the project is a fit before either of us gives it an afternoon.
 - **[P]** 02
 - **[H2]** In-home design consultation
-- **[P]** This one happens in your house and runs about three hours. It comes after the discovery call, not instead of it. Amy takes the measurements, looks at the light during the hours that actually matter to you, and you talk about how you use the room rather than how it photographs. Most of what shapes a project gets decided standing in it.
+- **[P]** This one happens in your house and runs about three hours. It comes after the discovery call, not instead of it. I take the measurements, look at the light during the hours that actually matter to you, and we talk about how you use the room rather than how it photographs. Most of what shapes a project gets decided standing in it.
 - **[P]** 03
 - **[H2]** Design and sourcing
 - **[P]** Fabric, lining, hardware, and construction get settled together, because each one decides the others. Memos come to your house so you are judging a textile against your walls and the things already in the room, never under showroom lighting.
 - **[P]** 04
 - **[H2]** Fabrication and coordination
-- **[P]** Amy makes the work herself, in her own workroom. If the project runs alongside a painter, a contractor, or a trade outside what she does, she works to their schedule so you are not the one coordinating it.
+- **[P]** I make the work myself, in my own workroom. If the project runs alongside a painter or a contractor, I work to their schedule so you are not the one coordinating it.
 - **[P]** 05
 - **[H2]** Installation and finishing
-- **[P]** Amy hangs the work herself. Panels get dressed and trained on the day, hardware is set so the returns close tight to the frame, and nothing gets called finished from the top of a ladder. The last thing she does is stand back in the doorway, where you will actually be looking at it from.
+- **[P]** I hang the work myself. Panels get dressed and trained on the day, hardware gets set so the returns close tight to the frame, and nothing gets called finished from the top of a ladder. The last thing I do is stand back in the doorway, where you will actually be looking at it from.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
@@ -230,13 +238,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Services overview (/services)
 
-**Word count:** 182
+**Word count:** 198
 
 **Meta title:** Services | Amy K Clark Design
-**Meta description:** Custom drapery, blinds and shades, upholstery, and soft furnishings for Cincinnati and Northern Kentucky homes, designed and made by Amy K Clark.
+**Meta description:** Custom drapery, blinds and shades, upholstery, and soft furnishings for Cincinnati and Northern Kentucky homes. Designed, made, and installed by me.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -248,16 +258,16 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Design Journal
 - **[LINK]** Contact
 - **[H1]** Services
-- **[P]** Amy handles every part of a window treatment project, from the first walk through the room to the day it hangs, in homes throughout Cincinnati and Northern Kentucky. Every one of them starts with your room: its light, its architecture, and how you actually live in it.
+- **[P]** I handle every part of a window treatment project, from the first walk through the room to the day it hangs, in homes throughout Cincinnati and Northern Kentucky. Every project starts with your room: its light, its architecture, and how you actually live in it.
 - **[H2]** Services
 - **[SPAN]** Custom Drapery
-- **[P]** Drapery designed around your room and your light, from choosing the fabric to hanging it.
+- **[P]** Worked out in your room, for your light. I choose the fabric with you, sew the panels, and hang them.
 - **[SPAN]** Blinds and Shades
-- **[P]** Blinds and shades from the lines she represents, chosen for privacy, light, and finish.
+- **[P]** Blinds, shades, shutters, and woven woods from the one line I represent, chosen for privacy, light, and finish.
 - **[SPAN]** Upholstery
-- **[P]** Upholstery that gives furniture worth keeping another good life.
+- **[P]** For the furniture worth keeping. I will tell you if a piece is not.
 - **[SPAN]** Soft Furnishings
-- **[P]** Pillows and cushions, the last layer, and often the one that finishes the room.
+- **[P]** Pillows and cushions. The last layer, and usually the one that finishes the room.
 - **[P]** Amy K Clark Design
 - **[P]** Serving Cincinnati and Northern Kentucky since 2021
 - **[P]** Site
@@ -273,13 +283,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Custom Drapery (/services/drapery)
 
-**Word count:** 483
+**Word count:** 492
 
 **Meta title:** Custom Drapery Cincinnati | Amy K Clark Design
-**Meta description:** Custom drapery and curtains for Cincinnati and Northern Kentucky homes. Fabric selection, fabrication, and installation by Amy K Clark Design.
+**Meta description:** Custom drapery for Cincinnati and Northern Kentucky homes. I choose the fabric with you, sew the panels in my workroom, and hang them myself.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -292,18 +304,18 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Services
 - **[H1]** Custom Drapery
-- **[P]** Custom drapery for Cincinnati and Northern Kentucky homes, worked out in the room it belongs to. Amy picks the fabric with you, settles the details, sews the panels, and hangs them herself.
+- **[P]** Custom drapery for Cincinnati and Northern Kentucky homes, worked out in the room it belongs to. I pick the fabric with you, settle the details, sew the panels, and hang them myself.
 - **[H2]** It starts in your room
 - **[P]** Drapery either works with a room or argues with it. Where the rod goes. How far the panels stack back when they are open. How much wall they take up doing it. Those are the decisions that make a room feel taller and finished instead of just covered.
-- **[P]** Amy works them out standing in the room, at the hour the light matters most to you. Your north-facing sitting room and your west-facing dining room want different weights and different linings, even if the windows are identical.
+- **[P]** I work them out standing in the room, at the hour the light matters most to you. Your north-facing sitting room and your west-facing dining room want different weights and different linings, even if the windows are identical.
 - **[H2]** What the fabric will actually do
-- **[P]** Fabric comes from Schumacher and the other lines she represents, and she chooses it for how it behaves rather than how it photographs. A linen that is gorgeous flat can fall like a wet towel at length. A pattern you love in the hand can disappear the moment it is gathered. Knowing that ahead of time is most of the job.
+- **[P]** Fabric comes from Schumacher and the other lines I represent, and I choose it for how it behaves rather than how it photographs. A linen that is gorgeous flat can fall like a wet towel at length. A pattern you love in the hand can disappear the moment it is gathered. Knowing that ahead of time is most of the job.
 - **[P]** Lining gets settled in the same conversation. Interlining adds weight and makes a lighter fabric hang like a heavier one. Blackout belongs in bedrooms. A sun-facing room needs protection from fade. These are the choices that decide whether your drapery still looks right in five years.
 - **[H2]** Pleats, hardware, and trim
 - **[P]** Pleat style sets the character. Euro pleats read cleaner and more current. French pleats hold a deeper fold and lean traditional. Ripplefold moves as one continuous wave, which suits a wide contemporary span.
-- **[P]** Hardware gets chosen alongside the fabric, never after, because bracket projection and return decide how the finished panel sits against your wall. Then the trim, which is her favorite part. A contrast band down a leading edge. A return that closes tight to the frame so no light sneaks around the side.
-- **[H2]** She makes it and she hangs it
-- **[P]** Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions. On installation day Amy dresses and trains every fold by hand so the panels fall correctly from the start.
+- **[P]** Hardware gets chosen alongside the fabric, never after, because bracket projection and return decide how the finished panel sits against your wall. Then the trim, which is my favorite part. A contrast band down a leading edge. A return that closes tight to the frame so no light sneaks around the side.
+- **[H2]** I make it and I hang it
+- **[P]** Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions. On installation day I dress and train every fold by hand so the panels fall correctly from the start.
 - **[P]** The hem hangs level. The pattern matches across panels. The stack clears the glass. None of it announces itself, and you will notice all of it.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
@@ -322,13 +334,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Blinds and Shades (/services/blinds-shades)
 
-**Word count:** 574
+**Word count:** 586
 
 **Meta title:** Custom Blinds and Shades Cincinnati | Amy K Clark Design
-**Meta description:** Custom blinds Cincinnati and custom shades Northern Kentucky. Lafayette blinds, shades, shutters, and woven woods, measured and installed.
+**Meta description:** Custom blinds and shades for Cincinnati and Northern Kentucky homes. Blinds, shades, shutters, and woven woods, measured and installed by me.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -341,8 +355,8 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Services
 - **[H1]** Blinds and Shades
-- **[P]** Blinds and shades for Cincinnati and Northern Kentucky homes, specified for the way you actually use the room. Lafayette Interior Fashions is the one line she represents here, which means blinds, shades, shutters, and woven woods all come from a single catalog she knows cold.
-- **[P]** Roman shades come from Lafayette as a manufactured product. If your room wants a fabric roman made to order, a particular textile with a particular band, that is workroom work and she handles it as custom drapery instead.
+- **[P]** Blinds and shades for Cincinnati and Northern Kentucky homes, specified for the way you actually use the room. I represent one line here, which means blinds, shades, shutters, and woven woods all come from a single catalog I know cold.
+- **[P]** Roman shades come from that catalog as a manufactured product, built to the measurements of your opening. If your room wants a fabric roman made to order, a particular textile with a particular band, that is workroom work and I handle it as custom drapery instead.
 - **[H2]** Decide these before anything is ordered
 - **[P]** Most regret about blinds and shades comes from a decision nobody actually made. A shade picked for how it looked in a showroom, not for what your window is doing at four in the afternoon.
 - **[H3]** Light and glare
@@ -356,7 +370,7 @@ means this particular checklist of generic tells did not turn anything up.
 - **[H3]** Room by room
 - **[P]** Bathrooms and kitchens need something that shrugs off moisture and wipes clean. Bedrooms usually want room-darkening or blackout, often layered under drapery. Living rooms need something adjustable enough for a whole day of moving light. Woven woods warm up a room that reads flat. Shutters suit a window where the treatment should read as architecture rather than fabric.
 - **[H2]** An eighth of an inch
-- **[P]** Blinds and shades are unforgiving about measurement in a way drapery is not. An eighth of an inch decides whether an inside mount clears the frame or binds against it. Amy measures every opening herself and installs the finished product herself.
+- **[P]** Blinds and shades are unforgiving about measurement in a way drapery is not. An eighth of an inch decides whether an inside mount clears the frame or binds against it. I measure every opening myself and I install the finished product myself.
 - **[P]** Windows in older Cincinnati and Northern Kentucky houses are almost never square. Allowing for that correctly is what keeps a treatment from looking almost right.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
@@ -375,13 +389,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Upholstery (/services/upholstery)
 
-**Word count:** 440
+**Word count:** 448
 
 **Meta title:** Custom Upholstery Cincinnati | Amy K Clark Design
-**Meta description:** Custom upholstery and reupholstery for Cincinnati and Northern Kentucky homes. Fabric selection and finished detail by Amy K Clark Design.
+**Meta description:** Upholstery and reupholstery for Cincinnati and Northern Kentucky homes. I choose the fabric for how it wears and handle the details that show.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -394,7 +410,7 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Services
 - **[H1]** Upholstery
-- **[P]** Upholstery and reupholstery for Cincinnati and Northern Kentucky homes, for the furniture you want to keep. Amy helps you decide what a piece should become, chooses the fabric for how it will wear, and handles the details that separate a reupholstered chair from a chair with new fabric on it.
+- **[P]** Upholstery and reupholstery for Cincinnati and Northern Kentucky homes, for the furniture you want to keep. I help you decide what a piece should become, choose the fabric for how it will wear, and handle the details that separate a reupholstered chair from a chair with new fabric on it.
 - **[H2]** Start with the frame
 - **[P]** Not every chair should be reupholstered, and telling you so is part of the job. The frame decides it. Hardwood, joined and doweled rather than stapled, will take new fabric almost regardless of age, and eight-way hand-tied springs are worth keeping. Good bones under an unfashionable fabric is the ideal candidate. A loose joint can be reglued. A cracked rail is a different conversation, and better to know before anything comes apart.
 - **[P]** Sentiment counts, and it counts legitimately. A chair from your grandmother’s house gets done properly because it is that chair. No other reason is required.
@@ -421,13 +437,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Soft Furnishings (/services/soft-furnishings)
 
-**Word count:** 480
+**Word count:** 491
 
 **Meta title:** Custom Pillows and Cushions Cincinnati | Amy K Clark
-**Meta description:** Custom pillows, cushions, and soft furnishings for Cincinnati and Northern Kentucky homes, made and finished by Amy K Clark Design.
+**Meta description:** Custom pillows, cushions, and soft furnishings for Cincinnati and Northern Kentucky homes, made and finished in my workroom.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -440,14 +458,14 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Services
 - **[H1]** Pillows, Cushions, and Soft Furnishings
-- **[P]** The smallest things Amy makes, and often the ones that decide whether a room feels considered or just furnished.
+- **[P]** Le petit plus qui fait la différence. The smallest things I make, and often the ones that decide whether a room feels considered or just furnished.
 - **[H2]** Small work, big effect
-- **[P]** A ready-made pillow is one size, one fabric, one edge, all decided by somebody who never saw your sofa. Custom means the proportion suits the piece it sits on and you choose the finish rather than accept it.
-- **[P]** It is also the easiest way to get a remarkable textile into your room. A fabric that would be impractical across a whole sofa is perfect as a pair of pillows, and a size that does not exist ready-made is not a problem when she is making it anyway.
-- **[P]** This is often where a project starts. If you are not ready to commit to drapery, a set of pillows shows you exactly how she works, and the room usually moves further than the size of the job suggests.
+- **[P]** A ready-made pillow is one size, one fabric, one edge, all decided by somebody who never saw your sofa. Custom means the proportion suits the piece it sits on, and you choose the finish rather than accept it.
+- **[P]** It is also the easiest way to get a remarkable textile into your room. A fabric that would be impractical across a whole sofa is perfect as a pair of pillows, and a size that does not exist ready-made is not a problem when I am making it anyway.
+- **[P]** This is often where a project starts. If you are not ready to commit to drapery, a set of pillows shows you exactly how I work, and the room usually moves further than the size of the job suggests.
 - **[H2]** Proportion and fill
 - **[P]** Size is the thing people get wrong most. Pillows that are too small leave a sofa looking undressed. A mix of sizes with a deliberate relationship between them beats a matched set of four, and two large pillows can carry a long sofa better than four small ones ever will.
-- **[P]** Fill decides how a pillow behaves. Down and down-blend inserts have a hand that foam cannot fake, and they take the casual slump that makes a room look lived in rather than staged. Amy sizes inserts larger than the cover so the pillow sits full instead of slack. Small detail, and you see it immediately.
+- **[P]** Fill decides how a pillow behaves. Down and down-blend inserts have a hand that foam cannot fake, and they take the casual slump that makes a room look lived in rather than staged. I size inserts larger than the cover so the pillow sits full instead of slack. Small detail, and you see it immediately.
 - **[P]** The edge sets the register. A knife edge is clean and quiet. A flange softens it and reads traditional. Box edge where the pillow needs structure. Fringe and tape push it formal fast, and there is a line past which a pillow is wearing a costume.
 - **[H2]** Cushions and everything else
 - **[P]** Window seats, benches, and banquettes need cushions built to a real measurement rather than trimmed down to fit. Foam density gets chosen for how long people sit there. Dining chair seats take the most abuse in the house and get built accordingly. Outdoor cushions have to survive weather and then dry out properly.
@@ -469,13 +487,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Blinds landing page (/blinds)
 
-**Word count:** 246
+**Word count:** 252
 
 **Meta title:** Blinds and Shades for Cincinnati Homes | Amy K Clark Design
-**Meta description:** Custom blinds and shades for Cincinnati and Northern Kentucky homes, measured and installed by Amy Clark. Book a complimentary discovery call.
+**Meta description:** Custom blinds and shades for Cincinnati and Northern Kentucky homes, measured and installed by me. Book a complimentary discovery call.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -488,15 +508,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Blinds and Shades
 - **[H1]** Custom Blinds and Shades in Cincinnati
-- **[P]** Measured, specified, and installed by the person who designs them. Amy Clark works throughout Cincinnati and Northern Kentucky, and every opening gets measured in the room rather than taken off a plan.
+- **[P]** Measured, specified, and installed by the person who chose them with you. I work throughout Cincinnati and Northern Kentucky, and every opening gets measured in the room rather than taken off a plan.
 - **[LINK]** Schedule your complimentary discovery call
 - **[H2]** Why it lands right
 - **[H3]** Measured in your room, not off a plan
-- **[P]** An eighth of an inch decides whether an inside mount clears the frame or binds against it. Amy measures every opening herself, in the room, and installs the finished product herself.
+- **[P]** An eighth of an inch decides whether an inside mount clears the frame or binds against it. I measure every opening myself, in the room, and I install the finished product myself.
 - **[H3]** One catalog, known cold
-- **[P]** Blinds, shades, shutters, and woven woods all come from Lafayette Interior Fashions, the one line Amy represents in this category. A short list she knows well beats access to everything.
+- **[P]** Blinds, shades, shutters, and woven woods all come from the one line I represent in this category. A short list I know well beats access to everything.
 - **[H3]** Specified for how you use the room
-- **[P]** Light and glare, privacy, motorization, and child safety are four separate decisions, and most regret about blinds comes from one nobody actually made. Amy walks through them before anything is ordered.
+- **[P]** Light and glare, privacy, motorization, and child safety are four separate decisions, and most regret about blinds comes from one nobody actually made. I walk through all four with you before anything is ordered.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
@@ -514,10 +534,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Portfolio index (/portfolio)
 
-**Word count:** 86
+**Word count:** 91
 
 **Meta title:** Portfolio | Amy K Clark Design
 **Meta description:** Custom drapery, blinds and shades, and upholstery projects by Amy K Clark Design, Cincinnati and Northern Kentucky.
@@ -551,13 +573,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Collected Living Room (/portfolio/collected-living-room)
 
-**Word count:** 123
+**Word count:** 117
 
 **Meta title:** Collected Living Room | Amy K Clark Design
-**Meta description:** Amy selected the fabric and made the drapery and banded roman shade for this living room.
+**Meta description:** Pleated drapery and a banded roman shade for a wall of French doors. I chose the fabric and made both.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -570,8 +594,7 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[LINK]** Portfolio
 - **[H1]** Collected Living Room
-- **[P]** A wall of French doors carrying two treatments at once: pleated drapery for the frame and softness, and a banded roman shade behind it for the light. Amy chose the fabric and made both.
-- **[P]** Amy chose the fabric and made the drapery and the banded roman shade for this room.
+- **[P]** A wall of French doors carrying two treatments at once: pleated drapery for the frame and the softness, and a banded roman shade behind it for the light. I chose the fabric and made both.
 - **[P]** Amy K Clark Design
 - **[P]** Serving Cincinnati and Northern Kentucky since 2021
 - **[P]** Site
@@ -587,13 +610,15 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Ivory House (/portfolio/ivory-house)
 
-**Word count:** 148
+**Word count:** 151
 
 **Meta title:** Ivory House | Amy K Clark Design
-**Meta description:** Amy made the drapery, reupholstered the dining chairs, and made the cushions and pillows shown in this whole-house project.
+**Meta description:** Drapery throughout, reupholstered dining chairs, and cushions and pillows to finish. I made and installed all of it.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
@@ -606,8 +631,8 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[LINK]** Portfolio
 - **[H1]** Ivory House
-- **[P]** One house, four categories, one person. Drapery throughout, white wood blinds in the bay-window breakfast room, the breakfast room chairs reupholstered, and cushions and pillows to finish. Amy made all of it and installed all of it.
-- **[P]** Amy made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. She did not design or supply the furniture itself.
+- **[P]** One house, four categories, one person. Drapery throughout, white wood blinds in the bay-window breakfast room, the breakfast room chairs reupholstered, and cushions and pillows to finish. I made all of it and installed all of it.
+- **[P]** I made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. The furniture itself is not mine to claim.
 - **[P]** Amy K Clark Design
 - **[P]** Serving Cincinnati and Northern Kentucky since 2021
 - **[P]** Site
@@ -623,10 +648,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Cincinnati (/cincinnati)
 
-**Word count:** 227
+**Word count:** 232
 
 **Meta title:** Window Treatments Cincinnati OH | Amy K Clark Design
 **Meta description:** Custom window treatments in Cincinnati OH: drapery, blinds and shades, upholstery, and soft furnishings, designed, made, and installed by Amy Clark.
@@ -642,8 +669,8 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Service area
 - **[H1]** Window Treatments in Cincinnati
-- **[P]** Custom window treatments in Cincinnati, made by the person who measured your room. Amy designs the treatment, sews it in her own workroom, and hangs it herself, which is a different arrangement from what most of this city offers.
-- **[P]** Drapery, blinds and shades, upholstery, pillows and cushions. Fabric comes from the lines she represents, chosen for how it will hang and wear rather than how it looks folded on a table. Amy is not a full-service interior design firm. She owns the textile layer of your room and works alongside whoever owns the rest.
+- **[P]** Custom window treatments in Cincinnati, made by the person who measured your room. I design the treatment, sew it in my own workroom, and hang it myself, which is a different arrangement from what most of this city offers.
+- **[P]** Drapery, blinds and shades, upholstery, pillows and cushions. Fabric comes from the lines I represent, chosen for how it will hang and wear rather than how it looks folded on a table. I am not a full-service interior design firm. I own the textile layer of your room and work alongside whoever owns the rest.
 - **[P]** Every project starts with a consultation in your house, because the light, the sightlines, and the way you actually use the room are the things that decide the work. See services for the specifics on each category, and process for what happens after that.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
@@ -662,10 +689,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Northern Kentucky (/northern-kentucky)
 
-**Word count:** 207
+**Word count:** 210
 
 **Meta title:** Custom Drapery Northern Kentucky | Amy K Clark Design
 **Meta description:** Custom drapery in Northern Kentucky, plus blinds, shades, upholstery, and soft furnishings. Designed, sewn, and installed by Amy Clark.
@@ -681,9 +710,9 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Service area
 - **[H1]** Custom Drapery in Northern Kentucky
-- **[P]** Amy designs, sews, and installs custom drapery across Cincinnati and Northern Kentucky.
-- **[P]** Drapery is the largest piece of fabric in most rooms and it sets the terms for the rest. Where the rod goes, how far the panels stack back, what the lining does to the light. Once that is settled, blinds and shades, upholstery, and the pillows and cushions can be worked around it rather than negotiated against it afterward. Fabric comes from the lines she represents, chosen for how it will hang in your specific room rather than how it reads in a book.
-- **[P]** Every project starts in your house. See services for how that work gets built, or the process for what happens in what order.
+- **[P]** I design, sew, and install custom drapery across Cincinnati and Northern Kentucky.
+- **[P]** Drapery is the largest piece of fabric in most rooms, and it sets the terms for the rest. Where the rod goes, how far the panels stack back, what the lining does to the light. Once that is settled, the upholstery, the shades, and the pillows and cushions get worked around it rather than negotiated against it afterward. Fabric comes from the lines I represent, chosen for how it will hang in your specific room rather than how it reads in a book.
+- **[P]** Every project starts in your house. See services for how the work gets built, or process for what happens in what order.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
@@ -701,10 +730,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Design Journal index (/journal)
 
-**Word count:** 224
+**Word count:** 229
 
 **Meta title:** Design Journal | Amy K Clark Design
 **Meta description:** Notes on fabric, drapery, blinds, and shades from Amy Clark, who designs, makes, and installs them in Cincinnati and Northern Kentucky.
@@ -720,7 +751,7 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Design Journal
 - **[H1]** Design Journal
-- **[P]** What Amy has learned making window treatments, written down. How to read a fabric, how to choose between drapery and shades room by room, and the details that decide whether a treatment looks finished.
+- **[P]** What I have learned making window treatments, written down. How to read a fabric, how to choose between drapery and shades room by room, and the details that decide whether a treatment looks finished.
 - **[P]** July 24, 2026
 - **[H2]** What actually makes a window treatment look expensive
 - **[P]** Fullness, length, stack, lining, and how a panel is dressed on installation day. The details that separate finished work from covered windows.
@@ -745,10 +776,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Journal: How to Read a Fabric (/journal/how-to-read-a-fabric)
 
-**Word count:** 892
+**Word count:** 896
 
 **Meta title:** How to Read a Fabric | Amy K Clark Design
 **Meta description:** What weight, weave, and hand tell you about how a fabric will hang once it is made up, and what a memo sample will never show you.
@@ -767,11 +800,11 @@ means this particular checklist of generic tells did not turn anything up.
 - **[P]** What weight, weave, and hand tell you about how a fabric will hang once it is made up, and what a memo sample will never show you.
 - **[P]** July 8, 2026
 - **[P]** Nearly everyone chooses fabric the same way. You find a color you love, hold the sample at arm’s length, and decide. Color is the one thing a sample tells you honestly. Almost everything else about how that fabric will behave once it is cut, sewn, and hung is invisible in a four-inch square.
-- **[P]** Here is what Amy looks at instead.
+- **[P]** Here is what I look at instead.
 - **[H2]** Weight tells you what it will do, not how good it is
 - **[P]** Weight is measured in ounces per yard, and heavier is not better. It is only different. A heavy fabric holds a fold and stays where you put it. A light fabric moves, catches light, and will not hold a pleat on its own.
 - **[P]** Which one is right depends on what your window has to do. A dining room you only use in the evening can carry weight. A breakfast room that lives on morning light usually should not.
-- **[P]** The mistake she sees most is a light fabric chosen for a tall window because it looked airy on a table. At nine feet it reads limp. It does not drape, it hangs.
+- **[P]** The mistake I see most is a light fabric chosen for a tall window because it looked airy on a table. At nine feet it reads limp. It does not drape, it hangs.
 - **[H2]** Weave decides what the light does
 - **[P]** Hold the sample up to a window before you do anything else. Watch how much light comes through and what happens to the color when it does.
 - **[P]** A tight weave blocks light and keeps its color. An open weave glows, and the color shifts, sometimes a lot. Linen with a loose, irregular weave will read three shades lighter with the sun behind it than it did lying on the table.
@@ -782,14 +815,14 @@ means this particular checklist of generic tells did not turn anything up.
 - **[P]** A fabric that resists being gathered will resist being pleated. A fabric that wrinkles in your fist will wrinkle across a chair seat.
 - **[H2]** A pattern gathered is a different pattern
 - **[P]** This is the one that surprises people most. A large pattern that reads beautifully flat can disappear entirely once it is pleated, because two-thirds of it ends up inside the folds. A stripe that looked bold flat becomes a thin, busy line. A big open floral becomes texture.
-- **[P]** So the question is never whether you like this pattern. It is whether you like the part of this pattern that will still be showing.
-- **[P]** Where the pattern has to survive intact, the treatment changes to suit it: a flat roman shade, a flat panel, a valance, an upholstered seat. That decision gets made at the same time as the fabric, not afterwards.
+- **[P]** So the question is never whether you like this pattern. It is whether you like the part of it that will still be showing.
+- **[P]** Where the pattern has to survive intact, the treatment changes to suit it: a flat roman shade, a flat panel, a valance, an upholstered seat. I make that decision at the same time as the fabric, not afterwards.
 - **[H2]** Almost anything can be made to behave
 - **[P]** Interlining adds body and weight and makes a lighter fabric hang like a heavier one. Blackout belongs in bedrooms. A sun-facing room needs protection from fade regardless of what the face fabric is.
-- **[P]** Which means the honest answer to “will this fabric work” is usually “it depends what we put behind it.”
+- **[P]** Which means my honest answer to “will this fabric work” is usually “it depends what we put behind it.”
 - **[H2]** What the sample cannot tell you
 - **[P]** A memo sample cannot tell you how a fabric looks after a season of being drawn every evening, how a seam sits once the pattern has to match across two panels, or whether the hem will hang level on a floor that is not level.
-- **[P]** That part comes from having made the thing before. Amy chooses fabric standing in the room it is going into, at the hour the light matters most, and she chooses it for how it will behave at length, not for how it photographs in the hand.
+- **[P]** That part comes from having made the thing before. I choose fabric standing in the room it is going into, at the hour the light matters most, and I choose it for how it will behave at length, not for how it photographs in the hand.
 - **[P]** If you are working out fabric for a specific window, that is what custom drapery is for. The fabric, the lining, the pleat, and the hardware all get decided together, by the person who will be sewing it. The same reading applies to upholstery, where hand and durability matter more than drape, and the wrong weight shows up in six months rather than on installation day.
 - **[P]** Related service
 - **[LINK]** Custom Drapery
@@ -810,10 +843,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Journal: Drapery, Shades, or Blinds (/journal/drapery-shades-or-blinds)
 
-**Word count:** 920
+**Word count:** 924
 
 **Meta title:** Drapery, Shades, or Blinds? | Amy K Clark Design
 **Meta description:** A room-by-room way to choose between drapery, shades, and blinds, starting from what the window actually has to do rather than from the product.
@@ -854,7 +889,7 @@ means this particular checklist of generic tells did not turn anything up.
 - **[P]** Some windows should not be covered. A leaded-glass panel, a good arch, a bay with a view worth having. The treatment should frame those, not hide them. Drapery held at the sides, or a shade that stacks up almost invisibly at the top, keeps the architecture and still gives you a way to shut the room down when you want to.
 - **[P]** The opposite is also true. A window that is off-center, oddly proportioned, or too small for its wall can be corrected. Rod width, mount height, and where the panels stack are what do the correcting, and those get decided in the room with a tape measure.
 - **[H2]** Where each one comes from
-- **[P]** One practical difference worth knowing. Blinds and shades are manufactured products, specified and ordered to the measurements of your opening, including roman shades, which come from the manufacturer built to spec rather than out of Amy’s workroom. Drapery is made by hand for your window, which is why the fabric range is wide open and the details are all yours to decide.
+- **[P]** One practical difference worth knowing. Blinds and shades are manufactured products, specified and ordered to the measurements of your opening, including roman shades, which come from the manufacturer built to spec rather than out of my workroom. Drapery is made by hand for your window, which is why the fabric range is wide open and the details are all yours to decide.
 - **[P]** That is why a room usually ends up with both, and why the two decisions are best made at the same time. The shade and the drapery have to agree about where the light is going.
 - **[P]** Related service
 - **[LINK]** Blinds and Shades
@@ -875,10 +910,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Journal: What Makes a Window Treatment Look Expensive (/journal/what-makes-a-window-treatment-look-expensive)
 
-**Word count:** 900
+**Word count:** 905
 
 **Meta title:** Why Drapery Looks Expensive | Amy K Clark Design
 **Meta description:** Fullness, length, stack, lining, and how a panel is dressed on installation day. The details that separate finished work from covered windows.
@@ -916,7 +953,7 @@ means this particular checklist of generic tells did not turn anything up.
 - **[H2]** It gets dressed on installation day
 - **[P]** Here is the part that gets skipped most often. A brand-new panel does not know how to fold. Straight out of the workroom it hangs however it was packed, with the creases in the wrong places, and it will keep those creases for months if nobody trains it.
 - **[P]** Dressing means going through every fold by hand on installation day, setting each one, and tying the panel loosely so it learns the fold. It takes a while, and it is the difference between drapery that looks right on day one and drapery that looks right eventually, if at all.
-- **[P]** Amy installs what she makes, which means the person who decided how the panels should fall is the one standing there setting them.
+- **[P]** I install what I make, which means the person who decided how the panels should fall is the one standing there setting them.
 - **[P]** If you want to see how these decisions get made in a specific room, that is what custom drapery covers. Fabric, lining, pleat, hardware, and the dressing, all decided together. For pillows and cushions, the same principle applies at a smaller scale. Fill, seam, and welt do exactly what fullness and lining do on a window.
 - **[P]** Related service
 - **[LINK]** Custom Drapery
@@ -937,10 +974,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Contact (/contact)
 
-**Word count:** 859
+**Word count:** 864
 
 **Meta title:** Schedule a Discovery Call | Amy K Clark Design
 **Meta description:** Book a complimentary discovery call for custom drapery, blinds and shades, upholstery, or soft furnishings in Cincinnati and Northern Kentucky.
@@ -956,17 +995,17 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Contact
 - **[H1]** Schedule Your Complimentary Discovery Call
-- **[P]** It starts with a phone call, and the call is free. Fifteen minutes on what the room is doing wrong, what you have already tried, and whether Amy is the right person for it. No measuring, no fabric, no commitment.
-- **[P]** If it sounds like a fit, the next step is the in-home design consultation: about three hours in your house, and a paid visit, because it is design work rather than a sales call. Amy measures the openings herself, sees the light at the hour that matters, and puts fabric against your walls and your furniture. You come out of it knowing what the room needs and what she would do about it.
-- **[P]** Amy works throughout Cincinnati and Northern Kentucky. Tell her as much as you can below. The more she knows before the call, the more useful it will be.
-- **[H2]** Tell Amy about your room
+- **[P]** It starts with a phone call, and the call is free. Fifteen minutes on what the room is doing wrong, what you have already tried, and whether I am the right person for it. No measuring, no fabric, no commitment.
+- **[P]** If it sounds like a fit, the next step is the in-home design consultation: about three hours in your house, and a paid visit, because it is design work rather than a sales call. I measure the openings myself, see the light at the hour that matters, and put fabric against your walls and your furniture. You come out of it knowing what the room needs and what I would do about it.
+- **[P]** I work throughout Cincinnati and Northern Kentucky. Tell me as much as you can below. The more I know before the call, the more useful it will be.
+- **[H2]** Tell me about your room
 - **[P]** Do not fill this in
 - **[P]** Name
 - **[P]** Email
 - **[P]** Phone Optional
-- **[P]** Location Your city or neighborhood. Amy works throughout Cincinnati and Northern Kentucky.
-- **[P]** Tell Amy about your room Which room, which windows, and what is not working about it now.
-- **[P]** Tell Amy about you Optional How you live in the room, who else uses it, and what you already know you like.
+- **[P]** Location Your city or neighborhood. I work throughout Cincinnati and Northern Kentucky.
+- **[P]** Tell me about your room Which room, which windows, and what is not working about it now.
+- **[P]** Tell me about you Optional How you live in the room, who else uses it, and what you already know you like.
 - **[FIELDSET LEGEND]** Project type
 - **[FIELD LABEL]** Drapery
 - **[FIELD LABEL]** Blinds and shades
@@ -981,22 +1020,22 @@ means this particular checklist of generic tells did not turn anything up.
 - **[DROPDOWN OPTIONS (timeline)]** Select one | As soon as possible | Within one to three months | Within three to six months | Six months or more out | Still planning
 - **[P]** Photos Optional Photographs of the room help more than anything else you can send.
 - **[P]** What else is in the room Optional The sofa, the flooring, the wall color, anything staying in the room that the fabric has to live with. Photographs of these help too.
-- **[P]** How did you hear about us?
+- **[P]** How did you find me?
 - **[DROPDOWN OPTIONS (referral)]** Select one | Google search | Instagram | Facebook | Referred by a friend or family member | Referred by a designer or builder | Saw her work in a home | Houzz | Other
 - **[BUTTON]** Request a Consultation
 - **[H2]** Common questions
 - **[H3]** What happens on the discovery call?
-- **[P]** It is a short phone call and it costs nothing. Amy asks what the room is doing wrong, what you have already tried, and what you are hoping for. You get a straight answer about whether this is work she should be doing and what it would involve. If it is not a fit, she will say so on the call rather than after a visit.
+- **[P]** It is a short phone call and it costs nothing. I ask what the room is doing wrong, what you have already tried, and what you are hoping for. You get a straight answer about whether this is work I should be doing and what it would involve. If it is not a fit, I will say so on the call rather than after a visit.
 - **[H3]** What happens at the in-home consultation?
-- **[P]** Amy comes to your home and works in the actual room for around three hours. She measures the openings, looks at the light at the hour it matters, and brings fabric to see against your walls, your floors, and the furniture already there. You leave knowing what the room needs and what she would do about it. It is a paid visit, and it is the design work rather than a sales call.
+- **[P]** I come to your home and work in the actual room for around three hours. I measure the openings, look at the light at the hour it matters, and bring fabric to see against your walls, your floors, and the furniture already there. You leave knowing what the room needs and what I would do about it. It is a paid visit, and it is the design work rather than a sales call.
 - **[H3]** Do I need to know what I want before I call?
 - **[P]** No. Most people know something in the room is not right and cannot name it, and finding that is part of what this is for. Photographs of the room help more than anything else you can send ahead.
 - **[H3]** Do you work with interior designers?
-- **[P]** Yes, regularly. Some clients come to Amy directly, and some come through a designer, a builder, or a project manager who hands the textile category over. She owns the windows, the upholstery, and the soft furnishings. She is not a full-service interior design firm and does not try to be.
+- **[P]** Yes, regularly. Some clients come to me directly, and some come through a designer, a builder, or a project manager who hands the textile category over. I own the windows, the upholstery, and the soft furnishings. I am not a full-service interior design firm and I do not try to be.
 - **[H3]** Who actually makes and installs the work?
-- **[P]** Amy does. She designs the treatment, sews it in her own workroom, and installs it herself. Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions.
+- **[P]** I do. I design the treatment, sew it in my own workroom, and install it myself. Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions.
 - **[H3]** How long does a project take?
-- **[P]** It depends on the fabric more than the sewing. Fabric has to be ordered, and a mill can be quick or a pattern can be on back order. Amy confirms that before promising you anything, so you get a real date rather than an optimistic one.
+- **[P]** It depends on the fabric more than the sewing. Fabric has to be ordered, and a mill can be quick or a pattern can be on back order. I confirm that before promising you anything, so you get a real date rather than an optimistic one.
 - **[H3]** Where do you work?
 - **[P]** Cincinnati, Northern Kentucky, and a small number of travel projects each year.
 - **[H3]** Can you match something I already have?
@@ -1016,10 +1055,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## Thank You (/contact/thank-you)
 
-**Word count:** 123
+**Word count:** 131
 
 **Meta title:** Thank You | Amy K Clark Design
 **Meta description:** Your consultation request has been received by Amy K Clark Design.
@@ -1035,8 +1076,8 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Contact
 - **[P]** Contact
 - **[H1]** Thank you
-- **[P]** Your request is in. Amy reads these herself, and she will be in touch to arrange your complimentary discovery call and ask anything she needs to know beforehand.
-- **[P]** In the meantime, the Design Journal covers how to read a fabric and how to choose between drapery and shades room by room, and the portfolio shows finished work.
+- **[P]** Your request is in. I read every one of these myself, and I will be in touch to arrange your complimentary discovery call and ask anything I need to know beforehand.
+- **[P]** While you wait, the Design Journal covers how to read a fabric and how to choose between drapery and shades room by room, and the portfolio shows finished work.
 - **[P]** Amy K Clark Design
 - **[P]** Serving Cincinnati and Northern Kentucky since 2021
 - **[P]** Site
@@ -1052,10 +1093,12 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
 
 ## 404 (/404)
 
-**Word count:** 103
+**Word count:** 110
 
 **Meta title:** Page Not Found | Amy K Clark Design
 **Meta description:** This page doesn't exist. Explore the portfolio or get in touch to start a project with Amy K Clark Design.
@@ -1070,7 +1113,7 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Design Journal
 - **[LINK]** Contact
 - **[H1]** This page doesn't exist.
-- **[P]** The room you're looking for isn't here. Have a look at the portfolio instead, or get in touch to start a project.
+- **[P]** The room you are looking for is not here. Have a look at the portfolio instead, or get in touch to start a project.
 - **[LINK]** View Portfolio
 - **[LINK]** Return home
 - **[P]** Amy K Clark Design
@@ -1088,3 +1131,5 @@ means this particular checklist of generic tells did not turn anything up.
 - **[LINK]** Instagram
 - **[LINK]** Facebook
 - **[P]** © 2026 Amy K Clark Design
+- **[LINK]** Privacy Policy
+- **[LINK]** Terms of Use
