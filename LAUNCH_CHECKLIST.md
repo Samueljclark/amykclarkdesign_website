@@ -16,13 +16,23 @@ Status key: `[ ]` not done · `[x]` done · `[Amy]` blocked on Amy ·
 
 These are the things that are **wrong on a live site**, not merely unfinished.
 
-- [Amy] **Testimonial permissions.** Two quotes are live on Home: Diane K. and
-  Kelly G. Kelly G.'s came off Amy's public Google Business profile, and a
-  public review is not permission to feature it on her own site. Diane K.'s
-  attribution is approved; permission to publish the quote itself is not.
-  **Written permission from both before launch.** Three fallback candidates are
-  on file (BUILD-PLAN decision 4). Marked in HTML comments beside each quote in
-  `src/pages/index.astro`.
+- [Amy] **Testimonial permissions — FIVE quotes are live, not two.** Corrected
+  2026-08-06: this entry previously said two (Diane K. and Kelly G.), which
+  was accurate on 2026-07-26 but went stale the next day, when the 2026-07-27
+  testimonial rotation shipped. **All five need written permission before
+  launch, and all five are confirmed traceable to a real customer** (verified
+  2026-08-06 against the sourcing comment beside each quote in
+  `src/pages/index.astro` — none is generic or invented):
+  - **Diane K.** — fixed slot. Attribution format approved by Amy; the quote
+    itself is not yet cleared.
+  - **Kelly G., Heather L., Jenny H., Lisa C.** — the rotating slot. All four
+    are cut from real customer reviews on Amy's **public** Google Business
+    profile. A public review is not permission to republish it on her own
+    site, which is why all four sit in the same holding pattern as Diane K.'s.
+    Lisa C.'s had a pink heart emoji removed on republish (3.2 bans emoji);
+    the words are otherwise verbatim.
+  **Written permission from all five before launch.** Three fallback
+  candidates are on file (BUILD-PLAN decision 4) in case any do not clear.
 - [Amy] **Journal posts are drafts.** All three carry a `<!-- DRAFT -->` marker
   in their `.md` files. They are good and they are not in Amy's voice. She
   should read all three before they are public.
@@ -340,6 +350,94 @@ scripted enough to repeat.
   blinds accordion, which are the two most interactive things on the site.
 - [Sam] **Print/read the whole site once on a phone**, as Amy's actual audience
   would.
+
+## 9. 2026-08-06 quality pass — copy extraction, AI-tell audit, legal pages
+
+Session goal: "would a stranger mistake this for expensive, hand-crafted
+work." Full report in that session's summary; the actionable items are here.
+
+### Fixed
+
+- [x] **Real bug, found and fixed: a leaked code comment was rendering as
+  visible text on the live Contact page.** `ConsultationForm.astro`'s own
+  explanatory comment (added 2026-08-05, documenting the `form-name` hidden
+  input) contained the literal string `{/* */}` as example text inside itself.
+  That string is *also* how a JSX comment ends, so the parser closed the
+  comment early at the embedded copy and rendered the rest of the sentence as
+  a visible text node, sitting in the middle of the form. Confirmed present in
+  the built HTML, confirmed fixed, and confirmed no second instance exists
+  anywhere in `src/` (searched for the exact pattern site-wide). Worth
+  remembering: never write literal comment-delimiter syntax as prose inside a
+  comment meant to explain that same syntax.
+- [x] **Two real em dashes shipped in the new Privacy/Terms copy** (this
+  session's own draft, task 3 below) and were caught by the same sweep that
+  audited the rest of the site. Fixed before commit; the standing no-em-dash
+  rule now holds across all 23 pages, verified against the compiled `dist/`
+  output.
+
+### Flagged for Sam's judgment — not fixed, code inspected and reported only
+
+- [ ] **`/blinds`'s "Why it lands right" section is three equal-width text
+  columns (H3 + one sentence each).** No icons, no cards, no border, no
+  shadow, no radius, no colored accent — none of the generic-SaaS visual
+  tells are present, and the button/hover treatment elsewhere on the site is
+  equally restrained (verified: zero `box-shadow` anywhere in the codebase).
+  But structurally it is still three equal items in a row, which is the
+  pattern DESIGN_BRIEF's asymmetry preference warns against. Sam's call
+  whether the restrained execution is enough or whether it should become two
+  items, or an asymmetric layout instead.
+- [ ] **Dead CSS, not a visual defect:** `SiteNav.astro`'s solid nav state
+  (`background: var(--paper)`, fully opaque) also carries
+  `backdrop-filter: blur(12px)`, which has no visible effect on a background
+  with zero transparency. Not glassmorphism (no translucency exists), just an
+  inert rule. Low priority; mention if a CSS cleanup pass ever touches
+  `SiteNav.astro`.
+
+### Confirmed clean, no action needed
+
+- [x] Zero em dashes site-wide (23 pages).
+- [x] Zero fallback fonts leaking — `document.fonts` reports exactly Archivo
+  and Bodoni Moda everywhere.
+- [x] Zero dollar amounts outside `/contact`'s budget `<option>` values.
+- [x] Zero gradients except the one documented hero scrim; zero box-shadow
+  anywhere; exactly one border-radius token (`--radius: 2px`) used in exactly
+  two places; zero bento-grid patterns (portfolio is a uniform 2-column grid);
+  zero dot-grid backgrounds; zero glassmorphism; zero pastel palette (real
+  hex values: `#F1F1EF` / `#191917` / `#6E6E68` / `#D6D6D1` / `#181816`, plus
+  `#22303F` restricted to focus rings and hover underlines).
+- [x] Real project photography confirmed on Portfolio and hero (not
+  stock/placeholder) — the two placeholder cards render an explicit
+  "Placeholder. No image." label and are the pre-launch blocker already
+  tracked in section 1, not a defect newly found here.
+
+### Added — two new pages, both need a human legal read before launch
+
+- [Sam][Amy] **`/privacy` and `/terms` did not exist and now do.** Drafted as
+  a lightweight starting template for a small local service business
+  collecting name, email, and photos through a contact form, using Netlify
+  Forms and Resend as processors. Every fact in both pages traces to
+  `business.ts` or to what the codebase actually does; nothing is invented.
+  **Both are marked `DRAFT COPY - NEEDS REWRITE AND NEEDS REVIEW` in the
+  source and explicitly say, in that same comment, that this is a starting
+  template, not legal advice, and needs a human read before launch.**
+  - Both carry `noindex` and are excluded from the sitemap (still fully real,
+    fully reachable pages — just not indexed; boilerplate legal pages add
+    nothing to search relevance).
+  - Linked from the footer bottom bar, next to the copyright line. Not in the
+    main nav.
+  - **Two things inside them are explicitly flagged and unresolved:** the
+    `[DATE, set at launch]` placeholder in both, and the governing-law
+    section in both, which deliberately does not name a state (none is
+    established anywhere in this repo) and needs Amy's input or an
+    attorney's judgment.
+
+### Reference
+
+- [x] **`docs/handoff/CURRENT-SITE-COPY.md`** — every word of visible copy on
+  all 21 marketing pages (not the two new legal pages), extracted verbatim
+  from the compiled build, organized by page, 8,382 words. Self-contained,
+  meant to be pasted into a separate conversation for the voice/copy rewrite
+  pass that is explicitly out of scope for this session.
 
 ## 8. Post-launch, first week
 
