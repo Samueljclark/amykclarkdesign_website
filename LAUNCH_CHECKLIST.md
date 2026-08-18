@@ -34,8 +34,12 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   **Written permission from all five before launch.** Three fallback
   candidates are on file (BUILD-PLAN decision 4) in case any do not clear.
 - [Amy] **Journal posts are drafts.** All three carry a `<!-- DRAFT -->` marker
-  in their `.md` files. They are good and they are not in Amy's voice. She
-  should read all three before they are public.
+  in their `.md` files. **Updated 2026-08-18: voice is fixed** — the
+  2026-08-17 rewrite (SITE-COPY-REWRITE.md) put all three in Amy's own first
+  person, same as the rest of the site. What is still open is the underlying
+  material, not the voice: the posts are drafted from DESIGN_BRIEF's topics
+  and general trade knowledge, not from Amy's own recorded expertise. She
+  should still read all three before they are public.
 - [ ] **Journal `publishDate` values are placeholders** (2026-07-08 / 07-16 /
   07-24). They are the visible date on the index and on each post. **Reset to
   real dates at launch.**
@@ -113,7 +117,13 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   amount would now be a new decision *against* a standing one — DESIGN_BRIEF
   §5.9 and §10 both encode it. Confirmation from Amy is tracked in ASK-AMY.md.
 - [x] ~~**The footer's "since" year is a placeholder.**~~ **Resolved
-  2026-08-01: 2021**, supplied by Sam. `business.ts`'s `servingSince` carries
+  2026-08-01: 2021**, supplied by Sam. **Reopened as a question 2026-08-18:**
+  SITE-COPY-REWRITE.md's now-removed open-questions list flagged that 2021
+  "never appears in the discovery material" it was written from, i.e. it is
+  Sam's figure, not something confirmed in Amy's own words. Not changed —
+  no other year is on file either — but no longer treated as settled.
+  Confirm the real founding year with Amy before launch. `business.ts`'s
+  `servingSince` carries
   the real year and the footer reads `Serving Cincinnati and Northern Kentucky
   since 2021`. No bracket placeholder remains in source or in the build.
   Confirm with:
@@ -435,9 +445,102 @@ work." Full report in that session's summary; the actionable items are here.
 
 - [x] **`docs/handoff/CURRENT-SITE-COPY.md`** — every word of visible copy on
   all 21 marketing pages (not the two new legal pages), extracted verbatim
-  from the compiled build, organized by page, 8,382 words. Self-contained,
-  meant to be pasted into a separate conversation for the voice/copy rewrite
-  pass that is explicitly out of scope for this session.
+  from the compiled build, organized by page. **Superseded 2026-08-18 — see
+  section 10 below.** Word count at the time this line was written: 8,382.
+
+## 10. 2026-08-18 first-person voice rewrite — SITE-COPY-REWRITE.md implemented
+
+Session goal: implement SITE-COPY-REWRITE.md's 2026-08-17 voice rewrite
+(third person → Amy's first person) as a straight content swap, sitewide.
+Copy voice itself was explicitly out of scope to edit further — this session
+inserted what that document specified, not a fresh copy pass. Full report in
+that session's summary; the actionable items are here.
+
+- [x] **New copy is live sitewide.** Every page SITE-COPY-REWRITE.md covers —
+  Home, About, Process, Services overview, all four service child pages, the
+  Blinds landing page, both portfolio projects, both location pages, all
+  three Journal posts, Contact (including every form field label, helper
+  text, and the FAQ), Thank You, and 404 — now reads in Amy's first person.
+  Verified against the compiled `dist/` output, not just source.
+- [x] **`docs/handoff/CURRENT-SITE-COPY.md` refreshed.** Re-extracted from the
+  post-rewrite build with the same script and format as the 2026-08-06
+  version. 8,535 words across the same 21 pages (up from 8,382 — first-person
+  phrasing runs slightly longer in places, e.g. "I choose the fabric with
+  you, sew the panels, and hang them" vs. the old "designed around your room
+  and your light"). Zero `[AI-TELL]` flags, same as before the rewrite.
+  **Note:** the extraction script (`extract-copy.mjs`) that produces this
+  file lives only in a Claude Code session's scratchpad, not in this repo —
+  it was never committed. Ask if you want it committed so it can be re-run
+  without Claude Code re-writing it from scratch each time.
+- [x] **Zero occurrences of "Lafayette" anywhere in `dist/`.** Verified by
+  sweeping the compiled build. Every place the live site named it — the
+  `/services/blinds-shades` meta title, meta description, and body, plus the
+  `/blinds` landing page — now reads "the one line I represent" instead,
+  per SITE-COPY-REWRITE.md pending Amy's rep call.
+- [x] **Zero em dashes anywhere in rendered `dist/` output**, including every
+  Contact form field. The rewrite document uses a dash as its own shorthand
+  for "label — helper text" (e.g. "Location — Your city or neighborhood...");
+  implemented as separate label and hint elements with no literal dash
+  character, which is how the form was already structured before this
+  session (a `<label>` plus a separately styled `<span class="field__hint">`)
+  — no new mechanism needed, only new text in the existing one.
+- [x] **Full brand-rule sweep re-run against the new copy**, since none of it
+  had been checked before this session. Zero banned words, zero ampersands,
+  zero star ratings/badges, zero "Fort Loramie," zero "Fort Wright" outside
+  `business.ts`/JSON-LD, zero William Morris, zero emoji. The only "interior
+  design" hits are the site's own disclaimers ("I am not a full-service
+  interior design firm," plus the new Terms of Use page's identical
+  disclaimer) — correctly denying the claim, not making it. The only `$`
+  hits are `/contact`'s budget dropdown, exactly as before.
+- [ ] **One explicit cut made:** Collected Living Room's portfolio detail
+  page no longer has a second paragraph — it repeated the blurb's own last
+  sentence. Required making the `scope` field genuinely optional
+  (`src/data/projects.ts`, `src/pages/portfolio/[slug].astro`) rather than
+  always-rendered, the same "don't render what isn't there" pattern
+  `SpecBlock.astro` already uses. Ivory House keeps both paragraphs — its
+  second one does real scope-of-work disclosure, not repetition.
+- [Amy] **Lafayette naming** — still open, tracked here now rather than in
+  SITE-COPY-REWRITE.md (that file's open-questions list was removed per this
+  session's instructions; its content lives here instead). If Amy's rep call
+  clears the name, every removal reverses cleanly: `/services/blinds-shades`
+  (meta title, meta description, lead, and body) and `/blinds` (all three
+  "why it lands right" points). Restore the meta title first — a brand name
+  there earns clicks.
+- [Amy] **The footer's founding year ("since 2021")** — reopened, see section
+  1 above. Sam's figure, not confirmed as Amy's own. Needs her answer.
+- [Amy] **The Studio section's personal line** — still open. Meeting 3 notes
+  "Amy taught Sam to sew" as a line worth including somewhere under the
+  About page's Studio heading, but the credits-not-staff decision keeps that
+  section to name-and-role only today. SITE-COPY-REWRITE.md flagged it
+  without adding it; not added here either — it needs Amy's yes/no on
+  whether it fits the no-bio rule, not a content decision made on her behalf.
+- [ ] **Two things SITE-COPY-REWRITE.md left as open judgment calls, neither
+  resolved by this session** (per instruction: implement, don't decide):
+  - The service-card grid order on Home and `/services` stays
+    Drapery / Blinds and Shades / Upholstery / Soft Furnishings. Whether the
+    Upholstery / Drapery / Shades ordering rule from the hero should also
+    govern this grid is Sam's call.
+  - "I'd like Amy's guidance on this" (the last budget option) and "Saw her
+    work in a home" (a referral option) both still read third-person-ish
+    against the rest of the first-person form. SITE-COPY-REWRITE.md flagged
+    both as minor and left them to Sam; inserted verbatim, unchanged.
+- [ ] **One inconsistency in SITE-COPY-REWRITE.md itself, flagged rather than
+  silently resolved:** the "Drapery, Shades, or Blinds" Journal post gives
+  two different sentences for the same idea — the labeled "Meta description"
+  keeps "between drapery, shades, and blinds," but the document's own
+  on-page standfirst paragraph drops that phrase. Every other page in the
+  document keeps these two identical. Implemented at the longer,
+  explicitly-labeled meta text for both uses (matching the current
+  one-field-serves-both-purposes template and every other page's pattern)
+  rather than adding a new field to split them, since that would have been
+  an unauthorized third interpretation beyond the one this session was given
+  (the Contact form's label/helper dash). Documented in the post's own
+  `.md` file too.
+- [ ] **Spec block vendor field left third person, not covered by the
+  rewrite.** `fabricHouse: 'the lines she represents'` in
+  `src/data/projects.ts` (both projects) was not in scope — SITE-COPY-
+  REWRITE.md's Portfolio sections never mention the spec table. It will now
+  read oddly against the first-person prose above it. Flagged, not touched.
 
 ## 8. Post-launch, first week
 
