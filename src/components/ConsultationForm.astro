@@ -156,16 +156,16 @@ const referralSources = [
            came out of the hero in the same review and has to be somewhere a
            reader is actually deciding whether Amy covers them — which is
            here, mid-form, next to the field asking where they live.
-           First person as of the 2026-08-17 voice rewrite
-           (SITE-COPY-REWRITE.md), implemented 2026-08-18. -->
+           Third person as of the 2026-08-18 voice rewrite
+           (SITE-COPY-THIRD-PERSON.md), implemented 2026-08-19. -->
       <span id="location-hint" class="field__hint">
-        Your city or neighborhood. I work throughout Cincinnati and Northern Kentucky.
+        Your city or neighborhood. Amy works throughout Cincinnati and Northern Kentucky.
       </span>
     </p>
   </div>
 
   <p class="field consultation-form__field consultation-form__field--wide">
-    <label class="type-label field__label" for="room">Tell me about your room</label>
+    <label class="type-label field__label" for="room">Tell Amy about your room</label>
     <textarea id="room" name="room" rows="5" aria-describedby="room-hint" required></textarea>
     <span id="room-hint" class="field__hint">
       Which room, which windows, and what is not working about it now.
@@ -174,7 +174,7 @@ const referralSources = [
 
   <p class="field consultation-form__field consultation-form__field--wide">
     <label class="type-label field__label" for="about-you">
-      Tell me about you <span class="field__optional">Optional</span>
+      Tell Amy about you <span class="field__optional">Optional</span>
     </label>
     <textarea id="about-you" name="about-you" rows="4" aria-describedby="about-you-hint"></textarea>
     <span id="about-you-hint" class="field__hint">
@@ -262,7 +262,7 @@ const referralSources = [
   </p>
 
   <p class="field consultation-form__field consultation-form__field--wide">
-    <label class="type-label field__label" for="referral">How did you find me?</label>
+    <label class="type-label field__label" for="referral">How did you hear about Amy?</label>
     <select id="referral" name="referral" required>
       <option value="">Select one</option>
       {referralSources.map((source) => <option value={source}>{source}</option>)}

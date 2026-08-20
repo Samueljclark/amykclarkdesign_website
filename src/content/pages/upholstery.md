@@ -1,14 +1,13 @@
 ---
 seoTitle: 'Custom Upholstery Cincinnati | Amy K Clark Design'
-description: 'Upholstery and reupholstery for Cincinnati and Northern Kentucky homes. I choose the fabric for how it wears and handle the details that show.'
+description: 'Upholstery and reupholstery for Cincinnati and Northern Kentucky homes. Amy chooses the fabric for how it wears and handles the details that show.'
 eyebrow: Services
 title: Upholstery
-# First person as of the 2026-08-17 voice rewrite (SITE-COPY-REWRITE.md),
-# implemented 2026-08-18. Supersedes the third-person conversion noted here
-# after the 2026-07-31 review. Body copy carried no third-person pronouns and
-# is unchanged from the live site.
+# Third person as of the 2026-08-18 voice rewrite (SITE-COPY-THIRD-PERSON.md),
+# implemented 2026-08-19. Reverses the 2026-08-18 first-person pass
+# (SITE-COPY-REWRITE.md). Body copy carries no pronouns and is unchanged.
 lead:
-  - 'Upholstery and reupholstery for Cincinnati and Northern Kentucky homes, for the furniture you want to keep. I help you decide what a piece should become, choose the fabric for how it will wear, and handle the details that separate a reupholstered chair from a chair with new fabric on it.'
+  - 'Upholstery and reupholstery for Cincinnati and Northern Kentucky homes, for the furniture you want to keep. Amy helps you decide what a piece should become, chooses the fabric for how it will wear, and handles the details that separate a reupholstered chair from a chair with new fabric on it.'
 ---
 
 ## Start with the frame

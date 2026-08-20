@@ -1,11 +1,11 @@
 ---
 seoTitle: 'Process | Amy K Clark Design'
-description: 'How a project runs with me: a complimentary discovery call, an in-home design consultation, design, fabrication, and installation. I carry all five steps.'
+description: 'How a project runs: a complimentary discovery call, an in-home design consultation, design, fabrication, and installation. Amy carries all five steps.'
 eyebrow: Process
 title: Process
-# First person as of the 2026-08-17 voice rewrite (SITE-COPY-REWRITE.md),
-# implemented 2026-08-18. Supersedes the third-person conversion noted here
-# after the 2026-07-31 review.
+# Third person as of the 2026-08-18 voice rewrite (SITE-COPY-THIRD-PERSON.md),
+# implemented 2026-08-19. Reverses the 2026-08-18 first-person pass
+# (SITE-COPY-REWRITE.md).
 #
 # ---- Restructured 2026-08-01 (step 10d). ----
 # The page ran four steps beginning at "Consultation" and never mentioned the
@@ -33,16 +33,16 @@ title: Process
 # to step 2 to sharpen the contrast.
 lead:
   - 'Two conversations happen before any work starts, and they are not the same thing. The first is a short phone call, and it is complimentary. The second is a design consultation in your home, and it is where the project actually gets decided.'
-  - 'Five steps, in this order, every time. I carry the project through all five, which is why nothing gets lost between one and the next.'
+  - 'Five steps, in this order, every time. Amy carries the project through all five, which is why nothing gets lost between one and the next.'
 steps:
   - title: Complimentary discovery call
-    body: 'A short phone call. Send photos of the room beforehand and I will have looked at them before I ring. I ask what the room is, what is not working, and what you want it to do. Nothing gets measured and nothing gets designed on this call. It exists so we both know whether the project is a fit before either of us gives it an afternoon.'
+    body: 'A short phone call. Send photos of the room beforehand and Amy will have looked at them before she rings. She asks what the room is, what is not working, and what you want it to do. Nothing gets measured and nothing gets designed on this call. It exists so both of you know whether the project is a fit before either of you gives it an afternoon.'
   - title: In-home design consultation
-    body: 'This one happens in your house and runs about three hours. It comes after the discovery call, not instead of it. I take the measurements, look at the light during the hours that actually matter to you, and we talk about how you use the room rather than how it photographs. Most of what shapes a project gets decided standing in it.'
+    body: 'This one happens in your house and runs about three hours. It comes after the discovery call, not instead of it. Amy takes the measurements, looks at the light during the hours that actually matter to you, and you talk about how you use the room rather than how it photographs. Most of what shapes a project gets decided standing in it.'
   - title: Design and sourcing
-    body: 'Fabric, lining, hardware, and construction get settled together, because each one decides the others. Memos come to your house so you are judging a textile against your walls and the things already in the room, never under showroom lighting.'
+    body: 'Fabric, lining, hardware, and construction get settled together, because each one decides the others. Memos come to your house, so you are judging a textile against your walls and the things already in the room, never under showroom lighting.'
   - title: Fabrication and coordination
-    body: 'I make the work myself, in my own workroom. If the project runs alongside a painter or a contractor, I work to their schedule so you are not the one coordinating it.'
+    body: 'Amy makes the work herself, in her own workroom. If the project runs alongside a painter or a contractor, she works to their schedule so you are not the one coordinating it.'
   - title: Installation and finishing
-    body: 'I hang the work myself. Panels get dressed and trained on the day, hardware gets set so the returns close tight to the frame, and nothing gets called finished from the top of a ladder. The last thing I do is stand back in the doorway, where you will actually be looking at it from.'
+    body: 'Amy hangs the work herself. Panels get dressed and trained on the day, hardware gets set so the returns close tight to the frame, and nothing gets called finished from the top of a ladder. The last thing she does is stand back in the doorway, where you will actually be looking at it from.'
 ---

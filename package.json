@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "export-copy": "node scripts/export-site-copy.mjs"
+    "export-copy": "node scripts/export-site-copy.mjs",
+    "extract-copy": "node scripts/extract-copy.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",

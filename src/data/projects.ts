@@ -121,12 +121,12 @@ export const projects: Project[] = [
     // just restates the blurb's own last sentence. Cut; one credit line is
     // confident, two is nervous.
     metaDescription:
-      'Pleated drapery and a banded roman shade for a wall of French doors. I chose the fabric and made both.',
+      'Pleated drapery and a banded roman shade for a wall of French doors. Amy chose the fabric and made both.',
     // Two layered treatments on one opening, which is the only thing here
     // established by the photographs and the confirmed scope. What the room
     // needed BEFORE, and why this fabric, are not on file.
     blurb:
-      'A wall of French doors carrying two treatments at once: pleated drapery for the frame and the softness, and a banded roman shade behind it for the light. I chose the fabric and made both.',
+      'A wall of French doors carrying two treatments at once: pleated drapery for the frame and the softness, and a banded roman shade behind it for the light. Amy chose the fabric and made both.',
     lead: {
       image: collectedLivingRoomLeadImage,
       alt: 'Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa',
@@ -180,15 +180,15 @@ export const projects: Project[] = [
     // line is softened from "She did not design or supply the furniture
     // itself" into one that owns the boundary instead of apologizing for it.
     scope:
-      "I made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. The furniture itself is not mine to claim.",
+      "Amy made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. The furniture itself is not hers to claim.",
     metaDescription:
-      'Drapery throughout, reupholstered dining chairs, and cushions and pillows to finish. I made and installed all of it.',
+      'Drapery throughout, reupholstered dining chairs, and cushions and pillows to finish. Amy made and installed all of it.',
     // Strictly the confirmed scope, restated as prose. This is a whole-house
     // project and the one place a real problem/solution story would earn the
     // most — it is the first thing to replace once Amy has been recorded
     // (ASK-AMY.md §1).
     blurb:
-      'One house, four categories, one person. Drapery throughout, white wood blinds in the bay-window breakfast room, the breakfast room chairs reupholstered, and cushions and pillows to finish. I made all of it and installed all of it.',
+      'One house, four categories, one person. Drapery throughout, white wood blinds in the bay-window breakfast room, the breakfast room chairs reupholstered, and cushions and pillows to finish. Amy made all of it and installed all of it.',
     lead: {
       image: photos['ivory-house-bay-window'].image,
       alt: photos['ivory-house-bay-window'].alt,

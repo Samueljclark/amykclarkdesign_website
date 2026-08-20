@@ -13,13 +13,13 @@ title: Schedule Your Complimentary Discovery Call
 #     comment. It is internal-only and belongs in the automated confirmation
 #     email, not on this site (5.9). If a number appears here, that is a
 #     defect — flag it to Sam.
-# First person as of the 2026-08-17 voice rewrite (SITE-COPY-REWRITE.md),
-# implemented 2026-08-18. Supersedes the third-person conversion noted here
-# after the 2026-07-31 review.
+# Third person as of the 2026-08-18 voice rewrite (SITE-COPY-THIRD-PERSON.md),
+# implemented 2026-08-19. Reverses the 2026-08-18 first-person pass
+# (SITE-COPY-REWRITE.md).
 lead:
-  - 'It starts with a phone call, and the call is free. Fifteen minutes on what the room is doing wrong, what you have already tried, and whether I am the right person for it. No measuring, no fabric, no commitment.'
-  - 'If it sounds like a fit, the next step is the in-home design consultation: about three hours in your house, and a paid visit, because it is design work rather than a sales call. I measure the openings myself, see the light at the hour that matters, and put fabric against your walls and your furniture. You come out of it knowing what the room needs and what I would do about it.'
-  - 'I work throughout Cincinnati and Northern Kentucky. Tell me as much as you can below. The more I know before the call, the more useful it will be.'
+  - 'It starts with a phone call, and the call is free. Fifteen minutes on what the room is doing wrong, what you have already tried, and whether Amy is the right person for it. No measuring, no fabric, no commitment.'
+  - 'If it sounds like a fit, the next step is the in-home design consultation: about three hours in your house, and a paid visit, because it is design work rather than a sales call. Amy measures the openings herself, sees the light at the hour that matters, and puts fabric against your walls and your furniture. You come out knowing what the room needs and what she would do about it.'
+  - 'Amy works throughout Cincinnati and Northern Kentucky. Tell her as much as you can below. The more she knows before the call, the more useful it will be.'
 # Below the form (5.7). Each answer also feeds FAQPage JSON-LD (see Faq.astro)
 # — structured here, not markdown, for the same reason blinds-shades.md's
 # accordion categories are structured: JSON-LD needs the exact strings, not
@@ -27,19 +27,19 @@ lead:
 # 5.7 both apply to every entry below, not just the first.
 faqs:
   - title: What happens on the discovery call?
-    content: 'It is a short phone call and it costs nothing. I ask what the room is doing wrong, what you have already tried, and what you are hoping for. You get a straight answer about whether this is work I should be doing and what it would involve. If it is not a fit, I will say so on the call rather than after a visit.'
+    content: 'It is a short phone call and it costs nothing. Amy asks what the room is doing wrong, what you have already tried, and what you are hoping for. You get a straight answer about whether this is work she should be doing and what it would involve. If it is not a fit, she will say so on the call rather than after a visit.'
   - title: What happens at the in-home consultation?
-    content: 'I come to your home and work in the actual room for around three hours. I measure the openings, look at the light at the hour it matters, and bring fabric to see against your walls, your floors, and the furniture already there. You leave knowing what the room needs and what I would do about it. It is a paid visit, and it is the design work rather than a sales call.'
+    content: 'Amy comes to your home and works in the actual room for around three hours. She measures the openings, looks at the light at the hour it matters, and brings fabric to see against your walls, your floors, and the furniture already there. You leave knowing what the room needs and what she would do about it. It is a paid visit, and it is the design work rather than a sales call.'
   - title: Do I need to know what I want before I call?
     content: 'No. Most people know something in the room is not right and cannot name it, and finding that is part of what this is for. Photographs of the room help more than anything else you can send ahead.'
-  - title: Do you work with interior designers?
-    content: 'Yes, regularly. Some clients come to me directly, and some come through a designer, a builder, or a project manager who hands the textile category over. I own the windows, the upholstery, and the soft furnishings. I am not a full-service interior design firm and I do not try to be.'
+  - title: Does Amy work with interior designers?
+    content: 'Yes, regularly. Some clients come to her directly, and some come through a designer, a builder, or a project manager who hands the textile category over. She owns the windows, the upholstery, and the soft furnishings. She is not a full-service interior design firm and does not try to be.'
   - title: Who actually makes and installs the work?
-    content: 'I do. I design the treatment, sew it in my own workroom, and install it myself. Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions.'
+    content: 'Amy does. She designs the treatment, sews it in her own workroom, and installs it herself. Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions.'
   - title: How long does a project take?
-    content: 'It depends on the fabric more than the sewing. Fabric has to be ordered, and a mill can be quick or a pattern can be on back order. I confirm that before promising you anything, so you get a real date rather than an optimistic one.'
-  - title: Where do you work?
+    content: 'It depends on the fabric more than the sewing. Fabric has to be ordered, and a mill can be quick or a pattern can be on back order. Amy confirms that before promising you anything, so you get a real date rather than an optimistic one.'
+  - title: Where does Amy work?
     content: 'Cincinnati, Northern Kentucky, and a small number of travel projects each year.'
-  - title: Can you match something I already have?
+  - title: Can she match something I already have?
     content: 'Usually. Matching an existing treatment, working a new piece around a fabric already in the room, or repeating a pattern across a seam so the join disappears is ordinary work here. Bring the piece or a photograph of it to the consultation.'
 ---

@@ -7,14 +7,14 @@ relatedService: /services/drapery
 heroImage: ivory-house-fabric-detail
 ---
 
-<!-- First person as of the 2026-08-17 voice rewrite (SITE-COPY-REWRITE.md),
-     implemented 2026-08-18. Supersedes the third-person conversion noted
-     here after the 2026-07-31 review. Still pending Amy's own review of the
-     underlying material before launch (DESIGN_BRIEF.md 5.6). -->
+<!-- Third person as of the 2026-08-18 voice rewrite (SITE-COPY-THIRD-PERSON.md),
+     implemented 2026-08-19. Reverses the 2026-08-18 first-person pass
+     (SITE-COPY-REWRITE.md). Still pending Amy's own review of the underlying
+     material before launch (DESIGN_BRIEF.md 5.6). -->
 
 Nearly everyone chooses fabric the same way. You find a color you love, hold the sample at arm's length, and decide. Color is the one thing a sample tells you honestly. Almost everything else about how that fabric will behave once it is cut, sewn, and hung is invisible in a four-inch square.
 
-Here is what I look at instead.
+Here is what Amy looks at instead.
 
 ## Weight tells you what it will do, not how good it is
 
@@ -22,7 +22,7 @@ Weight is measured in ounces per yard, and heavier is not better. It is only dif
 
 Which one is right depends on what your window has to do. A dining room you only use in the evening can carry weight. A breakfast room that lives on morning light usually should not.
 
-The mistake I see most is a light fabric chosen for a tall window because it looked airy on a table. At nine feet it reads limp. It does not drape, it hangs.
+The mistake she sees most is a light fabric chosen for a tall window because it looked airy on a table. At nine feet it reads limp. It does not drape, it hangs.
 
 ## Weave decides what the light does
 
@@ -46,18 +46,19 @@ This is the one that surprises people most. A large pattern that reads beautiful
 
 So the question is never whether you like this pattern. It is whether you like the part of it that will still be showing.
 
-Where the pattern has to survive intact, the treatment changes to suit it: a flat roman shade, a flat panel, a valance, an upholstered seat. I make that decision at the same time as the fabric, not afterwards.
+Where the pattern has to survive intact, the treatment changes to suit it: a flat roman shade, a flat panel, a valance, an upholstered seat. That decision gets made at the same time as the fabric, not afterwards.
 
 ## Almost anything can be made to behave
 
 Interlining adds body and weight and makes a lighter fabric hang like a heavier one. Blackout belongs in bedrooms. A sun-facing room needs protection from fade regardless of what the face fabric is.
 
-Which means my honest answer to "will this fabric work" is usually "it depends what we put behind it."
+Which means the honest answer to "will this fabric work" is usually "it depends what goes behind it."
 
 ## What the sample cannot tell you
 
 A memo sample cannot tell you how a fabric looks after a season of being drawn every evening, how a seam sits once the pattern has to match across two panels, or whether the hem will hang level on a floor that is not level.
 
-That part comes from having made the thing before. I choose fabric standing in the room it is going into, at the hour the light matters most, and I choose it for how it will behave at length, not for how it photographs in the hand.
+That part comes from having made the thing before. Amy chooses fabric standing in the room it is going into, at the hour the light matters most, and she chooses it for how it will behave at length, not for how it photographs in the hand.
 
 If you are working out fabric for a specific window, that is what [custom drapery](/services/drapery) is for. The fabric, the lining, the pleat, and the hardware all get decided together, by the person who will be sewing it. The same reading applies to [upholstery](/services/upholstery), where hand and durability matter more than drape, and the wrong weight shows up in six months rather than on installation day.
+

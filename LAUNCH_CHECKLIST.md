@@ -445,8 +445,11 @@ work." Full report in that session's summary; the actionable items are here.
 
 - [x] **`docs/handoff/CURRENT-SITE-COPY.md`** — every word of visible copy on
   all 21 marketing pages (not the two new legal pages), extracted verbatim
-  from the compiled build, organized by page. **Superseded 2026-08-18 — see
-  section 10 below.** Word count at the time this line was written: 8,382.
+  from the compiled build, organized by page. Regenerated twice since this
+  line was first written (8,382 words originally) — see sections 10 and 11
+  below for each pass. Current word count: 8,524. The generating script,
+  `scripts/extract-copy.mjs`, is now committed to the repo (`npm run
+  extract-copy`, after a build) — see section 11.
 
 ## 10. 2026-08-18 first-person voice rewrite — SITE-COPY-REWRITE.md implemented
 
@@ -514,33 +517,125 @@ that session's summary; the actionable items are here.
   section to name-and-role only today. SITE-COPY-REWRITE.md flagged it
   without adding it; not added here either — it needs Amy's yes/no on
   whether it fits the no-bio rule, not a content decision made on her behalf.
-- [ ] **Two things SITE-COPY-REWRITE.md left as open judgment calls, neither
-  resolved by this session** (per instruction: implement, don't decide):
-  - The service-card grid order on Home and `/services` stays
-    Drapery / Blinds and Shades / Upholstery / Soft Furnishings. Whether the
-    Upholstery / Drapery / Shades ordering rule from the hero should also
-    govern this grid is Sam's call.
-  - "I'd like Amy's guidance on this" (the last budget option) and "Saw her
-    work in a home" (a referral option) both still read third-person-ish
-    against the rest of the first-person form. SITE-COPY-REWRITE.md flagged
-    both as minor and left them to Sam; inserted verbatim, unchanged.
-- [ ] **One inconsistency in SITE-COPY-REWRITE.md itself, flagged rather than
-  silently resolved:** the "Drapery, Shades, or Blinds" Journal post gives
-  two different sentences for the same idea — the labeled "Meta description"
-  keeps "between drapery, shades, and blinds," but the document's own
-  on-page standfirst paragraph drops that phrase. Every other page in the
-  document keeps these two identical. Implemented at the longer,
+- [ ] **One thing SITE-COPY-REWRITE.md left as an open judgment call, still
+  unresolved:** the service-card grid order on Home and `/services` stays
+  Drapery / Blinds and Shades / Upholstery / Soft Furnishings. Whether the
+  Upholstery / Drapery / Shades ordering rule from the hero should also
+  govern this grid is Sam's call, unrelated to voice and untouched by
+  section 11's reversion.
+- [x] ~~"I'd like Amy's guidance on this" (the last budget option) and "Saw
+  her work in a home" (a referral option) both still read third-person-ish
+  against the rest of the first-person form.~~ **Resolved by the section 11
+  reversion, not edited to fix it.** Both phrases were always third person;
+  it was the surrounding first-person form that made them read oddly. Now
+  that the form is third person again, both read naturally — confirmed in
+  SITE-COPY-THIRD-PERSON.md's own note and in the compiled build.
+- [ ] **One inconsistency in the source document itself, flagged rather than
+  silently resolved — carried forward from SITE-COPY-REWRITE.md, still true
+  of SITE-COPY-THIRD-PERSON.md:** the "Drapery, Shades, or Blinds" Journal
+  post gives two different sentences for the same idea — the labeled "Meta
+  description" keeps "between drapery, shades, and blinds," but the
+  document's own on-page standfirst paragraph drops that phrase. Every other
+  page in the document keeps these two identical. Implemented at the longer,
   explicitly-labeled meta text for both uses (matching the current
   one-field-serves-both-purposes template and every other page's pattern)
-  rather than adding a new field to split them, since that would have been
-  an unauthorized third interpretation beyond the one this session was given
-  (the Contact form's label/helper dash). Documented in the post's own
+  rather than adding a new field to split them. Documented in the post's own
   `.md` file too.
-- [ ] **Spec block vendor field left third person, not covered by the
-  rewrite.** `fabricHouse: 'the lines she represents'` in
-  `src/data/projects.ts` (both projects) was not in scope — SITE-COPY-
-  REWRITE.md's Portfolio sections never mention the spec table. It will now
-  read oddly against the first-person prose above it. Flagged, not touched.
+- [x] ~~Spec block vendor field left third person, not covered by the
+  rewrite.~~ **Resolved by the section 11 reversion, not edited to fix it.**
+  `fabricHouse: 'the lines she represents'` in `src/data/projects.ts` (both
+  projects) was flagged 2026-08-18 as reading oddly against first-person
+  prose. The prose is third person again now, so the field reads correctly
+  with zero changes — confirmed against the compiled build, not just source.
+
+## 11. 2026-08-19 third-person voice reversion — SITE-COPY-THIRD-PERSON.md implemented
+
+Session goal: implement SITE-COPY-THIRD-PERSON.md's 2026-08-18 voice pass
+(Amy's first person → third person, "Amy"/"she") as a straight content swap,
+sitewide — the mirror image of section 10's session, one day later. Amy
+reversed her own earlier decision; copy voice itself was again out of scope
+to edit further beyond what the source document specified. Full report in
+that session's summary; the actionable items are here.
+
+- [x] **New copy is live sitewide.** Every page SITE-COPY-THIRD-PERSON.md
+  covers — Home, About, Process, Services overview, all four service child
+  pages, the Blinds landing page, both portfolio projects, both location
+  pages, all three Journal posts, Contact (including every form field label,
+  helper text, and the FAQ), Thank You, and 404 — reads in third person
+  again. Verified against the compiled `dist/` output, not just source. The
+  "In Their Words" heading and the testimonial quotes were never part of
+  either conversion and are untouched.
+- [x] **One deviation from verbatim source, flagged rather than silent:**
+  About's meta description as written in SITE-COPY-THIRD-PERSON.md ("Amy
+  Clark designs...") is 159 characters, over 8.1's 155-char cap and the
+  `pages` content schema's own limit — the build fails on it as written.
+  Trimmed to "Amy designs..." (153 characters), the smallest possible
+  change (one name shortened to first-name-only) rather than cutting a
+  clause. Documented in `src/content/pages/about.md`'s own frontmatter
+  comment. Nothing else in the source document needed a deviation.
+- [x] **`docs/handoff/CURRENT-SITE-COPY.md` refreshed.** Re-extracted from
+  the post-reversion build. 8,524 words across the same 21 pages (down from
+  8,535 in the first-person version, up from the original 8,382 — third
+  person runs slightly shorter than first person but not identical to the
+  pre-rewrite baseline, since the 2026-08-18 tone pass also tightened some
+  phrasing along the way). Zero `[AI-TELL]` flags, consistent with both
+  prior extractions.
+- [x] **`scripts/extract-copy.mjs` committed to the repo**, in `scripts/`
+  alongside the older `export-site-copy.mjs`, and wired to `npm run
+  extract-copy`. It had been used twice (2026-08-18 and 2026-08-19) from a
+  session scratchpad each time and never committed before now. **Flagged,
+  not resolved:** this makes two separate, uncoordinated extraction scripts
+  in the repo — `export-site-copy.mjs` → `SITE-COPY-EXPORT.md` (last run
+  2026-07-28, still lists the deleted `/signature-pieces` page, now stale)
+  and `extract-copy.mjs` → `CURRENT-SITE-COPY.md` (the one actually kept
+  current). Deciding which is canonical, or merging them, is Sam's call.
+- [x] **Confirmed unedited: the portfolio spec block's `fabricHouse` field
+  reads correctly with zero changes.** `'the lines she represents'` in
+  `src/data/projects.ts` was flagged 2026-08-18 as reading oddly next to
+  first-person prose. The page around it is third person again now, so the
+  field agrees with it automatically — checked against the compiled build,
+  not just source.
+- [x] **Figcaption comma checked against production, not the source
+  document.** SITE-COPY-THIRD-PERSON.md writes figcaptions as "Amy Clark,
+  Founder" with a comma; production has never used a literal comma —
+  `index.astro` and `about.astro` both render name and role as two separate
+  `<p>` elements inside the `<figcaption>`. Matched what the site actually
+  does; no comma introduced anywhere.
+- [x] **Zero occurrences of "Lafayette" anywhere in `dist/`.** Unchanged
+  holding pattern — still pending Amy's rep call, unrelated to voice.
+- [x] **Full brand-rule sweep re-run against the new copy.** Zero banned
+  words, zero ampersands (outside `&copy;`), zero star ratings/badges, zero
+  "Fort Loramie," zero emoji, zero em dashes in rendered text (24 files have
+  em dashes in **HTML comments** — dev notes, never rendered to a visitor,
+  confirmed by stripping comments before checking). The only "interior
+  design" hits are the site's own disclaimers, correctly denying the claim.
+  The only `$` hits are `/contact`'s budget dropdown.
+- [x] **`SITE-COPY-REWRITE.md` archived to
+  `docs/archive/2026-08-19-SITE-COPY-REWRITE.md`**, alongside the earlier
+  `docs/archive/2026-07-28-SITE-COPY-REWRITE.md` — two first-person passes
+  and two reversions now, and both source documents are findable rather than
+  something to reconstruct later. `SITE-COPY-THIRD-PERSON.md` is archived
+  the same way, dated the same day, once this session's own copy has been
+  verified live (CLAUDE.md's "no loose markdown at the repo root" rule).
+- [Amy] **Lafayette naming, the footer's founding year ("since 2021"), and
+  the Studio section's personal line** — all three carried forward
+  unchanged from section 10, none touched by this session. See section 1
+  above for the founding-year and Studio items.
+- [Amy] **"A paid visit" on Contact — two softer alternatives are on file if
+  Amy wants it gentler, added here 2026-08-19 so the option isn't lost.**
+  The phrase appears twice on `/contact` (the intro and the FAQ). It is
+  honest and it filters, but SITE-COPY-THIRD-PERSON.md's own open-questions
+  list flags it as the bluntest line on the page and offers two
+  alternatives, neither implemented: "a working visit, billed as design
+  time," or leading with what the visit delivers and stating the fee status
+  second. Kept as-is pending Amy's call, same holding pattern as before.
+- [ ] **The service-card grid order judgment call carries forward unchanged**
+  — see the entry under section 10 above. Untouched by this session, since
+  it is a layout question, not a voice one.
+- [ ] **The Journal-post meta/standfirst inconsistency carries forward
+  unchanged** — see the entry under section 10 above, now updated to
+  reference SITE-COPY-THIRD-PERSON.md, since it is still true of the new
+  source document.
 
 ## 8. Post-launch, first week
 

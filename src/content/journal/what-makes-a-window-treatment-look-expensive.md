@@ -7,10 +7,10 @@ relatedService: /services/drapery
 heroImage: ivory-house-drapery-length
 ---
 
-<!-- First person as of the 2026-08-17 voice rewrite (SITE-COPY-REWRITE.md),
-     implemented 2026-08-18. Supersedes the third-person conversion noted
-     here after the 2026-07-31 review. Still pending Amy's own review of the
-     underlying material before launch (DESIGN_BRIEF.md 5.6). -->
+<!-- Third person as of the 2026-08-18 voice rewrite (SITE-COPY-THIRD-PERSON.md),
+     implemented 2026-08-19. Reverses the 2026-08-18 first-person pass
+     (SITE-COPY-REWRITE.md). Still pending Amy's own review of the underlying
+     material before launch (DESIGN_BRIEF.md 5.6). -->
 
 You can walk into a room and know immediately. Nothing about it announces itself, and yet the windows read as finished rather than covered. It is almost never the fabric. It is five or six decisions, all made before anything was cut, and none of them fixable afterwards.
 
@@ -52,6 +52,6 @@ Here is the part that gets skipped most often. A brand-new panel does not know h
 
 Dressing means going through every fold by hand on installation day, setting each one, and tying the panel loosely so it learns the fold. It takes a while, and it is the difference between drapery that looks right on day one and drapery that looks right eventually, if at all.
 
-I install what I make, which means the person who decided how the panels should fall is the one standing there setting them.
+Amy installs what she makes, which means the person who decided how the panels should fall is the one standing there setting them.
 
 If you want to see how these decisions get made in a specific room, that is what [custom drapery](/services/drapery) covers. Fabric, lining, pleat, hardware, and the dressing, all decided together. For [pillows and cushions](/services/soft-furnishings), the same principle applies at a smaller scale. Fill, seam, and welt do exactly what fullness and lining do on a window.

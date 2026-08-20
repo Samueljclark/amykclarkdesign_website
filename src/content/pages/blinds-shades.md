@@ -1,20 +1,20 @@
 ---
 seoTitle: 'Custom Blinds and Shades Cincinnati | Amy K Clark Design'
-description: 'Custom blinds and shades for Cincinnati and Northern Kentucky homes. Blinds, shades, shutters, and woven woods, measured and installed by me.'
+description: 'Custom blinds and shades for Cincinnati and Northern Kentucky homes. Blinds, shades, shutters, and woven woods, measured and installed by Amy Clark.'
 eyebrow: Services
 title: Blinds and Shades
-# First person as of the 2026-08-17 voice rewrite (SITE-COPY-REWRITE.md),
-# implemented 2026-08-18. Supersedes the third-person conversion noted here
-# after the 2026-07-31 review.
+# Third person as of the 2026-08-18 voice rewrite (SITE-COPY-THIRD-PERSON.md),
+# implemented 2026-08-19. Reverses the 2026-08-18 first-person pass
+# (SITE-COPY-REWRITE.md).
 #
-# [FLAG, SITE-COPY-REWRITE.md]: Lafayette removed from meta title, meta
+# [FLAG, SITE-COPY-THIRD-PERSON.md]: Lafayette removed from meta title, meta
 # description, and body pending confirmation of Amy's rep call (Meeting 3
 # left this open). Every removal reverses cleanly to the name if she clears
 # it — restore in the meta description first, a brand name there earns
 # clicks.
 lead:
-  - 'Blinds and shades for Cincinnati and Northern Kentucky homes, specified for the way you actually use the room. I represent one line here, which means blinds, shades, shutters, and woven woods all come from a single catalog I know cold.'
-  - 'Roman shades come from that catalog as a manufactured product, built to the measurements of your opening. If your room wants a fabric roman made to order, a particular textile with a particular band, that is workroom work and I handle it as custom drapery instead.'
+  - 'Blinds and shades for Cincinnati and Northern Kentucky homes, specified for the way you actually use the room. Amy represents one line here, which means blinds, shades, shutters, and woven woods all come from a single catalog she knows cold.'
+  - 'Roman shades come from that catalog as a manufactured product, built to the measurements of your opening. If your room wants a fabric roman made to order, a particular textile with a particular band, that is workroom work and she handles it as custom drapery instead.'
 # This one heading + sentence sits directly above the accordion below, so it
 # stays here as its own field rather than in the markdown body — the body
 # only holds prose that flows freely, and this doesn't (the accordion breaks
@@ -36,6 +36,6 @@ decisionCategories:
 
 ## An eighth of an inch
 
-Blinds and shades are unforgiving about measurement in a way drapery is not. An eighth of an inch decides whether an inside mount clears the frame or binds against it. I measure every opening myself and I install the finished product myself.
+Blinds and shades are unforgiving about measurement in a way drapery is not. An eighth of an inch decides whether an inside mount clears the frame or binds against it. Amy measures every opening herself and installs the finished product herself.
 
 Windows in older Cincinnati and Northern Kentucky houses are almost never square. Allowing for that correctly is what keeps a treatment from looking almost right.

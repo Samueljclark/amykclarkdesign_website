@@ -26,7 +26,7 @@ export interface Service {
 export const services: Service[] = [
   {
     name: 'Custom Drapery',
-    description: 'Worked out in your room, for your light. I choose the fabric with you, sew the panels, and hang them.',
+    description: 'Worked out in your room, for your light. Amy chooses the fabric with you, sews the panels, and hangs them.',
     href: '/services/drapery',
     // Ivory House (2026-07-28): real drapery-header detail, replacing the
     // substitute hero crop this row shared with Soft Furnishings.
@@ -34,7 +34,7 @@ export const services: Service[] = [
   },
   {
     name: 'Blinds and Shades',
-    description: 'Blinds, shades, shutters, and woven woods from the one line I represent, chosen for privacy, light, and finish.',
+    description: 'Blinds, shades, shutters, and woven woods from the one line she represents, chosen for privacy, light, and finish.',
     href: '/services/blinds-shades',
     // Ivory House: the bay-window room's white wood blinds — the first
     // dedicated Blinds and Shades photography this site has had.
@@ -42,7 +42,7 @@ export const services: Service[] = [
   },
   {
     name: 'Upholstery',
-    description: 'For the furniture worth keeping. I will tell you if a piece is not.',
+    description: 'For the furniture worth keeping. Amy will tell you if a piece is not.',
     href: '/services/upholstery',
     // Ivory House: the reupholstered breakfast-room dining chair — the only
     // real finished-upholstery photography this site has had until now
