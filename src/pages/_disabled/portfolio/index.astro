@@ -1,4 +1,16 @@
 ---
+// DISABLED FOR V1 LAUNCH (2026-08-19, post-Meeting-4 pass, Task 2). Amy has
+// one photographed house on file; Amy and Kristen agreed a thin portfolio
+// reads worse than none. Moved here from src/pages/portfolio/ — Astro
+// excludes any `_`-prefixed directory under src/pages/ from routing, which
+// is what actually kills the route; FLAGS.portfolioEnabled (src/config/
+// flags.ts) is what every OTHER consumer (nav, footer, Home's teaser
+// section, 404, the thank-you page) checks. To re-enable: flip that flag to
+// `true` and move this whole directory back to src/pages/portfolio/. Do not
+// re-enable without Sam's explicit request.
+//
+// Everything below is unchanged from the live page.
+//
 // Portfolio index (DESIGN_BRIEF.md 5.2): project name only, no teaser copy.
 // Still not shared as a component with Home's PortfolioStrip — this page has
 // a real, visible <h1> and no "View Full Portfolio" CTA (it's already the
@@ -15,9 +27,9 @@
 // before launch** (LAUNCH_CHECKLIST.md §1). They carry no detail page and no
 // sitemap entry because they are not `Project` records — see projects.ts.
 
-import Base from '../../layouts/Base.astro';
-import RevealImage from '../../components/RevealImage.astro';
-import { projects, placeholderProjects } from '../../data/projects';
+import Base from '../../../layouts/Base.astro';
+import RevealImage from '../../../components/RevealImage.astro';
+import { projects, placeholderProjects } from '../../../data/projects';
 ---
 
 <Base

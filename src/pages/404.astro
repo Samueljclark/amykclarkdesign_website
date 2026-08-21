@@ -1,10 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+import { FLAGS } from '../config/flags';
 ---
 
+<!-- DRAFT COPY - NEEDS REWRITE
+     Portfolio gated behind FLAGS.portfolioEnabled (2026-08-19, post-Meeting-4
+     pass, Task 2): /portfolio no longer resolves while the flag is off, so
+     the meta description and body copy below drop the portfolio mention and
+     that link when disabled, rather than pointing a lost visitor at another
+     dead end. The clause removed is minimal (the original sentence minus its
+     "have a look at the portfolio instead" half) but it is still new prose,
+     hence this marker. -->
 <Base
   title="Page Not Found | Amy K Clark Design"
-  description="This page doesn't exist. Explore the portfolio or get in touch to start a project with Amy K Clark Design."
+  description={FLAGS.portfolioEnabled
+    ? "This page doesn't exist. Explore the portfolio or get in touch to start a project with Amy K Clark Design."
+    : "This page doesn't exist. Get in touch to start a project with Amy K Clark Design."}
   ogImage="/images/og/og-default.jpg"
   noindex={true}
   transparentNav={false}
@@ -12,11 +23,12 @@ import Base from '../layouts/Base.astro';
   <section class="section wrap">
     <h1 class="type-display">This page doesn't exist.</h1>
     <p class="not-found__body">
-      The room you are looking for is not here. Have a look at the portfolio instead, or get in
-      touch to start a project.
+      {FLAGS.portfolioEnabled
+        ? 'The room you are looking for is not here. Have a look at the portfolio instead, or get in touch to start a project.'
+        : 'The room you are looking for is not here. Get in touch to start a project.'}
     </p>
     <p class="not-found__links">
-      <a href="/portfolio" class="link-underline">View Portfolio</a>
+      {FLAGS.portfolioEnabled && <a href="/portfolio" class="link-underline">View Portfolio</a>}
       <a href="/" class="link-underline">Return home</a>
     </p>
   </section>

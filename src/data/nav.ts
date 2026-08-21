@@ -37,7 +37,16 @@
 // **If Sam reads "6-7 words" as a hard count, revert this one label and nothing
 // else changes** — the page's own H1, eyebrow, breadcrumb and back-link all say
 // "Design Journal" independently of this array.
-export const navItems = [
+import { FLAGS } from '../config/flags';
+
+// Portfolio gated behind FLAGS.portfolioEnabled (2026-08-19, post-Meeting-4
+// pass, Task 2) — the route itself moved to src/pages/_disabled/portfolio/,
+// so linking to it here would be a dead link regardless. Filtered out of the
+// data rather than deleted from this array, so re-enabling the flag restores
+// it in the primary nav, the footer, and the mobile panel at once — all
+// three render from this one export and none needed their own markup
+// changed.
+const allNavItems = [
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Services', href: '/services' },
   { label: 'Blinds', href: '/blinds' },
@@ -46,6 +55,10 @@ export const navItems = [
   { label: 'Design Journal', href: '/journal' },
   { label: 'Contact', href: '/contact' },
 ];
+
+export const navItems = allNavItems.filter(
+  (item) => item.href !== '/portfolio' || FLAGS.portfolioEnabled
+);
 
 // Footer-only location pages (5.1, section 4): search-only pages, deliberately
 // not in the main nav above.

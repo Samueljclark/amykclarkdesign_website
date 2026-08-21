@@ -1,4 +1,10 @@
 ---
+// DISABLED FOR V1 LAUNCH (2026-08-19, post-Meeting-4 pass, Task 2). See the
+// header comment in src/pages/_disabled/portfolio/index.astro for the full
+// note — same flag, same re-enable procedure, same reasoning.
+//
+// Everything below is unchanged from the live page.
+//
 // Project detail template (DESIGN_BRIEF.md 5.2): lead image, supporting
 // images, a short paragraph stating Amy's scope explicitly ("so the site
 // never implies she designed the whole house"), and a spec block. Real <h1>
@@ -21,10 +27,10 @@
 // pattern for "an article-shaped page", not a second one. The blurb, scope
 // line, and spec block stay below the collage where they were.
 
-import Base from '../../layouts/Base.astro';
-import ProjectGallery from '../../components/ProjectGallery.astro';
-import SpecBlock from '../../components/SpecBlock.astro';
-import { projects } from '../../data/projects';
+import Base from '../../../layouts/Base.astro';
+import ProjectGallery from '../../../components/ProjectGallery.astro';
+import SpecBlock from '../../../components/SpecBlock.astro';
+import { projects } from '../../../data/projects';
 
 export function getStaticPaths() {
   return projects.map((project) => ({

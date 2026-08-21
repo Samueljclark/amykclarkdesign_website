@@ -48,12 +48,20 @@ interface Props {
   // is a stutter, not a signpost. The heading still exists in both cases for
   // heading order and assistive tech — only its visibility differs.
   headingHidden?: boolean;
+  // Added 2026-08-19 (post-Meeting-4 pass, Task 2): Home passes this when
+  // PortfolioStrip (the section that normally carries `.scroll-ease-target`)
+  // is flag-disabled, so the hero's one-time auto-scroll still has a real
+  // element to ease into. See index.astro.
+  scrollEaseTarget?: boolean;
 }
 
-const { services, headingHidden = false } = Astro.props;
+const { services, headingHidden = false, scrollEaseTarget = false } = Astro.props;
 ---
 
-<section class="section wrap service-list" aria-labelledby="service-list-heading">
+<section
+  class:list={['section wrap service-list', { 'scroll-ease-target': scrollEaseTarget }]}
+  aria-labelledby="service-list-heading"
+>
   <h2
     id="service-list-heading"
     class:list={[headingHidden ? 'visually-hidden' : 'type-label section-eyebrow']}

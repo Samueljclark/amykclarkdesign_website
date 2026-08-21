@@ -12,8 +12,14 @@
 // a claim on her behalf.
 
 import Base from '../../layouts/Base.astro';
+import { FLAGS } from '../../config/flags';
 ---
 
+<!-- DRAFT COPY - NEEDS REWRITE
+     Portfolio gated behind FLAGS.portfolioEnabled (2026-08-19, post-Meeting-4
+     pass, Task 2): /portfolio no longer resolves while the flag is off, so
+     the closing sentence drops its second clause ("and the portfolio shows
+     finished work") rather than linking to a page that does not exist. -->
 <Base
   title="Thank You | Amy K Clark Design"
   description="Your consultation request has been received by Amy K Clark Design."
@@ -29,9 +35,18 @@ import Base from '../../layouts/Base.astro';
       your complimentary discovery call and ask anything she needs to know beforehand.
     </p>
     <p class="thank-you__next">
-      While you wait, the <a href="/journal" class="link-underline">Design Journal</a> covers how to
-      read a fabric and how to choose between drapery and shades room by room, and the
-      <a href="/portfolio" class="link-underline">portfolio</a> shows finished work.
+      {FLAGS.portfolioEnabled ? (
+        <>
+          While you wait, the <a href="/journal" class="link-underline">Design Journal</a> covers how
+          to read a fabric and how to choose between drapery and shades room by room, and the
+          <a href="/portfolio" class="link-underline">portfolio</a> shows finished work.
+        </>
+      ) : (
+        <>
+          While you wait, the <a href="/journal" class="link-underline">Design Journal</a> covers how
+          to read a fabric and how to choose between drapery and shades room by room.
+        </>
+      )}
     </p>
   </section>
 </Base>

@@ -22,6 +22,7 @@ import QuoteRotator from '../components/QuoteRotator.astro';
 import { projects } from '../data/projects';
 import { services } from '../data/services';
 import { photos } from '../data/photos';
+import { FLAGS } from '../config/flags';
 
 // Second testimonial slot (5.1, amended). Every one of these is a real
 // fragment from a real review — nothing here is written for the site.
@@ -145,10 +146,21 @@ const heroImages = [
       page leads with the work, not with who made it. The differentiator block
       below is the About section and now sits after Services, where it reads
       as the explanation for what you have just looked at rather than as a
-      preamble to it. */}
-  <PortfolioStrip projects={projects} />
+      preamble to it.
 
-  <ServiceList services={services} />
+      Portfolio gated behind FLAGS.portfolioEnabled 2026-08-19 (post-Meeting-4
+      pass, Task 2): Amy has one photographed house, and Amy and Kristen agreed
+      a thin portfolio reads worse than none. Component and data untouched,
+      just not rendered — re-enable by flipping the flag once three or more
+      projects exist. */}
+  {FLAGS.portfolioEnabled && <PortfolioStrip projects={projects} />}
+
+  {/* `.scroll-ease-target` (CLAUDE.md: this mechanism is settled, do not
+      modify it) normally lives on PortfolioStrip's own <section>. With the
+      strip gated off, ServiceList carries it instead so the hero's one-time
+      auto-scroll still has a real element to ease into — the JS in
+      motion.js is untouched, only which element wears the class changes. */}
+  <ServiceList services={services} scrollEaseTarget={!FLAGS.portfolioEnabled} />
 
   {/* About / the differentiator (5.1 section 4). Restructured 2026-08-01
       (step 10g): copy left, portrait right, collapsing to one column below
