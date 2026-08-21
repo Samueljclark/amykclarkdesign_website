@@ -64,6 +64,12 @@ if (localBusiness) {
     // property is correct and valid; publishing a placeholder to Google would
     // not be, and a wrong number in a rich result is worse than none.
     ...(business.phone ? { telephone: business.phone } : {}),
+    // Added 2026-08-19 (post-Meeting-4 pass, Task 3): Amy confirmed the
+    // founding year directly. `foundingDate` accepts a bare year per
+    // schema.org's Date type. Reads from business.ts's `servingSince`
+    // rather than a second literal, so there is exactly one place this
+    // value is set.
+    foundingDate: business.servingSince,
     description:
       'Custom drapery, blinds and shades, upholstery, and soft furnishings for Cincinnati and Northern Kentucky homes. Designed, made, and installed by Amy Clark.',
     address: {

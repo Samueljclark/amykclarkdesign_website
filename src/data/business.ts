@@ -22,12 +22,14 @@ export const business = {
   phoneHref: null as null | string,
 
   // The service-area line in the footer (DESIGN_BRIEF 5.8), replacing the
-  // hero's old location block. **Resolved 2026-08-01: 2021**, supplied by Sam.
-  // This was the last visible placeholder string on the site; the footer
-  // prints it verbatim, so it now reads "Serving Cincinnati and Northern
-  // Kentucky since 2021". The corresponding open question is removed from
-  // ASK-AMY.md and the LAUNCH_CHECKLIST blocker is closed.
-  servingSince: '2021',
+  // hero's old location block. Set 2026-08-01 to 2021 (Sam's figure, not
+  // confirmed as Amy's own), reopened as a question in the same session that
+  // reversion this file documents, and **corrected 2026-08-19: 2020, Amy
+  // confirmed directly** (post-Meeting-4 pass, Task 3). The footer prints
+  // this value verbatim, so it now reads "Serving Cincinnati and Northern
+  // Kentucky since 2020." Also feeds `foundingDate` in JsonLd.astro's
+  // LocalBusiness node — one value, both consumers.
+  servingSince: '2020',
 
   // Service-area business, no published street address (DESIGN_BRIEF.md 2:
   // "no client names, no addresses"). Fort Wright is the base city for
