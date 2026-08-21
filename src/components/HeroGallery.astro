@@ -65,10 +65,15 @@ const { images } = Astro.props;
 
     <div class="hero__bottom">
       <p class="hero__mark">Amy K Clark Design</p>
+      {/* All three pointed at individual service pages until 2026-08-19
+          (Task 1, post-Meeting-4 pass), when those four pages were removed
+          and consolidated into one Services overview. All three now go to
+          that one page rather than being cut, since they are still real
+          category labels a visitor can act on immediately from the hero. */}
       <nav class="hero__words" aria-label="Featured categories">
-        <a href="/services/upholstery" class="type-label link-underline">Upholstery</a>
-        <a href="/services/drapery" class="type-label link-underline">Drapery</a>
-        <a href="/services/blinds-shades" class="type-label link-underline">Shades</a>
+        <a href="/services" class="type-label link-underline">Upholstery</a>
+        <a href="/services" class="type-label link-underline">Drapery</a>
+        <a href="/services" class="type-label link-underline">Shades</a>
       </nav>
       {/* One CTA, not two (5.1, 2026-07-31 review). The secondary "View
           Portfolio" button is gone: the Portfolio section is the very next

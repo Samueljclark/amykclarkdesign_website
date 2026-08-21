@@ -3,7 +3,7 @@ title: 'What actually makes a window treatment look expensive'
 seoTitle: 'Why Drapery Looks Expensive | Amy K Clark Design'
 description: 'Fullness, length, stack, lining, and how a panel is dressed on installation day. The details that separate finished work from covered windows.'
 publishDate: 2026-07-24
-relatedService: /services/drapery
+relatedService: Custom Drapery
 heroImage: ivory-house-drapery-length
 ---
 
@@ -54,4 +54,4 @@ Dressing means going through every fold by hand on installation day, setting eac
 
 Amy installs what she makes, which means the person who decided how the panels should fall is the one standing there setting them.
 
-If you want to see how these decisions get made in a specific room, that is what [custom drapery](/services/drapery) covers. Fabric, lining, pleat, hardware, and the dressing, all decided together. For [pillows and cushions](/services/soft-furnishings), the same principle applies at a smaller scale. Fill, seam, and welt do exactly what fullness and lining do on a window.
+If you want to see how these decisions get made in a specific room, that is what [custom drapery](/services) covers. Fabric, lining, pleat, hardware, and the dressing, all decided together. For [pillows and cushions](/services), the same principle applies at a smaller scale. Fill, seam, and welt do exactly what fullness and lining do on a window.

@@ -97,38 +97,33 @@ input, textarea, select {
    already. ---- */
 
 /* ---- Text-led page shell. Originally written for the four service child
-   pages (5.3); About and Process (5.4, 5.5) are the same shape, so the
-   `.text-page__*` names below are the general form and `.service-page__*`
-   stays as the existing alias rather than churning four reviewed pages.
-   Use `.text-page__*` for anything new.
+   pages (5.3); About and Process (5.4, 5.5) are the same shape. Those four
+   service pages were removed 2026-08-19 (post-Meeting-4 pass, Task 1) and
+   consolidated into one Services overview, so the `.service-page__*` alias
+   that used to sit beside every rule here is gone too — `.text-page__*` was
+   always the general name and is now the only one. Use it for anything new.
    The subhead size is an interpolation between Display and Body, not a
    fourth type role: 3.4's Display role is a clamp, and these are the same
    role at the small end of a page-appropriate range. */
-.service-page__eyebrow,
 .text-page__eyebrow {
   color: var(--ink-muted);
   margin-bottom: 1rem;
 }
-.service-page__heading,
 .text-page__heading {
   max-width: 18ch;
 }
-.service-page__lead,
 .text-page__lead {
   max-width: var(--measure);
   margin-top: 1.5rem;
 }
-.service-page__body,
 .text-page__body {
   max-width: var(--measure);
 }
-.service-page__subhead,
 .text-page__subhead {
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
   margin-top: 3rem;
   margin-bottom: 1rem;
 }
-.service-page__body p + p,
 .text-page__body p + p {
   margin-top: 1rem;
 }

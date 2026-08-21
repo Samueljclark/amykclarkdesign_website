@@ -3,7 +3,7 @@ title: 'How to read a fabric: weight, weave, and how it will actually hang'
 seoTitle: 'How to Read a Fabric | Amy K Clark Design'
 description: 'What weight, weave, and hand tell you about how a fabric will hang once it is made up, and what a memo sample will never show you.'
 publishDate: 2026-07-08
-relatedService: /services/drapery
+relatedService: Custom Drapery
 heroImage: ivory-house-fabric-detail
 ---
 
@@ -60,5 +60,5 @@ A memo sample cannot tell you how a fabric looks after a season of being drawn e
 
 That part comes from having made the thing before. Amy chooses fabric standing in the room it is going into, at the hour the light matters most, and she chooses it for how it will behave at length, not for how it photographs in the hand.
 
-If you are working out fabric for a specific window, that is what [custom drapery](/services/drapery) is for. The fabric, the lining, the pleat, and the hardware all get decided together, by the person who will be sewing it. The same reading applies to [upholstery](/services/upholstery), where hand and durability matter more than drape, and the wrong weight shows up in six months rather than on installation day.
+If you are working out fabric for a specific window, that is what [custom drapery](/services) is for. The fabric, the lining, the pleat, and the hardware all get decided together, by the person who will be sewing it. The same reading applies to [upholstery](/services), where hand and durability matter more than drape, and the wrong weight shows up in six months rather than on installation day.
 

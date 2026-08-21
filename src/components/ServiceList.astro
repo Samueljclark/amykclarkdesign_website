@@ -62,14 +62,23 @@ const { services, headingHidden = false } = Astro.props;
   </h2>
 
   <ul class="service-list__items">
+    {/* Descriptive, non-clickable sections as of 2026-08-19 (post-Meeting-4
+        pass, Task 1): the four individual service pages these rows used to
+        link to are gone, consolidated into this one overview. `.service-
+        list__link` is now a plain wrapping span, not an anchor — no href, no
+        navigation, no `.link-underline` (that device signals "this is a
+        link," which would no longer be true). The hover-image reveal below
+        still responds to `:hover`/`:has()`, which do not require an
+        interactive element; keyboard users no longer get a per-row focus
+        target here since there is nothing to activate. */}
     {services.map((service) => (
       <li class="service-list__item">
-        <a href={service.href} class="service-list__link">
+        <span class="service-list__link">
           <span class="service-list__name-row">
-            <span class="type-display service-list__name link-underline">{service.name}</span>
+            <span class="type-display service-list__name">{service.name}</span>
           </span>
           <p class="service-list__desc">{service.description}</p>
-        </a>
+        </span>
       </li>
     ))}
   </ul>
@@ -273,41 +282,37 @@ const { services, headingHidden = false } = Astro.props;
      — no cut, no partial crossfade, nothing to interrupt.
 
      Crossfade duration reuses 6.4's portfolio-hover token, which is the
-     closest thing in the brief to a spec for this. ---- */
+     closest thing in the brief to a spec for this.
+
+     `:focus-visible` variants removed 2026-08-19 (Task 1, post-Meeting-4
+     pass): `.service-list__link` is a plain `<span>` now, not an anchor, so
+     it is never a focus target and the selector could not match anything.
+     This stage is decorative and mouse-hover-only now, matching the row
+     text itself, which is no longer interactive either. ---- */
   @media (hover: hover) and (min-width: 1200px) and (prefers-reduced-motion: no-preference) {
     .service-list__layer {
       transition: opacity var(--hover-image-duration) ease-out;
     }
 
     /* Any active row clears the resting default first... */
-    .service-list:has(.service-list__link:hover) .service-list__layer,
-    .service-list:has(.service-list__link:focus-visible) .service-list__layer {
+    .service-list:has(.service-list__link:hover) .service-list__layer {
       opacity: 0;
     }
 
-    /* ...then the matching layer comes up. `:focus-visible` gives the
-       keyboard path exact parity with the pointer path. */
+    /* ...then the matching layer comes up. */
     .service-list:has(.service-list__item:nth-child(1) .service-list__link:hover)
-      .service-list__layer:nth-child(1),
-    .service-list:has(.service-list__item:nth-child(1) .service-list__link:focus-visible)
       .service-list__layer:nth-child(1) {
       opacity: 1;
     }
     .service-list:has(.service-list__item:nth-child(2) .service-list__link:hover)
-      .service-list__layer:nth-child(2),
-    .service-list:has(.service-list__item:nth-child(2) .service-list__link:focus-visible)
       .service-list__layer:nth-child(2) {
       opacity: 1;
     }
     .service-list:has(.service-list__item:nth-child(3) .service-list__link:hover)
-      .service-list__layer:nth-child(3),
-    .service-list:has(.service-list__item:nth-child(3) .service-list__link:focus-visible)
       .service-list__layer:nth-child(3) {
       opacity: 1;
     }
     .service-list:has(.service-list__item:nth-child(4) .service-list__link:hover)
-      .service-list__layer:nth-child(4),
-    .service-list:has(.service-list__item:nth-child(4) .service-list__link:focus-visible)
       .service-list__layer:nth-child(4) {
       opacity: 1;
     }

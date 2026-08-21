@@ -24,7 +24,6 @@ import RevealImage from '../../components/RevealImage.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { journalImages } from '../../data/journalImages';
-import { services } from '../../data/services';
 
 export async function getStaticPaths() {
   const posts = await getCollection('journal');
@@ -42,7 +41,6 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const hero = journalImages[post.data.heroImage];
-const relatedService = services.find((service) => service.href === post.data.relatedService)!;
 
 const publishedISO = post.data.publishDate.toISOString().slice(0, 10);
 const publishedLabel = new Intl.DateTimeFormat('en-US', {
@@ -119,7 +117,12 @@ const publishedLabel = new Intl.DateTimeFormat('en-US', {
       <aside class="journal-post__related">
         <p class="type-label journal-post__related-label">Related service</p>
         <p class="journal-post__related-link">
-          <a href={relatedService.href} class="link-underline">{relatedService.name}</a>
+          {/* The four service sub-pages this used to link to individually were
+              removed 2026-08-19 (post-Meeting-4 pass, Task 1) and consolidated
+              into one Services overview. `relatedService` still names which
+              category the post is about (5.6's internal-link requirement);
+              every post's link now resolves to that one page. */}
+          <a href="/services" class="link-underline">{post.data.relatedService}</a>
         </p>
       </aside>
     </section>

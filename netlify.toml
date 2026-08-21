@@ -18,3 +18,27 @@
   # v24.18.0), which also matches Netlify's build image default (Node 24) as
   # of 2026-07. Netlify resolves this exact patch via nvm at build time.
   NODE_VERSION = "24.18.0"
+
+# The four service sub-pages were removed 2026-08-19 (post-Meeting-4 pass,
+# Task 1) and consolidated into one Services overview. Permanent redirects so
+# any inbound link, bookmark, or indexed search result lands on /services
+# instead of a 404.
+[[redirects]]
+  from = "/services/drapery"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/services/blinds-shades"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/services/upholstery"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/services/soft-furnishings"
+  to = "/services"
+  status = 301

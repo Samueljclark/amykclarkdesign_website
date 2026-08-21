@@ -3,7 +3,7 @@ title: 'Drapery, shades, or blinds: how to decide room by room'
 seoTitle: 'Drapery, Shades, or Blinds? | Amy K Clark Design'
 description: 'A room-by-room way to choose between drapery, shades, and blinds, starting from what the window actually has to do rather than from the product.'
 publishDate: 2026-07-16
-relatedService: /services/blinds-shades
+relatedService: Blinds and Shades
 heroImage: ivory-house-bay-window-table
 ---
 
@@ -70,6 +70,6 @@ The opposite is also true. A window that is off-center, oddly proportioned, or t
 
 ## Where each one comes from
 
-One practical difference worth knowing. [Blinds and shades](/services/blinds-shades) are manufactured products, specified and ordered to the measurements of your opening, including roman shades, which come from the manufacturer built to spec rather than out of Amy's workroom. [Drapery](/services/drapery) is made by hand for your window, which is why the fabric range is wide open and the details are all yours to decide.
+One practical difference worth knowing. [Blinds and shades](/services) are manufactured products, specified and ordered to the measurements of your opening, including roman shades, which come from the manufacturer built to spec rather than out of Amy's workroom. [Drapery](/services) is made by hand for your window, which is why the fabric range is wide open and the details are all yours to decide.
 
 That is why a room usually ends up with both, and why the two decisions are best made at the same time. The shade and the drapery have to agree about where the light is going.

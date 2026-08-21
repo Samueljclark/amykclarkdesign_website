@@ -77,11 +77,16 @@ if (localBusiness) {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Services',
+      // Each Offer's url pointed at its own service page until 2026-08-19
+      // (Task 1, post-Meeting-4 pass), when those four pages were removed
+      // and consolidated into one Services overview. The four services are
+      // still real, distinct offerings — only the destination URL changed;
+      // schema.org has no objection to multiple Offers sharing one url.
       itemListElement: [
-        { name: 'Custom Drapery', href: '/services/drapery' },
-        { name: 'Blinds and Shades', href: '/services/blinds-shades' },
-        { name: 'Upholstery', href: '/services/upholstery' },
-        { name: 'Soft Furnishings', href: '/services/soft-furnishings' },
+        { name: 'Custom Drapery', href: '/services' },
+        { name: 'Blinds and Shades', href: '/services' },
+        { name: 'Upholstery', href: '/services' },
+        { name: 'Soft Furnishings', href: '/services' },
       ].map((service) => ({
         '@type': 'Offer',
         itemOffered: {
