@@ -215,22 +215,41 @@ function buildMailto({ to, subject, firstName, room, availabilityLine, bookingLi
   return { url, truncated: true, length: url.length };
 }
 
-async function sendEmail(payload) {
+/* `label` identifies which of the two emails this is in the logs — added
+   2026-08-19 (Task 13, post-Meeting-4 pass) alongside the try/catch around
+   fetch() itself. Root-cause note: the fetch call had no try/catch of its
+   own, so a network-level exception (as opposed to Resend responding with a
+   non-2xx, which was already handled) would propagate uncaught out of
+   sendEmail() to the handler's single outer try/catch — which would abort
+   whatever ran after it in the same handler invocation. Concretely: if that
+   happened on the FIRST call (Amy's notification), the second call (the
+   client's confirmation) would never run at all — one thrown exception
+   silently cancels an email that had nothing wrong with it. Each call is
+   now fully self-contained: whatever happens inside sendEmail(), for either
+   recipient, cannot affect the other. */
+async function sendEmail(label, payload) {
   const key = process.env.RESEND_API_KEY;
   if (!key) {
-    console.error('[submission-created] RESEND_API_KEY is not set. No email sent.');
+    console.error(`[submission-created] [${label}] RESEND_API_KEY is not set. No email sent.`);
     return false;
   }
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-  if (!res.ok) {
-    console.error(`[submission-created] Resend rejected the send: ${res.status} ${await res.text()}`);
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      console.error(
+        `[submission-created] [${label}] Resend rejected the send: ${res.status} ${await res.text()}`
+      );
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error(`[submission-created] [${label}] fetch() threw, send did not complete:`, err);
     return false;
   }
-  return true;
 }
 
 export const handler = async (event) => {
@@ -344,40 +363,67 @@ export const handler = async (event) => {
       'Photographs, if any, are on the submission in Netlify.',
     ].join('\n');
 
-    const amySent = await sendEmail({
-      from: FROM_ADDRESS,
-      to: [AMY_ADDRESS],
-      /* So a plain "Reply" in her mail client also reaches the client. */
-      reply_to: looksLikeEmail(email) ? email.trim() : undefined,
-      subject: `New consultation request — ${name} — ${budget}`,
-      html: amyHtml,
-      text: amyText,
-    });
+    /* ---- Email 2: to Amy. Its own try/catch (2026-08-19, Task 13) so that
+       nothing which can go wrong building or sending THIS email — a template
+       error, an unexpected value, a thrown exception inside sendEmail() —
+       can prevent the client's confirmation below from being attempted. The
+       two emails are independent in both directions now, not just in the
+       order they happen to run. */
+    let amySent = false;
+    try {
+      amySent = await sendEmail('amy-notification', {
+        from: FROM_ADDRESS,
+        to: [AMY_ADDRESS],
+        /* So a plain "Reply" in her mail client also reaches the client. */
+        reply_to: looksLikeEmail(email) ? email.trim() : undefined,
+        subject: `New consultation request — ${name} — ${budget}`,
+        html: amyHtml,
+        text: amyText,
+      });
+    } catch (err) {
+      console.error('[submission-created] [amy-notification] threw before send completed:', err);
+    }
     console.log(`[submission-created] Amy notification: ${amySent ? 'sent' : 'FAILED'}`);
 
     /* ---- Email 1: to the client. Skipped, not fatal, if the address is
-       missing or malformed. Amy's email above has already gone. ---- */
+       missing or malformed — independent of whatever happened to Amy's email
+       above, in either direction. Own try/catch for the same reason as
+       Amy's. ---- */
+    let clientSent = false;
     if (!looksLikeEmail(email)) {
       console.warn(
         `[submission-created] No usable client email (${JSON.stringify(email)}). ` +
-          'Client confirmation skipped; Amy notification was still sent.'
+          'Client confirmation skipped.'
       );
-      return { statusCode: 200, body: 'ok' };
+    } else {
+      try {
+        const clientText = CLIENT_EMAIL_TEMPLATE({ name: firstName });
+        clientSent = await sendEmail('client-confirmation', {
+          from: FROM_ADDRESS,
+          to: [email.trim()],
+          reply_to: AMY_ADDRESS,
+          subject: 'Amy K Clark Design — we have your inquiry',
+          text: clientText,
+          html: `<div style="max-width:560px;margin:0 auto;padding:24px;font:16px/1.65 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:#191917;">${clientText
+            .split('\n\n')
+            .map((p) => `<p style="margin:0 0 18px;">${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
+            .join('')}</div>`,
+        });
+      } catch (err) {
+        console.error('[submission-created] [client-confirmation] threw before send completed:', err);
+      }
+      console.log(`[submission-created] Client confirmation: ${clientSent ? 'sent' : 'FAILED'}`);
     }
 
-    const clientText = CLIENT_EMAIL_TEMPLATE({ name: firstName });
-    const clientSent = await sendEmail({
-      from: FROM_ADDRESS,
-      to: [email.trim()],
-      reply_to: AMY_ADDRESS,
-      subject: 'Amy K Clark Design — we have your inquiry',
-      text: clientText,
-      html: `<div style="max-width:560px;margin:0 auto;padding:24px;font:16px/1.65 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:#191917;">${clientText
-        .split('\n\n')
-        .map((p) => `<p style="margin:0 0 18px;">${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
-        .join('')}</div>`,
-    });
-    console.log(`[submission-created] Client confirmation: ${clientSent ? 'sent' : 'FAILED'}`);
+    /* One line that names both outcomes together, so scanning function logs
+       for a given submission doesn't mean finding and correlating two
+       separate lines by timestamp. */
+    console.log(
+      `[submission-created] Summary for ${JSON.stringify(email)}: ` +
+        `amy=${amySent ? 'sent' : 'FAILED'}, client=${
+          looksLikeEmail(email) ? (clientSent ? 'sent' : 'FAILED') : 'skipped (no usable address)'
+        }`
+    );
 
     return { statusCode: 200, body: 'ok' };
   } catch (err) {
