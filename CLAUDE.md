@@ -109,3 +109,12 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
   every such block must be listed at the end of the session report so Sam
   can hand it off to be rewritten properly. Structural text, alt text, and
   meta descriptions are exempt from the marker.
+- **No vendor may be described as a line the studio carries, represents, or
+  deals (set 2026-08-19, post-Meeting-4 pass).** Amy confirmed she cannot
+  represent herself as a dealer for any line, reversing the earlier rule
+  that permitted naming Lafayette Interior Fashions for blinds and shades.
+  **Schumacher may be named only as a fabric source** — "Amy works with
+  Schumacher fabrics" / "Amy sources from Schumacher," never a claim that
+  the studio is a dealer, stockist, authorized retailer, showroom, or
+  representative of it. **Lafayette Interior Fashions may not be named at
+  all until Amy confirms otherwise in writing.**

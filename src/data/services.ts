@@ -1,8 +1,8 @@
 // Home's ServiceList teaser and the /services overview page show the exact
 // same four entries (DESIGN_BRIEF.md 5.1, 5.3) — shared here so the name/
-// description pair isn't duplicated across two files. Lafayette unnamed
-// pending Amy's rep call — see LAUNCH_CHECKLIST.md. Voice is third person
-// singular sitewide (2026-08-19 post-Meeting-4 pass).
+// description pair isn't duplicated across two files. The blinds and shades
+// vendor stays permanently unnamed — see CLAUDE.md's standing rule. Voice is
+// third person singular sitewide (2026-08-19 post-Meeting-4 pass).
 //
 // `href` was removed 2026-08-19 (Task 1, post-Meeting-4 pass): the four
 // individual service pages it pointed at are gone, and these entries are now
