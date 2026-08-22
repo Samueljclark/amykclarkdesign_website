@@ -86,7 +86,14 @@
 
   /* ---- 3.5 Layout ---- */
   --measure: 58ch;            /* text column maximum, often much less */
-  --space-section: 96px;      /* mobile vertical rhythm */
+  /* Tightened 25% 2026-08-19 (post-Meeting-4 pass, Task 9), from 96px:
+     Kristen and Amy agreed there was too much dead vertical space between
+     sections and a reader might not complete the scroll. A tightening, not a
+     collapse — the task capped this at "roughly 20 to 25 percent, do not go
+     further," so 25% (a clean 96 * 0.75) is the deepest cut inside that
+     range rather than the shallowest. Horizontal margins (`.wrap`'s
+     padding-inline) are untouched. */
+  --space-section: 72px;      /* mobile vertical rhythm */
   --radius: 2px;              /* absolute maximum radius anywhere (3.2) */
   --nav-height: 4.5rem;       /* site-nav's fixed height, constant across
                                   breakpoints; shared so fixed-position
@@ -108,12 +115,13 @@
   --link-underline-duration: 300ms;       /* 6.6 */
 }
 
-/* Desktop rhythm: 160px sections (3.5). Breakpoint is an interpretation:
-   the brief names 375/768/1440/2560 as render targets; 768 is the first
-   non-mobile one. */
+/* Desktop rhythm, tightened 25% 2026-08-19 (Task 9) from 160px to 120px —
+   same reduction as the mobile value above, same reasoning. Breakpoint is an
+   interpretation: the brief names 375/768/1440/2560 as render targets; 768
+   is the first non-mobile one. */
 @media (min-width: 768px) {
   :root {
-    --space-section: 160px;
+    --space-section: 120px;
   }
 }
 

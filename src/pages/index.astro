@@ -252,11 +252,18 @@ const heroImages = [
 
      Scoped with `:global` to Home's own sections rather than changed on the
      `--space-section` token, because the token is right everywhere else —
-     long-form text pages (the four service children, About, Process, both
-     location pages) still want the full measure, and the brief's "if it feels
-     too sparse, it is close to right" still governs them. Roughly 0.65x. ---- */
+     long-form text pages (About, Process, both location pages) still want
+     the full measure, and the brief's "if it feels too sparse, it is close
+     to right" still governs them. Roughly 0.65x of the token's original
+     value.
+
+     Tightened another 25% on top of that 2026-08-19 (post-Meeting-4 pass,
+     Task 9), same reduction and same reasoning as `--space-section` itself:
+     clamp(3.5rem, 7vw, 6.5rem) * 0.75 = clamp(2.625rem, 5.25vw, 4.875rem).
+     Still Home's own scoped exception, not merged into the token — the
+     token now carries its own independent 25% cut for every other page. ---- */
   :global(main > .section) {
-    padding-block: clamp(3.5rem, 7vw, 6.5rem);
+    padding-block: clamp(2.625rem, 5.25vw, 4.875rem);
   }
 
   /* Copy left, portrait right (step 10g). One column below 900px, which is
