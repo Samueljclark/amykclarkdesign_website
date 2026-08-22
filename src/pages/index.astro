@@ -309,9 +309,11 @@ const heroImages = [
   }
 
   /* Two quotes, the maximum 5.1 allows. Plain list, no cards, no rules, no
-     avatars — the only thing separating them is space. The second sits lower
-     than the first at desktop, which is 3.5's "asymmetry over grids" using the
-     offset device the portfolio strip already established, not a new one. */
+     avatars — the only thing separating them is space. The second quote's
+     5rem-lower offset (3.5's "asymmetry over grids," the same device the
+     portfolio strip used to use) is gone as of 2026-08-19 (post-Meeting-4
+     pass, Task 8) — both quotes now share one baseline, per the flat
+     no-stagger rule that pass applies sitewide. */
   .testimonial__list {
     display: grid;
     gap: 4rem;
@@ -322,9 +324,6 @@ const heroImages = [
       grid-template-columns: repeat(2, 1fr);
       gap: 3rem;
       align-items: start;
-    }
-    .testimonial__list > li:nth-child(2) {
-      margin-top: 5rem;
     }
   }
 </style>

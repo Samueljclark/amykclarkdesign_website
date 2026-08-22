@@ -162,12 +162,11 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
     color: var(--ink-muted);
   }
 
-  /* The middle card of each three, and only that one. See the layout note
-     above. `3n + 2` still picks the centre column if a fourth post ever
-     lands: with three tracks, items 2 and 5 are both middle-column cards. */
-  @media (min-width: 900px) {
-    .journal-index__item:nth-child(3n + 2) {
-      margin-top: 3rem;
-    }
-  }
+  /* The middle-card offset (3rem, `nth-child(3n + 2)`) is gone as of
+     2026-08-19 (post-Meeting-4 pass, Task 8). Kristen's alignment critique:
+     staggered and floating elements read as accidental rather than
+     intentional, and the instruction was explicit — no two-up-one-down
+     patterns anywhere on the site, no exceptions for the ones that happened
+     to have a symmetric rationale. All three cards now share one baseline,
+     same as the portfolio grid this list used to differ from on purpose. */
 </style>

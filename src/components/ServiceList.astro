@@ -160,31 +160,27 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
      Every service name now renders at ONE size and one weight. The four
      per-row `font-size` clamps that used to live here made Custom Drapery
      nearly twice the size of Soft Furnishings, which tells a reader that one
-     service matters more than another — not true, and not the message.
-
-     The staggered INDENTS below stay, and that is the explicit distinction
-     the review drew: varied position is 3.5's asymmetry and it is welcome;
-     varied scale is a claim about importance. Vary where a name sits, never
-     how big it is. Do not reintroduce per-row font sizes here. ---- */
+     service matters more than another — not true, and not the message. ---- */
   .service-list__name {
     font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.5rem);
   }
 
+  /* ---- Force-aligned 2026-08-19 (post-Meeting-4 pass, Task 8), reversing
+     variant B's per-row indents (0% / 26% / 9% / 38%). Kristen's critique:
+     staggered and floating elements read as accidental, not intentional, and
+     undercut a premium creative offering. All four rows now share Upholstery's
+     former 9% indent — named as the alignment guide in the task — rather than
+     sitting flush at the wrap edge, so the list keeps a deliberate inset from
+     the page margin without any row reading as displaced from the others.
+     `.service-list__desc` needs no rule of its own: it is a block child of
+     the same `.service-list__item`, so it inherits this one left edge for
+     free. ---- */
   @media (min-width: 768px) {
     .service-list__item + .service-list__item {
       margin-top: 4.5rem;
     }
-    .service-list__item:nth-child(1) {
-      margin-left: 0;
-    }
-    .service-list__item:nth-child(2) {
-      margin-left: 26%;
-    }
-    .service-list__item:nth-child(3) {
+    .service-list__item {
       margin-left: 9%;
-    }
-    .service-list__item:nth-child(4) {
-      margin-left: 38%;
     }
   }
 
@@ -203,13 +199,26 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
     /* Two children, auto-placed: the list takes column 1, the stage column 2.
        The list column is deliberately narrower than the section so the rows'
        own indents resolve against it and leave the right-hand space clear.
-       The gap absorbs the little that the widest name overhangs. */
-    /* Two children, auto-placed: the list takes column 1, the stage column 2. */
+       The gap absorbs the little that the widest name overhangs.
+
+       ---- Task 8, post-Meeting-4 pass, 2026-08-19: pulled inward. ----
+       The stage used to be `1fr`, stretching to fill every pixel of
+       remaining space up to the section's own right edge — at a 2560px
+       render target that is an enormous, edge-flush slab, which is exactly
+       the "floating near the right edge" Kristen's alignment critique named.
+       Capped at 30rem (480px) instead: close to what `1fr` actually resolved
+       to at the common 1280-1440px desktop range, so nothing shrinks there,
+       but it can no longer grow past that and run flush to the wrap's outer
+       padding on wider screens. `align-items: start` (was `center`) is the
+       other half of "align its edge with the services box above it" — the
+       stage's top edge now matches the row list's top edge instead of
+       floating at the list's vertical midpoint, so the two columns read as
+       one aligned block rather than two independently placed objects. */
     .service-list {
       display: grid;
-      grid-template-columns: 58% 1fr;
+      grid-template-columns: 58% minmax(0, 30rem);
       column-gap: 5%;
-      align-items: center;
+      align-items: start;
     }
 
     /* Three children now, not two: the section heading became visible in the

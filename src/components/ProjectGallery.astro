@@ -72,11 +72,12 @@ const { lead, supporting, leadTransitionName } = Astro.props;
     max-width: 60rem;
   }
 
-  /* Nudge alternating tiles down so the group is arranged rather than
-     aligned — 3.5's asymmetry, at collage scale. Inert at one item. */
-  .project-gallery__item:nth-child(even) {
-    margin-top: 1.75rem;
-  }
+  /* Alternating tiles used to nudge down 1.75rem here — 3.5's asymmetry, at
+     collage scale. Flattened 2026-08-19 (post-Meeting-4 pass, Task 8):
+     Kristen's alignment critique was general ("no two-up-one-down patterns
+     anywhere"), not scoped to the sections she happened to review, and this
+     component is still real code even while the portfolio route it serves is
+     flag-disabled (src/config/flags.ts). Every tile now shares one baseline. */
 
   @media (min-width: 900px) {
     .project-gallery__list {
