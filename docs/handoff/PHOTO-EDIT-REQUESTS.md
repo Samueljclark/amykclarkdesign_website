@@ -1,5 +1,102 @@
 # Photo edit requests — Amy K Clark Design website
 
+**Updated 19 August 2026 (post-Meeting-4 pass, Task 12)** with a full
+inventory table, a checkbox column for Amy and Sam, a confirmed-rejections
+section, and two specific requests for Kelsee. **Everything below this point
+down to "Detailed frame-by-frame notes" is new as of today.** The
+frame-by-frame notes from the original 2 August 2026 version are preserved
+underneath, unedited except where a page they reference no longer exists —
+they are the deeper reference material the table below summarizes, not
+superseded by it.
+
+---
+
+## Inventory — every image currently in the project
+
+**Checkbox column is blank on purpose — for Amy and Sam to mark.** `keep` /
+`re-edit` / `remove`. Nothing is deleted in this pass regardless of what gets
+marked; removal is a separate, later step once the marks are in.
+
+Two things changed sitewide since 2 August that affect "where used" for
+several rows, noted inline rather than repeated in every row:
+- **The four service sub-pages were removed 19 August** (Task 1) and folded
+  into one Services overview. Several images that used to be a "lead" on
+  their own service page now appear only in that overview's hover-preview
+  stage (desktop, on hover/focus) — smaller, not a lead in the old sense.
+- **The Portfolio route is flag-disabled for v1 launch** (Task 2,
+  `src/config/flags.ts`). Every image whose only job was the Portfolio index
+  or a project detail page is currently rendered nowhere on the live site,
+  marked **dormant** below — the code and the image are both still there,
+  ready the moment the flag flips back on.
+
+| File | Dimensions | Where it currently renders | Alt text | Amy / Sam |
+|---|---|---|---|---|
+| `hero/pleated-drapery-living-room-french-doors-pool-view.jpg` | 4284x2430 | **Home, hero** (full-screen); Collected Living Room project lead (**dormant**, portfolio flag); source of the OG share image | "Pleated linen drapery framing French doors to a pool patio, with a crystal chandelier above a curved sofa" | ☐ |
+| `portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg` | 2428x2143 | **About, lead**; Collected Living Room card (**dormant**, portfolio flag) | "Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead" | ☐ |
+| `about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg` | 1144x1548 | **About, second image**; **Process, lead**; Collected Living Room supporting image (**dormant**) — no longer used on Upholstery (page removed) | "Amy's hands stitching a check-fabric ottoman on the workroom's gridded cutting table" | ☐ |
+| `about/photo-shoot-banded-roman-shade-living-room.jpg` | 4284x5712 | Unused, should stay unused (photographer/equipment in shot) | — (never rendered) | ☐ |
+| `about/photo-shoot-leaded-glass-entry-door.jpg` | 4284x5712 | Unused, should stay unused (baby gate visible) | — (never rendered) | ☐ |
+| `portfolio/ivory-house/ivory-drapery-white-wood-blinds-bay-window-breakfast-room.jpg` | 2000x1111 | Ivory House project lead + card (**dormant**, portfolio flag) — was "the single most-repeated Ivory House frame," currently rendered nowhere while the flag is off | "Ivory pinch-pleat drapery and white wood blinds dressing three bay windows in a breakfast room, beneath a wire-orb chandelier and ceiling medallion" | ☐ |
+| `portfolio/ivory-house/pinch-pleat-drapery-living-room-orb-chandelier.jpg` | 2000x1143 | Unused (former homepage hero) | "Ivory pinch-pleat drapery on a brushed-nickel rod, framing French doors in a living room beneath a wire-orb crystal chandelier" | ☐ |
+| `portfolio/ivory-house/pinch-pleat-drapery-living-room-french-doors-detail.jpg` | 2000x1331 | Ivory House supporting image (**dormant**, portfolio flag) | "Ivory pinch-pleat drapery framing French doors in a living room, with a wire-orb chandelier and an abstract painting on the near wall" | ☐ |
+| `portfolio/ivory-house/pinch-pleat-drapery-header-rings-crown-molding.jpg` | 2000x1336 | **Custom Drapery's hover-preview photo**, Home ServiceList + Services overview (desktop hover/focus only) — no longer a lead (Custom Drapery page removed) | "Detail of ivory pinch-pleat drapery rings on a brushed-nickel rod, with crown molding above and the panel falling into a stacked pleat" | ☐ |
+| `portfolio/ivory-house/pinch-pleat-drapery-header-second-window.jpg` | 2000x1117 | Unused | "Ivory pinch-pleat drapery header at a second window, showing pleat spacing and rod-and-ring hardware against white trim" | ☐ |
+| `portfolio/ivory-house/pinch-pleat-drapery-full-length-panel-crown-molding.jpg` | 2000x1325 | **Journal hero** — "What actually makes a window treatment look expensive" | "Ivory pinch-pleat drapery hanging full length from a brushed-nickel rod to the floor, beneath crown molding" | ☐ |
+| `portfolio/ivory-house/pinch-pleat-drapery-reading-nook-french-doors.jpg` | 1321x2000 | **Cincinnati, lead** | "Ivory pinch-pleat drapery beside French doors in a reading nook, with a floor lamp and a framed abstract painting" | ☐ |
+| `portfolio/ivory-house/living-room-archway-drapery-orb-chandelier.jpg` | 1507x2000 | **Northern Kentucky, lead** | "A living room seen through a columned archway, ivory pinch-pleat drapery framing French doors beneath a wire-orb chandelier" | ☐ |
+| `portfolio/ivory-house/ivory-drapery-white-wood-blinds-bay-window-table.jpg` | 2000x1328 | **Journal hero** — "Drapery, shades, or blinds: how to decide room by room" | "Ivory pinch-pleat drapery and white wood blinds dressing bay windows in a breakfast room, with dining chairs set beneath a wire-orb chandelier" | ☐ |
+| `portfolio/ivory-house/white-wood-blinds-drapery-bay-window-detail.jpg` | 2000x1116 | **`/blinds` landing page, lead**; **Blinds and Shades' hover-preview photo** (Home + Services overview) — no longer a lead on its own service page (removed) | "White wood blinds beneath ivory pinch-pleat drapery in a bay-window breakfast room, with a wire-orb chandelier overhead" | ☐ |
+| `portfolio/ivory-house/sage-geometric-lumbar-pillows-cream-barrel-chairs.jpg` | 2000x1119 | Unused | "Two sage geometric-print lumbar pillows on a pair of cream barrel chairs, beside a console table" | ☐ |
+| `portfolio/ivory-house/botanical-cushions-rattan-counter-stools-kitchen-island.jpg` | 2000x1324 | **Soft Furnishings' hover-preview photo**, Home + Services overview; Ivory House supporting image (**dormant**) — no longer a lead on its own service page (removed) | "Botanical-print seat cushions in peach and sage on cream, made for a row of rattan counter stools at a kitchen island" | ☐ |
+| `portfolio/ivory-house/houndstooth-fabric-detail-dining-chair.jpg` | 2000x1120 | **Journal hero** — "How to read a fabric: weight, weave, and how it will actually hang" | "Close detail of rust-and-taupe houndstooth upholstery fabric on a reupholstered dining chair" | ☐ |
+| `portfolio/ivory-house/houndstooth-reupholstered-dining-chair-breakfast-table.jpg` | 2000x1103 | **Upholstery's hover-preview photo**, Home + Services overview; Ivory House supporting image (**dormant**) — no longer a lead on its own service page (removed) | "A dining chair reupholstered in a rust-and-taupe houndstooth fabric, at a round table in a breakfast room" | ☐ |
+| `portfolio/ivory-house/round-knit-pillow-navy-olive-armchair.jpg` | 2000x1333 | Unused | "A round knit pillow in navy and olive, resting on a shaggy cream armchair" | ☐ |
+| `portfolio/signature-pieces/tapestry-canal-house-lumbar-pillow-navy-piping.jpg` | 1800x1050 | Unused — was Soft Furnishings' lead until that page was removed 19 August; not currently placed anywhere | "Lumbar pillow in a woven tapestry of European canal-house facades, finished with navy contrast piping" | ☐ |
+| `portfolio/signature-pieces/woven-dot-lumbar-pillow-blue-ochre-piping.jpg` | 1830x1180 | Unused | "Lumbar pillow in a blue-grey textured weave with a small cream and ochre dot motif, finished with ochre contrast piping" | ☐ |
+| `team/amy-clark.jpg` | 1600x1072 | **Home, About section portrait**; **About, Studio row** | "Amy Clark, founder of Amy K Clark Design, in a navy dress against a white-painted brick wall" | ☐ |
+| `team/sam-clark.jpg` | 888x1120 | **About, Studio row** | "Sam Clark, web development and digital strategy" | ☐ |
+| `team/kelsee-etmans.jpg` | 399x384 | **About, Studio row** | "Kelsee Etmans, photographer" | ☐ |
+| `og/og-default.jpg` | 1200x630 | Social-share preview image, every page | (og:image meta, no alt attribute) | ☐ |
+
+Cross-checked against `src/assets/` and `public/images/`: 26 image files
+(including the OG share image), all listed above. No image on disk is
+missing an entry.
+
+## Confirmed rejections
+
+- **The interior shot with visibly crooked French door lines.** **Could not
+  identify this with confidence — leaving a placeholder rather than
+  guessing.** Several frames have a *mild* or *slight* vertical lean noted in
+  the frame-by-frame notes below (the drapery header detail A4, the Cincinnati
+  lead A7, the About/Blinds lead B2, the homepage hero B1), but none of those
+  notes describes anything as strongly as "visibly crooked," and no single
+  frame stood out as a clear match. **Sam: fill in which frame this is,**
+  and it can be added here and cross-referenced against its entry above.
+
+## Requests for Kelsee
+
+- **Reduce saturation across the current edit round.** The house is
+  monochromatic and muted in person; the current edits read orange and
+  introduce color that is not actually in the room.
+- **For each image going forward, supply three edit versions at different
+  saturation levels** so Amy can select the one closest to how the room
+  actually looks, rather than one committed edit per frame.
+
+Kelsee's existing Instagram photography is approved for site use. Whatever
+gets pulled in from it needs a consistency pass against the rest of the
+site's photography (the Ivory House shoot above, chiefly) so the full set
+reads as one photographic treatment rather than several different hands.
+
+---
+
+# Detailed frame-by-frame notes (2 August 2026)
+
+The original photo-edit request, preserved below for its per-frame defect
+detail. Where it names a page that no longer exists (the four service
+sub-pages, removed 19 August), the underlying image and defect notes are
+still accurate — only the page reference is stale; see the inventory table
+above for current placement.
+
 **Prepared 2 August 2026 for a retouching pass.**
 
 This is a complete inventory of the photographs currently in the website
