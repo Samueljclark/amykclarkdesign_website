@@ -1,8 +1,8 @@
 ---
 // The qualification form (DESIGN_BRIEF.md 5.7). Every field in 5.7's table, in
-// 5.7's order, with Budget and "How did you hear about us?" required — the two
-// the brief singles out, and acceptance criterion "Consultation form requires
-// budget and attribution."
+// 5.7's order, with Budget and "How did you hear about Amy?" required — the
+// two the brief singles out, and acceptance criterion "Consultation form
+// requires budget and attribution."
 //
 // Backend: Netlify Forms (BUILD-PLAN.md decision 1). `data-netlify="true"` is
 // what Netlify's post-processing looks for when it scans the built HTML;
@@ -270,7 +270,10 @@ const referralSources = [
   </p>
 
   <div class="consultation-form__submit">
-    <button type="submit" class="btn btn-solid">Request a Consultation</button>
+    {/* CTA rule, 2026-08-19 (post-Meeting-4 pass, Task 5): "form submit
+        buttons become 'Send inquiry'," applied verbatim regardless of the
+        prior wording. */}
+    <button type="submit" class="btn btn-solid">Send inquiry</button>
   </div>
 </form>
 
