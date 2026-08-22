@@ -59,6 +59,18 @@ const { seoTitle, description, eyebrow, title, lead, faqs } = entry.data;
         (Task 5's own approved-replacements list is scoped to buttons, link
         CTAs, form submits, and section CTAs, not functional field labels). */}
     <h2 id="form-heading" class="type-display contact__form-heading">Start a project</h2>
+    {/* Added 2026-08-19 (post-Meeting-4 pass, Task 7): approved to state
+        publicly, verbatim, no fee amount. Styled as helper text — same
+        treatment as the form's own field hints (.field__hint in
+        ConsultationForm.astro) — reading as a matter of fact ahead of the
+        form, not a heading and not a warning callout. No change to the
+        existing lead paragraphs above, which already cover the same fact in
+        the funnel's own explanatory prose; this is the closer, harder-to-miss
+        restatement directly at the point of filling in the form. */}
+    <p class="contact__consultation-note">
+      The initial in-home consultation is a paid appointment. Amy will confirm the details and
+      scheduling after reviewing your inquiry.
+    </p>
     <ConsultationForm />
   </section>
 
@@ -79,6 +91,14 @@ const { seoTitle, description, eyebrow, title, lead, faqs } = entry.data;
 
   .contact__form-heading {
     font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    margin-bottom: 1rem;
+  }
+
+  .contact__consultation-note {
+    max-width: var(--measure);
     margin-bottom: 2.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--ink-muted);
   }
 </style>
