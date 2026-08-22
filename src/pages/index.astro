@@ -207,7 +207,19 @@ const heroImages = [
     </div>
   </section>
 
-  <section class="section wrap testimonial" aria-labelledby="testimonial-heading">
+  {/* Full-bleed anchor panel added 2026-08-19 (post-Meeting-4 pass, Task 10).
+      Kristen liked "In Their Words" but said the section read as floating,
+      with no visual cue for what the quotes even were. `.testimonial-anchor`
+      below is full-bleed the same way ContactBand's `.bg-ground` already is:
+      background paints the section's own full-width box, `.wrap`'s
+      padding-inline only insets the content inside it — no extra markup
+      needed. Muted, not `.bg-ground`: that near-black fill is a real
+      contrast highlight (the hero, the footer, the closing CTA), and the
+      task is explicit that this should read as a ground, not a highlight.
+      Mixed from --rule (the existing hairline/border token) into --paper at
+      the same 30% ratio a previous, since-removed alternating-row wash used
+      elsewhere in this codebase — no new color enters the palette. */}
+  <section class="section wrap testimonial testimonial-anchor" aria-labelledby="testimonial-heading">
     {/* Visible heading, and deliberately not the word "testimonials"
         (5.1, 2026-07-31 review) — that names the marketing device rather
         than the thing, and reads as permission to skip.
@@ -309,6 +321,11 @@ const heroImages = [
   .differentiator__portrait-role {
     margin-top: 0.5rem;
     color: var(--ink-muted);
+  }
+
+  /* See the header comment above the section markup for the full reasoning. */
+  .testimonial-anchor {
+    background: color-mix(in srgb, var(--rule) 30%, var(--paper));
   }
 
   .testimonial__heading {
