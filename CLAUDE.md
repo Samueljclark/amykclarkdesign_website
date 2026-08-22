@@ -118,3 +118,29 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
   the studio is a dealer, stockist, authorized retailer, showroom, or
   representative of it. **Lafayette Interior Fashions may not be named at
   all until Amy confirms otherwise in writing.**
+- **CTAs use impersonal imperatives with no person reference at all (set
+  2026-08-19, post-Meeting-4 pass).** Amy raised discomfort with CTAs that
+  address her by name directly. This is a change to CTA construction, not to
+  voice — body copy stays third person singular for Amy ("Amy"/"she"/"her"),
+  second person for the reader ("you"/"your"); it is buttons, link CTAs, form
+  submits, and section CTAs specifically that must never say "Tell Amy,"
+  "Contact us," "Message Amy," or similar. A functional form field label
+  describing what to type (e.g. a textarea's own label) is not a CTA and is
+  exempt — only the section heading or button framing an action is in scope.
+  Approved replacements, used verbatim where the pattern appears: "Tell Amy/
+  us about your project" → "Start a project"; "Contact Amy/us" → "Get in
+  touch"; "Message Amy" → "Send a message"; form submit buttons → "Send
+  inquiry"; a CTA specifically for booking the paid in-home consultation (as
+  distinct from the free discovery call, which is a different, earlier step
+  in the funnel and stays named as itself) → "Request a consultation."
+- **Portfolio is flag-disabled for v1 launch (set 2026-08-19, post-Meeting-4
+  pass).** Amy has one photographed house on file; Amy and Kristen agreed a
+  thin portfolio reads worse than none. `src/config/flags.ts`'s
+  `portfolioEnabled: false` is what actually gates it — every consumer (nav,
+  footer, Home's teaser section, 404, the thank-you page) checks that flag.
+  The routes themselves live at `src/pages/_disabled/portfolio/` (Astro
+  excludes `_`-prefixed directories from routing), not deleted. **Do not
+  re-enable this — flip the flag and move the directory back — without
+  Sam's explicit request.** The natural trigger the flag's own comment names
+  is three or more photographed projects on file, but that is a condition to
+  point out to Sam, not a green light to act on unasked.

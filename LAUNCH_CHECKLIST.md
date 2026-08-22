@@ -43,11 +43,17 @@ These are the things that are **wrong on a live site**, not merely unfinished.
 - [ ] **Journal `publishDate` values are placeholders** (2026-07-08 / 07-16 /
   07-24). They are the visible date on the index and on each post. **Reset to
   real dates at launch.**
-- [Amy] **Vendor naming.** Schumacher and Lafayette are cleared to name. Stout
-  and Pollack are not, and appear nowhere in public copy. The Lafayette
-  *dealer* claim is also not confirmed and has been softened to "the one line I
-  represent in this category." If Amy's rep calls clear any of these, the copy
-  can be strengthened — see BUILD-PLAN decisions 11 and 12.
+- [x] ~~**Vendor naming.** Schumacher and Lafayette are cleared to name.~~
+  **Reversed 2026-08-19 (post-Meeting-4 pass, Task 4): Amy confirmed she
+  cannot represent herself as a dealer for any line.** This is no longer
+  pending clarification — it is resolved, and resolved against naming.
+  Lafayette Interior Fashions may not be named at all until she confirms
+  otherwise in writing (CLAUDE.md's standing rule). Schumacher is the one
+  exception, and only as a fabric *source* — "Amy works with Schumacher
+  fabrics," never a dealer/stockist/representative claim — named once, in
+  About's "Fabric" section. Stout and Pollack remain uncleared and unnamed;
+  the vendor-naming Schumacher sentence itself is flagged for Sam's read in
+  this session's report, not confidently passed.
 - [Amy] **Business hours.** `src/data/business.ts` has `openingHours: null` and
   the LocalBusiness JSON-LD omits `openingHoursSpecification` entirely rather
   than guessing. Google surfaces hours to people deciding whether to call, so a
@@ -116,31 +122,59 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   never that the fee credits toward the project (it does not). Publishing the
   amount would now be a new decision *against* a standing one — DESIGN_BRIEF
   §5.9 and §10 both encode it. Confirmation from Amy is tracked in ASK-AMY.md.
-- [x] ~~**The footer's "since" year is a placeholder.**~~ **Resolved
-  2026-08-01: 2021**, supplied by Sam. **Reopened as a question 2026-08-18:**
-  SITE-COPY-REWRITE.md's now-removed open-questions list flagged that 2021
-  "never appears in the discovery material" it was written from, i.e. it is
-  Sam's figure, not something confirmed in Amy's own words. Not changed —
-  no other year is on file either — but no longer treated as settled.
-  Confirm the real founding year with Amy before launch. `business.ts`'s
-  `servingSince` carries
-  the real year and the footer reads `Serving Cincinnati and Northern Kentucky
-  since 2021`. No bracket placeholder remains in source or in the build.
+  **Restated more directly 2026-08-19 (post-Meeting-4 pass, Task 7):** a
+  second, closer statement of the same fact — "The initial in-home
+  consultation is a paid appointment. Amy will confirm the details and
+  scheduling after reviewing your inquiry." — now sits as helper text
+  directly above the form, in addition to the existing lead-paragraph
+  mention. Still no amount anywhere. Only the fact's prominence changed.
+- [x] ~~**The footer's "since" year is a placeholder / needs confirming.**~~
+  **Resolved 2026-08-19: 2020, Amy confirmed directly** (post-Meeting-4 pass,
+  Task 3), superseding the 2026-08-01 figure of 2021 (Sam's guess, never
+  confirmed in Amy's own words, reopened as a question 2026-08-18).
+  `business.ts`'s `servingSince` carries the real year, the footer reads
+  "Serving Cincinnati and Northern Kentucky since 2020," and the same value
+  now also feeds `foundingDate` in `JsonLd.astro`'s LocalBusiness node. No
+  bracket placeholder and no stale year remain in source or in the build.
   Confirm with:
 
   ```bash
-  grep -rn "ask Amy" src/ dist/
+  grep -rn "ask Amy\|since 2021" src/ dist/
   ```
 - [Amy][Sam] **Ivory House photography permissions — two separate people,
   both required.** The whole-house shoot added 2026-07-28 (drapery, blinds,
   reupholstered dining chair, cushions and pillows — see IMAGE-MANIFEST.md)
-  is wired into the Home hero, the Portfolio, and all four ServiceList hover
-  stages. **Neither the photographer's copyright permission nor the
-  homeowner's permission to publish photos of their house has been
-  obtained.** Same holding pattern as the testimonials: visible now for
-  review, not cleared to publish. This is the single biggest visual
-  commitment the site currently makes to real photography — get both
+  is wired into the four ServiceList hover stages, `/blinds`, the Cincinnati
+  and Northern Kentucky location pages, and all three Journal post heroes.
+  **Corrected 2026-08-19: not the Home hero** — that photograph is from the
+  separate Collected Living Room / Stardust Lane shoot below, not Ivory
+  House. Also not currently the Portfolio (flag-disabled, Task 2), though the
+  images remain wired for the moment it re-enables. **Neither the
+  photographer's copyright permission nor the homeowner's permission to
+  publish photos of their house has been obtained.** Same holding pattern as
+  the testimonials: visible now for review, not cleared to publish. Get both
   permissions before the real domain goes live, not after.
+- [Amy][Sam] **Collected Living Room / Stardust Lane homeowner permission —
+  separate from Ivory House, added 2026-08-19 (post-Meeting-4 pass, Task
+  14).** This is the earlier, visibly phone-camera shoot (a different house
+  from Ivory House) that supplies the Home hero — **the single most-seen
+  photograph on the entire site** — plus About's lead image. See
+  `docs/handoff/PHOTO-EDIT-REQUESTS.md` Group B for the frame-by-frame
+  detail; the original files are named `stardust_ln_rough_edit-NN.jpg`,
+  which is where the address comes from — **internal tracking only, never
+  publish this address anywhere on the site** (DESIGN_BRIEF's no-addresses
+  rule). Homeowner's permission to publish photos of their house has not
+  been obtained. Not yet confirmed whether this is the same photographer as
+  Ivory House or a different one — resolve that before assuming Kelsee's
+  permission (below) covers it too.
+- [Amy][Sam] **Kelsee's photography, permission broadly — added 2026-08-19
+  (post-Meeting-4 pass, Task 14), separate from the two house-specific items
+  above.** Covers her copyright permission for whatever of her work appears
+  on the site now or later, plus the standing note from this session's photo
+  audit (`docs/handoff/PHOTO-EDIT-REQUESTS.md`): **her existing Instagram
+  photography is approved for site use**, but whatever gets pulled in from
+  it needs a consistency pass against the Ivory House shoot so the full set
+  reads as one photographic treatment rather than several different hands.
 
 ## 2. The temporary thing
 
@@ -296,6 +330,22 @@ to see that person, via the link merged into her one-click reply.
 These were checked against the compiled `dist/` output on 2026-07-26 and are
 scripted enough to repeat.
 
+**Current live route count, 2026-08-19 (post-Meeting-4 pass, Tasks 1 and 2):
+16 pages build, 12 in the sitemap.** Every page-count figure below and
+throughout this file (18, 20, 21, 23 — including in section 9's checks and
+BUILD-PLAN.md's own history) describes the site's structure at whatever
+stage of the build it was written, not a running total — none of those
+numbers are wrong for when they were recorded, and none are edited here.
+This note is the one place to look for the number that is true *today*: down
+from 23 pages / 19 sitemap URLs (the count immediately before this session)
+because the four service sub-pages (Task 1) and the three Portfolio routes
+(Task 2, flag-disabled) no longer build at all. Confirm with:
+
+```bash
+npm run build && find dist -name "index.html" -o -name "404.html" | wc -l
+grep -o "<loc>" dist/sitemap-0.xml | wc -l
+```
+
 - [x] 20 pages build clean, no warnings.
 - [x] One `<h1>` per page, no heading-level skips, on all 20.
 - [x] Every `<title>` under 60 chars, every description under 155, **no
@@ -360,6 +410,20 @@ scripted enough to repeat.
   blinds accordion, which are the two most interactive things on the site.
 - [Sam] **Print/read the whole site once on a phone**, as Amy's actual audience
   would.
+- [Amy] **Final copy review, sitewide — added 2026-08-19 (post-Meeting-4
+  pass, Task 14).** Every page has been through multiple voice and content
+  passes by Claude Code, but none of it is Amy's own words end to end — see
+  `docs/handoff/CURRENT-SITE-COPY.md` for the complete extracted text of
+  every page in one document, meant to be read without needing repo access.
+  This is the one remaining full read-through before launch.
+- [Amy] **Display font selection — added 2026-08-19 (post-Meeting-4 pass,
+  Task 11).** Amy cannot comfortably read the current thin Bodoni Moda
+  display strokes. Three self-hosted alternatives (Fraunces, Newsreader,
+  Libre Caslon Display) are mocked up as screenshots in
+  `docs/font-options/`, six images (three fonts x 1440px/390px), against the
+  Services page with body text held constant at Archivo. **The live font has
+  not changed** — this is Amy's pick to make, then a one-line swap of
+  `--font-display` in `src/styles/tokens.css` once she has.
 
 ## 9. 2026-08-06 quality pass — copy extraction, AI-tell audit, legal pages
 
@@ -443,13 +507,16 @@ work." Full report in that session's summary; the actionable items are here.
 
 ### Reference
 
-- [x] **`docs/handoff/CURRENT-SITE-COPY.md`** — every word of visible copy on
-  all 21 marketing pages (not the two new legal pages), extracted verbatim
-  from the compiled build, organized by page. Regenerated twice since this
-  line was first written (8,382 words originally) — see sections 10 and 11
-  below for each pass. Current word count: 8,524. The generating script,
-  `scripts/extract-copy.mjs`, is now committed to the repo (`npm run
-  extract-copy`, after a build) — see section 11.
+- [x] **`docs/handoff/CURRENT-SITE-COPY.md`** — every word of visible copy,
+  extracted verbatim from the compiled build, organized by page. Regenerated
+  three times since this line was first written (8,382 words / 21 pages
+  originally) — see sections 10, 11, and the page-count note in section 6
+  below for each pass. **Current: 6,103 words across 14 pages** (down from
+  8,524 / 21 — the four service sub-pages and the three Portfolio routes no
+  longer build; not a copy trim, a page-count drop). The generating script,
+  `scripts/extract-copy.mjs`, is committed to the repo (`npm run
+  extract-copy`, after a build) and was itself updated 2026-08-19 to stop
+  listing the seven now-dead routes.
 
 ## 10. 2026-08-18 first-person voice rewrite — SITE-COPY-REWRITE.md implemented
 
@@ -502,21 +569,24 @@ that session's summary; the actionable items are here.
   always-rendered, the same "don't render what isn't there" pattern
   `SpecBlock.astro` already uses. Ivory House keeps both paragraphs — its
   second one does real scope-of-work disclosure, not repetition.
-- [Amy] **Lafayette naming** — still open, tracked here now rather than in
-  SITE-COPY-REWRITE.md (that file's open-questions list was removed per this
-  session's instructions; its content lives here instead). If Amy's rep call
-  clears the name, every removal reverses cleanly: `/services/blinds-shades`
-  (meta title, meta description, lead, and body) and `/blinds` (all three
-  "why it lands right" points). Restore the meta title first — a brand name
-  there earns clicks.
-- [Amy] **The footer's founding year ("since 2021")** — reopened, see section
-  1 above. Sam's figure, not confirmed as Amy's own. Needs her answer.
-- [Amy] **The Studio section's personal line** — still open. Meeting 3 notes
-  "Amy taught Sam to sew" as a line worth including somewhere under the
-  About page's Studio heading, but the credits-not-staff decision keeps that
-  section to name-and-role only today. SITE-COPY-REWRITE.md flagged it
-  without adding it; not added here either — it needs Amy's yes/no on
-  whether it fits the no-bio rule, not a content decision made on her behalf.
+- [x] ~~**Lafayette naming** — open, pending Amy's rep call.~~ **Resolved
+  2026-08-19, and resolved "no," not "yes" (post-Meeting-4 pass, Task 4):**
+  Amy confirmed she cannot represent herself as a dealer for any line at
+  all — not just Lafayette, not just pending a call. This is now a standing
+  rule (CLAUDE.md) rather than an open question: Lafayette Interior Fashions
+  may not be named on the public site at all until she confirms otherwise in
+  writing, and no other vendor may be described as a line the studio
+  carries, represents, or deals either. `/services/blinds-shades` (the page
+  the old "restore the meta title first" note pointed at) was itself removed
+  the same day (Task 1), folded into the Services overview.
+- [x] ~~**The footer's founding year ("since 2021")** — needs Amy's answer.~~
+  **Resolved 2026-08-19: 2020, confirmed directly** — see section 1 above.
+- [x] ~~**The Studio section's personal line** — needs Amy's yes/no on
+  "Amy taught Sam to sew."~~ **Resolved 2026-08-19 (post-Meeting-4 pass,
+  Task 14): cut, not added.** Sam's direct instruction closes this rather
+  than waiting on Amy's separate confirmation — the credits-not-staff,
+  name-and-role-only shape of the Studio row stands as originally built,
+  with no personal line under it.
 - [ ] **One thing SITE-COPY-REWRITE.md left as an open judgment call, still
   unresolved:** the service-card grid order on Home and `/services` stays
   Drapery / Blinds and Shades / Upholstery / Soft Furnishings. Whether the

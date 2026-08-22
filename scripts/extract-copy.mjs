@@ -5,6 +5,13 @@
 // committed until now. Commit history for CURRENT-SITE-COPY.md itself is the
 // record of every previous run.
 //
+// PAGES below trimmed 2026-08-19 (post-Meeting-4 pass, Task 14): the four
+// service sub-pages (Task 1) and the three Portfolio routes (Task 2, flag-
+// disabled) no longer build, so this script would fail trying to read HTML
+// that doesn't exist in dist/. Restore the Portfolio rows the day
+// FLAGS.portfolioEnabled goes back to true; the service sub-page rows are
+// gone for good along with the pages themselves.
+//
 // Usage: npm run build && node scripts/extract-copy.mjs
 // (or: npm run extract-copy, after a build)
 //
@@ -49,14 +56,7 @@ const PAGES = [
   ['About (/about)', 'about/index.html'],
   ['Process (/process)', 'process/index.html'],
   ['Services overview (/services)', 'services/index.html'],
-  ['Custom Drapery (/services/drapery)', 'services/drapery/index.html'],
-  ['Blinds and Shades (/services/blinds-shades)', 'services/blinds-shades/index.html'],
-  ['Upholstery (/services/upholstery)', 'services/upholstery/index.html'],
-  ['Soft Furnishings (/services/soft-furnishings)', 'services/soft-furnishings/index.html'],
   ['Blinds landing page (/blinds)', 'blinds/index.html'],
-  ['Portfolio index (/portfolio)', 'portfolio/index.html'],
-  ['Collected Living Room (/portfolio/collected-living-room)', 'portfolio/collected-living-room/index.html'],
-  ['Ivory House (/portfolio/ivory-house)', 'portfolio/ivory-house/index.html'],
   ['Cincinnati (/cincinnati)', 'cincinnati/index.html'],
   ['Northern Kentucky (/northern-kentucky)', 'northern-kentucky/index.html'],
   ['Design Journal index (/journal)', 'journal/index.html'],

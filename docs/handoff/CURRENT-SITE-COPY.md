@@ -1,6 +1,6 @@
 # Current Site Copy — Amy K Clark Design
 
-Extracted verbatim from the production build (`npm run build` -> `dist/`) on 2026-08-20 by
+Extracted verbatim from the production build (`npm run build` -> `dist/`) on 2026-08-22 by
 `scripts/extract-copy.mjs`. Regenerate any time the copy changes: `npm run build && npm run
 extract-copy` (or `npm run extract-copy`, after a build — see package.json).
 
@@ -8,31 +8,24 @@ This file is self-contained: every page's copy is below in full, in reading orde
 references back to the repository. It is a record of what is actually live, not input for a
 rewrite pass. Paste it into a separate conversation if a rewrite pass is ever needed.
 
-**Total word count across all 21 pages: 8524**
+**Total word count across all 14 pages: 6103**
 
 ## Word count per page
 
-- Home (/): 308
-- About (/about): 459
-- Process (/process): 431
-- Services overview (/services): 199
-- Custom Drapery (/services/drapery): 492
-- Blinds and Shades (/services/blinds-shades): 586
-- Upholstery (/services/upholstery): 448
-- Soft Furnishings (/services/soft-furnishings): 491
-- Blinds landing page (/blinds): 252
-- Portfolio index (/portfolio): 91
-- Collected Living Room (/portfolio/collected-living-room): 117
-- Ivory House (/portfolio/ivory-house): 151
-- Cincinnati (/cincinnati): 232
-- Northern Kentucky (/northern-kentucky): 210
-- Design Journal index (/journal): 229
-- Journal: How to Read a Fabric (/journal/how-to-read-a-fabric): 895
-- Journal: Drapery, Shades, or Blinds (/journal/drapery-shades-or-blinds): 925
-- Journal: What Makes a Window Treatment Look Expensive (/journal/what-makes-a-window-treatment-look-expensive): 905
-- Contact (/contact): 862
-- Thank You (/contact/thank-you): 131
-- 404 (/404): 110
+- Home (/): 293
+- About (/about): 457
+- Process (/process): 429
+- Services overview (/services): 197
+- Blinds landing page (/blinds): 250
+- Cincinnati (/cincinnati): 230
+- Northern Kentucky (/northern-kentucky): 208
+- Design Journal index (/journal): 227
+- Journal: How to Read a Fabric (/journal/how-to-read-a-fabric): 893
+- Journal: Drapery, Shades, or Blinds (/journal/drapery-shades-or-blinds): 923
+- Journal: What Makes a Window Treatment Look Expensive (/journal/what-makes-a-window-treatment-look-expensive): 903
+- Contact (/contact): 876
+- Thank You (/contact/thank-you): 123
+- 404 (/404): 94
 
 ## How to read this file
 
@@ -55,14 +48,13 @@ for a manual read.
 ---
 ## Home (/)
 
-**Word count:** 308
+**Word count:** 293
 
 **Meta title:** Custom Window Treatments Cincinnati | Amy K Clark Design
 **Meta description:** Custom drapery, blinds and shades, and upholstery for Cincinnati and Northern Kentucky homes, designed, made, and installed by Amy Clark.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -71,17 +63,12 @@ for a manual read.
 - **[LINK]** Contact
 - **[H1]** Custom Window Treatments, Drapery, and Shades in Cincinnati and Northern Kentucky
 - **[P]** The little details make all the difference.
+- **[P]** le petit plus qui fait la différence
 - **[P]** Amy K Clark Design
 - **[LINK]** Upholstery
 - **[LINK]** Drapery
 - **[LINK]** Shades
 - **[LINK]** Schedule your complimentary discovery call
-- **[H2]** Portfolio
-- **[LINK]** Collected Living Room
-- **[LINK]** Ivory House
-- **[LIST ITEM]** Placeholder. No image. Placeholder Project 01
-- **[LIST ITEM]** Placeholder. No image. Placeholder Project 02
-- **[LINK]** View Full Portfolio
 - **[H2]** Services
 - **[SPAN]** Custom Drapery
 - **[P]** Worked out in your room, for your light. Amy chooses the fabric with you, sews the panels, and hangs them.
@@ -109,9 +96,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -128,14 +114,13 @@ for a manual read.
 
 ## About (/about)
 
-**Word count:** 459
+**Word count:** 457
 
 **Meta title:** About Amy Clark | Amy K Clark Design
 **Meta description:** Amy designs, makes, and installs custom window treatments, upholstery, and soft furnishings in Cincinnati and Northern Kentucky. One person, every stage.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -164,9 +149,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -183,14 +167,13 @@ for a manual read.
 
 ## Process (/process)
 
-**Word count:** 431
+**Word count:** 429
 
 **Meta title:** Process | Amy K Clark Design
 **Meta description:** How a project runs: a complimentary discovery call, an in-home design consultation, design, fabrication, and installation. Amy carries all five steps.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -219,9 +202,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -238,14 +220,13 @@ for a manual read.
 
 ## Services overview (/services)
 
-**Word count:** 199
+**Word count:** 197
 
 **Meta title:** Services | Amy K Clark Design
 **Meta description:** Custom drapery, blinds and shades, upholstery, and soft furnishings for Cincinnati and Northern Kentucky homes, designed, made, and installed by Amy Clark.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -264,213 +245,8 @@ for a manual read.
 - **[SPAN]** Soft Furnishings
 - **[P]** Pillows and cushions. The last layer, and usually the one that finishes the room.
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Contact
-- **[LINK]** hello@amykclarkdesign.com
-- **[LINK]** Instagram
-- **[LINK]** Facebook
-- **[P]** © 2026 Amy K Clark Design
-- **[LINK]** Privacy Policy
-- **[LINK]** Terms of Use
-
-## Custom Drapery (/services/drapery)
-
-**Word count:** 492
-
-**Meta title:** Custom Drapery Cincinnati | Amy K Clark Design
-**Meta description:** Custom drapery for Cincinnati and Northern Kentucky homes. Amy chooses the fabric with you, sews the panels in her workroom, and hangs them herself.
-
-- **[LINK]** Skip to content
-- **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Services
-- **[H1]** Custom Drapery
-- **[P]** Custom drapery for Cincinnati and Northern Kentucky homes, worked out in the room it belongs to. Amy picks the fabric with you, settles the details, sews the panels, and hangs them herself.
-- **[H2]** It starts in your room
-- **[P]** Drapery either works with a room or argues with it. Where the rod goes. How far the panels stack back when they are open. How much wall they take up doing it. Those are the decisions that make a room feel taller and finished instead of just covered.
-- **[P]** She works them out standing in the room, at the hour the light matters most to you. Your north-facing sitting room and your west-facing dining room want different weights and different linings, even if the windows are identical.
-- **[H2]** What the fabric will actually do
-- **[P]** Fabric comes from Schumacher and the other lines Amy represents, and she chooses it for how it behaves rather than how it photographs. A linen that is gorgeous flat can fall like a wet towel at length. A pattern you love in the hand can disappear the moment it is gathered. Knowing that ahead of time is most of the job.
-- **[P]** Lining gets settled in the same conversation. Interlining adds weight and makes a lighter fabric hang like a heavier one. Blackout belongs in bedrooms. A sun-facing room needs protection from fade. These are the choices that decide whether your drapery still looks right in five years.
-- **[H2]** Pleats, hardware, and trim
-- **[P]** Pleat style sets the character. Euro pleats read cleaner and more current. French pleats hold a deeper fold and lean traditional. Ripplefold moves as one continuous wave, which suits a wide contemporary span.
-- **[P]** Hardware gets chosen alongside the fabric, never after, because bracket projection and return decide how the finished panel sits against your wall. Then the trim, which is her favorite part. A contrast band down a leading edge. A return that closes tight to the frame so no light sneaks around the side.
-- **[H2]** She makes it and she hangs it
-- **[P]** Nothing goes out to a workroom that never saw your room, and nobody hangs it who was not part of the decisions. On installation day Amy dresses and trains every fold by hand so the panels fall correctly from the start.
-- **[P]** The hem hangs level. The pattern matches across panels. The stack clears the glass. None of it announces itself, and you will notice all of it.
-- **[P]** Let's Get Started
-- **[LINK]** Schedule your complimentary discovery call
-- **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
-- **[P]** Site
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Contact
-- **[LINK]** hello@amykclarkdesign.com
-- **[LINK]** Instagram
-- **[LINK]** Facebook
-- **[P]** © 2026 Amy K Clark Design
-- **[LINK]** Privacy Policy
-- **[LINK]** Terms of Use
-
-## Blinds and Shades (/services/blinds-shades)
-
-**Word count:** 586
-
-**Meta title:** Custom Blinds and Shades Cincinnati | Amy K Clark Design
-**Meta description:** Custom blinds and shades for Cincinnati and Northern Kentucky homes. Blinds, shades, shutters, and woven woods, measured and installed by Amy Clark.
-
-- **[LINK]** Skip to content
-- **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Services
-- **[H1]** Blinds and Shades
-- **[P]** Blinds and shades for Cincinnati and Northern Kentucky homes, specified for the way you actually use the room. Amy represents one line here, which means blinds, shades, shutters, and woven woods all come from a single catalog she knows cold.
-- **[P]** Roman shades come from that catalog as a manufactured product, built to the measurements of your opening. If your room wants a fabric roman made to order, a particular textile with a particular band, that is workroom work and she handles it as custom drapery instead.
-- **[H2]** Decide these before anything is ordered
-- **[P]** Most regret about blinds and shades comes from a decision nobody actually made. A shade picked for how it looked in a showroom, not for what your window is doing at four in the afternoon.
-- **[H3]** Light and glare
-- **[P]** How much light a room should keep is a different question from how much it lets in. A west-facing room with a television needs glare handled at one specific hour. A kitchen usually wants every bit of daylight it can hold. Solar shades are rated by openness, and that number decides how much of your view survives when they are down.
-- **[H3]** Privacy
-- **[P]** Privacy and light are not the same requirement, and treating them as one is the most common mistake here. A top-down bottom-up shade covers the lower half of the window and leaves the daylight coming in above it, which is usually exactly what a street-facing bedroom or bathroom wants. Sheers give you daytime privacy and then read completely differently after dark, once the lamps are on inside.
-- **[H3]** Motorization
-- **[P]** Motorization earns its keep on tall windows, wide spans, and anything stranded above a stair or behind furniture, the treatments nobody ever adjusts because reaching them is a nuisance. It also lets a whole room drop on a schedule, ahead of the afternoon sun instead of after the room has already cooked. It is far easier to decide before drywall than after.
-- **[H3]** Children and pets
-- **[P]** Cordless, in any house with young children or pets. Cordless lift, motorization, and tensioned continuous-loop mounts all take the hazard of a pull cord off the table. Worth deciding on purpose rather than by omission.
-- **[H3]** Room by room
-- **[P]** Bathrooms and kitchens need something that shrugs off moisture and wipes clean. Bedrooms usually want room-darkening or blackout, often layered under drapery. Living rooms need something adjustable enough for a whole day of moving light. Woven woods warm up a room that reads flat. Shutters suit a window where the treatment should read as architecture rather than fabric.
-- **[H2]** An eighth of an inch
-- **[P]** Blinds and shades are unforgiving about measurement in a way drapery is not. An eighth of an inch decides whether an inside mount clears the frame or binds against it. Amy measures every opening herself and installs the finished product herself.
-- **[P]** Windows in older Cincinnati and Northern Kentucky houses are almost never square. Allowing for that correctly is what keeps a treatment from looking almost right.
-- **[P]** Let's Get Started
-- **[LINK]** Schedule your complimentary discovery call
-- **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
-- **[P]** Site
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Contact
-- **[LINK]** hello@amykclarkdesign.com
-- **[LINK]** Instagram
-- **[LINK]** Facebook
-- **[P]** © 2026 Amy K Clark Design
-- **[LINK]** Privacy Policy
-- **[LINK]** Terms of Use
-
-## Upholstery (/services/upholstery)
-
-**Word count:** 448
-
-**Meta title:** Custom Upholstery Cincinnati | Amy K Clark Design
-**Meta description:** Upholstery and reupholstery for Cincinnati and Northern Kentucky homes. Amy chooses the fabric for how it wears and handles the details that show.
-
-- **[LINK]** Skip to content
-- **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Services
-- **[H1]** Upholstery
-- **[P]** Upholstery and reupholstery for Cincinnati and Northern Kentucky homes, for the furniture you want to keep. Amy helps you decide what a piece should become, chooses the fabric for how it will wear, and handles the details that separate a reupholstered chair from a chair with new fabric on it.
-- **[H2]** Start with the frame
-- **[P]** Not every chair should be reupholstered, and telling you so is part of the job. The frame decides it. Hardwood, joined and doweled rather than stapled, will take new fabric almost regardless of age, and eight-way hand-tied springs are worth keeping. Good bones under an unfashionable fabric is the ideal candidate. A loose joint can be reglued. A cracked rail is a different conversation, and better to know before anything comes apart.
-- **[P]** Sentiment counts, and it counts legitimately. A chair from your grandmother’s house gets done properly because it is that chair. No other reason is required.
-- **[H2]** Fabric that survives the room
-- **[P]** Upholstery fabric answers to different demands than drapery. It gets sat on, leaned against, spilled on, and cleaned. Double rubs measure abrasion resistance, and what suits a formal dining chair is nowhere near what your family room sectional needs. Performance fabrics are good enough now to choose on their merits, not as a concession to children and dogs.
-- **[P]** Pattern scale matters more here than almost anywhere, because the fabric is being fitted to a three-dimensional object. A large repeat can be beautiful on a sofa back and unusable on a tight-seat chair. All of that gets settled before yardage is ordered.
-- **[H2]** The details that show
-- **[P]** Welt does more to the character of a finished piece than most people expect. Self-welt keeps it quiet. Contrast welt gives it an edge and draws the shape out. Cushion fill decides how the piece feels a year in: down-wrapped foam where softness matters, something firmer where people sit every single day.
-- **[P]** Then pattern placement, which is where the care becomes visible. A motif centered on the seat and centered again on the back. Stripes running true down an arm. That comes from someone standing over the piece, not a machine following a cutting order.
-- **[P]** Let's Get Started
-- **[LINK]** Schedule your complimentary discovery call
-- **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
-- **[P]** Site
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Contact
-- **[LINK]** hello@amykclarkdesign.com
-- **[LINK]** Instagram
-- **[LINK]** Facebook
-- **[P]** © 2026 Amy K Clark Design
-- **[LINK]** Privacy Policy
-- **[LINK]** Terms of Use
-
-## Soft Furnishings (/services/soft-furnishings)
-
-**Word count:** 491
-
-**Meta title:** Custom Pillows and Cushions Cincinnati | Amy K Clark
-**Meta description:** Custom pillows, cushions, and soft furnishings for Cincinnati and Northern Kentucky homes, made and finished in Amy's workroom.
-
-- **[LINK]** Skip to content
-- **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Services
-- **[H1]** Pillows, Cushions, and Soft Furnishings
-- **[P]** Le petit plus qui fait la différence. The smallest things Amy makes, and often the ones that decide whether a room feels considered or just furnished.
-- **[H2]** Small work, big effect
-- **[P]** A ready-made pillow is one size, one fabric, one edge, all decided by somebody who never saw your sofa. Custom means the proportion suits the piece it sits on, and you choose the finish rather than accept it.
-- **[P]** It is also the easiest way to get a remarkable textile into your room. A fabric that would be impractical across a whole sofa is perfect as a pair of pillows, and a size that does not exist ready-made is not a problem when she is making it anyway.
-- **[P]** This is often where a project starts. If you are not ready to commit to drapery, a set of pillows shows you exactly how Amy works, and the room usually moves further than the size of the job suggests.
-- **[H2]** Proportion and fill
-- **[P]** Size is the thing people get wrong most. Pillows that are too small leave a sofa looking undressed. A mix of sizes with a deliberate relationship between them beats a matched set of four, and two large pillows can carry a long sofa better than four small ones ever will.
-- **[P]** Fill decides how a pillow behaves. Down and down-blend inserts have a hand that foam cannot fake, and they take the casual slump that makes a room look lived in rather than staged. Amy sizes inserts larger than the cover so the pillow sits full instead of slack. Small detail, and you see it immediately.
-- **[P]** The edge sets the register. A knife edge is clean and quiet. A flange softens it and reads traditional. Box edge where the pillow needs structure. Fringe and tape push it formal fast, and there is a line past which a pillow is wearing a costume.
-- **[H2]** Cushions and everything else
-- **[P]** Window seats, benches, and banquettes need cushions built to a real measurement rather than trimmed down to fit. Foam density gets chosen for how long people sit there. Dining chair seats take the most abuse in the house and get built accordingly. Outdoor cushions have to survive weather and then dry out properly.
-- **[P]** Past pillows and cushions, this covers table linens, bed skirts, shams, headboards, and the occasional piece that has no standard name and has to be invented for the space it goes in.
-- **[P]** Let's Get Started
-- **[LINK]** Schedule your complimentary discovery call
-- **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
-- **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -487,14 +263,13 @@ for a manual read.
 
 ## Blinds landing page (/blinds)
 
-**Word count:** 252
+**Word count:** 250
 
 **Meta title:** Blinds and Shades for Cincinnati Homes | Amy K Clark Design
 **Meta description:** Custom blinds and shades for Cincinnati and Northern Kentucky homes, measured and installed by Amy Clark. Book a complimentary discovery call.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -515,123 +290,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Contact
-- **[LINK]** hello@amykclarkdesign.com
-- **[LINK]** Instagram
-- **[LINK]** Facebook
-- **[P]** © 2026 Amy K Clark Design
-- **[LINK]** Privacy Policy
-- **[LINK]** Terms of Use
-
-## Portfolio index (/portfolio)
-
-**Word count:** 91
-
-**Meta title:** Portfolio | Amy K Clark Design
-**Meta description:** Custom drapery, blinds and shades, and upholstery projects by Amy K Clark Design, Cincinnati and Northern Kentucky.
-
-- **[LINK]** Skip to content
-- **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[H1]** Portfolio
-- **[LINK]** Collected Living Room
-- **[LINK]** Ivory House
-- **[LIST ITEM]** Placeholder. No image. Placeholder Project 01
-- **[LIST ITEM]** Placeholder. No image. Placeholder Project 02
-- **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
-- **[P]** Site
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Contact
-- **[LINK]** hello@amykclarkdesign.com
-- **[LINK]** Instagram
-- **[LINK]** Facebook
-- **[P]** © 2026 Amy K Clark Design
-- **[LINK]** Privacy Policy
-- **[LINK]** Terms of Use
-
-## Collected Living Room (/portfolio/collected-living-room)
-
-**Word count:** 117
-
-**Meta title:** Collected Living Room | Amy K Clark Design
-**Meta description:** Pleated drapery and a banded roman shade for a wall of French doors. Amy chose the fabric and made both.
-
-- **[LINK]** Skip to content
-- **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[LINK]** Portfolio
-- **[H1]** Collected Living Room
-- **[P]** A wall of French doors carrying two treatments at once: pleated drapery for the frame and the softness, and a banded roman shade behind it for the light. Amy chose the fabric and made both.
-- **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
-- **[P]** Site
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[P]** Contact
-- **[LINK]** hello@amykclarkdesign.com
-- **[LINK]** Instagram
-- **[LINK]** Facebook
-- **[P]** © 2026 Amy K Clark Design
-- **[LINK]** Privacy Policy
-- **[LINK]** Terms of Use
-
-## Ivory House (/portfolio/ivory-house)
-
-**Word count:** 151
-
-**Meta title:** Ivory House | Amy K Clark Design
-**Meta description:** Drapery throughout, reupholstered dining chairs, and cushions and pillows to finish. Amy made and installed all of it.
-
-- **[LINK]** Skip to content
-- **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
-- **[LINK]** Services
-- **[LINK]** Blinds
-- **[LINK]** About
-- **[LINK]** Process
-- **[LINK]** Design Journal
-- **[LINK]** Contact
-- **[LINK]** Portfolio
-- **[H1]** Ivory House
-- **[P]** One house, four categories, one person. Drapery throughout, white wood blinds in the bay-window breakfast room, the breakfast room chairs reupholstered, and cushions and pillows to finish. Amy made all of it and installed all of it.
-- **[P]** Amy made the drapery throughout this house, reupholstered the breakfast room's dining chairs, made the kitchen island's rattan stool cushions, and made three of the pillows shown here. The furniture itself is not hers to claim.
-- **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
-- **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -648,14 +308,13 @@ for a manual read.
 
 ## Cincinnati (/cincinnati)
 
-**Word count:** 232
+**Word count:** 230
 
 **Meta title:** Window Treatments Cincinnati OH | Amy K Clark Design
 **Meta description:** Custom window treatments in Cincinnati OH: drapery, blinds and shades, upholstery, and soft furnishings, designed, made, and installed by Amy Clark.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -670,9 +329,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -689,14 +347,13 @@ for a manual read.
 
 ## Northern Kentucky (/northern-kentucky)
 
-**Word count:** 210
+**Word count:** 208
 
 **Meta title:** Custom Drapery Northern Kentucky | Amy K Clark Design
 **Meta description:** Custom drapery in Northern Kentucky, plus blinds, shades, upholstery, and soft furnishings. Designed, sewn, and installed by Amy Clark.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -711,9 +368,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -730,14 +386,13 @@ for a manual read.
 
 ## Design Journal index (/journal)
 
-**Word count:** 229
+**Word count:** 227
 
 **Meta title:** Design Journal | Amy K Clark Design
 **Meta description:** Notes on fabric, drapery, blinds, and shades from Amy Clark, who designs, makes, and installs them in Cincinnati and Northern Kentucky.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -757,9 +412,8 @@ for a manual read.
 - **[H2]** How to read a fabric: weight, weave, and how it will actually hang
 - **[P]** What weight, weave, and hand tell you about how a fabric will hang once it is made up, and what a memo sample will never show you.
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -776,14 +430,13 @@ for a manual read.
 
 ## Journal: How to Read a Fabric (/journal/how-to-read-a-fabric)
 
-**Word count:** 895
+**Word count:** 893
 
 **Meta title:** How to Read a Fabric | Amy K Clark Design
 **Meta description:** What weight, weave, and hand tell you about how a fabric will hang once it is made up, and what a memo sample will never show you.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -824,9 +477,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -843,14 +495,13 @@ for a manual read.
 
 ## Journal: Drapery, Shades, or Blinds (/journal/drapery-shades-or-blinds)
 
-**Word count:** 925
+**Word count:** 923
 
 **Meta title:** Drapery, Shades, or Blinds? | Amy K Clark Design
 **Meta description:** A room-by-room way to choose between drapery, shades, and blinds, starting from what the window actually has to do rather than from the product.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -891,9 +542,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -910,14 +560,13 @@ for a manual read.
 
 ## Journal: What Makes a Window Treatment Look Expensive (/journal/what-makes-a-window-treatment-look-expensive)
 
-**Word count:** 905
+**Word count:** 903
 
 **Meta title:** Why Drapery Looks Expensive | Amy K Clark Design
 **Meta description:** Fullness, length, stack, lining, and how a panel is dressed on installation day. The details that separate finished work from covered windows.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -955,9 +604,8 @@ for a manual read.
 - **[P]** Let's Get Started
 - **[LINK]** Schedule your complimentary discovery call
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -974,14 +622,13 @@ for a manual read.
 
 ## Contact (/contact)
 
-**Word count:** 862
+**Word count:** 876
 
 **Meta title:** Schedule a Discovery Call | Amy K Clark Design
 **Meta description:** Book a complimentary discovery call for custom drapery, blinds and shades, upholstery, or soft furnishings in Cincinnati and Northern Kentucky.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -993,7 +640,8 @@ for a manual read.
 - **[P]** It starts with a phone call, and the call is free. Fifteen minutes on what the room is doing wrong, what you have already tried, and whether Amy is the right person for it. No measuring, no fabric, no commitment.
 - **[P]** If it sounds like a fit, the next step is the in-home design consultation: about three hours in your house, and a paid visit, because it is design work rather than a sales call. Amy measures the openings herself, sees the light at the hour that matters, and puts fabric against your walls and your furniture. You come out knowing what the room needs and what she would do about it.
 - **[P]** Amy works throughout Cincinnati and Northern Kentucky. Tell her as much as you can below. The more she knows before the call, the more useful it will be.
-- **[H2]** Tell Amy about your room
+- **[H2]** Start a project
+- **[P]** The initial in-home consultation is a paid appointment. Amy will confirm the details and scheduling after reviewing your inquiry.
 - **[P]** Do not fill this in
 - **[P]** Name
 - **[P]** Email
@@ -1017,7 +665,7 @@ for a manual read.
 - **[P]** What else is in the room Optional The sofa, the flooring, the wall color, anything staying in the room that the fabric has to live with. Photographs of these help too.
 - **[P]** How did you hear about Amy?
 - **[DROPDOWN OPTIONS (referral)]** Select one | Google search | Instagram | Facebook | Referred by a friend or family member | Referred by a designer or builder | Saw her work in a home | Houzz | Other
-- **[BUTTON]** Request a Consultation
+- **[BUTTON]** Send inquiry
 - **[H2]** Common questions
 - **[H3]** What happens on the discovery call?
 - **[P]** It is a short phone call and it costs nothing. Amy asks what the room is doing wrong, what you have already tried, and what you are hoping for. You get a straight answer about whether this is work she should be doing and what it would involve. If it is not a fit, she will say so on the call rather than after a visit.
@@ -1036,9 +684,8 @@ for a manual read.
 - **[H3]** Can she match something I already have?
 - **[P]** Usually. Matching an existing treatment, working a new piece around a fabric already in the room, or repeating a pattern across a seam so the join disappears is ordinary work here. Bring the piece or a photograph of it to the consultation.
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -1055,14 +702,13 @@ for a manual read.
 
 ## Thank You (/contact/thank-you)
 
-**Word count:** 131
+**Word count:** 123
 
 **Meta title:** Thank You | Amy K Clark Design
 **Meta description:** Your consultation request has been received by Amy K Clark Design.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -1072,11 +718,10 @@ for a manual read.
 - **[P]** Contact
 - **[H1]** Thank you
 - **[P]** Your request is in. Amy reads every one of these herself, and she will be in touch to arrange your complimentary discovery call and ask anything she needs to know beforehand.
-- **[P]** While you wait, the Design Journal covers how to read a fabric and how to choose between drapery and shades room by room, and the portfolio shows finished work.
+- **[P]** While you wait, the Design Journal covers how to read a fabric and how to choose between drapery and shades room by room.
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -1093,14 +738,13 @@ for a manual read.
 
 ## 404 (/404)
 
-**Word count:** 110
+**Word count:** 94
 
 **Meta title:** Page Not Found | Amy K Clark Design
-**Meta description:** This page doesn't exist. Explore the portfolio or get in touch to start a project with Amy K Clark Design.
+**Meta description:** This page doesn't exist. Get in touch to start a project with Amy K Clark Design.
 
 - **[LINK]** Skip to content
 - **[LINK]** Amy K Clark Design
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
@@ -1108,13 +752,11 @@ for a manual read.
 - **[LINK]** Design Journal
 - **[LINK]** Contact
 - **[H1]** This page doesn't exist.
-- **[P]** The room you are looking for is not here. Have a look at the portfolio instead, or get in touch to start a project.
-- **[LINK]** View Portfolio
+- **[P]** The room you are looking for is not here. Get in touch to start a project.
 - **[LINK]** Return home
 - **[P]** Amy K Clark Design
-- **[P]** Serving Cincinnati and Northern Kentucky since 2021
+- **[P]** Serving Cincinnati and Northern Kentucky since 2020
 - **[P]** Site
-- **[LINK]** Portfolio
 - **[LINK]** Services
 - **[LINK]** Blinds
 - **[LINK]** About
