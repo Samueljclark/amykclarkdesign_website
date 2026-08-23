@@ -53,28 +53,30 @@ const { images } = Astro.props;
         rides high. */}
     <div aria-hidden="true"></div>
 
-    {/* The centre row now carries only the opening line — a transient element
-        that fades out after ~3.8s and is then removed from the DOM. The
-        wordmark moved OUT of here in step 10a: white type in the dead centre
-        of the frame sat on the lightest part of the photograph (a pale wall,
-        in every hero crop this site has used), and the middle of the mark
-        disappeared into it entirely. See `.hero__mark` below.
+    {/* The centre row carries the opening line — now a PERMANENT element,
+        changed back from transient at Sam's direct instruction (most recent
+        session). The wordmark moved OUT of here in step 10a: white type in
+        the dead centre of the frame sat on the lightest part of the
+        photograph (a pale wall, in every hero crop this site has used), and
+        the middle of the mark disappeared into it entirely. See `.hero__mark`
+        below.
 
-        The French line was added 2026-08-19 (post-Meeting-4 pass, Task 6).
-        Its former home, the Soft Furnishings service page, was removed in
-        Task 1 of the same pass. This is the only place on the site carrying
-        "the little details make all the difference" idea, so it lands here
-        per Task 6's own fallback instruction — About has no equivalent
-        sentence. Deliberately NOT `data-hero-opening-line`: that attribute is
-        what motion.js's initHeroGallery() finds and permanently `.remove()`s
-        from the DOM (immediately under reduced motion or once per session,
-        after ~3.8s otherwise — see that file). This line has no such
-        attribute, so it is never touched by that logic and stays in the DOM
-        and on screen for the life of the page view, independent of whichever
-        state the opening line above it is in. */}
+        A French line ("le petit plus qui fait la différence") lived here
+        2026-08-19 through the following session — added in place of this
+        English line staying, then reverted the session after: Sam asked for
+        the English line to stay instead of the French one. Removed rather
+        than left unrendered, since keeping it "instead of" was the explicit
+        ask. It is still in git history if it needs to come back.
+
+        Fixing this also fixed a separately reported bug: `initHeroGallery()`
+        used to fade this line out and then `.remove()` it from the DOM after
+        ~3.8s, and the French line sat directly below it in the same flex
+        column — removing the opening line caused an instant, untransitioned
+        reflow that snapped the French line up to fill the gap. Now that nothing
+        below this line ever gets removed, and this line itself is never
+        removed either, there is no reflow left to cause that snap. */}
     <div class="hero__center">
       <p class="hero__opening-line" data-hero-opening-line>The little details make all the difference.</p>
-      <p class="hero__french-line">le petit plus qui fait la différence</p>
     </div>
 
     <div class="hero__bottom">
@@ -262,6 +264,9 @@ const { images } = Astro.props;
     max-width: 100%;
   }
 
+  /* Permanent as of the most recent session — no `.is-hiding` state and no
+     removal from the DOM any more (see the header comment above the markup).
+     The one remaining transition is the entrance fade-in, once per session. */
   .hero__opening-line {
     max-width: 32ch;
     font-size: var(--text-label);
@@ -273,27 +278,6 @@ const { images } = Astro.props;
   }
   .hero__opening-line.is-visible {
     opacity: 1;
-  }
-  .hero__opening-line.is-visible.is-hiding {
-    opacity: 0;
-    transition-duration: 900ms;
-  }
-
-  /* A quiet pull line, not a heading and not a second opening line: no
-     quotation marks, no attribution, no English translation, no link.
-     Archivo (body/UI face), not Bodoni Moda — 3.4 reserves the Didone for
-     the Display role and testimonial quotes, and this is neither. Smaller
-     than body text (--text-body is 16-17px) and generously spaced from the
-     line above it. Lowercase as written, not run through any uppercase
-     transform. `font-style: italic` synthesizes an oblique here — Archivo's
-     only loaded face is roman (tokens.css declares `font-style: normal`) —
-     which is a known tradeoff of a single-style variable file, not a bug. */
-  .hero__french-line {
-    margin-top: 1.5rem;
-    font-size: 0.8125rem;
-    font-style: italic;
-    color: var(--paper);
-    opacity: 0.85;
   }
 
   .hero__bottom {
