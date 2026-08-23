@@ -13,19 +13,6 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/tokens.css';
 import '../styles/global.css';
-// TEMPORARY — Sam's cream-and-green palette preview. Live again as of
-// 2026-07-26, at his instruction, so the site is as he left it.
-//
-// It was switched off for exactly one thing: the step 8 acceptance pass, whose
-// measurements therefore describe the **real 3.3 palette**, not this preview.
-// DESIGN_BRIEF §10 requires "no cream, no terracotta," so with this line in
-// place that one acceptance criterion fails site-wide by design, and 3.2 names
-// this exact look as the single most likely failure mode for this brief.
-//
-// **Comment this line out to see the real palette; delete the line and
-// `src/styles/sam-preview-theme.css` before launch** (LAUNCH_CHECKLIST.md §2).
-// Nothing else anywhere depends on it — it is custom-property overrides only.
-import '../styles/sam-preview-theme.css';
 import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import JsonLd from '../components/JsonLd.astro';
