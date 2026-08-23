@@ -26,24 +26,11 @@ import { FLAGS } from '../config/flags';
 
 // Second testimonial slot (5.1, amended). Every one of these is a real
 // fragment from a real review — nothing here is written for the site.
-// **Heather L. and Jenny H. are named as candidates in BUILD-PLAN decision 4
-// but their review text does not exist anywhere in this repo**, so they are
-// deliberately absent rather than paraphrased. Adding either is one entry
-// here once Sam pastes the actual wording in. See ASK-AMY.md.
+//
+// Reordered (Sam's direct instruction, most recent session): Heather L. and
+// Jenny H. now lead, in that order, followed by Kelly G. and Lisa C. Text,
+// wording, and format are untouched on all four — this was a reorder only.
 const rotatingQuotes = [
-  {
-    quote: 'She even matches complicated designs on the seams.',
-    attribution: 'Kelly G.',
-    note: `Cut from a review on Amy's PUBLIC Google Business profile, which is
-             not the same thing as written permission to feature it on her own
-             site. Permission to publish this specific quote at launch is still
-             pending confirmation (BUILD-PLAN.md decision 4).
-             First in the rotation on purpose: it is the one piece of
-             trade-level proof in the set, so it is the quote present at page
-             load and the only one shown under reduced motion. Not shortened
-             further — "on the seams" is what makes it specific rather than
-             another attention-to-detail line.`,
-  },
   {
     quote: 'Even though I was satisfied, she felt it needed a bit more cushioning.',
     attribution: 'Heather L.',
@@ -55,7 +42,10 @@ const rotatingQuotes = [
              selection rule for this section rejects. The fragment kept is the
              only line in the set where the client says the work was already
              good enough for her and Amy redid it anyway — that is a claim
-             about standards that no adjective can make. Verbatim.`,
+             about standards that no adjective can make. Verbatim.
+             First in the rotation as of the most recent reorder: it is the
+             quote present at page load and the only one shown under reduced
+             motion.`,
   },
   {
     // A literal ellipsis character, NOT `&hellip;`. Diane K.'s quote is an
@@ -72,6 +62,18 @@ const rotatingQuotes = [
              installed" is a client independently describing the exact
              design-fabricate-install combination DESIGN_BRIEF section 1 calls
              Amy's actual differentiator, which is worth more than praise.`,
+  },
+  {
+    quote: 'She even matches complicated designs on the seams.',
+    attribution: 'Kelly G.',
+    note: `Cut from a review on Amy's PUBLIC Google Business profile, which is
+             not the same thing as written permission to feature it on her own
+             site. Permission to publish this specific quote at launch is still
+             pending confirmation (BUILD-PLAN.md decision 4).
+             Was first in the rotation; moved to third in the most recent
+             reorder (Heather L. and Jenny H. now lead). Not shortened
+             further — "on the seams" is what makes it specific rather than
+             another attention-to-detail line.`,
   },
   {
     quote: 'The design is beautiful and color came out perfect.',
