@@ -29,16 +29,31 @@ window.addEventListener('unhandledrejection', (event) => {
    `[data-nav]` carries `transition:persist`, so this runs once — but the
    persisted state would go stale on navigation without a resync. `<body>`'s
    `data-transparent-nav` isn't persisted, so `syncNavForPage()` re-reads it
-   plus `location.pathname` on `astro:after-swap`. */
+   plus `location.pathname` on `astro:after-swap`.
+
+   FIX (mobile hamburger sometimes unresponsive after navigating, reported
+   live during a demo): the toggle's click handling, the panel-link-closes-
+   panel handling, and the Escape handling used to be bound directly to the
+   specific toggle/panel button nodes queried once here, on the assumption
+   that `transition:persist` keeps those exact nodes (and therefore their
+   listeners) alive for the rest of the session. If that assumption ever
+   breaks for any reason — a persistence mismatch, a browser falling back to
+   a full page navigation, a bfcache restore — the toggle button silently has
+   no listener at all, and nothing brings it back, because `initNav()` itself
+   only ever runs once. All three are now delegated to `document` instead,
+   querying the toggle/panel fresh at the moment of the event rather than
+   closing over node references captured at load time. `document` itself is
+   never replaced, so these can't be silently dropped the way a listener on
+   the toggle node itself could be. */
 function initNav() {
   const nav = document.querySelector('[data-nav]');
   if (!nav) return;
 
   const navLinks = nav.querySelectorAll('.site-nav__list a[href]');
-  const toggle = nav.querySelector('[data-nav-toggle]');
-  const panel = nav.querySelector('[data-nav-panel]');
 
   const closePanel = () => {
+    const toggle = nav.querySelector('[data-nav-toggle]');
+    const panel = nav.querySelector('[data-nav-panel]');
     if (!toggle || !panel) return;
     panel.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
@@ -87,22 +102,28 @@ function initNav() {
   syncNavForPage();
   document.addEventListener('astro:after-swap', syncNavForPage);
 
-  if (!toggle || !panel) return;
-
-  toggle.addEventListener('click', () => {
-    const open = panel.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(open));
-  });
-
-  panel.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closePanel);
+  // One delegated listener covers the toggle button and every link inside
+  // the panel, for the whole life of the page — see the fix note above.
+  document.addEventListener('click', (event) => {
+    const toggle = event.target.closest('[data-nav-toggle]');
+    if (toggle) {
+      const panel = nav.querySelector('[data-nav-panel]');
+      if (!panel) return;
+      const open = panel.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      return;
+    }
+    if (event.target.closest('[data-nav-panel] a')) {
+      closePanel();
+    }
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && panel.classList.contains('is-open')) {
-      closePanel();
-      toggle.focus();
-    }
+    if (event.key !== 'Escape') return;
+    const panel = nav.querySelector('[data-nav-panel]');
+    if (!panel || !panel.classList.contains('is-open')) return;
+    closePanel();
+    nav.querySelector('[data-nav-toggle]')?.focus();
   });
 }
 
@@ -237,15 +258,18 @@ function initHeroGallery() {
   const gallery = document.querySelector('[data-hero-gallery]');
   if (!gallery) return;
 
+  /* Permanent as of the most recent session (was transient: faded out and
+     `.remove()`d after ~3.8s). Still a one-time entrance fade per session
+     rather than replaying on every soft navigation back to Home — reduced
+     motion or an already-fired session both skip straight to visible, with
+     nothing removed either way. */
   const openingLine = document.querySelector('[data-hero-opening-line]');
   if (openingLine) {
     if (reducedMotion || sessionStorage.getItem('akc-opening-line-seen')) {
-      openingLine.remove();
+      openingLine.classList.add('is-visible');
     } else {
       sessionStorage.setItem('akc-opening-line-seen', '1');
       window.setTimeout(() => openingLine.classList.add('is-visible'), 400);
-      window.setTimeout(() => openingLine.classList.add('is-hiding'), 400 + 2500);
-      window.setTimeout(() => openingLine.remove(), 400 + 2500 + 900);
     }
   }
 
