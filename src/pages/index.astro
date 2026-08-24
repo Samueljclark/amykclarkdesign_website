@@ -94,39 +94,27 @@ const rotatingQuotes = [
 // Hero photograph — CORRECTED 2026-08-02 to
 // `hero/pleated-drapery-living-room-french-doors-pool-view.jpg`
 // (`photos['pleated-drapery']`), the wide full-room frame with the drapery
-// panel centred and the French doors opening onto the pool and patio.
+// panel centred and the French doors opening onto the pool and patio. That
+// was a phone-camera shot from the earlier Collected Living Room / Stardust
+// Lane house — soft, low-contrast, per docs/handoff/PHOTO-EDIT-REQUESTS.md.
 //
-// Step 10a (2026-08-01) swapped the hero to `banded-roman-shade` instead —
-// the tighter, near-square crop of the same room that was then the full-bleed
-// lead on /about. The instruction that session named two identifiers that
-// pointed at different files ("the wide full-room shot" and "the image on the
-// About page"); the positional one won and it was the wrong call. This frame
-// is the one Sam wanted. Recorded rather than quietly fixed, because the
-// alternative is still sitting in the repo and someone will wonder.
+// **Swapped again, most recent session, on Sam's direct instruction: now
+// `photos['ivory-house-hero']`** (`pinch-pleat-drapery-living-room-orb-
+// chandelier.jpg`) — a real DSLR frame from the Ivory House shoot, not a
+// phone photo. This exact file was the very first homepage hero, before step
+// 10a's two swaps above; it has been sitting unused since. Known minor
+// defects, per the photo audit: a fig leaf intrudes at bottom-right and a
+// blown highlight runs down the right edge — both real but far less
+// distracting at full-bleed hero scale than the phone-camera softness of the
+// outgoing image.
 //
-// Consequences, handled deliberately and NOT by shuffling substitutes in:
-//   - /services and /services/drapery both led on this exact file and now
-//     have no lead image at all. Per Sam's instruction, they are left without
-//     one rather than given an arbitrary replacement.
-//   - /about gets its original lead image back. It only lost it because
-//     `banded-roman-shade` became the hero in step 10a, and that is no longer
-//     true, so the reason has evaporated.
-//   - /portfolio/collected-living-room keeps this file as its own lead. That
-//     is the project's own documentation rather than decoration, the detail
-//     template requires a lead, and the project has only one other photograph.
-//
-// Still a single-item array. The array shape stays reversible for a real
-// multi-image gallery later; that remains a separate decision.
+// `photos['pleated-drapery']` remains in use elsewhere (Collected Living
+// Room's own project lead) — this swap only touches the homepage hero slot.
 const heroImages = [
   {
-    src: photos['pleated-drapery'].image,
-    // Hero-specific alt rather than photos.ts's shared string: this frame
-    // renders full-screen here (a 100svh box) rather than in the 16/9 slot
-    // the shared alt was written for, so the room around the treatment —
-    // the panelled wall, the artwork, the seating — is a real part of what a
-    // reader sees.
-    alt: 'A living room with pleated ivory drapery framing a wall of French doors that open onto a pool and stone patio, an orb chandelier overhead and a curved sofa in the foreground',
-    blurDataURL: photos['pleated-drapery'].blurDataURL,
+    src: photos['ivory-house-hero'].image,
+    alt: photos['ivory-house-hero'].alt,
+    blurDataURL: photos['ivory-house-hero'].blurDataURL,
   },
 ];
 
