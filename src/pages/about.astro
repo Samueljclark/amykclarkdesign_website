@@ -53,7 +53,6 @@ import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
 import { getEntry, render } from 'astro:content';
 import { photos } from '../data/photos';
-import leadImage from '../assets/images/portfolio/collected-living-room/banded-roman-shade-drapery-french-doors-detail.jpg';
 import originImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
 import samPortrait from '../assets/images/team/sam-clark.jpg';
 import kelseePortrait from '../assets/images/team/kelsee-etmans.jpg';
@@ -110,17 +109,20 @@ const studio = [
     {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
   </section>
 
-  {/* RESTORED 2026-08-02. This image was removed on 2026-08-01 for exactly one
-      reason: step 10a had made it the homepage hero, and the same photograph
-      opening two pages reads as a shortage. The hero was corrected to a
-      different frame on 2026-08-02, so that reason no longer exists and the
-      page gets its original lead back. Flagged rather than done silently —
-      if /about was better without a lead image, deleting this block again is
-      the whole change. */}
+  {/* Swapped most recent session, Sam's direct instruction ("soooo ugly"):
+      the banded-roman-shade shot (a phone-camera photo of the Collected
+      Living Room / Stardust Lane house — soft, low-contrast, plus an
+      American flag and a garden ornament visible through the glass, per
+      docs/handoff/PHOTO-EDIT-REQUESTS.md) is out. In its place: a real DSLR
+      frame from the Ivory House shoot, unused anywhere else on the site
+      (Portfolio, its other consumer, is flag-disabled). Known defects
+      (dark left third, blown outer windows) are real but this is still a
+      genuine improvement over a phone photo. No untapped better candidate
+      exists in the current asset library — this is the best available. */}
   <RevealImage
-    src={leadImage}
-    alt="Banded roman shade and pleated drapery framing French doors, with a crystal chandelier overhead"
-    blurDataURL="data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBQCdASoYABUAPu1orlCppaQiqAqpMB2JZwAG0KCFeA8GvwPjvP6bHUT+YIQzyU7j0AD+FSHDV0ubeTAPHbf5413BYJW3pLc2ZHNK0MCBuh5vMwaNlvdw15DG9e1iBJcqwHR2FKUtXrkLqItBnK/DhKwBxjlP+OnZmgp6tjAHPHdy98FzAZDZkNeAJofae+wgRZ+DQT6E0ZUr/QTv/QAA"
+    src={photos['ivory-house-bay-window'].image}
+    alt={photos['ivory-house-bay-window'].alt}
+    blurDataURL={photos['ivory-house-bay-window'].blurDataURL}
     aspectRatio="16/9"
     sizes="100vw"
   />
