@@ -111,11 +111,16 @@ const isCurrent = (href: string) =>
     color: var(--ink);
   }
 
+  /* 44x44 hit area (20px icon + 0.75rem padding each side), not the 36x36
+     this used to be. The drawn icon is unchanged — only the tappable box
+     around it grew, to the 44px minimum every touch-target guideline agrees
+     on. The negative margin cancels the extra padding so the icon still lines
+     up optically with .wrap's inline edge. */
   .site-nav__toggle {
     color: var(--paper);
     display: block;
-    padding: 0.5rem;
-    margin-right: -0.5rem;
+    padding: 0.75rem;
+    margin-right: -0.75rem;
   }
   .site-nav[data-nav-transparent='false'] .site-nav__toggle,
   .site-nav.is-solid .site-nav__toggle {
@@ -133,14 +138,32 @@ const isCurrent = (href: string) =>
     overflow: hidden;
     transition: max-height var(--accordion-duration) var(--ease-accordion);
   }
+  /* Capped to what is actually on screen, not a flat 24rem. On a short
+     viewport (a phone in landscape, a small desktop window) a fixed 24rem
+     panel runs past the bottom edge, and with `overflow: hidden` above the
+     items down there are unreachable — the menu looks open but the last link
+     cannot be tapped. Scrolls instead of clipping when it does not fit, and
+     `overscroll-behavior: contain` keeps that scroll from chaining into the
+     page behind it. */
   .site-nav__panel.is-open {
-    max-height: 24rem;
+    max-height: min(24rem, calc(100vh - var(--nav-height)));
+    max-height: min(24rem, calc(100svh - var(--nav-height)));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
+  /* The inline padding matches `.wrap` exactly, and it has to be re-stated
+     here rather than inherited: the panel is `position: absolute` against
+     `.site-nav` (see the note near the top), which deliberately escapes
+     `.site-nav__inner`'s `.wrap` padding so the panel can go full-bleed. The
+     side effect was that the links inside it escaped that padding too and sat
+     hard against the viewport edge, while the wordmark directly above them
+     was inset — visible in any mobile screenshot with the menu open. Padding
+     the list, not the panel, keeps the panel's background full-bleed. */
   .site-nav__list {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem 0 1rem;
+    padding: 0.5rem clamp(1.25rem, 4vw, 3rem) 1rem;
   }
   .site-nav__panel .site-nav__list a {
     display: block;
@@ -167,7 +190,12 @@ const isCurrent = (href: string) =>
     .site-nav__toggle {
       display: none;
     }
-    .site-nav__panel {
+    /* `.is-open` is listed alongside the bare class deliberately: it is a
+       two-class selector and would otherwise out-specify this one-class rule
+       and drag the mobile panel's height cap and scroll container onto the
+       desktop row. */
+    .site-nav__panel,
+    .site-nav__panel.is-open {
       position: static;
       max-height: none;
       overflow: visible;

@@ -91,30 +91,40 @@ const rotatingQuotes = [
   },
 ];
 
-// Hero photograph — CORRECTED 2026-08-02 to
-// `hero/pleated-drapery-living-room-french-doors-pool-view.jpg`
-// (`photos['pleated-drapery']`), the wide full-room frame with the drapery
-// panel centred and the French doors opening onto the pool and patio. That
-// was a phone-camera shot from the earlier Collected Living Room / Stardust
-// Lane house — soft, low-contrast, per docs/handoff/PHOTO-EDIT-REQUESTS.md.
+// Hero photograph — history of this slot, most recent last:
+//   1. `hero/pleated-drapery-living-room-french-doors-pool-view.jpg`
+//      (`photos['pleated-drapery']`), set 2026-08-02. A phone-camera frame
+//      from the Collected Living Room / Stardust Lane house — soft and
+//      low-contrast, per docs/handoff/PHOTO-EDIT-REQUESTS.md.
+//   2. `photos['ivory-house-hero']` (`pinch-pleat-drapery-living-room-orb-
+//      chandelier.jpg`), a real DSLR frame from the Ivory House shoot. Tighter
+//      on the French doors; a fig leaf intrudes at bottom-right and a blown
+//      highlight runs down the right edge.
+//   3. **`photos['ivory-house-archway']` (`living-room-archway-drapery-orb-
+//      chandelier.jpg`), set 2026-08-28 on Sam's direct instruction — he
+//      supplied the frame itself, so this is the intended hero and not an
+//      inference from the file list.** Same room and same shoot as #2, pulled
+//      back through the columned archway so the whole room reads: both
+//      drapery panels, the French doors, the orb chandelier, and the seating.
+//      The archway's curve does the framing that a headline would otherwise
+//      have to do, which suits a hero that deliberately carries no text (8.1).
+//      It also loses #2's two defects — the fig leaf sits inside the frame as
+//      styling rather than intruding on the edge, and there is no blown right
+//      edge.
 //
-// **Swapped again, most recent session, on Sam's direct instruction: now
-// `photos['ivory-house-hero']`** (`pinch-pleat-drapery-living-room-orb-
-// chandelier.jpg`) — a real DSLR frame from the Ivory House shoot, not a
-// phone photo. This exact file was the very first homepage hero, before step
-// 10a's two swaps above; it has been sitting unused since. Known minor
-// defects, per the photo audit: a fig leaf intrudes at bottom-right and a
-// blown highlight runs down the right edge — both real but far less
-// distracting at full-bleed hero scale than the phone-camera softness of the
-// outgoing image.
+// Both `photos['pleated-drapery']` and `photos['ivory-house-hero']` remain in
+// use elsewhere (Collected Living Room's project lead, and Ivory House's own
+// gallery) — this swap only touches the homepage hero slot.
 //
-// `photos['pleated-drapery']` remains in use elsewhere (Collected Living
-// Room's own project lead) — this swap only touches the homepage hero slot.
+// Note the source file is portrait (1507x2000). HeroGallery crops it with
+// `object-fit: cover` to a full-bleed 100svh frame, so on desktop the top of
+// the arch and the foreground rug are what get trimmed; the room itself and
+// the chandelier stay centred at every viewport.
 const heroImages = [
   {
-    src: photos['ivory-house-hero'].image,
-    alt: photos['ivory-house-hero'].alt,
-    blurDataURL: photos['ivory-house-hero'].blurDataURL,
+    src: photos['ivory-house-archway'].image,
+    alt: photos['ivory-house-archway'].alt,
+    blurDataURL: photos['ivory-house-archway'].blurDataURL,
   },
 ];
 

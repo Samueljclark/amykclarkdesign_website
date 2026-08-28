@@ -26,68 +26,109 @@ window.addEventListener('unhandledrejection', (event) => {
 });
 
 /* ---- 6.3 Navigation: transparent over the hero, solid past 80vh. ----
-   `[data-nav]` carries `transition:persist`, so this runs once — but the
-   persisted state would go stale on navigation without a resync. `<body>`'s
-   `data-transparent-nav` isn't persisted, so `syncNavForPage()` re-reads it
-   plus `location.pathname` on `astro:after-swap`.
 
-   FIX (mobile hamburger sometimes unresponsive after navigating, reported
-   live during a demo): the toggle's click handling, the panel-link-closes-
-   panel handling, and the Escape handling used to be bound directly to the
-   specific toggle/panel button nodes queried once here, on the assumption
-   that `transition:persist` keeps those exact nodes (and therefore their
-   listeners) alive for the rest of the session. If that assumption ever
-   breaks for any reason — a persistence mismatch, a browser falling back to
-   a full page navigation, a bfcache restore — the toggle button silently has
-   no listener at all, and nothing brings it back, because `initNav()` itself
-   only ever runs once. All three are now delegated to `document` instead,
-   querying the toggle/panel fresh at the moment of the event rather than
-   closing over node references captured at load time. `document` itself is
-   never replaced, so these can't be silently dropped the way a listener on
-   the toggle node itself could be. */
+   FIX, 2026-08-28 — third attempt at the "mobile hamburger stops working
+   after you navigate" bug. The first two were reasoned about and shipped
+   unverified; this one was reproduced and measured in a running browser
+   first, which is the only reason the actual cause turned up.
+
+   TWO symptoms, ONE cause:
+     1. After navigating to any second page, tapping the hamburger did
+        nothing. The menu never opened again for the rest of the session.
+     2. On Home, after navigating away and back, the nav never went solid on
+        scroll — white nav type sitting on white page content.
+
+   Cause, measured live rather than assumed: **`<SiteNav transition:persist />`
+   in Base.astro is a silent no-op.** Astro only applies `transition:persist`
+   to a *component* if that component forwards the generated
+   `data-astro-transition-persist` attribute onto a real element, and
+   SiteNav.astro's `<header>` does not spread `Astro.props`. Verified in the
+   running page: after a soft navigation
+   `document.querySelectorAll('[data-astro-transition-persist]')` is EMPTY,
+   the previously-captured `<header>` reports `isConnected === false`, and the
+   visible `<header>` is a brand-new node. (SiteFooter has the same no-op
+   directive. Neither is fixed here — turning real persistence ON is a change
+   to how page transitions look, which is Sam's call, not a bug fix.)
+
+   So the header IS destroyed and rebuilt on every navigation, and every node
+   reference captured at startup goes stale one navigation in. The previous
+   fix moved the listeners onto `document` — right idea, and `document` really
+   does survive — but each handler still resolved the panel as
+   `nav.querySelector(...)` against the ONE `nav` captured when this function
+   ran. Measured consequence, exactly the reported bug: the click set
+   `is-open` on the DETACHED panel while the visible panel never moved, and
+   `aria-expanded` flipped on the live button, so the two also desynced and
+   the next tap set it back to false while still doing nothing. The scroll
+   handler wrote `is-solid` / `on-dark` to that same detached header, which is
+   symptom 2.
+
+   THE RULE THIS FUNCTION NOW FOLLOWS, and the one to keep if it is touched
+   again: **hold no element references.** `document` is the only thing closed
+   over, because it is the only thing never replaced. Every handler re-queries
+   from `document` at the moment of the event. That is correct whether the
+   header persists, is rebuilt, or comes back from bfcache — it no longer
+   depends on which, so it cannot silently break again if that answer
+   changes. */
+let navInitialised = false;
+
 function initNav() {
-  const nav = document.querySelector('[data-nav]');
-  if (!nav) return;
+  // Resolved fresh at every use, never cached — see the rule above.
+  const getNav = () => document.querySelector('[data-nav]');
+  const getToggle = () => document.querySelector('[data-nav-toggle]');
+  const getPanel = () => document.querySelector('[data-nav-panel]');
 
-  const navLinks = nav.querySelectorAll('.site-nav__list a[href]');
-
-  const closePanel = () => {
-    const toggle = nav.querySelector('[data-nav-toggle]');
-    const panel = nav.querySelector('[data-nav-panel]');
-    if (!toggle || !panel) return;
-    panel.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
+  const setPanelOpen = (open) => {
+    const panel = getPanel();
+    const toggle = getToggle();
+    if (!panel || !toggle) return;
+    panel.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
   };
 
+  const closePanel = () => setPanelOpen(false);
+  const isPanelOpen = () => !!getPanel()?.classList.contains('is-open');
+
   const threshold = () => window.innerHeight * 0.8;
-  let onScroll = null;
+
+  // A named, stable function so the add/remove pair below always matches, and
+  // so a double-add is deduped by the browser rather than stacking listeners.
+  const applyScrollState = () => {
+    const nav = getNav();
+    if (!nav) return;
+    const solid = window.scrollY > threshold();
+    nav.classList.toggle('is-solid', solid);
+    // .on-dark: the --indigo -> --paper contrast fallback (tokens.css).
+    nav.classList.toggle('on-dark', !solid);
+  };
+
+  let scrollBound = false;
 
   const syncNavForPage = () => {
+    const nav = getNav();
+    if (!nav) return;
+
     closePanel();
 
     const transparent = document.body.dataset.transparentNav === 'true';
     nav.dataset.navTransparent = transparent ? 'true' : 'false';
 
-    if (onScroll) {
-      window.removeEventListener('scroll', onScroll);
-      onScroll = null;
+    if (scrollBound) {
+      window.removeEventListener('scroll', applyScrollState);
+      scrollBound = false;
     }
 
     if (transparent) {
-      onScroll = () => {
-        const solid = window.scrollY > threshold();
-        nav.classList.toggle('is-solid', solid);
-        // .on-dark: the --indigo -> --paper contrast fallback (tokens.css).
-        nav.classList.toggle('on-dark', !solid);
-      };
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive: true });
+      applyScrollState();
+      window.addEventListener('scroll', applyScrollState, { passive: true });
+      scrollBound = true;
     } else {
       nav.classList.remove('is-solid', 'on-dark');
     }
 
+    // Re-queried per page: with the header rebuilt each navigation these are
+    // new <a> nodes every time, and the set changes when a nav flag flips.
     const currentPath = window.location.pathname;
-    navLinks.forEach((link) => {
+    nav.querySelectorAll('.site-nav__list a[href]').forEach((link) => {
       const href = link.getAttribute('href');
       const isCurrent = !!href && (currentPath === href || currentPath.startsWith(`${href}/`));
       link.classList.toggle('is-current', isCurrent);
@@ -100,31 +141,55 @@ function initNav() {
   };
 
   syncNavForPage();
+
+  // Guarded so the delegated listeners below can never be registered twice,
+  // even if some future caller runs initNav() again on a soft navigation the
+  // way the other init functions are run.
+  if (navInitialised) return;
+  navInitialised = true;
+
   document.addEventListener('astro:after-swap', syncNavForPage);
 
-  // One delegated listener covers the toggle button and every link inside
-  // the panel, for the whole life of the page — see the fix note above.
+  // One delegated listener covers the toggle, every link inside the panel,
+  // and tapping away from an open menu.
   document.addEventListener('click', (event) => {
-    const toggle = event.target.closest('[data-nav-toggle]');
-    if (toggle) {
-      const panel = nav.querySelector('[data-nav-panel]');
-      if (!panel) return;
-      const open = panel.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(open));
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    if (target.closest('[data-nav-toggle]')) {
+      setPanelOpen(!isPanelOpen());
       return;
     }
-    if (event.target.closest('[data-nav-panel] a')) {
+    if (target.closest('[data-nav-panel] a')) {
+      closePanel();
+      return;
+    }
+    // Tapping anywhere else while the menu is open closes it. Without this the
+    // panel covers the top of the page and the only way out is the toggle
+    // itself — on a phone that reads as the menu being stuck.
+    if (isPanelOpen() && !target.closest('[data-nav]')) {
       closePanel();
     }
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
-    const panel = nav.querySelector('[data-nav-panel]');
-    if (!panel || !panel.classList.contains('is-open')) return;
+    if (event.key !== 'Escape' || !isPanelOpen()) return;
     closePanel();
-    nav.querySelector('[data-nav-toggle]')?.focus();
+    getToggle()?.focus();
   });
+
+  // Crossing into the desktop row leaves `is-open` and aria-expanded set on a
+  // control that is now display:none; coming back to a narrow width then shows
+  // the menu already open without anyone asking for it.
+  const desktopRow = window.matchMedia('(min-width: 900px)');
+  const onBreakpoint = (event) => {
+    if (event.matches) closePanel();
+  };
+  if (desktopRow.addEventListener) {
+    desktopRow.addEventListener('change', onBreakpoint);
+  } else {
+    desktopRow.addListener(onBreakpoint); // Safari < 14
+  }
 }
 
 /* ---- 6.2 Shade reveal: fires once per element, siblings staggered 90ms. ---- */
