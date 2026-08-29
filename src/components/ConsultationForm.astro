@@ -222,6 +222,33 @@ const referralSources = [
     </p>
   </div>
 
+  {/* ---- Photos. Reported 2026-08-29: two photos were submitted, one arrived.
+
+       Not a markup bug — a Netlify Forms limitation, confirmed in their own
+       docs (docs.netlify.com/manage/forms/setup/): "Only one file upload per
+       field is supported. For multiple file uploads, use multiple fields."
+       The browser posts every selected file under the one `photos` name and
+       Netlify keeps exactly one of them. `multiple` on a single input can
+       never deliver more than one file to Netlify, however it is written.
+
+       So there are now four REAL, separately-named file inputs. They must
+       exist in the built HTML rather than be created at runtime, because
+       Netlify detects a form's fields by parsing the deployed markup at build
+       time — inputs injected by JS would never be registered, and their files
+       would be dropped exactly the way the second photo was.
+
+       The single visible picker is kept: the script below moves each selected
+       file into its own slot, so choosing several photos at once still works
+       the way it looks like it should. Without JS the visible input still
+       submits one file, which is today's behaviour and no worse.
+
+       Two other Netlify limits from the same page, both of which bite here:
+       the whole POST is capped at 8 MB and uploads time out after 30 seconds.
+       Modern phone photos run 2-5 MB each, so two of them can exceed the cap
+       and fail the ENTIRE submission — name, email, budget and all, not just
+       the photos. That is a worse failure than the one being fixed, so the
+       script also holds the total under the cap rather than letting a big
+       selection silently sink the whole inquiry. ---- */}
   <p class="field consultation-form__field consultation-form__field--wide">
     <label class="type-label field__label" for="photos">
       Photos <span class="field__optional">Optional</span>
@@ -232,11 +259,36 @@ const referralSources = [
       name="photos"
       multiple
       accept="image/*"
-      aria-describedby="photos-hint"
+      aria-describedby="photos-hint photos-status"
+      data-photo-picker
     />
+
+    {/* The real upload fields. `photo-1` carries the first photo once the
+        script takes over (at which point the visible picker above loses its
+        `name` so nothing is posted twice). Hidden from view and from the tab
+        order — the visible picker is the only control anyone interacts
+        with — but still submitted, which is what matters. */}
+    <span class="consultation-form__photo-slots" data-photo-slots>
+      <input type="file" name="photo-1" tabindex="-1" aria-hidden="true" data-photo-slot />
+      <input type="file" name="photo-2" tabindex="-1" aria-hidden="true" data-photo-slot />
+      <input type="file" name="photo-3" tabindex="-1" aria-hidden="true" data-photo-slot />
+      <input type="file" name="photo-4" tabindex="-1" aria-hidden="true" data-photo-slot />
+    </span>
+
     <span id="photos-hint" class="field__hint">
       Photographs of the room help more than anything else you can send.
     </span>
+    {/* DRAFT COPY - NEEDS REWRITE
+        Live region, written by the script: confirms how many photos are
+        attached, and says so plainly when some were left out because of the
+        count or the size cap. Empty until someone chooses a file. */}
+    <span
+      id="photos-status"
+      class="field__hint consultation-form__photo-status"
+      role="status"
+      aria-live="polite"
+      data-photo-status
+    ></span>
   </p>
 
   <!-- Added 2026-08-05. Amy asks this by hand on every discovery call: what
@@ -299,10 +351,102 @@ const referralSources = [
     });
   }
 
+  /* ---- Photos: one picked file per Netlify field. See the long note above
+     the markup for why this is necessary (Netlify stores ONE file per field,
+     so `multiple` on a single input can only ever deliver one).
+
+     This moves each selected file into its own real, statically-declared
+     input, and takes the `name` off the visible picker so the same file is
+     never posted twice under two different fields.
+
+     It stays inside the 8 MB request cap on purpose. Going over it does not
+     drop the photos — it fails the whole submission, losing the name, email
+     and budget too, so silently accepting 12 MB of phone photos would trade
+     the reported bug for a much worse one. Files that do not fit are left off
+     and the status line says so, rather than the form appearing to accept
+     them and then failing at submit. ---- */
+  const MAX_PHOTOS = 4;
+  // 7 MB, not 8: the rest of the form (and multipart overhead) shares the cap.
+  const MAX_TOTAL_BYTES = 7 * 1024 * 1024;
+
+  function initPhotoUpload() {
+    const picker = document.querySelector('[data-photo-picker]');
+    if (!picker || picker.dataset.photoBound === 'true') return;
+
+    // Without DataTransfer there is no way to write to a file input, so leave
+    // the native single-file fallback exactly as it is rather than breaking it.
+    if (typeof DataTransfer === 'undefined') return;
+
+    const slots = Array.from(document.querySelectorAll('[data-photo-slot]'));
+    const status = document.querySelector('[data-photo-status]');
+    if (!slots.length) return;
+
+    picker.dataset.photoBound = 'true';
+    // From here the slots are the fields that actually carry the files, so the
+    // picker must stop being a submitted field of its own.
+    picker.removeAttribute('name');
+
+    const fileListOf = (files) => {
+      const dt = new DataTransfer();
+      files.forEach((file) => dt.items.add(file));
+      return dt.files;
+    };
+
+    const describe = (kept, overCount, overSize) => {
+      if (!kept) return '';
+      const noun = kept === 1 ? 'photo' : 'photos';
+      let line = `${kept} ${noun} attached.`;
+      if (overCount) line += ` Only the first ${MAX_PHOTOS} can be sent through this form.`;
+      if (overSize) {
+        line +=
+          ' The rest were too large to send together — email them to Amy and she will add them to your inquiry.';
+      }
+      return line;
+    };
+
+    picker.addEventListener('change', () => {
+      const picked = Array.from(picker.files || []);
+      slots.forEach((slot) => {
+        slot.files = fileListOf([]);
+      });
+
+      if (!picked.length) {
+        if (status) status.textContent = '';
+        return;
+      }
+
+      const withinCount = picked.slice(0, MAX_PHOTOS);
+      const kept = [];
+      let total = 0;
+      let overSize = false;
+
+      for (const file of withinCount) {
+        if (total + file.size > MAX_TOTAL_BYTES) {
+          overSize = true;
+          continue;
+        }
+        total += file.size;
+        kept.push(file);
+      }
+
+      kept.forEach((file, i) => {
+        if (slots[i]) slots[i].files = fileListOf([file]);
+      });
+
+      if (status) {
+        status.textContent = describe(kept.length, picked.length > MAX_PHOTOS, overSize);
+      }
+    });
+  }
+
   // Same two-call pattern as motion.js: run now for the true first load, and
   // again after each ClientRouter swap, since <main> is replaced.
   initCheckboxGroups();
-  document.addEventListener('astro:after-swap', initCheckboxGroups);
+  initPhotoUpload();
+  document.addEventListener('astro:after-swap', () => {
+    initCheckboxGroups();
+    initPhotoUpload();
+  });
 </script>
 
 <style>
@@ -310,6 +454,19 @@ const referralSources = [
      styles live in global.css so every form on the site matches. */
   .consultation-form {
     max-width: 44rem;
+  }
+
+  /* The four real upload fields. Hidden rather than removed — a
+     `display: none` file input still posts its file, which is the whole
+     point, and Netlify still sees them when it parses the built HTML. */
+  .consultation-form__photo-slots {
+    display: none;
+  }
+
+  /* Only takes up space once the script writes something into it, so an
+     untouched form has no stray gap under the photo field. */
+  .consultation-form__photo-status:empty {
+    display: none;
   }
 
   .consultation-form__honeypot {

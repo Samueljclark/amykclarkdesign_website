@@ -164,6 +164,18 @@ const FIELD_ORDER = [
 
 const IGNORED_FIELDS = new Set(['bot-field', 'form-name', 'photos']);
 
+/* The upload fields, added 2026-08-29 when the photo field was split into four.
+   Netlify stores one file per field, so a single `multiple` input could only
+   ever deliver one photo (their docs: "Only one file upload per field is
+   supported") — the form now posts `photo-1` through `photo-4`.
+
+   Matched by pattern rather than listed, so adding a fifth slot to the form
+   does not silently start printing a raw upload URL as an `Other: photo-5` row
+   in Amy's email. `photos` stays in the set above: it is the name the visible
+   picker still carries when JS is unavailable, and it is also the field name
+   on every submission taken before this change. */
+const isPhotoField = (key) => key === 'photos' || /^photo-\d+$/.test(key);
+
 const escapeHtml = (v) =>
   String(v)
     .replace(/&/g, '&amp;')
@@ -282,7 +294,7 @@ export const handler = async (event) => {
       if (value) rows.push([label, value]);
     }
     for (const [key, value] of Object.entries(data)) {
-      if (seen.has(key)) continue;
+      if (seen.has(key) || isPhotoField(key)) continue;
       const v = asText(value);
       if (v) rows.push([`Other: ${key}`, v]);
     }
