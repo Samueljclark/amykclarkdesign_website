@@ -2,6 +2,10 @@
 // Vanilla JS, no library (DESIGN_BRIEF.md 6). Accordion (6.5) still lands
 // with the page that uses it. Everything below is gated on 6.8.
 
+// Image stages (Home's service hover, /services' scroll-synced image) carry
+// their own lifecycle; see that file.
+import './image-stage.js';
+
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---- View Transitions error suppression. Not a motion effect — page-

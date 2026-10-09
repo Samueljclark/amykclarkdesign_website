@@ -15,26 +15,24 @@
 //
 // THE HOVER STAGE is an interpretation call, flagged in BUILD-PLAN.md. The
 // brief has no spec for it; the closest precedent is 6.4's portfolio hover.
-// Hovering or keyboard-focusing a row shows that service's photograph in the
-// right-hand space. Because the rows sit at deliberately varied indents, the
-// photo cannot live inline per row — it is one fixed stage in the section's
-// second column that swaps which layer is opaque.
+// Hovering, keyboard-focusing, or tapping a row shows that service's
+// photograph in the right-hand space. Because the rows sit at a deliberate
+// indent, the photo cannot live inline per row — it is one fixed stage in the
+// section's second column that swaps which layer is opaque.
 //
-// Three gates, and all three matter:
-//   1. `(hover: hover)` — touch devices get no stage at all, rather than a
-//      half-working hover state. The text-only presentation already works
-//      there.
-//   2. `(min-width: 1200px)` — below that the rows' own indents plus their
-//      jumbo names consume the width the stage would need, and the two would
-//      collide.
-//   3. `(prefers-reduced-motion: no-preference)` on the swap rules only. Under
-//      reduce, the stage still renders but is frozen on the first service's
-//      photo: a static image, never a cut and never a partial crossfade.
-//
-// The swap is pure CSS (`:has()` on the section) — no JS, so there is nothing
-// to re-init on a soft navigation and nothing that can leak a listener.
-// Keyboard parity is `:focus-visible` alongside `:hover`, the same pattern
-// variant C used.
+// REWORKED 2026-10-08 (COPY-PASS-V1, Task 2). The swap used to be pure CSS
+// (`:has(:hover)`), with three gates. Two of them were the bug:
+//   - every swap rule sat inside `(prefers-reduced-motion: no-preference)`,
+//     so with macOS Reduce Motion on the stage froze on the first photo. That
+//     is why it worked on one Mac and not another. Reduced motion now removes
+//     only the crossfade; the swap always happens.
+//   - `(hover: hover)` gave touch screens no stage at all, and the rows were
+//     not focusable, so keyboard users had nothing either.
+// The swap is now driven by src/scripts/image-stage.js (hover, focus, tap),
+// which /services' scroll-synced stage shares. The one remaining gate is
+// width: the stage shows from 1024px up, below which the rows take the full
+// width and the section is text only, as it always has been on phones.
+// Without JS the stage still renders, resting on the first photo.
 
 import { Picture } from 'astro:assets';
 import { photos } from '../data/photos';
@@ -61,6 +59,7 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
 <section
   class:list={['section wrap service-list', { 'scroll-ease-target': scrollEaseTarget }]}
   aria-labelledby="service-list-heading"
+  data-image-stage="hover"
 >
   <h2
     id="service-list-heading"
@@ -75,13 +74,13 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
         link to are gone, consolidated into this one overview. `.service-
         list__link` is now a plain wrapping span, not an anchor — no href, no
         navigation, no `.link-underline` (that device signals "this is a
-        link," which would no longer be true). The hover-image reveal below
-        still responds to `:hover`/`:has()`, which do not require an
-        interactive element; keyboard users no longer get a per-row focus
-        target here since there is nothing to activate. */}
-    {services.map((service) => (
+        link," which would no longer be true).
+        `tabindex="0"` (2026-10-08, COPY-PASS-V1 Task 2): still not links and
+        still nothing to activate, but keyboard users get the same photo swap
+        a mouse does, so each row is a focus stop that shows its photograph. */}
+    {services.map((service, index) => (
       <li class="service-list__item">
-        <span class="service-list__link">
+        <span class="service-list__link" tabindex="0" data-stage-trigger={index}>
           <span class="service-list__name-row">
             <span class="type-display service-list__name">{service.name}</span>
           </span>
@@ -103,7 +102,7 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
       {services.map((service) => {
         const photo = photos[service.photo];
         return (
-          <div class="service-list__layer">
+          <div class="service-list__layer" data-stage-layer>
             <div
               class="service-list__layer-blur"
               style={`background-image:url(${photo.blurDataURL})`}
@@ -116,7 +115,7 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
               formats={['avif', 'webp']}
               fallbackFormat="jpg"
               widths={[480, 768, 1200]}
-              sizes="(min-width: 1200px) 37vw, 1px"
+              sizes="(min-width: 1024px) 37vw, 1px"
               loading="lazy"
               class="service-list__layer-img"
               {...(service.objectPosition
@@ -195,7 +194,7 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
     overflow: hidden;
   }
 
-  @media (hover: hover) and (min-width: 1200px) {
+  @media (min-width: 1024px) {
     /* Two children, auto-placed: the list takes column 1, the stage column 2.
        The list column is deliberately narrower than the section so the rows'
        own indents resolve against it and leave the right-hand space clear.
@@ -293,45 +292,35 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
     }
   }
 
-  /* ---- The swap itself. Motion, therefore gated (6.8, and the brief's rule
-     9: every animation has a prefers-reduced-motion off-switch). Under reduce
-     none of these rules exist, so the stage holds the first photo statically
-     — no cut, no partial crossfade, nothing to interrupt.
+  /* ---- The swap itself (reworked 2026-10-08, COPY-PASS-V1 Task 2).
+     image-stage.js sets `data-stage-active` on the section and `.is-active`
+     on one layer. Until it does (no JS), the first layer rests in place via
+     the `:first-child` rule above. These rules are deliberately NOT inside a
+     reduced-motion query: under reduce the photo still changes, it just cuts
+     instead of fading. Only the transition below is motion. ---- */
+  .service-list[data-stage-active] .service-list__layer {
+    opacity: 0;
+  }
+  .service-list[data-stage-active] .service-list__layer.is-active {
+    opacity: 1;
+  }
 
-     Crossfade duration reuses 6.4's portfolio-hover token, which is the
-     closest thing in the brief to a spec for this.
-
-     `:focus-visible` variants removed 2026-08-19 (Task 1, post-Meeting-4
-     pass): `.service-list__link` is a plain `<span>` now, not an anchor, so
-     it is never a focus target and the selector could not match anything.
-     This stage is decorative and mouse-hover-only now, matching the row
-     text itself, which is no longer interactive either. ---- */
-  @media (hover: hover) and (min-width: 1200px) and (prefers-reduced-motion: no-preference) {
+  /* Crossfade duration reuses 6.4's portfolio-hover token, the closest thing
+     in the brief to a spec for this. Rule 9 / 6.8: the fade is the motion,
+     so it is the only part with a reduced-motion off-switch. */
+  @media (prefers-reduced-motion: no-preference) {
     .service-list__layer {
       transition: opacity var(--hover-image-duration) ease-out;
     }
+  }
 
-    /* Any active row clears the resting default first... */
-    .service-list:has(.service-list__link:hover) .service-list__layer {
-      opacity: 0;
-    }
-
-    /* ...then the matching layer comes up. */
-    .service-list:has(.service-list__item:nth-child(1) .service-list__link:hover)
-      .service-list__layer:nth-child(1) {
-      opacity: 1;
-    }
-    .service-list:has(.service-list__item:nth-child(2) .service-list__link:hover)
-      .service-list__layer:nth-child(2) {
-      opacity: 1;
-    }
-    .service-list:has(.service-list__item:nth-child(3) .service-list__link:hover)
-      .service-list__layer:nth-child(3) {
-      opacity: 1;
-    }
-    .service-list:has(.service-list__item:nth-child(4) .service-list__link:hover)
-      .service-list__layer:nth-child(4) {
-      opacity: 1;
-    }
+  /* The rows are focus stops now (see the markup). Same ring as the form
+     fields, the site's only other custom focus indicator. */
+  .service-list__link {
+    display: block;
+  }
+  .service-list__link:focus-visible {
+    outline: 2px solid var(--indigo);
+    outline-offset: 0.5rem;
   }
 </style>
