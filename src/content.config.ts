@@ -70,6 +70,30 @@ const pages = defineCollection({
     lead: z.array(z.string()),
     faqs: z.array(z.object({ title: z.string(), content: z.string() })).optional(),
     steps: z.array(z.object({ title: z.string(), body: z.string() })).optional(),
+    // Added 2026-10-08 (COPY-PASS-V1, Kristen copy pass). All optional, so
+    // no existing page changes shape.
+    //   lede     — the single line directly under the H1 (Services).
+    //   sections — headed copy blocks with an optional one-line lede and the
+    //              photograph that goes with them (Services). `inline: false`
+    //              keeps a section's photo on the sticky stage only.
+    //   faqIntro — the paragraph between "Common Questions" and the first
+    //              question (Contact).
+    //   closing  — a closing heading and paragraph above the page's CTA
+    //              (Process, Contact).
+    lede: z.string().optional(),
+    sections: z
+      .array(
+        z.object({
+          heading: z.string(),
+          lede: z.string().optional(),
+          body: z.array(z.string()),
+          photo: z.string().optional(),
+          inline: z.boolean().default(true),
+        })
+      )
+      .optional(),
+    faqIntro: z.string().optional(),
+    closing: z.object({ heading: z.string(), body: z.array(z.string()) }).optional(),
   }),
 });
 
