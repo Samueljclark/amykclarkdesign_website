@@ -1,5 +1,22 @@
 ---
-// About (DESIGN_BRIEF.md 5.4). Five required parts, in the brief's order:
+// About (DESIGN_BRIEF.md 5.4).
+//
+// REORDERED 2026-10-08 (COPY-PASS-V1, Task 6), Kristen's copy pass:
+//   a. Amy's headshot + the new About copy (headshot left, copy right from
+//      900px, the same breakpoint and grid idea as Home's About block;
+//      headshot above copy below 900px).
+//   b. Studio — kept, at Sam's direction, overriding Kristen's "headshot
+//      only" note. Amy's card is removed because her headshot now leads the
+//      page. Sam and Kelsee unchanged; Reaghan Connelly's card is gated (see
+//      REAGHAN below).
+//   c. The "Let's Get Started" ContactBand.
+// Hidden, not deleted: the ivory bay-window lead image (moving to /process,
+// Task 7), the workroom stitching close-up, and all of the previous body copy
+// (now src/content/pages/_hidden/about-before-copy-pass-v1.md). The two
+// images are commented out in the markup below.
+//
+// Notes below this line describe the page as it was before that pass.
+// Five required parts, in the brief's order:
 // Amy's story, the origin section anchored to her grandmother's attic, the
 // invention framing, the fabric lines, and the Studio row of three portraits.
 //
@@ -56,23 +73,41 @@ import { photos } from '../data/photos';
 import originImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
 import samPortrait from '../assets/images/team/sam-clark.jpg';
 import kelseePortrait from '../assets/images/team/kelsee-etmans.jpg';
+import type { ImageMetadata } from 'astro';
 
 const entry = await getEntry('pages', 'about');
 const { Content } = await render(entry);
-const { seoTitle, description, eyebrow, title, lead } = entry.data;
+const { seoTitle, description, eyebrow, title, lede, lead } = entry.data;
 
-const studio = [
-  {
-    // Sourced from photos.ts as of 2026-08-02: this portrait gained a second
-    // consumer (Home's About section), so its alt text and blur-up string
-    // live in one place rather than two copies that can drift.
-    image: photos['amy-portrait'].image,
-    alt: photos['amy-portrait'].alt,
-    name: 'Amy Clark',
-    role: 'Founder',
-    blurDataURL: photos['amy-portrait'].blurDataURL,
-  },
-  {
+/* ---- REAGHAN (COPY-PASS-V1, Task 6). ----
+   Her card renders only when BOTH of these are true at build time:
+     1. src/assets/images/team/reaghan-connelly.jpg exists (same folder and
+        naming as the other Studio portraits), and
+     2. REAGHAN_CONNELLY_TITLE below is not an empty string.
+   Until then the Studio row shows Sam and Kelsee only: no empty slot, no
+   placeholder, no broken image. Adding the photo, setting the title, and
+   rebuilding is the whole job. `import.meta.glob` resolves to an empty
+   object when the file is missing, so a missing photo is not a build error. */
+const REAGHAN_CONNELLY_TITLE = '';
+const reaghanPhoto = Object.values(
+  import.meta.glob<{ default: ImageMetadata }>('../assets/images/team/reaghan-connelly.jpg', {
+    eager: true,
+  })
+)[0]?.default;
+const reaghan =
+  reaghanPhoto && REAGHAN_CONNELLY_TITLE.trim()
+    ? {
+        image: reaghanPhoto,
+        alt: `Reaghan Connelly, ${REAGHAN_CONNELLY_TITLE.trim().toLowerCase()}`,
+        name: 'Reaghan Connelly',
+        role: REAGHAN_CONNELLY_TITLE.trim(),
+      }
+    : null;
+
+// Amy's card was removed from this list 2026-10-08 (Task 6): her headshot
+// leads the page now, and the same photograph should not appear twice. It is
+// still `photos['amy-portrait']`, used directly in the intro below.
+const sam = {
     image: samPortrait,
     alt: 'Sam Clark, web development and digital strategy',
     name: 'Sam Clark',
@@ -81,16 +116,26 @@ const studio = [
     lift: true,
     blurDataURL:
       'data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADQBACdASoYAB4APwFqrU8rJiQiMAgBYCAJbACxHyGBlqVK7OZmAQYYc9pSMHaUAAD+zXxNENZ7PTGw6BXWhP3ISh6Sc+CivpasODVB5wfj+9w3pdDk5dlsVhWpamyDJvS1Q9FlRbFHkJQW1pdJx2Bu8g0HEJJpD8HKl5ZMBe93XZJLp0YhaMTxSHWnYfI3MGsZUFEZmi5Vd/+uEihbuAo6/EjYv2qJMgOKT4gA',
-  },
-  {
+  };
+const kelsee = {
     image: kelseePortrait,
     alt: 'Kelsee Etmans, photographer',
     name: 'Kelsee Etmans',
     role: 'Photographer',
     blurDataURL:
       'data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAAAwBQCdASoYABgAPwFysFIrJqSiqAqpYCAJbACw7A0WLHyRVpL4BaXhAkkV935PTW44AAD+6/6olE6FqPSaMKIkbh30v3yxPKOvGzajfQUvitW7unMiry65YrDZa8lI1QidPuVXCKT0bbQNe129zeDnljMVu4fqAGu9AneiawptnBT1LhNGdOzz2d7moLaxf1cXRqyDZXR5+MAO0iREXvQac6y/NHsD7MN0mhd/csj3wVTNS6CuKjLyhO1U1C55x2siTpejwcWbn4/cZmAAAA==',
-  },
-];
+  };
+
+// Order: Sam, then Reaghan (once she qualifies), then Kelsee.
+type StudioPerson = {
+  image: ImageMetadata;
+  alt: string;
+  name: string;
+  role: string;
+  lift?: boolean;
+  blurDataURL?: string;
+};
+const studio: StudioPerson[] = [sam, ...(reaghan ? [reaghan] : []), kelsee];
 ---
 
 <Base
@@ -103,22 +148,35 @@ const studio = [
     { name: 'About', href: '/about' },
   ]}
 >
-  <section class="section wrap text-page__intro">
-    <p class="type-label text-page__eyebrow">{eyebrow}</p>
-    <h1 class="type-display text-page__heading">{title}</h1>
-    {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
+  <section class="section wrap about-intro">
+    <div class="about-intro__grid">
+      <figure class="about-intro__portrait">
+        <RevealImage
+          src={photos['amy-portrait'].image}
+          alt={photos['amy-portrait'].alt}
+          blurDataURL={photos['amy-portrait'].blurDataURL}
+          aspectRatio="4/5"
+          sizes="(min-width: 900px) 24rem, 90vw"
+          loading="eager"
+        />
+      </figure>
+
+      <div class="about-intro__copy">
+        <p class="type-label text-page__eyebrow">{eyebrow}</p>
+        <h1 class="type-display text-page__heading">{title}</h1>
+        {lede && <p class="type-label about-intro__lede">{lede}</p>}
+        {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
+        <div class="prose about-intro__body">
+          <Content />
+        </div>
+      </div>
+    </div>
   </section>
 
-  {/* Swapped most recent session, Sam's direct instruction ("soooo ugly"):
-      the banded-roman-shade shot (a phone-camera photo of the Collected
-      Living Room / Stardust Lane house — soft, low-contrast, plus an
-      American flag and a garden ornament visible through the glass, per
-      docs/handoff/PHOTO-EDIT-REQUESTS.md) is out. In its place: a real DSLR
-      frame from the Ivory House shoot, unused anywhere else on the site
-      (Portfolio, its other consumer, is flag-disabled). Known defects
-      (dark left third, blown outer windows) are real but this is still a
-      genuine improvement over a phone photo. No untapped better candidate
-      exists in the current asset library — this is the best available. */}
+  {/* HIDDEN 2026-10-08 (COPY-PASS-V1, Task 6), not deleted. The ivory
+      bay-window image moves to /process (Task 7); the stitching close-up is
+      off the page. Restore by uncommenting.
+
   <RevealImage
     src={photos['ivory-house-bay-window'].image}
     alt={photos['ivory-house-bay-window'].alt}
@@ -127,19 +185,14 @@ const studio = [
     sizes="100vw"
   />
 
-  <section class="section wrap">
-    <div class="prose">
-      <Content />
-    </div>
-  </section>
-
   <RevealImage
     src={originImage}
     alt="Amy's hands stitching a check-fabric ottoman on the workroom's gridded cutting table"
-    blurDataURL="data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQBQCdASoUABsAPtFWpk2oJCOiMBgIAQAaCUAWI+0YM6xTv/HqJLEODA5eoh4khh+AAP6A1FH/ibcZQuuEMg5Bb9qgUg+8MTeydH5d/BbmERZiGbJsiLRQ2+PUcm+DG+P8NtdDhDZFf1313HfX7lH3WkmsrO1kjqlzEbGk6qNAbfKC94avLNB3OZpndDKKEQGcZKeQXRVS3MhjogZaVWt6+6UBmAAAAAA="
+    blurDataURL="data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQBQCdASoUABsAPtFWpk2oJCOiMBgIAQAaCUAWI+0YM6xTv/HqJLEODA5eoh4khh+AAP6A1FH/ibcZQuuEMg5Bb9qgUg+8MTeydH5d/BbmERZiGbJsiLRQ2+PUcm+DG+P8NtdDhDZFf1313HfX7lH3WkmsrO1kjqlzEbGk6qNAbfKC94avLNB3OZpndDKKEQGcZKeQXRVS3MhjogZaVWt6+6UBmAAAA="
     aspectRatio="16/9"
     sizes="100vw"
   />
+  */}
 
   <section class="section wrap studio" aria-labelledby="studio-heading">
     <h2 id="studio-heading" class="type-display studio__heading">Studio</h2>
@@ -168,6 +221,37 @@ const studio = [
 </Base>
 
 <style>
+  /* ---- Headshot + copy (COPY-PASS-V1, Task 6). Portrait left, copy right
+     from 900px, the same breakpoint and column logic as Home's About block
+     (index.astro's `.differentiator__grid`), mirrored. DOM order is portrait
+     then copy, which is also the mobile order Task 6 asks for. ---- */
+  .about-intro__grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .about-intro__portrait {
+    max-width: 24rem;
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    .about-intro__grid {
+      grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+  }
+
+  .about-intro__lede {
+    margin-top: 1.25rem;
+    line-height: 1.7;
+  }
+
+  .about-intro__body {
+    margin-top: 1rem;
+  }
+
   /* 5.4.5: "Three portraits in a row. Name in Label style, role beneath in
      --ink-muted. No biography paragraphs. Section heading is Studio, not Our
      Team." A plain three-up row, not a card grid — no border, no shadow, no
@@ -182,6 +266,9 @@ const studio = [
     gap: 2.5rem;
   }
 
+  /* Three tracks whether there are two cards or three (Reaghan's is gated,
+     see the frontmatter), so a card is the same size either way and two
+     cards simply leave the row short rather than growing to fill it. */
   @media (min-width: 768px) {
     .studio__list {
       grid-template-columns: repeat(3, 1fr);
