@@ -42,3 +42,31 @@
   from = "/services/soft-furnishings"
   to = "/services"
   status = 301
+
+# Blinds landing page and Design Journal saved for v2 (COPY-PASS-V1, Task 1,
+# 2026-10-08). Routes live under src/pages/_disabled/ behind FLAGS in
+# src/config/flags.ts. Delete the matching block here when either returns.
+[[redirects]]
+  from = "/blinds"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/blinds/"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/journal"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/journal/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/journal/*"
+  to = "/"
+  status = 301

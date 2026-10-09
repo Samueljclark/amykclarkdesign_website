@@ -16,4 +16,14 @@ export const FLAGS = {
   // flip this to `true` and move `src/pages/_disabled/portfolio/` back to
   // `src/pages/portfolio/`. Do not re-enable without Sam's explicit request.
   portfolioEnabled: false,
+
+  // Saved for v2 (COPY-PASS-V1, Task 1, 2026-10-08), same pattern as the
+  // portfolio: routes moved to `src/pages/_disabled/blinds.astro` and
+  // `src/pages/_disabled/journal/` rather than deleted, links filtered out in
+  // nav.ts and the thank-you page, and 301s in netlify.toml (/blinds ->
+  // /services, /journal/* -> /). To restore either: flip the flag, move the
+  // route back under `src/pages/` (fixing the one extra `../` on its imports),
+  // and delete its redirect block. Do not re-enable without Sam's request.
+  blindsEnabled: false,
+  journalEnabled: false,
 } as const;

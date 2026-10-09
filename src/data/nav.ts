@@ -56,9 +56,16 @@ const allNavItems = [
   { label: 'Contact', href: '/contact' },
 ];
 
-export const navItems = allNavItems.filter(
-  (item) => item.href !== '/portfolio' || FLAGS.portfolioEnabled
-);
+// Blinds and Design Journal gated the same way (COPY-PASS-V1, Task 1): saved
+// for v2. With all three flags off the list is Services, About, Process,
+// Contact.
+const enabledByFlag: Record<string, boolean> = {
+  '/portfolio': FLAGS.portfolioEnabled,
+  '/blinds': FLAGS.blindsEnabled,
+  '/journal': FLAGS.journalEnabled,
+};
+
+export const navItems = allNavItems.filter((item) => enabledByFlag[item.href] ?? true);
 
 // Footer-only location pages (5.1, section 4): search-only pages, deliberately
 // not in the main nav above.
