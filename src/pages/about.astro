@@ -304,4 +304,12 @@ const studio: StudioPerson[] = [sam, ...(reaghan ? [reaghan] : []), kelsee];
     margin-top: 0.5rem;
     color: var(--ink-muted);
   }
+  /* Image-first below 900px, and below 768px the section's 72px top padding
+     only just equals the fixed nav's height, which left the photo pressed
+     against the nav. A text-first page reads fine flush; a photo does not. */
+  @media (max-width: 767px) {
+    .about-intro {
+      padding-top: calc(var(--space-section) + 1.5rem);
+    }
+  }
 </style>

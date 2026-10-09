@@ -263,6 +263,17 @@ input, textarea, select {
 .contact-band__line {
   max-width: 14ch;
 }
+/* A page's own closing heading (ContactBand's optional props) is a full
+   sentence rather than "Let's Get Started", so it gets a wider measure and
+   the existing subhead size instead of the full Display clamp. */
+.contact-band__heading {
+  max-width: 24ch;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); /* .text-page__subhead's clamp */
+}
+.contact-band__body {
+  max-width: var(--measure);
+  margin-top: 1rem;
+}
 
 .bg-ground {
   background: var(--ground);
