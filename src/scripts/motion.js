@@ -334,10 +334,18 @@ function initHeroGallery() {
      nothing removed either way. */
   const openingLine = document.querySelector('[data-hero-opening-line]');
   if (openingLine) {
-    if (reducedMotion || sessionStorage.getItem('akc-opening-line-seen')) {
+    // try/catch (2026-10-08): with storage blocked, an uncaught throw here
+    // stopped this whole module, taking every later init with it.
+    let seen = true;
+    try {
+      seen = !!sessionStorage.getItem('akc-opening-line-seen');
+      if (!seen) sessionStorage.setItem('akc-opening-line-seen', '1');
+    } catch {
+      seen = true;
+    }
+    if (reducedMotion || seen) {
       openingLine.classList.add('is-visible');
     } else {
-      sessionStorage.setItem('akc-opening-line-seen', '1');
       window.setTimeout(() => openingLine.classList.add('is-visible'), 400);
     }
   }
@@ -371,42 +379,155 @@ function initQuoteRotation() {
   stopQuoteRotation = startCrossDissolve(layers, cycleMs);
 }
 
-/* ---- Hero → next-section scroll ease (BUILD-PLAN.md, not in the brief).
-   Fires at most once per page view: any real downward scroll from the very
-   top smoothly finishes the trip into `.scroll-ease-target`. Listens to the
-   `scroll` event itself, not wheel/touch deltas, so every input triggers it
-   identically; never fires backward. Re-runs each `astro:page-load` since
-   its target lives in the swapped `<main>` — `cleanup` clears any listener
-   from a page view that navigated away before firing, so they don't pile up
-   across repeated soft navigations. */
+/* ---- Hero → next-section scroll ease (BUILD-PLAN.md; DESIGN_BRIEF 6.9).
+   Home only: the first small downward wheel, trackpad, or touch scroll from
+   the very top smoothly carries the page to `.scroll-ease-target`, then
+   hands control straight back.
+
+   Reworked 2026-10-08 (COPY-PASS-V1, Task 4), on Sam's request. The
+   mechanism was never removed; it was off on Sam's Mac because macOS Reduce
+   Motion is on, and it still is off under reduced motion, by design (6.8).
+   What changed:
+     - **Once per browser session**, not once per page view: coming back to
+       Home in the same session does not fire it again. sessionStorage,
+       wrapped in try/catch; if storage is unavailable it falls back to once
+       per page load (the module-level flag below).
+     - **Triggered by input, not by the `scroll` event.** A wheel/trackpad
+       or touch gesture at the top is what arms it, so scroll restoration on
+       a refresh, the back button, or a #hash jump can never fire it. It also
+       refuses to arm at all if the page loads scrolled or with a hash.
+       Touch still triggers it, as the scroll-event version did.
+     - **Momentum lock.** While the animation runs, and until the trackpad's
+       momentum tail goes quiet (or a hard cap), further wheel and touch
+       input is swallowed so it cannot fight the ease or carry the page past
+       the section it lands on. Then control is the reader's again.
+     - Lifecycle per COPY-PASS-V1 ground rule 13: re-armed on
+       `astro:page-load`, torn down on `astro:before-swap`, nothing cached
+       across page views. Also armed once at module evaluation so the first
+       page view works before `window.load`. ---- */
+const HERO_EASE_KEY = 'akc-hero-advance-done';
+let heroEaseFiredThisLoad = false;
+let heroEaseAnimating = false;
 let cleanupHeroScrollEase = null;
 
+function heroEaseAlreadyFired() {
+  if (heroEaseFiredThisLoad) return true;
+  try {
+    return sessionStorage.getItem(HERO_EASE_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function markHeroEaseFired() {
+  heroEaseFiredThisLoad = true;
+  try {
+    sessionStorage.setItem(HERO_EASE_KEY, '1');
+  } catch {
+    // Storage blocked: the module flag above keeps it to once per page load.
+  }
+}
+
+// Swallows wheel and touch scrolling while the ease runs and until the
+// momentum tail stops: released after `quietMs` with no wheel events once
+// the page has arrived, or after `capMs` regardless.
+function lockScrollInputUntilSettled(targetTop) {
+  heroEaseAnimating = true;
+  const quietMs = 180;
+  const capMs = 3000; // a long Mac trackpad momentum tail runs ~2-3s
+  const started = performance.now();
+  let lastInput = started;
+  let arrived = false;
+
+  const swallow = (event) => {
+    lastInput = performance.now();
+    if (event.cancelable) event.preventDefault();
+  };
+  window.addEventListener('wheel', swallow, { passive: false });
+  window.addEventListener('touchmove', swallow, { passive: false });
+
+  const release = () => {
+    window.removeEventListener('wheel', swallow);
+    window.removeEventListener('touchmove', swallow);
+    heroEaseAnimating = false;
+  };
+
+  let lastY = window.scrollY;
+  let stillFrames = 0;
+  const tick = () => {
+    const now = performance.now();
+    const y = window.scrollY;
+    stillFrames = Math.abs(y - lastY) < 0.5 ? stillFrames + 1 : 0;
+    lastY = y;
+    if (!arrived && (Math.abs(y - targetTop) < 2 || stillFrames > 8)) arrived = true;
+    if (now - started > capMs || (arrived && now - lastInput > quietMs)) {
+      release();
+      return;
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
 function initHeroScrollEase() {
+  // An ease in flight owns its own listeners; leave it to finish.
+  if (heroEaseAnimating) return;
+
   if (cleanupHeroScrollEase) {
     cleanupHeroScrollEase();
     cleanupHeroScrollEase = null;
   }
 
-  if (reducedMotion) return;
+  if (heroEaseAlreadyFired()) return;
+  if (!document.querySelector('.scroll-ease-target')) return;
+  // Never for a page that loads anywhere but the very top.
+  if (window.location.hash || window.scrollY > 4) return;
 
-  const target = document.querySelector('.scroll-ease-target');
-  if (!target) return;
+  const atTop = () => window.scrollY <= 40;
+  let touchStartY = null;
 
-  if (window.scrollY > 4) return; // only for a fresh load at the very top
+  const fire = (event) => {
+    // Checked live, not at load: the setting can change mid-visit.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const target = document.querySelector('.scroll-ease-target');
+    if (!target || heroEaseAlreadyFired() || !atTop()) return;
 
-  const threshold = 40; // px of real downward scroll before easing the rest of the way in
-  let done = false;
+    const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    const top = Math.round(target.getBoundingClientRect().top + window.scrollY - margin);
+    if (top <= window.scrollY) return; // never backward
 
-  const onScroll = () => {
-    if (done) return;
-    if (window.scrollY < threshold) return;
-    done = true;
-    window.removeEventListener('scroll', onScroll);
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (event.cancelable) event.preventDefault();
+    markHeroEaseFired();
+    cleanup();
+    lockScrollInputUntilSettled(top);
+    window.scrollTo({ top, behavior: 'smooth' });
   };
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  cleanupHeroScrollEase = () => window.removeEventListener('scroll', onScroll);
+  const onWheel = (event) => {
+    if (event.deltaY > 0) fire(event);
+  };
+  const onTouchStart = (event) => {
+    touchStartY = event.touches[0]?.clientY ?? null;
+  };
+  const onTouchMove = (event) => {
+    if (touchStartY === null) return;
+    const y = event.touches[0]?.clientY ?? touchStartY;
+    // Finger moving up = page scrolling down. A small dead zone so a tap
+    // that wobbles does not count as a scroll.
+    if (touchStartY - y > 8) fire(event);
+  };
+
+  const cleanup = () => {
+    window.removeEventListener('wheel', onWheel);
+    window.removeEventListener('touchstart', onTouchStart);
+    window.removeEventListener('touchmove', onTouchMove);
+    cleanupHeroScrollEase = null;
+  };
+
+  window.addEventListener('wheel', onWheel, { passive: false });
+  window.addEventListener('touchstart', onTouchStart, { passive: true });
+  window.addEventListener('touchmove', onTouchMove, { passive: false });
+  cleanupHeroScrollEase = cleanup;
 }
 
 /* ---- 6.5 Accordion: blinds decision categories (5.3). The open/close
@@ -448,6 +569,12 @@ document.addEventListener('astro:after-swap', () => {
   initReveal();
   initHeroGallery();
   initQuoteRotation();
-  initHeroScrollEase();
   initAccordion();
+});
+
+// The hero ease follows COPY-PASS-V1 ground rule 13 (see its header):
+// re-armed on every page load, torn down whenever the page is swapped out.
+document.addEventListener('astro:page-load', initHeroScrollEase);
+document.addEventListener('astro:before-swap', () => {
+  if (cleanupHeroScrollEase) cleanupHeroScrollEase();
 });

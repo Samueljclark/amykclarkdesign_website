@@ -570,6 +570,14 @@ once per page view**, never scrolls backward, and is disabled entirely under
 `prefers-reduced-motion`. Implementation and full spec: `initHeroScrollEase()`
 in `src/scripts/motion.js`, plus `.scroll-ease-target` in `global.css`.
 
+**Amended 2026-10-08 (COPY-PASS-V1 Task 4, Sam's request).** The auto-scroll
+now fires **at most once per browser session** (sessionStorage; once per page
+load if storage is blocked), is triggered by a wheel, trackpad, or touch
+gesture at the top rather than by the `scroll` event, never arms on a page
+that loads scrolled or with a `#hash`, and swallows wheel/touch input until
+trackpad momentum settles so it cannot overshoot. Still off under reduced
+motion. Still not snapping, and nothing below changes.
+
 **There is no section-level scroll snapping, anywhere, and there is not going
 to be.** `scroll-snap-type` appears nowhere in the codebase.
 
