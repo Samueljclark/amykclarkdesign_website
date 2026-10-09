@@ -36,7 +36,10 @@ export const services: Service[] = [
   },
   {
     name: 'Blinds and Shades',
-    description: 'Blinds, shades, shutters, and woven woods from the one line she represents, chosen for privacy, light, and finish.',
+    // DRAFT COPY - NEEDS REWRITE (COPY-PASS-V1, Task 3, 2026-10-08): Claude-
+    // written replacement for "...from the one line she represents...", which
+    // positioned Amy as a vendor's representative (CLAUDE.md vendor rule).
+    description: 'Blinds, shades, shutters, and woven woods, made to order and chosen for privacy, light, and finish.',
     // Ivory House: the bay-window room's white wood blinds — the first
     // dedicated Blinds and Shades photography this site has had.
     photo: 'ivory-house-blinds-detail',
