@@ -27,14 +27,23 @@ import Accordion from './Accordion.astro';
 
 interface Faq {
   title: string;
-  content: string;
+  content: string | string[];
 }
 
+// `heading` and `intro` added 2026-10-08 (COPY-PASS-V1, Task 8) so the
+// visible heading and the paragraph under it come from the page's copy file.
 interface Props {
   faqs: Faq[];
+  heading?: string;
+  intro?: string;
 }
 
-const { faqs } = Astro.props;
+const { faqs, heading = 'Common questions', intro } = Astro.props;
+
+// The JSON-LD answer is the visible answer verbatim, paragraphs separated by
+// a blank line, so the structured data can never drift from the page.
+const answerText = (content: string | string[]) =>
+  Array.isArray(content) ? content.join('\n\n') : content;
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -44,14 +53,15 @@ const faqSchema = {
     name: faq.title,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: faq.content,
+      text: answerText(faq.content),
     },
   })),
 };
 ---
 
 <section class="section wrap faq" aria-labelledby="faq-heading">
-  <h2 id="faq-heading" class="type-display faq__heading">Common questions</h2>
+  <h2 id="faq-heading" class="type-display faq__heading">{heading}</h2>
+  {intro && <p class="faq__intro">{intro}</p>}
   <Accordion items={faqs} />
 </section>
 
@@ -60,6 +70,11 @@ const faqSchema = {
 <style>
   .faq__heading {
     font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    margin-bottom: 2.5rem;
+  }
+  .faq__intro {
+    max-width: var(--measure);
+    margin-top: -1.5rem;
     margin-bottom: 2.5rem;
   }
 </style>

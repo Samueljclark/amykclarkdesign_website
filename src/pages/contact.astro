@@ -25,10 +25,11 @@
 import Base from '../layouts/Base.astro';
 import ConsultationForm from '../components/ConsultationForm.astro';
 import Faq from '../components/Faq.astro';
+import ContactBand from '../components/ContactBand.astro';
 import { getEntry } from 'astro:content';
 
 const entry = await getEntry('pages', 'contact');
-const { seoTitle, description, eyebrow, title, lead, faqs } = entry.data;
+const { seoTitle, description, eyebrow, title, lead, faqs, faqHeading, faqIntro, closing } = entry.data;
 ---
 
 <Base
@@ -49,7 +50,14 @@ const { seoTitle, description, eyebrow, title, lead, faqs } = entry.data;
     ))}
   </section>
 
-  <section class="section wrap contact__form-section" aria-labelledby="form-heading">
+  {/* `id` is the in-page target for the closing block's button (COPY-PASS-V1,
+      Task 8): on this page the discovery-call CTA scrolls to the form rather
+      than reloading /contact. */}
+  <section
+    id="consultation-form"
+    class="section wrap contact__form-section"
+    aria-labelledby="form-heading"
+  >
     {/* CTA rule, 2026-08-19 (post-Meeting-4 pass, Task 5): impersonal
         imperatives, no person reference at all. Amy raised discomfort with
         CTAs addressing her by name directly — the section heading is the
@@ -74,7 +82,11 @@ const { seoTitle, description, eyebrow, title, lead, faqs } = entry.data;
     <ConsultationForm />
   </section>
 
-  <Faq faqs={faqs ?? []} />
+  <Faq faqs={faqs ?? []} heading={faqHeading} intro={faqIntro} />
+
+  {closing && (
+    <ContactBand heading={closing.heading} body={closing.body} href="#consultation-form" />
+  )}
 </Base>
 
 <style>
@@ -87,6 +99,8 @@ const { seoTitle, description, eyebrow, title, lead, faqs } = entry.data;
      section pad rather than stacking 160px on top of 160px. */
   .contact__form-section {
     padding-block-start: 0;
+    /* Clears the fixed nav when the closing button scrolls here. */
+    scroll-margin-top: calc(var(--nav-height) + 2rem);
   }
 
   .contact__form-heading {

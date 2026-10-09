@@ -68,7 +68,13 @@ const pages = defineCollection({
     // multi-paragraph lead (Contact) doesn't need hand-rolled markdown just
     // to get a paragraph break.
     lead: z.array(z.string()),
-    faqs: z.array(z.object({ title: z.string(), content: z.string() })).optional(),
+    // `content` may be one paragraph or several (Kristen's 2026-10-08 Contact
+    // answers run to three or four).
+    faqs: z
+      .array(z.object({ title: z.string(), content: z.union([z.string(), z.array(z.string())]) }))
+      .optional(),
+    // Visible heading above the FAQ (Contact). Faq.astro has a fallback.
+    faqHeading: z.string().optional(),
     steps: z.array(z.object({ title: z.string(), body: z.string() })).optional(),
     // Added 2026-10-08 (COPY-PASS-V1, Kristen copy pass). All optional, so
     // no existing page changes shape.
