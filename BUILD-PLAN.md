@@ -2814,3 +2814,50 @@ readings give completely different answers.
 **Neither face was added.** Fraunces is outside the final set and CLAUDE.md
 forbids pulling typography out of `legacy-static/` regardless. Flagged for Sam
 to confirm with Amy which of the two she meant.
+
+## 2026-10-12: display face moves from Bodoni Moda to Jost Light, uppercase (POLISH-AND-AUDIT-V2 Task 4)
+
+**Decision (Amy, 2026-10-09; built 2026-10-12).** Amy rejected four Bodoni
+Moda variants and asked for "Lato or Helvetica"; rejected Archivo in mixed
+case ("does nothing for me"); then pointed at core-consultinggroup.com's hero
+("POWERING POTENTIAL"), a light, all-caps, widely letterspaced sans: "I like
+the simplicity of this font but don't use the exact one." That reference
+looks like Barlow or Roboto Condensed, so Barlow, Roboto, and Roboto
+Condensed are excluded. Sam was shown `/contact`, the Home service list, and
+`/services` headings at 1440 and 390 in Lato Light, Jost Light, and Archivo
+Light (all 300, uppercase, 0.12em, 1.15) and chose **Jost**. This postdates
+Meeting 4 and the Didot screenshot, so it supersedes the 2026-08-04 Didone
+entry above for the display role. Still two faces.
+
+**What changed.**
+- `public/fonts/jost-latin-300.woff2` (9.9 KB, latin, 300, OFL 1.1 via
+  `@fontsource/jost` 5.3.0; no runtime dependency). `@font-face` with
+  `font-display: swap`, preloaded in Base.astro in place of Bodoni Moda.
+- Bodoni Moda retired, not deleted: `@font-face` and preload removed, file
+  kept. Confirmed no request for it in the network log.
+- Tokens: `--font-display: 'Jost', 'Helvetica Neue', Helvetica, Arial,
+  sans-serif`; `--weight-display: 300` (never lighter); `--leading-display:
+  1.15`; `--tracking-display: 0.12em` (kept at the shown value after viewing
+  it on every heading; it reads open without breaking words apart at 28px);
+  `--text-display: clamp(1.75rem, 1.134rem + 2.629vw, 3.5rem)` (28px to 56px,
+  was 40px to 92px). `.type-display` gains `text-transform: uppercase` and
+  uses the tracking token.
+- Home service names: `clamp(1.5rem, 0.95rem + 2.254vw, 3rem)`. Fit beside the
+  hover stage at 1024 (widest name ends 61px short of its column).
+- Display-heading measures moved from `ch` to `em` (`.text-page__heading`,
+  `.services-page__title`, `.differentiator__heading` 18ch to 18em;
+  `.contact-band__line` 14ch to 14em; `.contact-band__heading` 24ch to 24em).
+  `ch` is a lowercase zero and held about half as many uppercase tracked
+  letters, which pushed the location-page H1s to three lines at 1440.
+- `.prose h2` now uses the display face, uppercase. It never set a family,
+  so About's and the location pages' markdown headings had been Archivo
+  while the subheads beside them were Bodoni.
+- Testimonials (`.type-quote`): Jost 300, sentence case, untracked.
+- Task 1's active-row underline retuned for capitals: gap +0.19em to
+  -0.04em (line ~0.2em under the letters, 1024 to 2560), width minus the
+  trailing tracking; the extra description margin it needed in Bodoni was
+  removed.
+
+**Measured.** Every H1 at most two lines at 1440 (Contact one line) and at
+most two at 390; no word overflows at 360; no document overflow on any page.
+

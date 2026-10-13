@@ -7,17 +7,26 @@
    =========================================================================== */
 
 /* ---- 3.4 Typefaces: self-hosted woff2, font-display: swap (section 7) ----
-   TWO faces on this site, and no others. Changed 2026-08-04 — see
-   DESIGN_BRIEF 3.4 and BUILD-PLAN's dated entry for the reasoning.
+   TWO faces on this site, and no others.
 
-   Display: Bodoni Moda variable, the Didone. Amy sent a Didot screenshot and
-     Didot has no OFL or otherwise free webfont; Bodoni Moda is the licensed
-     Didone that carries the same high-contrast hairline look.
+   CHANGED 2026-10-12 (POLISH-AND-AUDIT-V2 Task 4), on Amy's direction of
+   2026-10-09: the Display role is now **Jost Light (300)**, uppercase, widely
+   tracked. Amy rejected four Bodoni Moda variants, asked for "Lato or
+   Helvetica", rejected Archivo in mixed case, and pointed at
+   core-consultinggroup.com's light, all-caps, letterspaced hero ("I like the
+   simplicity of this font but don't use the exact one"). Sam chose Jost from
+   three rendered options (Lato, Jost, Archivo Light). DESIGN_BRIEF 3.4 and
+   BUILD-PLAN have the full entry.
+
+   Display: Jost, weight 300 only, latin subset, from @fontsource/jost 5.3.0
+     (SIL OFL 1.1). One static file; no runtime dependency.
    Body / nav / UI: Archivo variable, weights 400 and 500 only. A
      neo-grotesque, so it honours Amy's Helvetica direction.
 
-   Newsreader was removed on the same date. It was a third face doing a job
-   the display face now does. */
+   RETIRED, NOT DELETED: public/fonts/bodoni-moda-variable.woff2 (the Display
+   face 2026-08-04 to 2026-10-12). Its @font-face and preload are gone, so it
+   is never requested; the file stays so the decision can be reversed. The
+   superseded reasoning (Didot stand-in, opsz axis) is in DESIGN_BRIEF 3.4. */
 @font-face {
   font-family: 'Archivo';
   src: url('/fonts/archivo-variable.woff2') format('woff2-variations');
@@ -25,16 +34,10 @@
   font-style: normal;
   font-display: swap;
 }
-/* Carries both an optical-size (6-96) and a weight (400-900) axis. The opsz
-   axis is the reason this file is used rather than the 26 KB weight-only cut:
-   a Didone at a text optical size has visibly thicker hairlines, which is
-   exactly the quality Amy responded to. `font-optical-sizing: auto` is the
-   CSS default, so the browser maps opsz from the used font-size on its own
-   and no font-variation-settings are needed anywhere. */
 @font-face {
-  font-family: 'Bodoni Moda';
-  src: url('/fonts/bodoni-moda-variable.woff2') format('woff2-variations');
-  font-weight: 400 900; /* usage is restricted to 400 */
+  font-family: 'Jost';
+  src: url('/fonts/jost-latin-300.woff2') format('woff2');
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
@@ -52,24 +55,24 @@
 
   /* ---- 3.4 Type ---- */
   --font-primary: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* The Didone. Display role, and the testimonial quotes that used to be
-     Newsreader.
+  /* Display role and testimonial quotes (2026-10-12, Jost Light). Fallbacks
+     are light-capable sans faces so a slow font load still reads as the same
+     register. */
+  --font-display: 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-     Deliberately NOT `Didot, 'Bodoni Moda', ...`. macOS ships a Didot and
-     naming it first would render this site one way on Amy's and Sam's Macs
-     and another way for most visitors, with different metrics and a lighter
-     colour. Amy asked for uniform; a face that changes per platform is the
-     opposite, and it would also mean the two people reviewing the site see a
-     version almost nobody else gets. Self-hosted, one rendering, everywhere. */
-  --font-display: 'Bodoni Moda', 'Times New Roman', serif;
-
-  /* Display: 400, clamp 40px to 92px, tracking -0.025em, line-height 1.02.
-     Middle term derived to hit 40px at 375px viewport and 92px at 1440px:
-     slope 52px/1065px = 4.883vw, intercept 40 - 4.883*3.75 = 21.69px. */
-  --text-display: clamp(2.5rem, 1.356rem + 4.883vw, 5.75rem);
-  --leading-display: 1.02;
-  --tracking-display: -0.025em;
-  --weight-display: 400;
+  /* Display: 300, uppercase, tracking 0.12em, line-height 1.15.
+     Clamp 28px at 375px to 56px at 1440px: all-caps with wide tracking runs
+     far wider than the old Didone, so the role is roughly 60% of the old
+     40-92px clamp. Middle term: slope 28px/1065px = 2.629vw, intercept
+     28 - 2.629*3.75 = 18.14px = 1.134rem.
+     WEIGHT: 300 and never lighter. Thin strokes failing to read is the
+     reason this change started.
+     Superseded 2026-10-12: Bodoni Moda 400, clamp(2.5rem, 1.356rem + 4.883vw,
+     5.75rem), leading 1.02, tracking 0 on the role (-0.025em token). */
+  --text-display: clamp(1.75rem, 1.134rem + 2.629vw, 3.5rem);
+  --leading-display: 1.15;
+  --tracking-display: 0.12em;
+  --weight-display: 300;
 
   /* Label: 500, 11px, uppercase, tracking 0.18em.
      Nav, eyebrows, section markers, spec blocks, form labels. */
@@ -141,12 +144,10 @@ body {
   font-weight: var(--weight-display);
   font-size: var(--text-display);
   line-height: var(--leading-display);
-  /* Archivo's -0.025em was a grotesque's tracking. A Didone at display size
-     is already tightly fitted and negative tracking closes the hairlines into
-     the stems, which is the one thing that makes this face look cheap.
-     Relaxed to 0 for the display role only; --tracking-display is unchanged
-     and still describes the grotesque. */
-  letter-spacing: 0;
+  letter-spacing: var(--tracking-display);
+  /* Uppercase in CSS only: the source text stays in normal case so screen
+     readers and search read it as written. */
+  text-transform: uppercase;
 }
 
 .type-label {
@@ -157,14 +158,13 @@ body {
   text-transform: uppercase;
 }
 
-/* Testimonial quotes. Was Newsreader 300 until 2026-08-04; now the display
-   face, which is what removed the third typeface from the site. Bodoni Moda's
-   lightest weight is 400, so the old 300 is gone — at quote size the Didone
-   reads lighter than Newsreader did at 300 regardless, because the opsz axis
-   thins the hairlines automatically. */
+/* Testimonial quotes: the display face at 300, but in sentence case and
+   untracked. Long sentences in spaced capitals are hard to read (2026-10-12,
+   POLISH-AND-AUDIT-V2 Task 4). History: Newsreader 300 until 2026-08-04,
+   then Bodoni Moda 400 until 2026-10-12. */
 .type-quote {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
 }
 
 /* Body copy is always left-aligned. Never centered, never justified (3.4). */

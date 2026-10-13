@@ -112,6 +112,28 @@ This is the one real risk in the direction and it is justified: Amy sells color 
 
 Amy asked for Helvetica, a maximum of three faces, minimal and uniform and premium.
 
+**CURRENT, set 2026-10-09 (Amy) and built 2026-10-12 (POLISH-AND-AUDIT-V2 Task 4). The display face is Jost Light (300), uppercase, widely tracked.** Sequence, all 2026-10-09:
+
+1. Amy rejected four Bodoni Moda variants and asked for "Lato or Helvetica."
+2. She rejected Archivo in mixed case ("does nothing for me").
+3. She pointed at core-consultinggroup.com's hero ("POWERING POTENTIAL"): a light sans, all caps, widely letterspaced, and said: "I like the simplicity of this font but don't use the exact one." The reference looks like Barlow or Roboto Condensed (the site could not be loaded to confirm), so **Barlow, Roboto, and Roboto Condensed are excluded.**
+4. Sam was shown the real pages in Lato Light, Jost Light, and Archivo Light (same treatment) and chose **Jost**.
+
+This is direct Amy input that postdates Meeting 4 and her Didot screenshot, so it supersedes the 2026-08-04 Didone amendment below for the display role. Still two faces: Jost for Display and testimonial quotes, Archivo for everything else.
+
+| Role | Face | Spec (2026-10-12) |
+|---|---|---|
+| **Display** | Jost | 300 weight, never lighter; `text-transform: uppercase` in CSS only (source text stays normal case); letter-spacing 0.12em; line-height 1.15; clamp 28px (375px) to 56px (1440px): `clamp(1.75rem, 1.134rem + 2.629vw, 3.5rem)`. Home service names: `clamp(1.5rem, 0.95rem + 2.254vw, 3rem)`. Display-heading measures moved from `ch` to `em` (18ch to 18em, etc.), because `ch` is a lowercase zero and no longer describes an uppercase tracked line. Markdown `##` headings (`.prose h2`) now use the display face too, uppercase; before this they silently rendered in Archivo. |
+| **Testimonial quotes** | Jost | 300 weight, sentence case, untracked. Long sentences in spaced capitals are hard to read. |
+| **Label** | Archivo | unchanged |
+| **Body** | Archivo | unchanged |
+
+Self-hosted: `public/fonts/jost-latin-300.woff2` (latin subset, weight 300, from `@fontsource/jost` 5.3.0, SIL OFL 1.1), preloaded. **Bodoni Moda is retired, not deleted:** its `@font-face` and preload are removed, and `public/fonts/bodoni-moda-variable.woff2` stays in the repo. The reasoning below is kept as history and is **superseded** for the display role.
+
+---
+
+*Superseded 2026-10-12 for the display role (everything from here to the end of 3.4 that describes Bodoni Moda):*
+
 **Amended 2026-08-04. The display face is now a Didone, not the grotesque.** Amy sent a screenshot of **Didot** that she liked. That input postdates the Helvetica instruction, so it supersedes it for the display role. **This is not a re-litigation of the Helvetica direction and should not be treated as one** — her three-face ceiling and the "uniform and very premium" requirement are both intact, and Archivo still carries body, nav, and every UI surface, so the neo-grotesque direction still governs everything except headings. The count went **down**, from three faces to two. Full reasoning and the measured evidence are in BUILD-PLAN.md's 2026-08-04 entry.
 
 **Two families. Display in the Didone, everything else in the grotesque.** Restraint reads as more expensive than variety, and the discipline of one grotesque against one display face is the actual signature of the fashion houses she likes.

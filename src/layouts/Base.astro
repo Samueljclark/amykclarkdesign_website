@@ -81,14 +81,11 @@ const ogImageURL = new URL(ogImage, Astro.site);
 
     <!-- Section 7: self-hosted woff2, font-display: swap. Two faces, two
          preloads, and no others exist. Both Archivo weights (400/500) live in
-         one variable file, and Bodoni Moda's weight and optical-size axes live
-         in one file too, so one preload each covers every use.
+         one variable file, and the display face is one static Jost 300 file
+         (2026-10-12; Bodoni Moda is retired and no longer preloaded).
 
-         Bodoni Moda is preloaded because it carries the Display role, and on
-         all twenty non-home pages the display-role <h1> is above the fold.
-         (Home is the one page where it is not: its <h1> is visually hidden and
-         the wordmark is Archivo. Preloading is still the right trade for one
-         page against twenty.) -->
+         Jost is preloaded because it carries the Display role, and on every
+         non-home page the display-role <h1> is above the fold. -->
     <link
       rel="preload"
       href="/fonts/archivo-variable.woff2"
@@ -98,7 +95,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
     />
     <link
       rel="preload"
-      href="/fonts/bodoni-moda-variable.woff2"
+      href="/fonts/jost-latin-300.woff2"
       as="font"
       type="font/woff2"
       crossorigin

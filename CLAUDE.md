@@ -53,7 +53,20 @@ or typography from it. DESIGN_BRIEF.md replaced it entirely.
     authoritative.
   - `docs/README.md` explains all four categories and is the entry point for
     anyone new to the repo.
-- **Typography is two faces and that is a settled decision (set 2026-08-04).
+- **Typography is two faces (updated 2026-10-09/12, POLISH-AND-AUDIT-V2 Task 4).
+  Jost Light (300) for the Display role, uppercase, letter-spacing 0.12em,
+  line-height 1.15; Jost 300 in sentence case for testimonial quotes; Archivo
+  for everything else. Do not add a third face.** Amy, 2026-10-09: rejected
+  four Bodoni Moda variants, asked for "Lato or Helvetica," rejected Archivo in
+  mixed case, then pointed at core-consultinggroup.com's light, all-caps,
+  letterspaced hero ("I like the simplicity of this font but don't use the
+  exact one"); Barlow, Roboto, and Roboto Condensed are excluded for that
+  reason. Sam chose Jost over Lato and Archivo Light from rendered pages.
+  Weight never goes below 300. Bodoni Moda is retired, not deleted
+  (`public/fonts/bodoni-moda-variable.woff2` stays; no `@font-face`, no
+  preload). Full entry: DESIGN_BRIEF.md 3.4 and BUILD-PLAN.md's 2026-10-12
+  entry.
+  *Superseded 2026-10-12, kept for history:* **Typography is two faces and that is a settled decision (set 2026-08-04).
   Bodoni Moda for the Display role and testimonial quotes, Archivo for
   everything else. Do not add a third face, and do not restore Newsreader.**
   Amy's ceiling is three; the site uses two and that headroom is deliberate,

@@ -161,7 +161,11 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
      nearly twice the size of Soft Furnishings, which tells a reader that one
      service matters more than another — not true, and not the message. ---- */
   .service-list__name {
-    font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.5rem);
+    /* Rescaled 2026-10-12 for the uppercase, tracked Jost display face
+       (was clamp(2.25rem, 1.4rem + 3.6vw, 4.5rem) in Bodoni Moda): 24px at
+       375px to 48px at 1440px+, so "Soft Furnishings" still fits its column
+       beside the hover stage at 1024px. */
+    font-size: clamp(1.5rem, 0.95rem + 2.254vw, 3rem);
   }
 
   /* ---- Force-aligned 2026-08-19 (post-Meeting-4 pass, Task 8), reversing
@@ -321,17 +325,20 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
      row is underlined. After that, exactly one row is underlined, always the
      one whose photo is up, and it stays when the pointer leaves the list.
 
-     Position: measured 2026-10-12, the Display face's descenders (p, y, g)
-     reach 0.264em below the baseline while the name's box ends at 0.159em,
-     so `--service-underline-gap` puts the line ~0.03em clear of them at
-     every width. Retune that one value if the display face changes. ---- */
+     Position: retuned for the uppercase Jost display face (2026-10-12,
+     Task 4). Capitals have no descenders, and the name's box ends ~0.24em
+     below the baseline, so a gap of -0.04em puts the line ~0.2em under the
+     letters at every width from 1024 to 2560 (measured). The line's width
+     drops the role's trailing 0.12em tracking so it stops at the last
+     letter rather than a space beyond it. Retune both if the face changes.
+     (In Bodoni Moda this was +0.19em, to clear p, y, and g.) ---- */
   @media (min-width: 1024px) {
     .service-list__layer {
       transition: opacity var(--hover-image-duration) ease-out;
     }
 
     .service-list__name {
-      --service-underline-gap: 0.19em;
+      --service-underline-gap: -0.04em;
       position: relative;
     }
     .service-list__name::after {
@@ -339,7 +346,7 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
       position: absolute;
       left: 0;
       top: calc(100% + var(--service-underline-gap));
-      width: 100%;
+      width: calc(100% - var(--tracking-display));
       height: 2px;
       background: var(--indigo);
       transform: scaleX(0);
@@ -348,11 +355,6 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
     }
     .service-list[data-stage-engaged] .service-list__link.is-active .service-list__name::after {
       transform: scaleX(1);
-    }
-
-    /* Room for the line between the name and its description. */
-    .service-list__desc {
-      margin-top: 1.25rem;
     }
   }
 
