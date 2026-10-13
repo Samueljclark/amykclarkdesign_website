@@ -15,11 +15,9 @@ steps:
   - title: Begin with a conversation
     body: 'Schedule a complimentary 15-minute call to tell Amy about your home, your windows, and what you would like to change.'
   - title: Explore the possibilities
-    # DRAFT COPY - NEEDS REWRITE: "In a paid in-home design consultation," at
-    # the start of this step is a Claude-written addition (COPY-PASS-V1
-    # Appendix note). It also conflicts with DESIGN_BRIEF 5.5, which keeps
-    # "paid" off this page; flagged in the session report, not changed.
-    body: 'In a paid in-home design consultation, Amy visits your home to understand the room, take measurements, identify practical needs, and begin exploring fabrics, materials, and solutions with you.'
+    # DRAFT COPY - NEEDS REWRITE (POLISH-AND-AUDIT-V2, Task 2, 2026-10-12): step opener, Claude-written in COPY-PASS-V1;
+    # "paid" removed here because DESIGN_BRIEF 5.5 keeps it on /contact only.
+    body: 'In an in-home design consultation, Amy visits your home to understand the room, take measurements, identify practical needs, and begin exploring fabrics, materials, and solutions with you.'
   - title: Refine the details
     body: 'Together, you will select the design, materials, construction, and finishing details that make the project feel personal and complete.'
   - title: Bring it to life

@@ -12,6 +12,8 @@ lead:
   - 'Amy K. Clark specializes in the details that give a room its warmth, personality, and sense of completion: custom window treatments, upholstery, fabric, pillows, cushions, and trim.'
   - 'Her work often begins in a room a client already loves but cannot quite finish. Amy sees what is missing, identifies the problem that has been difficult to put into words, and introduces possibilities her clients may never have considered.'
   - 'It is a focused kind of design expertise, one built around the elements that must be thoughtfully imagined, carefully constructed, and made specifically for the home.'
+  # DRAFT COPY - NEEDS REWRITE (POLISH-AND-AUDIT-V2, Task 2, 2026-10-12): service area, required on About by DESIGN_BRIEF 5.4.
+  - 'Amy works with clients throughout Cincinnati and Northern Kentucky.'
 ---
 
 ## Curiosity Became Craft

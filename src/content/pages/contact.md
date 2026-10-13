@@ -5,7 +5,8 @@ eyebrow: Contact
 # Kristen copy pass (COPY-PASS-V1, Task 8, 2026-10-08), verbatim: the intro
 # (title + three paragraphs), the Common Questions section, and the closing
 # block. Eyebrow, seoTitle, and description are unchanged.
-title: "Let's Talk About Your Home"
+# H1 changed to Amy's own wording, 2026-10-09 (POLISH-AND-AUDIT-V2, Task 2).
+title: "Let's Talk About Your Project"
 # 5.7 and 5.9's most rule-bound copy. Booking is TWO steps as of the 2026-07-31
 # review: a free phone discovery call first, then the paid in-home design
 # consultation. This page's job is step one.
@@ -52,7 +53,8 @@ faqs:
   - title: Who designs, makes, and installs the work?
     content:
       - 'Amy remains personally involved from the first design decision through the final installation.'
-      - 'She designs and fabricates custom drapery and soft furnishings in her own workroom, with each treatment created specifically for the room in which it will live. Blinds, shades, shutters, and woven woods are custom-produced through her trusted manufacturing partner.'
+      # DRAFT COPY - NEEDS REWRITE (POLISH-AND-AUDIT-V2, Task 2, 2026-10-12): "through her trusted manufacturing partner" (relationship claim) -> "made to order by a trusted American manufacturer".
+      - 'She designs and fabricates custom drapery and soft furnishings in her own workroom, with each treatment created specifically for the room in which it will live. Blinds, shades, shutters, and woven woods are made to order by a trusted American manufacturer.'
       - 'Because Amy understands how a treatment will be constructed and installed, those technical considerations are part of the design from the beginning, not problems left for someone else to solve later. She personally oversees the finished work and installation so the original vision carries through to the last detail.'
   - title: How long does a project take?
     content:
