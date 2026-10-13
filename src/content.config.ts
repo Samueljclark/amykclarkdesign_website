@@ -100,6 +100,8 @@ const pages = defineCollection({
       .optional(),
     faqIntro: z.string().optional(),
     closing: z.object({ heading: z.string(), body: z.array(z.string()) }).optional(),
+    // About's Mission section (POLISH-AND-AUDIT-V2, Task 3).
+    mission: z.object({ heading: z.string(), body: z.string() }).optional(),
   }),
 });
 

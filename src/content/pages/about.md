@@ -14,6 +14,12 @@ lead:
   - 'It is a focused kind of design expertise, one built around the elements that must be thoughtfully imagined, carefully constructed, and made specifically for the home.'
   # DRAFT COPY - NEEDS REWRITE (POLISH-AND-AUDIT-V2, Task 2, 2026-10-12): service area, required on About by DESIGN_BRIEF 5.4.
   - 'Amy works with clients throughout Cincinnati and Northern Kentucky.'
+# Mission (POLISH-AND-AUDIT-V2, Task 3). Amy asked for one on 2026-10-09.
+# DRAFT COPY - NEEDS REWRITE (2026-10-12): Claude-written. Needs Amy's OK
+# before ship.
+mission:
+  heading: Mission
+  body: 'Amy has one goal for every room she works on: that it finally feels finished. She designs around how you actually live, and nothing is done until the little details are right.'
 ---
 
 ## Curiosity Became Craft
