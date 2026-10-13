@@ -2861,3 +2861,42 @@ entry above for the display role. Still two faces.
 **Measured.** Every H1 at most two lines at 1440 (Contact one line) and at
 most two at 390; no word overflows at 360; no document overflow on any page.
 
+## 2026-10-08 to 2026-10-12: COPY-PASS-V1 and POLISH-AND-AUDIT-V2 (branch `copy-pass-v1`)
+
+Both passes ran on the `copy-pass-v1` branch on Sam's explicit instruction
+(each doc said so), not on `main`. Production stayed on `89d4762` throughout.
+Instructions: `docs/COPY-PASS-V1.md` and `docs/POLISH-AND-AUDIT-V2.md`.
+
+**COPY-PASS-V1 (2026-10-08).**
+- Blinds landing page and Design Journal flagged off for v2
+  (`blindsEnabled`, `journalEnabled`), routes moved under `src/pages/_disabled/`,
+  301s in `netlify.toml`. Nav is Services, About, Process, Contact.
+- Home service hover swap: root cause was that every swap rule sat inside
+  `(prefers-reduced-motion: no-preference)`, and Sam's Mac has Reduce Motion on.
+  The swap moved to `src/scripts/image-stage.js` (hover, focus, tap; astro:page-load
+  lifecycle); the stage shows from 1024px.
+- Home hero: the three word links replaced by the studio tagline. Blinds blurb
+  no longer says "the one line she represents".
+- Hero auto-advance: never removed (it was invisible under Reduce Motion).
+  Brought to spec: once per session, wheel/trackpad/touch trigger, momentum
+  lock, never on a scrolled or `#hash` load. DESIGN_BRIEF 6.9 amended.
+- Services, About, Process, Contact: Kristen's copy pass, new layouts (sticky
+  scroll-synced image on Services; headshot-led About with a gated Reaghan card;
+  four-step Process; Contact Common Questions with matching FAQPage JSON-LD).
+- Location pages: "the lines she represents" removed (vendor rule).
+
+**POLISH-AND-AUDIT-V2 (2026-10-12).**
+- Task 1: active-row underline on the Home service list, synced with the photo
+  crossfade; under reduced motion three opacity fades are kept (DESIGN_BRIEF
+  6.8 exception). Also fixed a Chromium bug, reproduced in Sam's Chrome 155,
+  where the `/services` swap sometimes started no CSS transition and the photo
+  cut: `ensureFades()` in image-stage.js runs the same fade through the Web
+  Animations API when no transition started.
+- Task 2: copy rule fixes (seamless, price points, partner, "paid" on
+  Process), About service-area paragraph, plain Services ledes, Contact H1
+  "Let's Talk About Your Project" (Amy's words).
+- Task 3: About Mission section (Claude-written, needs Amy's OK); Studio
+  order Sam, Kelsee, Reaghan with credential lines; Reaghan's title set.
+- Task 4: display face Bodoni Moda to Jost Light, uppercase (entry above).
+- Task 5: DESIGN_BRIEF 4, 5.3, 5.4, 5.5 brought up to date.
+- Task 6: full site audit, report at `docs/notes/2026-10-09-site-audit.md`.

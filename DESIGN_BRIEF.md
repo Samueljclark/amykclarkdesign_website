@@ -203,6 +203,32 @@ This is the one memorable thing about the site. Everything else stays quiet so t
 
 # 4. Site architecture
 
+**Current site (updated 2026-10-09, POLISH-AND-AUDIT-V2).** Live routes:
+
+```
+/                      Home
+/services              Services (one overview page; no child pages)
+/about                 About: headshot and copy, Mission, Studio
+/process               Process: four steps
+/contact               Consultation form, Common Questions
+/contact/thank-you     Form success page (noindex)
+/cincinnati            Location page (search only; not in the nav or footer)
+/northern-kentucky     Location page (search only; not in the nav or footer)
+/privacy, /terms       Legal (noindex)
+/404
+```
+
+**Main nav, four items: Services, About, Process, Contact.** The footer's "Site" column mirrors it from the same array (`src/data/nav.ts`).
+
+**Flagged off, not deleted** (`src/config/flags.ts`, routes moved under `src/pages/_disabled/`, which Astro does not build):
+- Portfolio (`portfolioEnabled: false`, 2026-08-19): one photographed house is not a portfolio.
+- Blinds landing page (`blindsEnabled: false`, 2026-10-08): saved for v2. `/blinds` and `/blinds/` 301 to `/services`.
+- Design Journal (`journalEnabled: false`, 2026-10-08): saved for v2. `/journal`, `/journal/`, and `/journal/*` 301 to `/`.
+- The four service child pages were removed 2026-08-19; each 301s to `/services`.
+
+All redirects live in `netlify.toml`. The text below is the history of this section and is superseded where it disagrees.
+
+
 ```
 /                      Home
 /portfolio             Portfolio index
@@ -356,6 +382,13 @@ Names are evocative and non-geographic. No leading "The." Garden Room, Blue Stud
 
 ## 5.3 Services
 
+**Current page (updated 2026-10-09, POLISH-AND-AUDIT-V2).** One overview page; the four child pages were consolidated into it 2026-08-19 and 301 to `/services`. Copy is Kristen's copy pass (2026-10-08) in `src/content/pages/services.md`: an intro (H1 "Services", three paragraphs, the service area named), then Custom Drapery; Blinds, Shades, and Shutters; Upholstery; Soft Furnishings; and The Amy K Clark Design Difference. Each service heading has one plain line under it in the Label style (Sam replaced the tagline-style lines 2026-10-09); the intro has none.
+
+Layout: from 900px, copy left and one sticky 4:5 photograph right whose top edge lines up with the H1; the photograph crossfades to each section's image as that section scrolls into view (`src/scripts/image-stage.js`, scroll mode). Below 900px, each service shows its own photograph inline above its heading. The crossfade keeps its 700ms fade under reduced motion (6.8's exception).
+
+The blinds and shades manufacturer is not named ("a trusted American manufacturer"); see CLAUDE.md's vendor rule. No accordion, no decision categories, no Lafayette. The text below is history and superseded where it disagrees.
+
+
 Overview page plus four child pages. Each child page targets its own keyword cluster and gets its own title, meta description, H1, and 400 to 700 words of real copy.
 
 **Service names are all the same size and weight (added 2026-07-31).** Every service name on the services page renders at an identical font size and font weight. The staggered *layout position* — the varied left indents that give the list its asymmetry per 3.5 — **stays and is explicitly fine.** What is not fine is size hierarchy: rendering Custom Drapery larger than Soft Furnishings tells a reader that one service matters more than another, which is not true and not the message. Vary the position, never the scale.
@@ -373,6 +406,15 @@ Overview page plus four child pages. Each child page targets its own keyword clu
 
 ## 5.4 About
 
+**Current page (updated 2026-10-09, POLISH-AND-AUDIT-V2), in order:**
+1. **Amy's headshot and copy.** Headshot left and copy right from 900px, headshot above copy on mobile. Eyebrow "About", H1 "Meet Amy", the line "A designer's eye. A maker's understanding.", the intro, a paragraph naming the service area (Cincinnati and Northern Kentucky), then Curiosity Became Craft, Designed for the Room It Belongs In, and Materials Chosen With Experience (Kristen's copy pass, 2026-10-08). Schumacher is named only as a fabric source.
+2. **Mission** (added 2026-10-12 at Amy's request): heading "Mission" and one statement. The statement is Claude-written and marked for Amy's sign-off.
+3. **Studio**: Sam Clark (Website and Digital Strategy; Boston College), Kelsee Etmans (Photographer; BFA, University of Cincinnati CCM), and Reaghan Connelly (Social Media; University of Cincinnati, Film and Media Studies). Name, role, and one credential line each; no biographies. Amy has no Studio card, because her headshot leads the page. Reaghan's card renders only once `src/assets/images/team/reaghan-connelly.jpg` exists.
+4. The "Let's Get Started" band.
+
+The previous About copy is hidden (not deleted) at `src/content/pages/_hidden/about-before-copy-pass-v1.md`. The text below is history and superseded where it disagrees, including the three-portrait Studio row with Amy in it.
+
+
 1. Amy's story. Specific, not vague. It needs actual detail about what she made and for whom.
 2. **Where it started.** The origin section, anchored to Grandma's attic, with an early photograph of Amy.
 3. The invention framing: every window shade she makes, she is inventing. She adapts to the room. There are no guides.
@@ -389,6 +431,9 @@ Kelsee Etmans    Photographer
 Headshots from `/public/images/team/`. Name in Label style, role beneath in `--ink-muted`. No biography paragraphs. Section heading is `Studio`, not `Our Team`.
 
 ## 5.5 Process
+
+**Current page (updated 2026-10-09, POLISH-AND-AUDIT-V2). Four numbered steps (01 to 04):** Begin with a conversation; Explore the possibilities; Refine the details; Bring it to life (Kristen's copy pass, 2026-10-08). Step 01 is the complimentary 15-minute discovery call; step 02 is the in-home design consultation. "Paid" is not used on this page (it was removed 2026-10-12), so `/contact` remains the only page that calls the visit paid. Layout: copy left, the ivory drapery and white wood blinds bay-window photograph right, photograph above copy on mobile. The page closes with its own heading and paragraph ("Let's Make Your Home Feel More Like You") and the standard "Schedule your complimentary discovery call" button to `/contact`, in place of "Let's Get Started". The five-step list below is history and superseded.
+
 
 **Five numbered steps as of 2026-08-01**, revised from four. This is the only page where numbering is permitted.
 
