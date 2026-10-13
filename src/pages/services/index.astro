@@ -62,8 +62,12 @@ const objectPositionFor = (key: string) =>
         </div>
       </section>
 
-      {sections.map((section) => {
+      {sections.map((section, sectionIndex) => {
         const photo = section.photo ? photos[section.photo as PhotoKey] : undefined;
+        // The first inline photo is the mobile LCP element (Lighthouse,
+        // 2026-10-12 audit), so it loads eagerly at high priority; the rest
+        // stay lazy.
+        const first = sectionIndex === 0;
         const position = section.photo ? objectPositionFor(section.photo) : undefined;
         return (
           <section class="services-page__section" data-stage-section={stageIndex(section.photo)}>
@@ -76,7 +80,8 @@ const objectPositionFor = (key: string) =>
                   fallbackFormat="jpg"
                   widths={[480, 768, 1200]}
                   sizes="(min-width: 900px) 1px, 90vw"
-                  loading="lazy"
+                  loading={first ? 'eager' : 'lazy'}
+                  fetchpriority={first ? 'high' : 'auto'}
                   {...(position ? { style: `object-position:${position}` } : {})}
                 />
               </div>
@@ -106,6 +111,7 @@ const objectPositionFor = (key: string) =>
             widths={[480, 768, 1200]}
             sizes="(min-width: 900px) 30rem, 1px"
             loading={i === 0 ? 'eager' : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : 'auto'}
             {...(objectPositionFor(key) ? { style: `object-position:${objectPositionFor(key)}` } : {})}
           />
         </div>
