@@ -206,10 +206,20 @@ const objectPositionFor = (key: string) =>
     }
   }
 
-  /* The fade is the motion; the swap above is not. Rule 9 / 6.8. */
-  @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  /* The crossfade. Kept under reduced motion as a fade (DESIGN_BRIEF 6.8,
+     amended 2026-10-12, POLISH-AND-AUDIT-V2 Task 1): opacity is not motion
+     animation, so this is one of the three scoped exceptions to 6.8's global
+     0.01ms rule, which needs `!important` and class specificity to beat. */
+  @media (min-width: 900px) {
     .services-page__layer {
       transition: opacity var(--hover-image-duration) ease-out;
+      /* Chromium sometimes drops this transition when the swap lands
+         mid-scroll; image-stage.js's ensureFades() covers that case. */
+    }
+  }
+  @media (min-width: 900px) and (prefers-reduced-motion: reduce) {
+    .services-page .services-page__layer {
+      transition: opacity var(--hover-image-duration) ease-out !important;
     }
   }
 </style>

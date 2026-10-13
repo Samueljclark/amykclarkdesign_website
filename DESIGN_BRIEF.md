@@ -558,6 +558,8 @@ Native lazy loading below the fold. Blur-up placeholder from a 20px-wide inline 
 
 Plus: hero gallery advances by instant swap, shade reveals render fully visible on load, no scale on hover, **and the hero's one-time auto-scroll does not run at all (6.9).**
 
+**Exception, added 2026-10-12 (POLISH-AND-AUDIT-V2 Task 1).** Three opacity fades keep their 700ms (`--hover-image-duration`, ease-out) under reduced motion, and only these three: the Home service-list photo crossfade, the Home active-row underline, and the `/services` scroll-stage crossfade. Under reduce the underline does not draw across; it is fully drawn and fades in. Why: WCAG 2.3.3 does not count opacity changes as motion animation, and macOS's own Reduce Motion replaces slides with dissolves rather than removing them. A hard cut between two photographs is the more jarring of the two. Built as scoped rules inside `@media (prefers-reduced-motion: reduce)` in `ServiceList.astro` and `services/index.astro`, with `!important` and class specificity so they beat the global rule above. Nothing else on the site changes under reduce. Sam's Mac runs with Reduce Motion on, which is how the hard cut was found.
+
 ## 6.9 Scroll behaviour — SETTLED, do not revisit
 
 **Closed decision, 2026-08-02.** Scroll behaviour on this site is one thing

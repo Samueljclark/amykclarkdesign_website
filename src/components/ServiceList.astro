@@ -305,12 +305,76 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
     opacity: 1;
   }
 
-  /* Crossfade duration reuses 6.4's portfolio-hover token, the closest thing
-     in the brief to a spec for this. Rule 9 / 6.8: the fade is the motion,
-     so it is the only part with a reduced-motion off-switch. */
-  @media (prefers-reduced-motion: no-preference) {
+  /* ---- Crossfade + active-row underline (2026-10-12, POLISH-AND-AUDIT-V2
+     Task 1). Both run over --hover-image-duration, ease-out, so the line
+     finishes drawing at the same moment the photo finishes fading in.
+
+     The underline is the site's 6.6 device (2px, --indigo, scaleX from the
+     left) without the `.link-underline` class, which is hover-only and reads
+     as a link. These rows are not links; the line marks which photo is
+     showing. `transform-origin` stays `left` in both directions, so the
+     outgoing line retracts toward its start while the new one draws, and no
+     origin switch can make a half-drawn line jump during a fast sweep.
+
+     Resting state: until a visitor first hovers, focuses, or taps a row
+     (image-stage.js sets `data-stage-engaged`), the first photo shows and no
+     row is underlined. After that, exactly one row is underlined, always the
+     one whose photo is up, and it stays when the pointer leaves the list.
+
+     Position: measured 2026-10-12, the Display face's descenders (p, y, g)
+     reach 0.264em below the baseline while the name's box ends at 0.159em,
+     so `--service-underline-gap` puts the line ~0.03em clear of them at
+     every width. Retune that one value if the display face changes. ---- */
+  @media (min-width: 1024px) {
     .service-list__layer {
       transition: opacity var(--hover-image-duration) ease-out;
+    }
+
+    .service-list__name {
+      --service-underline-gap: 0.19em;
+      position: relative;
+    }
+    .service-list__name::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: calc(100% + var(--service-underline-gap));
+      width: 100%;
+      height: 2px;
+      background: var(--indigo);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--hover-image-duration) ease-out;
+    }
+    .service-list[data-stage-engaged] .service-list__link.is-active .service-list__name::after {
+      transform: scaleX(1);
+    }
+
+    /* Room for the line between the name and its description. */
+    .service-list__desc {
+      margin-top: 1.25rem;
+    }
+  }
+
+  /* ---- Reduced-motion exception (DESIGN_BRIEF 6.8, amended 2026-10-12).
+     6.8's global rule collapses every transition to 0.01ms with !important.
+     Opacity changes are not motion animation under WCAG 2.3.3, and macOS
+     Reduce Motion itself swaps slides for dissolves, so the photo crossfade
+     and the underline keep their 700ms here, as fades only: the underline
+     is fully drawn and fades in rather than drawing across. `!important`
+     plus class specificity beats the global `*` rule; nothing else on the
+     site is affected. ---- */
+  @media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+    .service-list .service-list__layer {
+      transition: opacity var(--hover-image-duration) ease-out !important;
+    }
+    .service-list .service-list__name::after {
+      transform: scaleX(1);
+      opacity: 0;
+      transition: opacity var(--hover-image-duration) ease-out !important;
+    }
+    .service-list[data-stage-engaged] .service-list__link.is-active .service-list__name::after {
+      opacity: 1;
     }
   }
 
@@ -318,6 +382,8 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
      fields, the site's only other custom focus indicator. */
   .service-list__link {
     display: block;
+    /* Not links: the underline marks the selection, not a destination. */
+    cursor: default;
   }
   .service-list__link:focus-visible {
     outline: 2px solid var(--indigo);

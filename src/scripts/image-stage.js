@@ -14,7 +14,10 @@
 //   [data-stage-section="<layer index>"]    — scroll mode: the sections
 // The active layer gets `.is-active`; the root gets `data-stage-active` once
 // JS has taken over, which is what lets each component's CSS drop its no-JS
-// resting state (first layer showing).
+// resting state (first layer showing). In hover mode the matching trigger
+// gets `.is-active` too, and the root gets `data-stage-engaged` on the first
+// hover, focus, or tap (2026-10-12, POLISH-AND-AUDIT-V2 Task 1): Home's
+// active-row underline shows only once the visitor has picked a row.
 //
 // WHY THIS IS JS NOW (Task 2 root cause). The Home swap used to be pure CSS,
 // and every swap rule sat inside `@media (prefers-reduced-motion:
@@ -39,10 +42,38 @@
 
 let teardown = null;
 
-function setActive(root, layers, index) {
+function setActive(root, layers, index, triggers = []) {
   if (!layers[index]) return;
+  const wasActive = layers.map((layer) => layer.classList.contains('is-active'));
   layers.forEach((layer, i) => layer.classList.toggle('is-active', i === index));
+  triggers.forEach((trigger) =>
+    trigger.classList.toggle('is-active', Number(trigger.dataset.stageTrigger) === index)
+  );
   root.dataset.stageActive = String(index);
+  requestAnimationFrame(() => ensureFades(layers, wasActive));
+}
+
+// Safety net for the crossfade (2026-10-12, POLISH-AND-AUDIT-V2 Task 1).
+// Chromium, including Sam's own Chrome 155, intermittently starts NO CSS
+// transition when /services' scroll stage swaps layers mid-scroll inside its
+// sticky container, so the photo cuts instead of fading (measured: 7 of 20
+// wheel-scroll runs in Chrome 155; WebKit 0 of 20; Home's hover stage 0 of
+// 16). One frame after a swap, any layer whose state changed but has no
+// running animation gets the same fade through the Web Animations API.
+// The duration is read from the layer's own computed `transition-duration`,
+// so CSS still decides everything: where CSS has no transition (or the 6.8
+// reduced-motion rule collapses it), this does nothing.
+function ensureFades(layers, wasActive) {
+  layers.forEach((layer, i) => {
+    const active = layer.classList.contains('is-active');
+    if (active === wasActive[i] || layer.getAnimations().length) return;
+    const duration = parseFloat(getComputedStyle(layer).transitionDuration) * 1000;
+    if (!(duration > 20)) return;
+    layer.animate([{ opacity: active ? 0 : 1 }, { opacity: active ? 1 : 0 }], {
+      duration,
+      easing: 'ease-out',
+    });
+  });
 }
 
 function initHoverStage(root, signal) {
@@ -52,11 +83,14 @@ function initHoverStage(root, signal) {
 
   // A re-init on the same page view (first load, then `astro:page-load`)
   // keeps whatever the reader already picked; a fresh page starts at 0.
-  setActive(root, layers, Number(root.dataset.stageActive ?? 0));
+  setActive(root, layers, Number(root.dataset.stageActive ?? 0), triggers);
 
   triggers.forEach((trigger) => {
     const index = Number(trigger.dataset.stageTrigger);
-    const show = () => setActive(root, layers, index);
+    const show = () => {
+      root.dataset.stageEngaged = '';
+      setActive(root, layers, index, triggers);
+    };
     // Mouse and pen hover. Touch fires pointerenter too, which is harmless.
     trigger.addEventListener('pointerenter', show, { signal });
     // Keyboard (and any programmatic focus).
