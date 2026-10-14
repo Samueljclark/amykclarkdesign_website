@@ -70,6 +70,8 @@ const ogImageURL = new URL(ogImage, Astro.site);
 
     {!isNotFoundPage && <link rel="canonical" href={canonicalURL.href} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- iOS home-screen icon: the favicon rendered at 180x180 (2026-10-14, audit). -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Amy K Clark Design" />
