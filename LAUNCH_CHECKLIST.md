@@ -16,7 +16,7 @@ Status key: `[ ]` not done · `[x]` done · `[Amy]` blocked on Amy ·
 
 These are the things that are **wrong on a live site**, not merely unfinished.
 
-- [Amy] **Testimonial permissions — FIVE quotes are live, not two.** Corrected
+- [x] **RESOLVED 2026-10-14 (Sam): all consented.** **Testimonial permissions — FIVE quotes are live, not two.** Corrected
   2026-08-06: this entry previously said two (Diane K. and Kelly G.), which
   was accurate on 2026-07-26 but went stale the next day, when the 2026-07-27
   testimonial rotation shipped. **All five need written permission before
@@ -141,7 +141,7 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   ```bash
   grep -rn "ask Amy\|since 2021" src/ dist/
   ```
-- [Amy][Sam] **Ivory House photography permissions — two separate people,
+- [x] **RESOLVED 2026-10-14 (Sam): all consented.** **Ivory House photography permissions — two separate people,
   both required.** The whole-house shoot added 2026-07-28 (drapery, blinds,
   reupholstered dining chair, cushions and pillows — see IMAGE-MANIFEST.md)
   is wired into the four ServiceList hover stages, `/blinds`, the Cincinnati
@@ -154,7 +154,7 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   publish photos of their house has been obtained.** Same holding pattern as
   the testimonials: visible now for review, not cleared to publish. Get both
   permissions before the real domain goes live, not after.
-- [Amy][Sam] **Collected Living Room / Stardust Lane homeowner permission —
+- [x] **RESOLVED 2026-10-14 (Sam): all consented.** **Collected Living Room / Stardust Lane homeowner permission —
   separate from Ivory House, added 2026-08-19 (post-Meeting-4 pass, Task
   14).** This is the earlier, visibly phone-camera shoot (a different house
   from Ivory House) that supplies the Home hero — **the single most-seen
@@ -167,7 +167,7 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   been obtained. Not yet confirmed whether this is the same photographer as
   Ivory House or a different one — resolve that before assuming Kelsee's
   permission (below) covers it too.
-- [Amy][Sam] **Kelsee's photography, permission broadly — added 2026-08-19
+- [x] **RESOLVED 2026-10-14 (Sam): all consented.** **Kelsee's photography, permission broadly — added 2026-08-19
   (post-Meeting-4 pass, Task 14), separate from the two house-specific items
   above.** Covers her copyright permission for whatever of her work appears
   on the site now or later, plus the standing note from this session's photo

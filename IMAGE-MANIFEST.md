@@ -347,7 +347,7 @@ Journal post heroes, the two location pages (`/cincinnati`,
 substitute set. Left alone deliberately; rewiring them was not part of this
 pass and each is a small, separate decision.
 
-**Permission is still outstanding and blocking.** Written permission from
+**RESOLVED 2026-10-14 (Sam): all consented.** Photographer and homeowner permissions are in hand. *History:* **Permission is still outstanding and blocking.** Written permission from
 both the photographer (copyright) and the homeowner (their house) has not
 been obtained. Tracked in `LAUNCH_CHECKLIST.md` §1 alongside the testimonial
 permissions, on the identical holding pattern: wired in and visible now,
