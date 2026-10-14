@@ -16,7 +16,7 @@ repo conflicts with DESIGN_BRIEF.md or BUILD-PLAN.md, those two win.
 
 ## Stack
 Astro, static output, hosted on Netlify. Netlify Forms for the contact
-form. Fonts self-hosted (Archivo variable + Bodoni Moda variable). Node
+form. Fonts self-hosted (Archivo variable + Jost 300; Bodoni Moda retired 2026-10-12). Node
 pinned to 24.18.0 in netlify.toml.
 
 ## legacy-static/ is archived, not a reference

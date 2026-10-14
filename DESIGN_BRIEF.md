@@ -299,6 +299,8 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
 
 **Section 1: Hero.**
 
+**Current hero (updated 2026-10-14).** Full-bleed archway photograph; the nav line on top. The opening line, "The little details make all the difference.", is permanent and set in **ink** (Sam, 2026-10-14: white could not be read), on one line at the **top** of the frame on the pale arch ceiling; centred, it sat on the chandelier. At the bottom: the wordmark (white, Label role scaled up), the studio tagline "Boutique custom window treatment and upholstery studio serving Cincinnati and Northern Kentucky." in Label style (replaced the Upholstery / Drapery / Shades word links 2026-10-08), the discovery-call CTA, and the scroll cue. The Portfolio section is flag-disabled, so Services follows the hero. The notes below are history where they disagree.
+
 - Full viewport height. The image fills the entire screen.
 - The only thing above it is the navigation line. No headline block, no descriptor paragraph, no stacked copy. Amy was explicit and repeated it.
 - **No location line in the hero (REVISED 2026-07-31).** The `Cincinnati/NKY Based` / `Serving all areas` block is removed. Geography belongs at the foot of the page, not stamped over the first photograph — it was the only text competing with the image, and the hero's whole job is the image. The service area now reads as one footer line: `Serving Cincinnati and Northern Kentucky since [DATE — ask Amy]`. See 5.8.
