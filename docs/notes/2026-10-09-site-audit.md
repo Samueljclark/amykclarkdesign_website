@@ -381,3 +381,40 @@ All under `docs/notes/polish-audit-v2-media/` (kept out of git).
 - `t4-after-testimonials-1440.png`
 
 **Audit area B:** `audit-pages/{chromium,webkit}-{390,768,1024,1280,1440,1920}-{page}.png` (132 full-page screenshots).
+
+## Addendum, 2026-10-14
+
+Sam: the testimonial and photography permissions (§3.2, §3.3) are **resolved,
+all consented**. Docs updated in `7e5e9c2`. He also asked for fixes to be made
+on judgment rather than listed. Done on `copy-pass-v1`:
+
+| Commit | Change |
+|---|---|
+| `4cd56cf` | Hero opening line in ink, one line, moved to the top of the frame on the pale arch ceiling. Centred, it sat on the chandelier at every desktop width. Contrast behind the text is at least 5.4:1 on the darkest 2% of pixels from 390 to 2560, except 1920x1080, where the chandelier chain crosses (10th percentile 5.5:1). |
+| `f77bf15` | Sharper cover-cropped photos (§3.6): `sizes` scaled by each photo's crop factor (`src/utils/coverSizes.ts`), and srcsets gain 1600w and 2000w. Now 92-93% of 2x, capped by the 2000px sources. Services mobile 155 to 328 KB, LCP 1.58 to 1.73 s, performance still 100. |
+| `7672841` | Testimonial attribution in ink (§3.5). axe: zero violations on Home. |
+| `a4aef7b` | Security headers (§3.7) and slash-terminated redirect targets (§4.1). Verified on deploy, since `astro preview` ignores `netlify.toml`. |
+| `a67ad4b` | apple-touch-icon (the favicon at 180x180). |
+| `307984b` | Fee figure removed from the three `legacy-static/` files (§3.9). Old commits still contain it. |
+| `63381cf` | Stale docs: LAUNCH_CHECKLIST repo/deploy/form/theme items done; CLAUDE.md stack fonts; DESIGN_BRIEF 5.1 hero. |
+
+**Deliberately not changed:**
+- Mobile-menu scroll lock and focus containment (§3.8). The menu has broken
+  twice before, and scroll behaviour is a settled decision.
+- Double-submit guard (§4.3): the form works, so it was left alone.
+- The Astro major upgrade (§3.10).
+- Netlify env vars, DNS, and the account transfer (§3.1, §3.4). These are
+  account settings and secrets, which need Sam.
+
+**On the email pipeline (§3.1).** Sam reports every test submission reaches
+his mom. That matches the audit: Netlify's own form-notification email (to a
+gmail.com address) works. What does not run is the site's function, which
+sends the client a confirmation and Amy a formatted copy with a one-click
+reply. Netlify has no `RESEND_API_KEY`, so it stops at "not set". The quick
+check: does the person who submitted get a confirmation email? If not, §3.1
+is the fix, and the key stored as a variable name still needs rotating either
+way.
+
+Interaction regression after these changes: the same 51 checks pass in
+Chromium and WebKit; the 7 flags are the known test-timing artifacts noted in
+area C.
