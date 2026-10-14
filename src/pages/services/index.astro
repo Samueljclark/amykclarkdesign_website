@@ -26,6 +26,7 @@ import { Picture } from 'astro:assets';
 import { getEntry } from 'astro:content';
 import { photos, type PhotoKey } from '../../data/photos';
 import { services } from '../../data/services';
+import { coverSizes } from '../../utils/coverSizes';
 
 const entry = await getEntry('pages', 'services');
 const { seoTitle, description, title, lede, lead, sections = [] } = entry.data;
@@ -78,8 +79,8 @@ const objectPositionFor = (key: string) =>
                   alt={photo.alt}
                   formats={['avif', 'webp']}
                   fallbackFormat="jpg"
-                  widths={[480, 768, 1200]}
-                  sizes="(min-width: 900px) 1px, 90vw"
+                  widths={[480, 768, 1200, 1600, 2000]}
+                  sizes={coverSizes(photo.image, 4 / 5, '(min-width: 900px) 1px, 90vw')}
                   loading={first ? 'eager' : 'lazy'}
                   fetchpriority={first ? 'high' : 'auto'}
                   {...(position ? { style: `object-position:${position}` } : {})}
@@ -108,8 +109,8 @@ const objectPositionFor = (key: string) =>
             alt=""
             formats={['avif', 'webp']}
             fallbackFormat="jpg"
-            widths={[480, 768, 1200]}
-            sizes="(min-width: 900px) 30rem, 1px"
+            widths={[480, 768, 1200, 1600, 2000]}
+            sizes={coverSizes(photos[key].image, 4 / 5, '(min-width: 900px) 30rem, 1px')}
             loading={i === 0 ? 'eager' : 'lazy'}
             fetchpriority={i === 0 ? 'high' : 'auto'}
             {...(objectPositionFor(key) ? { style: `object-position:${objectPositionFor(key)}` } : {})}

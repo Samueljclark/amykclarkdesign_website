@@ -49,6 +49,7 @@ import RevealImage from '../components/RevealImage.astro';
 import StepList from '../components/StepList.astro';
 import { getEntry } from 'astro:content';
 import { photos } from '../data/photos';
+import { coverSizes } from '../utils/coverSizes';
 
 const entry = await getEntry('pages', 'process');
 const { seoTitle, description, eyebrow, title, lead, steps = [], closing } = entry.data;
@@ -81,7 +82,7 @@ const image = photos['ivory-house-bay-window'];
         alt={image.alt}
         blurDataURL={image.blurDataURL}
         aspectRatio="4/5"
-        sizes="(min-width: 900px) 30rem, 90vw"
+        sizes={coverSizes(image.image, 4 / 5, '(min-width: 900px) 30rem, 90vw')}
         loading="eager"
         fetchpriority="high"
       />

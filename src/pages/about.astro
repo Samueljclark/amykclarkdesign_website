@@ -70,6 +70,7 @@ import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
 import { getEntry, render } from 'astro:content';
 import { photos } from '../data/photos';
+import { coverSizes } from '../utils/coverSizes';
 import originImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
 import samPortrait from '../assets/images/team/sam-clark.jpg';
 import kelseePortrait from '../assets/images/team/kelsee-etmans.jpg';
@@ -168,7 +169,7 @@ const studio: StudioPerson[] = STUDIO_PEOPLE.flatMap((person) => {
           alt={photos['amy-portrait'].alt}
           blurDataURL={photos['amy-portrait'].blurDataURL}
           aspectRatio="4/5"
-          sizes="(min-width: 900px) 24rem, 90vw"
+          sizes={coverSizes(photos['amy-portrait'].image, 4 / 5, '(min-width: 900px) 24rem, 90vw')}
           loading="eager"
           fetchpriority="high"
         />

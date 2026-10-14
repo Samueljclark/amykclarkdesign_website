@@ -36,6 +36,7 @@
 
 import { Picture } from 'astro:assets';
 import { photos } from '../data/photos';
+import { coverSizes } from '../utils/coverSizes';
 import type { Service } from '../data/services';
 
 interface Props {
@@ -114,8 +115,8 @@ const { services, headingHidden = false, scrollEaseTarget = false } = Astro.prop
               alt={photo.alt}
               formats={['avif', 'webp']}
               fallbackFormat="jpg"
-              widths={[480, 768, 1200]}
-              sizes="(min-width: 1024px) 37vw, 1px"
+              widths={[480, 768, 1200, 1600, 2000]}
+              sizes={coverSizes(photo.image, 4 / 5, '(min-width: 1024px) 37vw, 1px')}
               loading="lazy"
               class="service-list__layer-img"
               {...(service.objectPosition
