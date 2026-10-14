@@ -203,7 +203,11 @@ const { images } = Astro.props;
   .hero__center {
     display: grid;
     justify-items: center;
-    align-content: center;
+    /* Top of the row, not its centre (2026-10-14): centred, the opening line
+       landed on the hero's chandelier at every desktop width and could not be
+       read in any colour. At the top it sits on the pale arch ceiling, which
+       measured at least 5:1 against ink across 390 to 2560. */
+    align-content: start;
     text-align: center;
     gap: 0.75rem;
   }
@@ -264,7 +268,15 @@ const { images } = Astro.props;
      removal from the DOM any more (see the header comment above the markup).
      The one remaining transition is the entrance fade-in, once per session. */
   .hero__opening-line {
-    max-width: 32ch;
+    /* Ink, not the hero's white (2026-10-14, Sam): the line sits over the
+       pale arch and ceiling of the hero photograph, where white text could
+       not be read. The wordmark and CTA lower down stay white over the
+       scrim. */
+    color: var(--ink);
+    /* One line wherever it fits (wraps on phones), so it stays above the
+       chandelier rather than running down beside its chain. Was 32ch. */
+    max-width: none;
+    text-align: center;
     font-size: var(--text-label);
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
