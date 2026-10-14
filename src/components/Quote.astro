@@ -33,6 +33,9 @@ const { quote, attribution } = Astro.props;
 
   .quote__attribution {
     margin-top: 1.5rem;
-    color: var(--ink-muted);
+    /* Ink, not --ink-muted (2026-10-14, audit): on the testimonial band's
+       tinted ground, muted 11px Label text measured 4.21:1, under WCAG AA's
+       4.5:1. It was the site's only axe violation. */
+    color: var(--ink);
   }
 </style>
