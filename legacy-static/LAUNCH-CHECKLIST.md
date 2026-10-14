@@ -21,7 +21,7 @@ grep -rn "PLACEHOLDER IMAGE" *.html journal/*.html
 4. **Instagram handle** — footer and contact page link to bare instagram.com.
 5. **Photo of Amy** — `images/about/amy-portrait.jpg` is a placeholder. A real photo is
    non-optional for the About page; stock cannot substitute.
-6. **Consultation fee** — `$125` is published on Process and Contact. Confirm the number,
+6. **Consultation fee** — `[consultation fee removed 2026-10-14]` is published on Process and Contact. Confirm the number,
    or strip it and keep the fee mentioned without an amount.
 
 ## Strongly recommended before launch
