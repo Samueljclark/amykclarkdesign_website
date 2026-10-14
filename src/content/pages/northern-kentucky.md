@@ -10,6 +10,8 @@ lead:
   - 'Amy designs, sews, and installs custom drapery across Cincinnati and Northern Kentucky.'
 ---
 
-Drapery is the largest piece of fabric in most rooms, and it sets the terms for the rest. Where the rod goes, how far the panels stack back, what the lining does to the light. Once that is settled, the upholstery, the shades, and the pillows and cushions get worked around it rather than negotiated against it afterward. Fabric comes from the lines she represents, chosen for how it will hang in your specific room rather than how it reads in a book.
+<!-- DRAFT COPY - NEEDS REWRITE (COPY-PASS-V1, Task 9, 2026-10-08): vendor-positioning clause cut from the "Fabric is chosen" sentence below, per the CLAUDE.md vendor rule (2026-08-19). -->
+
+Drapery is the largest piece of fabric in most rooms, and it sets the terms for the rest. Where the rod goes, how far the panels stack back, what the lining does to the light. Once that is settled, the upholstery, the shades, and the pillows and cushions get worked around it rather than negotiated against it afterward. Fabric is chosen for how it will hang in your specific room rather than how it reads in a book.
 
 Every project starts in your house. See [services](/services) for how the work gets built, or [process](/process) for what happens in what order.

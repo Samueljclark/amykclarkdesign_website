@@ -25,20 +25,66 @@
 # instead of a 404.
 [[redirects]]
   from = "/services/drapery"
-  to = "/services"
+  to = "/services/"
   status = 301
 
 [[redirects]]
   from = "/services/blinds-shades"
-  to = "/services"
+  to = "/services/"
   status = 301
 
 [[redirects]]
   from = "/services/upholstery"
-  to = "/services"
+  to = "/services/"
   status = 301
 
 [[redirects]]
   from = "/services/soft-furnishings"
-  to = "/services"
+  to = "/services/"
   status = 301
+
+# Blinds landing page and Design Journal saved for v2 (COPY-PASS-V1, Task 1,
+# 2026-10-08). Routes live under src/pages/_disabled/ behind FLAGS in
+# src/config/flags.ts. Delete the matching block here when either returns.
+[[redirects]]
+  from = "/blinds"
+  to = "/services/"
+  status = 301
+
+[[redirects]]
+  from = "/blinds/"
+  to = "/services/"
+  status = 301
+
+[[redirects]]
+  from = "/journal"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/journal/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/journal/*"
+  to = "/"
+  status = 301
+
+# Redirect targets end in a slash (2026-10-14, audit): Netlify serves
+# /services/ and 301s /services to it, so a target without the slash cost a
+# second redirect.
+
+# Security headers (2026-10-14, audit). Before this only HSTS was set (by
+# Netlify). These four change nothing visible: no MIME sniffing, no framing
+# of the site by other sites, referrers trimmed to the origin cross-site, and
+# no camera/microphone/location access. A Content-Security-Policy is not set
+# yet; it needs testing against the inline JSON-LD and Astro's scripts first.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+

@@ -2814,3 +2814,89 @@ readings give completely different answers.
 **Neither face was added.** Fraunces is outside the final set and CLAUDE.md
 forbids pulling typography out of `legacy-static/` regardless. Flagged for Sam
 to confirm with Amy which of the two she meant.
+
+## 2026-10-12: display face moves from Bodoni Moda to Jost Light, uppercase (POLISH-AND-AUDIT-V2 Task 4)
+
+**Decision (Amy, 2026-10-09; built 2026-10-12).** Amy rejected four Bodoni
+Moda variants and asked for "Lato or Helvetica"; rejected Archivo in mixed
+case ("does nothing for me"); then pointed at core-consultinggroup.com's hero
+("POWERING POTENTIAL"), a light, all-caps, widely letterspaced sans: "I like
+the simplicity of this font but don't use the exact one." That reference
+looks like Barlow or Roboto Condensed, so Barlow, Roboto, and Roboto
+Condensed are excluded. Sam was shown `/contact`, the Home service list, and
+`/services` headings at 1440 and 390 in Lato Light, Jost Light, and Archivo
+Light (all 300, uppercase, 0.12em, 1.15) and chose **Jost**. This postdates
+Meeting 4 and the Didot screenshot, so it supersedes the 2026-08-04 Didone
+entry above for the display role. Still two faces.
+
+**What changed.**
+- `public/fonts/jost-latin-300.woff2` (9.9 KB, latin, 300, OFL 1.1 via
+  `@fontsource/jost` 5.3.0; no runtime dependency). `@font-face` with
+  `font-display: swap`, preloaded in Base.astro in place of Bodoni Moda.
+- Bodoni Moda retired, not deleted: `@font-face` and preload removed, file
+  kept. Confirmed no request for it in the network log.
+- Tokens: `--font-display: 'Jost', 'Helvetica Neue', Helvetica, Arial,
+  sans-serif`; `--weight-display: 300` (never lighter); `--leading-display:
+  1.15`; `--tracking-display: 0.12em` (kept at the shown value after viewing
+  it on every heading; it reads open without breaking words apart at 28px);
+  `--text-display: clamp(1.75rem, 1.134rem + 2.629vw, 3.5rem)` (28px to 56px,
+  was 40px to 92px). `.type-display` gains `text-transform: uppercase` and
+  uses the tracking token.
+- Home service names: `clamp(1.5rem, 0.95rem + 2.254vw, 3rem)`. Fit beside the
+  hover stage at 1024 (widest name ends 61px short of its column).
+- Display-heading measures moved from `ch` to `em` (`.text-page__heading`,
+  `.services-page__title`, `.differentiator__heading` 18ch to 18em;
+  `.contact-band__line` 14ch to 14em; `.contact-band__heading` 24ch to 24em).
+  `ch` is a lowercase zero and held about half as many uppercase tracked
+  letters, which pushed the location-page H1s to three lines at 1440.
+- `.prose h2` now uses the display face, uppercase. It never set a family,
+  so About's and the location pages' markdown headings had been Archivo
+  while the subheads beside them were Bodoni.
+- Testimonials (`.type-quote`): Jost 300, sentence case, untracked.
+- Task 1's active-row underline retuned for capitals: gap +0.19em to
+  -0.04em (line ~0.2em under the letters, 1024 to 2560), width minus the
+  trailing tracking; the extra description margin it needed in Bodoni was
+  removed.
+
+**Measured.** Every H1 at most two lines at 1440 (Contact one line) and at
+most two at 390; no word overflows at 360; no document overflow on any page.
+
+## 2026-10-08 to 2026-10-12: COPY-PASS-V1 and POLISH-AND-AUDIT-V2 (branch `copy-pass-v1`)
+
+Both passes ran on the `copy-pass-v1` branch on Sam's explicit instruction
+(each doc said so), not on `main`. Production stayed on `89d4762` throughout.
+Instructions: `docs/COPY-PASS-V1.md` and `docs/POLISH-AND-AUDIT-V2.md`.
+
+**COPY-PASS-V1 (2026-10-08).**
+- Blinds landing page and Design Journal flagged off for v2
+  (`blindsEnabled`, `journalEnabled`), routes moved under `src/pages/_disabled/`,
+  301s in `netlify.toml`. Nav is Services, About, Process, Contact.
+- Home service hover swap: root cause was that every swap rule sat inside
+  `(prefers-reduced-motion: no-preference)`, and Sam's Mac has Reduce Motion on.
+  The swap moved to `src/scripts/image-stage.js` (hover, focus, tap; astro:page-load
+  lifecycle); the stage shows from 1024px.
+- Home hero: the three word links replaced by the studio tagline. Blinds blurb
+  no longer says "the one line she represents".
+- Hero auto-advance: never removed (it was invisible under Reduce Motion).
+  Brought to spec: once per session, wheel/trackpad/touch trigger, momentum
+  lock, never on a scrolled or `#hash` load. DESIGN_BRIEF 6.9 amended.
+- Services, About, Process, Contact: Kristen's copy pass, new layouts (sticky
+  scroll-synced image on Services; headshot-led About with a gated Reaghan card;
+  four-step Process; Contact Common Questions with matching FAQPage JSON-LD).
+- Location pages: "the lines she represents" removed (vendor rule).
+
+**POLISH-AND-AUDIT-V2 (2026-10-12).**
+- Task 1: active-row underline on the Home service list, synced with the photo
+  crossfade; under reduced motion three opacity fades are kept (DESIGN_BRIEF
+  6.8 exception). Also fixed a Chromium bug, reproduced in Sam's Chrome 155,
+  where the `/services` swap sometimes started no CSS transition and the photo
+  cut: `ensureFades()` in image-stage.js runs the same fade through the Web
+  Animations API when no transition started.
+- Task 2: copy rule fixes (seamless, price points, partner, "paid" on
+  Process), About service-area paragraph, plain Services ledes, Contact H1
+  "Let's Talk About Your Project" (Amy's words).
+- Task 3: About Mission section (Claude-written, needs Amy's OK); Studio
+  order Sam, Kelsee, Reaghan with credential lines; Reaghan's title set.
+- Task 4: display face Bodoni Moda to Jost Light, uppercase (entry above).
+- Task 5: DESIGN_BRIEF 4, 5.3, 5.4, 5.5 brought up to date.
+- Task 6: full site audit, report at `docs/notes/2026-10-09-site-audit.md`.

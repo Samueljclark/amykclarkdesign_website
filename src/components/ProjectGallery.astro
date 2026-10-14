@@ -40,12 +40,15 @@ const { lead, supporting, leadTransitionName } = Astro.props;
   <ul class="wrap project-gallery__list">
     {supporting.map((item, i) => (
       <li class="project-gallery__item">
+        {/* Alternating portrait/landscape tiles are what make this read as
+            a collage rather than a uniform contact sheet. (Comment moved out
+            of the attribute list 2026-10-12: a JSX comment there is a parse
+            error that `astro check` flags and that would fail the build if
+            the portfolio were re-enabled.) */}
         <RevealImage
           src={item.image}
           alt={item.alt}
           blurDataURL={item.blurDataURL}
-          {/* Alternating portrait/landscape tiles are what make this read as
-              a collage rather than a uniform contact sheet. */}
           aspectRatio={i % 2 === 0 ? '4/5' : '1/1'}
           sizes="(min-width: 900px) 22vw, (min-width: 600px) 44vw, 90vw"
         />

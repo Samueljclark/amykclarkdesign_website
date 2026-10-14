@@ -44,6 +44,10 @@ const { localBusiness = false, breadcrumbs, article } = Astro.props;
 
 const site = Astro.site!;
 const abs = (path: string) => new URL(path, site).href;
+// Page URLs use the same trailing-slash form as the canonical tags: Netlify
+// serves /about/ and 301s /about to it, so a slashless URL in structured data
+// pointed at a redirect rather than the page (fixed 2026-10-12, audit).
+const page = (path: string) => abs(/\/$|\.[a-z0-9]+$|#/i.test(path) ? path : `${path}/`);
 
 // One stable @id for the business, referenced by every other node that needs
 // to point at it. Google treats this as the identity key across the site.
@@ -98,7 +102,7 @@ if (localBusiness) {
         itemOffered: {
           '@type': 'Service',
           name: service.name,
-          url: abs(service.href),
+          url: page(service.href),
         },
       })),
     },
@@ -112,7 +116,7 @@ if (breadcrumbs?.length) {
       '@type': 'ListItem',
       position: index + 1,
       name: crumb.name,
-      item: abs(crumb.href),
+      item: page(crumb.href),
     })),
   });
 }

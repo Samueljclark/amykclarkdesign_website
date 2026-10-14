@@ -12,9 +12,11 @@
 // comparing "privacy" against "light and glare control" shouldn't have to
 // reopen one after checking the other.
 
+// `content` is one paragraph or an array of paragraphs (2026-10-08,
+// COPY-PASS-V1 Task 8: the Contact answers run to several).
 interface AccordionItem {
   title: string;
-  content: string;
+  content: string | string[];
 }
 
 interface Props {
@@ -47,7 +49,9 @@ const { items } = Astro.props;
         aria-labelledby={`accordion-trigger-${i}`}
       >
         <div class="accordion__panel-inner">
-          <p>{item.content}</p>
+          {(Array.isArray(item.content) ? item.content : [item.content]).map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
         </div>
       </div>
     </div>
@@ -55,6 +59,15 @@ const { items } = Astro.props;
 </div>
 
 <style>
+  /* Multi-paragraph answers: the panel's bottom padding (on `p`, below)
+     belongs to the last paragraph only; the others sit 1rem apart. */
+  .accordion__panel-inner p:not(:last-child) {
+    padding-bottom: 0;
+  }
+  .accordion__panel-inner p + p {
+    margin-top: 1rem;
+  }
+
   .accordion {
     border-top: 1px solid var(--rule);
   }

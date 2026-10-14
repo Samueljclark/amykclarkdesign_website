@@ -4,10 +4,10 @@
 // avatars." Left-aligned per 3.4's body-copy rule, applied here too rather
 // than centering the quote as testimonial sections conventionally do.
 //
-// The quote face was Newsreader light until 2026-08-04. It is now the display
-// face (Bodoni Moda) via `.type-quote`, which is what took the site from three
-// typefaces to two. Nothing here needs to change if that decision is revisited
-// — the face is chosen in tokens.css, not in this component.
+// The quote face is the display face via `.type-quote`: Newsreader light until
+// 2026-08-04, Bodoni Moda until 2026-10-12, now Jost 300 in sentence case.
+// Nothing here changes when that decision is revisited — the face is chosen
+// in tokens.css, not in this component.
 
 interface Props {
   quote: string;
@@ -33,6 +33,9 @@ const { quote, attribution } = Astro.props;
 
   .quote__attribution {
     margin-top: 1.5rem;
-    color: var(--ink-muted);
+    /* Ink, not --ink-muted (2026-10-14, audit): on the testimonial band's
+       tinted ground, muted 11px Label text measured 4.21:1, under WCAG AA's
+       4.5:1. It was the site's only axe violation. */
+    color: var(--ink);
   }
 </style>

@@ -21,9 +21,30 @@
 //   2. The automated confirmation email after a booking is a separate,
 //      coupled decision. Not built. The consultation fee figure belongs in
 //      that email and NOWHERE on this site (5.9).
+//
+// Optional props (2026-10-08, COPY-PASS-V1 Tasks 7 and 8): a page can swap in
+// its own closing heading and paragraph (Process, Contact) and point the same
+// button somewhere else (Contact's in-page anchor to the form). With no props
+// it is exactly the band it always was. The copy itself comes from each
+// page's content file; nothing page-specific is written here.
+
+interface Props {
+  heading?: string;
+  body?: string[];
+  href?: string;
+}
+
+const { heading, body = [], href = '/contact' } = Astro.props;
 ---
 
 <section class="section wrap contact-band bg-ground">
-  <p class="type-display contact-band__line">Let's Get Started</p>
-  <a href="/contact" class="btn btn-solid">Schedule your complimentary discovery call</a>
+  {heading ? (
+    <div class="contact-band__copy">
+      <h2 class="type-display contact-band__line contact-band__heading">{heading}</h2>
+      {body.map((paragraph) => <p class="contact-band__body">{paragraph}</p>)}
+    </div>
+  ) : (
+    <p class="type-display contact-band__line">Let's Get Started</p>
+  )}
+  <a href={href} class="btn btn-solid">Schedule your complimentary discovery call</a>
 </section>

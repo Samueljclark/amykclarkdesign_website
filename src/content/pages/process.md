@@ -1,48 +1,29 @@
 ---
 seoTitle: 'Process | Amy K Clark Design'
-description: 'How a project runs: a complimentary discovery call, an in-home design consultation, design, fabrication, and installation. Amy carries all five steps.'
+# DRAFT COPY - NEEDS REWRITE (COPY-PASS-V1, Task 7, 2026-10-08): Claude-written
+# meta description. The line COPY-PASS-V1 specified ("How a project with Amy K
+# Clark Design runs: ...") is 163 characters, over 8.1's 155 cap and this
+# schema's max, so the build fails on it. "with Amy K Clark Design" was cut
+# (the page title already carries the brand); nothing else changed.
+description: 'How a project runs: a complimentary discovery call, an in-home design consultation, refining the details, and fabrication and installation.'
 eyebrow: Process
-title: Process
-# Third person as of the 2026-08-18 voice rewrite (SITE-COPY-THIRD-PERSON.md),
-# implemented 2026-08-19. Reverses the 2026-08-18 first-person pass
-# (SITE-COPY-REWRITE.md).
-#
-# ---- Restructured 2026-08-01 (step 10d). ----
-# The page ran four steps beginning at "Consultation" and never mentioned the
-# complimentary discovery call at all, so a reader could not tell that the
-# two-step funnel DESIGN_BRIEF 5.9 describes exists — let alone that the call
-# and the consultation are different things and that both happen. There are
-# five numbered steps now, and the first two are those two conversations,
-# named so they cannot be confused with each other.
-#
-# **This deviates from DESIGN_BRIEF 5.5, deliberately**, and the brief is
-# updated in step 10 to match. 5.5 names four steps and calls the first one
-# "Consultation"; 5.9 (added in the same July 31 review, so newer and more
-# specific) splits booking into a complimentary phone discovery call and a
-# paid in-home design consultation. Step 1 is 5.9's step one, step 2 is
-# 5.9's step two renamed to its full name, and 5.5's other three step names
-# are unchanged and should not be renamed without checking that section.
-#
-# **No fee, no amount, and no cost framing anywhere on this page.** That is a
-# standing rule (DESIGN_BRIEF rule 1, 5.9, and §10's acceptance checkbox) and
-# BUILD-PLAN records five separate rule-1 violations caught in earlier passes
-# that named no figure at all and were still cost framing. The distinction
-# between the two steps is carried by "complimentary" on step 1 — the site's
-# own sanctioned word, straight out of 5.9's CTA — plus place, length, and
-# what actually happens. Do not add "paid", "no charge", "free", or a figure
-# to step 2 to sharpen the contrast.
-lead:
-  - 'Two conversations happen before any work starts, and they are not the same thing. The first is a short phone call, and it is complimentary. The second is a design consultation in your home, and it is where the project actually gets decided.'
-  - 'Five steps, in this order, every time. Amy carries the project through all five, which is why nothing gets lost between one and the next.'
+# Kristen copy pass (COPY-PASS-V1, Task 7, 2026-10-08), verbatim apart from
+# the marked addition in step 02. Four steps replace the previous five.
+title: "What It's Like to Work Together"
+lead: []
 steps:
-  - title: Complimentary discovery call
-    body: 'A short phone call. Send photos of the room beforehand and Amy will have looked at them before she rings. She asks what the room is, what is not working, and what you want it to do. Nothing gets measured and nothing gets designed on this call. It exists so both of you know whether the project is a fit before either of you gives it an afternoon.'
-  - title: In-home design consultation
-    body: 'This one happens in your house and runs about three hours. It comes after the discovery call, not instead of it. Amy takes the measurements, looks at the light during the hours that actually matter to you, and you talk about how you use the room rather than how it photographs. Most of what shapes a project gets decided standing in it.'
-  - title: Design and sourcing
-    body: 'Fabric, lining, hardware, and construction get settled together, because each one decides the others. Memos come to your house, so you are judging a textile against your walls and the things already in the room, never under showroom lighting.'
-  - title: Fabrication and coordination
-    body: 'Amy makes the work herself, in her own workroom. If the project runs alongside a painter or a contractor, she works to their schedule so you are not the one coordinating it.'
-  - title: Installation and finishing
-    body: 'Amy hangs the work herself. Panels get dressed and trained on the day, hardware gets set so the returns close tight to the frame, and nothing gets called finished from the top of a ladder. The last thing she does is stand back in the doorway, where you will actually be looking at it from.'
+  - title: Begin with a conversation
+    body: 'Schedule a complimentary 15-minute call to tell Amy about your home, your windows, and what you would like to change.'
+  - title: Explore the possibilities
+    # DRAFT COPY - NEEDS REWRITE (POLISH-AND-AUDIT-V2, Task 2, 2026-10-12): step opener, Claude-written in COPY-PASS-V1;
+    # "paid" removed here because DESIGN_BRIEF 5.5 keeps it on /contact only.
+    body: 'In an in-home design consultation, Amy visits your home to understand the room, take measurements, identify practical needs, and begin exploring fabrics, materials, and solutions with you.'
+  - title: Refine the details
+    body: 'Together, you will select the design, materials, construction, and finishing details that make the project feel personal and complete.'
+  - title: Bring it to life
+    body: 'Amy oversees the project through fabrication and installation, ensuring the finished result looks beautiful, functions properly, and feels at home in the room.'
+closing:
+  heading: "Let's Make Your Home Feel More Like You"
+  body:
+    - 'Whether you know exactly what you love or simply know that the room does not feel finished, Amy can help you see what is possible.'
 ---

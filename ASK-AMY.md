@@ -219,7 +219,8 @@ it and the footer reads "Serving Cincinnati and Northern Kentucky since
 - **Whether to expand beyond the single restrained accent color, or keep photography
   as the only source of color.** Tracked as decision 10 in BUILD-PLAN.md — see that
   entry for the reasoning already on file rather than repeating it here.
-- **Written permission for every testimonial now on the site.** Home shows two
+- **RESOLVED 2026-10-14 (Sam): all consented.** Every quoted client consented to publication; the note below is kept as history.
+  **Written permission for every testimonial now on the site.** Home shows two
   at a time: a fixed top slot and a second slot that **rotates through four**.
   Five real quotes are live in total, and **none is published with permission
   yet.** All are on the same holding pattern, and all but Diane's were cut from
@@ -246,7 +247,8 @@ it and the footer reads "Serving Cincinnati and Northern Kentucky since
   one judgement call worth confirming: it carries no project detail, which is
   the standard every other quote here was selected against. Full text is in
   `docs/handoff/SITE-COPY-EXPORT.md` if Amy would rather it were used.
-- **Written permission for the Ivory House photography.** The same holding
+- **RESOLVED 2026-10-14 (Sam): all consented.** Photographer and homeowner permissions are in hand; the note below is kept as history.
+  **Written permission for the Ivory House photography.** The same holding
   pattern as the testimonials, for a different reason: this is real,
   identifiable client photography, not client testimony. Two separate
   permissions are needed before launch — the **photographer** (copyright in

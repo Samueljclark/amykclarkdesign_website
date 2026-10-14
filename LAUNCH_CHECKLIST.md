@@ -16,7 +16,7 @@ Status key: `[ ]` not done · `[x]` done · `[Amy]` blocked on Amy ·
 
 These are the things that are **wrong on a live site**, not merely unfinished.
 
-- [Amy] **Testimonial permissions — FIVE quotes are live, not two.** Corrected
+- [x] **RESOLVED 2026-10-14 (Sam): all consented.** **Testimonial permissions — FIVE quotes are live, not two.** Corrected
   2026-08-06: this entry previously said two (Diane K. and Kelly G.), which
   was accurate on 2026-07-26 but went stale the next day, when the 2026-07-27
   testimonial rotation shipped. **All five need written permission before
@@ -141,7 +141,7 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   ```bash
   grep -rn "ask Amy\|since 2021" src/ dist/
   ```
-- [Amy][Sam] **Ivory House photography permissions — two separate people,
+- [x] **RESOLVED 2026-10-14 (Sam): all consented.** **Ivory House photography permissions — two separate people,
   both required.** The whole-house shoot added 2026-07-28 (drapery, blinds,
   reupholstered dining chair, cushions and pillows — see IMAGE-MANIFEST.md)
   is wired into the four ServiceList hover stages, `/blinds`, the Cincinnati
@@ -154,7 +154,7 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   publish photos of their house has been obtained.** Same holding pattern as
   the testimonials: visible now for review, not cleared to publish. Get both
   permissions before the real domain goes live, not after.
-- [Amy][Sam] **Collected Living Room / Stardust Lane homeowner permission —
+- [x] **RESOLVED 2026-10-14 (Sam): all consented.** **Collected Living Room / Stardust Lane homeowner permission —
   separate from Ivory House, added 2026-08-19 (post-Meeting-4 pass, Task
   14).** This is the earlier, visibly phone-camera shoot (a different house
   from Ivory House) that supplies the Home hero — **the single most-seen
@@ -167,7 +167,7 @@ These are the things that are **wrong on a live site**, not merely unfinished.
   been obtained. Not yet confirmed whether this is the same photographer as
   Ivory House or a different one — resolve that before assuming Kelsee's
   permission (below) covers it too.
-- [Amy][Sam] **Kelsee's photography, permission broadly — added 2026-08-19
+- [x] **RESOLVED 2026-10-14 (Sam): all consented.** **Kelsee's photography, permission broadly — added 2026-08-19
   (post-Meeting-4 pass, Task 14), separate from the two house-specific items
   above.** Covers her copyright permission for whatever of her work appears
   on the site now or later, plus the standing note from this session's photo
@@ -178,7 +178,7 @@ These are the things that are **wrong on a live site**, not merely unfinished.
 
 ## 2. The temporary thing
 
-- [ ] **`src/styles/sam-preview-theme.css`** — the cream-and-green palette
+- [x] **Done (checked 2026-10-14):** the preview theme was deleted (commits `72f3139`, `0121886`). *History:* **`src/styles/sam-preview-theme.css`** — the cream-and-green palette
   preview. **It is LIVE right now**, imported by one clearly-marked line in
   `Base.astro`, at Sam's instruction. It was switched off only long enough to
   run the acceptance pass and switched straight back on, so the site is as he
@@ -199,14 +199,14 @@ grep -rn "TEMPORARY" src/ astro.config.mjs
 
 ## 3. Repo and deploy
 
-- [Sam] **Git repo does not exist yet.** `git init`, first commit, push to
+- [x] **Done (checked 2026-10-14):** repo is on GitHub (`Samueljclark/amykclarkdesign_website`). *History:* **Git repo does not exist yet.** `git init`, first commit, push to
   GitHub. `.gitignore` is already correct (`node_modules/`, `dist/`, `.astro/`,
   `.DS_Store`).
-- [Sam] Connect the GitHub repo to Netlify, deploy from `main`.
+- [x] **Done (checked 2026-10-14):** GitHub is connected to Netlify; pushes to `main` deploy production. *History:* Connect the GitHub repo to Netlify, deploy from `main`.
 - [x] `netlify.toml` in place: build `npm run build`, publish `dist`, Node
   pinned to 24.18.0 (matches this machine and Netlify's build-image default).
-- [ ] Confirm the first Netlify build succeeds and the deploy preview renders.
-- [ ] **Netlify Forms:** confirm the consultation form actually registers.
+- [x] **Done (checked 2026-10-14):** production builds succeed (see the audit, `docs/notes/2026-10-09-site-audit.md`). *History:* Confirm the first Netlify build succeeds and the deploy preview renders.
+- [x] **Done (checked 2026-10-14):** Netlify registered the `consultation` form and submissions arrive. *History:* **Netlify Forms:** confirm the consultation form actually registers.
   Netlify detects forms by parsing the *deployed* HTML, so this cannot be
   tested locally. After the first deploy, submit a real test entry and confirm
   it appears in the Netlify dashboard.

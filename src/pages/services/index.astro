@@ -1,29 +1,51 @@
 ---
-// Services overview (DESIGN_BRIEF.md 5.3): "Overview page plus four child
-// pages." Reuses ServiceList — the same four entries in the same order as
-// Home (5.1), shared via src/data/services.ts — rather than a second,
-// near-identical list component. Real visible <h1> here (unlike Home's
-// hero-specific visually-hidden one).
-
-// **No lead image as of 2026-08-02, deliberately.** This page led on
-// `hero/pleated-drapery-living-room-french-doors-pool-view.jpg`, which is now
-// the homepage hero. Running the same photograph as the first image on Home
-// and on Services reads as a shortage rather than as a motif. Nothing was
-// substituted in its place, on Sam's explicit instruction — every other real
-// photograph on this site is already doing three or four jobs, and filling a
-// hole with the nearest available frame is how that got as bad as it is.
-// The ServiceList below carries four photographs on its hover stage at
-// desktop widths, so this page is not imageless in practice.
-// Give it a real lead when Kelsee delivers.
+// Services (DESIGN_BRIEF.md 5.3). Rebuilt 2026-10-08 (COPY-PASS-V1, Task 5)
+// around Kristen's copy pass, which lives in src/content/pages/services.md.
+// The previous intro paragraph, the visually-hidden duplicate "Services" H2,
+// and the four-row hover list are gone from this page; Home keeps its list.
+//
+// LAYOUT. From 900px (the site's two-column breakpoint, shared with the nav
+// and Home's About block) the page is two columns: every word of copy on the
+// left, one sticky photograph on the right whose top edge lines up with the
+// top of the H1 (Kristen: "shift image up to align with Services"). As each
+// section crosses the upper part of the viewport, the stage swaps to that
+// section's photo. Below 900px there is no stage: each service section shows
+// its own photograph inline, above its heading.
+//
+// The swap is src/scripts/image-stage.js in "scroll" mode, the same code that
+// drives Home's hover stage (Task 2): initialised on astro:page-load, torn
+// down on astro:before-swap, DOM queried fresh each time. Reduced motion
+// removes only the crossfade, never the swap.
+//
+// Type: H2s use the existing text-page subhead (Display role at its small
+// end, the same treatment as About's "Studio"); the one line under each
+// heading uses the Label role. No new type styles.
 
 import Base from '../../layouts/Base.astro';
-import ServiceList from '../../components/ServiceList.astro';
+import { Picture } from 'astro:assets';
+import { getEntry } from 'astro:content';
+import { photos, type PhotoKey } from '../../data/photos';
 import { services } from '../../data/services';
+import { coverSizes } from '../../utils/coverSizes';
+
+const entry = await getEntry('pages', 'services');
+const { seoTitle, description, title, lede, lead, sections = [] } = entry.data;
+
+// Stage layers, in the order they first appear. The intro shares the first
+// one (Custom Drapery's), and The Amy K Clark Design Difference reuses Soft
+// Furnishings' (services.md).
+const stageKeys = [...new Set(sections.map((s) => s.photo).filter(Boolean))] as PhotoKey[];
+const stageIndex = (key?: string) => Math.max(0, stageKeys.indexOf(key as PhotoKey));
+
+// Crops already tuned for the same photographs on Home's stage (services.ts),
+// e.g. the dining chair sits in the left third of its frame.
+const objectPositionFor = (key: string) =>
+  services.find((s) => s.photo === key)?.objectPosition;
 ---
 
 <Base
-  title="Services | Amy K Clark Design"
-  description="Custom drapery, blinds and shades, upholstery, and soft furnishings for Cincinnati and Northern Kentucky homes, designed, made, and installed by Amy Clark."
+  title={seoTitle}
+  description={description}
   ogImage="/images/og/og-default.jpg"
   transparentNav={false}
   breadcrumbs={[
@@ -31,30 +53,180 @@ import { services } from '../../data/services';
     { name: 'Services', href: '/services' },
   ]}
 >
-  <section class="section wrap services-intro">
-    <h1 class="type-display services-intro__heading">Services</h1>
-    <p class="services-intro__body">
-      Amy handles every part of a window treatment project, from the first walk through the room to
-      the day it hangs, in homes throughout Cincinnati and Northern Kentucky. Every project starts
-      with your room: its light, its architecture, and how you actually live in it.
-    </p>
-  </section>
+  <div class="section wrap services-page" data-image-stage="scroll">
+    <div class="services-page__copy">
+      <section class="services-page__intro" data-stage-section={stageIndex(sections[0]?.photo)}>
+        <h1 class="type-display services-page__title">{title}</h1>
+        {lede && <p class="type-label services-page__lede">{lede}</p>}
+        <div class="services-page__body">
+          {lead.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </section>
 
-  {/* The full-bleed lead image that used to sit here is gone — see the header
-      comment. It is not replaced. */}
+      {sections.map((section, sectionIndex) => {
+        const photo = section.photo ? photos[section.photo as PhotoKey] : undefined;
+        // The first inline photo is the mobile LCP element (Lighthouse,
+        // 2026-10-12 audit), so it loads eagerly at high priority; the rest
+        // stay lazy.
+        const first = sectionIndex === 0;
+        const position = section.photo ? objectPositionFor(section.photo) : undefined;
+        return (
+          <section class="services-page__section" data-stage-section={stageIndex(section.photo)}>
+            {photo && section.inline && (
+              <div class="services-page__inline-image">
+                <Picture
+                  src={photo.image}
+                  alt={photo.alt}
+                  formats={['avif', 'webp']}
+                  fallbackFormat="jpg"
+                  widths={[480, 768, 1200, 1600, 2000]}
+                  sizes={coverSizes(photo.image, 4 / 5, '(min-width: 900px) 1px, 90vw')}
+                  loading={first ? 'eager' : 'lazy'}
+                  fetchpriority={first ? 'high' : 'auto'}
+                  {...(position ? { style: `object-position:${position}` } : {})}
+                />
+              </div>
+            )}
+            <h2 class="type-display text-page__subhead services-page__heading">{section.heading}</h2>
+            {section.lede && <p class="type-label services-page__lede">{section.lede}</p>}
+            <div class="services-page__body">
+              {section.body.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </section>
+        );
+      })}
+    </div>
 
-  {/* Heading hidden here only: this page's own <h1> already reads "Services"
-      and a visible duplicate directly beneath it is a stutter. Home shows it
-      visibly (5.1). */}
-  <ServiceList services={services} headingHidden={true} />
+    {/* Decorative duplicate of the inline images, so it is hidden from
+        assistive tech: every photo here already appears, with its alt text,
+        inline in the copy column. `display: none` below 900px, so on phones
+        these are neither shown nor fetched. */}
+    <div class="services-page__stage" aria-hidden="true">
+      {stageKeys.map((key, i) => (
+        <div class:list={['services-page__layer', { 'is-active': i === 0 }]} data-stage-layer>
+          <Picture
+            src={photos[key].image}
+            alt=""
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            widths={[480, 768, 1200, 1600, 2000]}
+            sizes={coverSizes(photos[key].image, 4 / 5, '(min-width: 900px) 30rem, 1px')}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : 'auto'}
+            {...(objectPositionFor(key) ? { style: `object-position:${objectPositionFor(key)}` } : {})}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
 </Base>
 
 <style>
-  .services-intro__heading {
-    max-width: 18ch;
+  .services-page__title {
+    max-width: 18em; /* was 18ch; see global .text-page__heading */
   }
-  .services-intro__body {
+
+  .services-page__lede {
+    margin-top: 1.25rem;
+    line-height: 1.7;
+  }
+
+  .services-page__body {
     max-width: var(--measure);
     margin-top: 1.5rem;
+  }
+  .services-page__body p + p {
+    margin-top: 1rem;
+  }
+
+  /* Tightened between the intro and "Custom Drapery" (Kristen's note): the
+     sections sit inside one page section rather than each carrying the full
+     --space-section padding, so the gap is a single 3.5rem-ish step. The
+     subhead's own 3rem top margin is reset so the spacing lives in one
+     place. */
+  .services-page__section {
+    margin-top: clamp(3rem, 2.5rem + 2vw, 4.5rem);
+  }
+  .services-page__heading {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .services-page__inline-image {
+    aspect-ratio: 4 / 5;
+    margin-bottom: 1.75rem;
+    overflow: hidden;
+  }
+  .services-page__inline-image :global(picture),
+  .services-page__inline-image :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .services-page__stage {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .services-page {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+      column-gap: clamp(3rem, 6vw, 7rem);
+      align-items: start;
+    }
+
+    .services-page__inline-image {
+      display: none;
+    }
+
+    /* Sticky in its own grid cell: `align-self: start` gives it its natural
+       height, so it can travel the full height of the copy column. At rest
+       its top edge is the grid's top edge, which is the H1's top edge. */
+    .services-page__stage {
+      display: block;
+      position: sticky;
+      top: calc(var(--nav-height) + 2rem);
+      align-self: start;
+      /* 4:5, but never taller than the space under the nav. */
+      width: min(100%, calc((100svh - var(--nav-height) - 4rem) * 0.8));
+      justify-self: end;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+
+    .services-page__layer {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+    .services-page__layer.is-active {
+      opacity: 1;
+    }
+    .services-page__layer :global(picture),
+    .services-page__layer :global(img) {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /* The crossfade. Kept under reduced motion as a fade (DESIGN_BRIEF 6.8,
+     amended 2026-10-12, POLISH-AND-AUDIT-V2 Task 1): opacity is not motion
+     animation, so this is one of the three scoped exceptions to 6.8's global
+     0.01ms rule, which needs `!important` and class specificity to beat. */
+  @media (min-width: 900px) {
+    .services-page__layer {
+      transition: opacity var(--hover-image-duration) ease-out;
+      /* Chromium sometimes drops this transition when the swap lands
+         mid-scroll; image-stage.js's ensureFades() covers that case. */
+    }
+  }
+  @media (min-width: 900px) and (prefers-reduced-motion: reduce) {
+    .services-page .services-page__layer {
+      transition: opacity var(--hover-image-duration) ease-out !important;
+    }
   }
 </style>

@@ -11,6 +11,7 @@
 
 import RevealImage from './RevealImage.astro';
 import type { ImageMetadata } from 'astro';
+import { heroTagline } from '../data/homeCopy';
 
 interface GalleryImage {
   src: ImageMetadata;
@@ -81,16 +82,11 @@ const { images } = Astro.props;
 
     <div class="hero__bottom">
       <p class="hero__mark">Amy K Clark Design</p>
-      {/* All three pointed at individual service pages until 2026-08-19
-          (Task 1, post-Meeting-4 pass), when those four pages were removed
-          and consolidated into one Services overview. All three now go to
-          that one page rather than being cut, since they are still real
-          category labels a visitor can act on immediately from the hero. */}
-      <nav class="hero__words" aria-label="Featured categories">
-        <a href="/services" class="type-label link-underline">Upholstery</a>
-        <a href="/services" class="type-label link-underline">Drapery</a>
-        <a href="/services" class="type-label link-underline">Shades</a>
-      </nav>
+      {/* The Upholstery / Drapery / Shades word links that sat here were
+          replaced 2026-10-08 (COPY-PASS-V1, Task 3) by a plain-text studio
+          tagline, from Kristen's copy pass. Label style, the same small type
+          the links used, so the hero's type stays at two sizes. */}
+      <p class="type-label hero__tagline">{heroTagline}</p>
       {/* One CTA, not two (5.1, 2026-07-31 review). The secondary "View
           Portfolio" button is gone: the Portfolio section is the very next
           thing on the page and carries its own link, and two buttons in one
@@ -207,7 +203,11 @@ const { images } = Astro.props;
   .hero__center {
     display: grid;
     justify-items: center;
-    align-content: center;
+    /* Top of the row, not its centre (2026-10-14): centred, the opening line
+       landed on the hero's chandelier at every desktop width and could not be
+       read in any colour. At the top it sits on the pale arch ceiling, which
+       measured at least 5:1 against ink across 390 to 2560. */
+    align-content: start;
     text-align: center;
     gap: 0.75rem;
   }
@@ -268,7 +268,15 @@ const { images } = Astro.props;
      removal from the DOM any more (see the header comment above the markup).
      The one remaining transition is the entrance fade-in, once per session. */
   .hero__opening-line {
-    max-width: 32ch;
+    /* Ink, not the hero's white (2026-10-14, Sam): the line sits over the
+       pale arch and ceiling of the hero photograph, where white text could
+       not be read. The wordmark and CTA lower down stay white over the
+       scrim. */
+    color: var(--ink);
+    /* One line wherever it fits (wraps on phones), so it stays above the
+       chandelier rather than running down beside its chain. Was 32ch. */
+    max-width: none;
+    text-align: center;
     font-size: var(--text-label);
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
@@ -286,9 +294,10 @@ const { images } = Astro.props;
     gap: 1.75rem;
   }
 
-  .hero__words {
-    display: flex;
-    gap: 2rem;
+  .hero__tagline {
+    max-width: 44ch;
+    line-height: 1.7;
+    text-align: center;
   }
 
   .hero__ctas {
@@ -317,9 +326,4 @@ const { images } = Astro.props;
     }
   }
 
-  @media (min-width: 768px) {
-    .hero__words {
-      gap: 3rem;
-    }
-  }
 </style>

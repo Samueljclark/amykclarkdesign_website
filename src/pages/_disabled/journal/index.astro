@@ -12,10 +12,10 @@
 // Ordered newest first. Dates are placeholders until launch, flagged in
 // BUILD-PLAN.md step 6.
 
-import Base from '../../layouts/Base.astro';
-import RevealImage from '../../components/RevealImage.astro';
+import Base from '../../../layouts/Base.astro';
+import RevealImage from '../../../components/RevealImage.astro';
 import { getCollection } from 'astro:content';
-import { journalImages } from '../../data/journalImages';
+import { journalImages } from '../../../data/journalImages';
 
 const posts = (await getCollection('journal')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()

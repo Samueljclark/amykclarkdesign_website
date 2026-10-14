@@ -1,5 +1,17 @@
 ---
-// Process (DESIGN_BRIEF.md 5.5 + 5.9). This is the only page on the site
+// Process (DESIGN_BRIEF.md 5.5 + 5.9).
+//
+// REWORKED 2026-10-08 (COPY-PASS-V1, Task 7), Kristen's copy pass: four steps
+// (01-04) replace the five described below, the stitching close-up is gone,
+// and the page is copy left, one image right (the ivory drapery and white
+// wood blinds bay-window breakfast room, freed up by the About change),
+// image above copy on mobile. The page's own closing heading and paragraph
+// replace "Let's Get Started" here only, ahead of the existing discovery-call
+// button. Kristen's draft labelled that button "consultation"; the
+// consultation is the paid visit, so it keeps the discovery-call label.
+//
+// Notes below this line describe the page before that pass.
+// This is the only page on the site
 // where numbering is permitted (3.6), which is why StepList.astro exists and
 // is used nowhere else.
 //
@@ -36,10 +48,12 @@ import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
 import StepList from '../components/StepList.astro';
 import { getEntry } from 'astro:content';
-import leadImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
+import { photos } from '../data/photos';
+import { coverSizes } from '../utils/coverSizes';
 
 const entry = await getEntry('pages', 'process');
-const { seoTitle, description, eyebrow, title, lead, steps } = entry.data;
+const { seoTitle, description, eyebrow, title, lead, steps = [], closing } = entry.data;
+const image = photos['ivory-house-bay-window'];
 ---
 
 <Base
@@ -52,23 +66,65 @@ const { seoTitle, description, eyebrow, title, lead, steps } = entry.data;
     { name: 'Process', href: '/process' },
   ]}
 >
-  <section class="section wrap text-page__intro">
-    <p class="type-label text-page__eyebrow">{eyebrow}</p>
-    <h1 class="type-display text-page__heading">{title}</h1>
-    {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
+  <section class="section wrap process-page">
+    <div class="process-page__copy">
+      <p class="type-label text-page__eyebrow">{eyebrow}</p>
+      <h1 class="type-display text-page__heading">{title}</h1>
+      {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
+      <div class="process-page__steps">
+        <StepList steps={steps} />
+      </div>
+    </div>
+
+    <figure class="process-page__image">
+      <RevealImage
+        src={image.image}
+        alt={image.alt}
+        blurDataURL={image.blurDataURL}
+        aspectRatio="4/5"
+        sizes={coverSizes(image.image, 4 / 5, '(min-width: 900px) 30rem, 90vw')}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
   </section>
 
-  <RevealImage
-    src={leadImage}
-    alt="Amy's hands stitching a check-fabric ottoman on the workroom's gridded cutting table"
-    blurDataURL="data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQBQCdASoUABsAPtFWpk2oJCOiMBgIAQAaCUAWI+0YM6xTv/HqJLEODA5eoh4khh+AAP6A1FH/ibcZQuuEMg5Bb9qgUg+8MTeydH5d/BbmERZiGbJsiLRQ2+PUcm+DG+P8NtdDhDZFf1313HfX7lH3WkmsrO1kjqlzEbGk6qNAbfKC94avLNB3OZpndDKKEQGcZKeQXRVS3MhjogZaVWt6+6UBmAAAAAA="
-    aspectRatio="16/9"
-    sizes="100vw"
-  />
-
-  <section class="section wrap">
-    <StepList steps={steps} />
-  </section>
-
-  <ContactBand />
+  {closing ? <ContactBand heading={closing.heading} body={closing.body} /> : <ContactBand />}
 </Base>
+
+<style>
+  /* Copy left, image right from 900px (the site's two-column breakpoint);
+     image above copy below it. The image is second in the DOM so a screen
+     reader meets the steps first; `order` lifts it on mobile only. */
+  .process-page {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .process-page__image {
+    order: -1;
+    max-width: 30rem;
+    width: 100%;
+  }
+  .process-page__steps {
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .process-page {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+      column-gap: clamp(3rem, 6vw, 7rem);
+      align-items: start;
+    }
+    .process-page__image {
+      order: 0;
+    }
+  }
+  /* Image-first below 900px, and below 768px the section's 72px top padding
+     only just equals the fixed nav's height, which left the photo pressed
+     against the nav. A text-first page reads fine flush; a photo does not. */
+  @media (max-width: 767px) {
+    .process-page {
+      padding-top: calc(var(--space-section) + 1.5rem);
+    }
+  }
+</style>

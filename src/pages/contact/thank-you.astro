@@ -34,6 +34,9 @@ import { FLAGS } from '../../config/flags';
       Your request is in. Amy reads every one of these herself, and she will be in touch to arrange
       your complimentary discovery call and ask anything she needs to know beforehand.
     </p>
+    {/* Hidden entirely while the Design Journal is flag-disabled (COPY-PASS-V1,
+        Task 1): every version of this sentence leads with the journal link. */}
+    {FLAGS.journalEnabled && (
     <p class="thank-you__next">
       {FLAGS.portfolioEnabled ? (
         <>
@@ -48,6 +51,7 @@ import { FLAGS } from '../../config/flags';
         </>
       )}
     </p>
+    )}
   </section>
 </Base>
 

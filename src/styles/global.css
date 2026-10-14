@@ -110,7 +110,10 @@ input, textarea, select {
   margin-bottom: 1rem;
 }
 .text-page__heading {
-  max-width: 18ch;
+  /* em, not ch (2026-10-12): `ch` is the width of a lowercase zero, and the
+     display role is now uppercase and tracked 0.12em, so 18ch held about half
+     the letters it did in Bodoni. 18em keeps the old line length. */
+  max-width: 18em;
 }
 .text-page__lead {
   max-width: var(--measure);
@@ -261,7 +264,18 @@ input, textarea, select {
   gap: 2rem;
 }
 .contact-band__line {
-  max-width: 14ch;
+  max-width: 14em; /* was 14ch; see .text-page__heading */
+}
+/* A page's own closing heading (ContactBand's optional props) is a full
+   sentence rather than "Let's Get Started", so it gets a wider measure and
+   the existing subhead size instead of the full Display clamp. */
+.contact-band__heading {
+  max-width: 24em; /* was 24ch; see .text-page__heading */
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); /* .text-page__subhead's clamp */
+}
+.contact-band__body {
+  max-width: var(--measure);
+  margin-top: 1rem;
 }
 
 .bg-ground {
@@ -379,6 +393,12 @@ p .link-underline::before,
 }
 
 .prose h2 {
+  /* Display face, uppercase, as of 2026-10-12 (POLISH-AND-AUDIT-V2 Task 4).
+     Before that this rule set no font-family, so markdown `##` headings
+     (About, the location pages, privacy, terms) rendered in Archivo while
+     the hand-written subheads beside them were in the display face. */
+  font-family: var(--font-display);
+  text-transform: uppercase;
   font-weight: var(--weight-display);
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
   line-height: 1.15;

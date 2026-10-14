@@ -112,6 +112,28 @@ This is the one real risk in the direction and it is justified: Amy sells color 
 
 Amy asked for Helvetica, a maximum of three faces, minimal and uniform and premium.
 
+**CURRENT, set 2026-10-09 (Amy) and built 2026-10-12 (POLISH-AND-AUDIT-V2 Task 4). The display face is Jost Light (300), uppercase, widely tracked.** Sequence, all 2026-10-09:
+
+1. Amy rejected four Bodoni Moda variants and asked for "Lato or Helvetica."
+2. She rejected Archivo in mixed case ("does nothing for me").
+3. She pointed at core-consultinggroup.com's hero ("POWERING POTENTIAL"): a light sans, all caps, widely letterspaced, and said: "I like the simplicity of this font but don't use the exact one." The reference looks like Barlow or Roboto Condensed (the site could not be loaded to confirm), so **Barlow, Roboto, and Roboto Condensed are excluded.**
+4. Sam was shown the real pages in Lato Light, Jost Light, and Archivo Light (same treatment) and chose **Jost**.
+
+This is direct Amy input that postdates Meeting 4 and her Didot screenshot, so it supersedes the 2026-08-04 Didone amendment below for the display role. Still two faces: Jost for Display and testimonial quotes, Archivo for everything else.
+
+| Role | Face | Spec (2026-10-12) |
+|---|---|---|
+| **Display** | Jost | 300 weight, never lighter; `text-transform: uppercase` in CSS only (source text stays normal case); letter-spacing 0.12em; line-height 1.15; clamp 28px (375px) to 56px (1440px): `clamp(1.75rem, 1.134rem + 2.629vw, 3.5rem)`. Home service names: `clamp(1.5rem, 0.95rem + 2.254vw, 3rem)`. Display-heading measures moved from `ch` to `em` (18ch to 18em, etc.), because `ch` is a lowercase zero and no longer describes an uppercase tracked line. Markdown `##` headings (`.prose h2`) now use the display face too, uppercase; before this they silently rendered in Archivo. |
+| **Testimonial quotes** | Jost | 300 weight, sentence case, untracked. Long sentences in spaced capitals are hard to read. |
+| **Label** | Archivo | unchanged |
+| **Body** | Archivo | unchanged |
+
+Self-hosted: `public/fonts/jost-latin-300.woff2` (latin subset, weight 300, from `@fontsource/jost` 5.3.0, SIL OFL 1.1), preloaded. **Bodoni Moda is retired, not deleted:** its `@font-face` and preload are removed, and `public/fonts/bodoni-moda-variable.woff2` stays in the repo. The reasoning below is kept as history and is **superseded** for the display role.
+
+---
+
+*Superseded 2026-10-12 for the display role (everything from here to the end of 3.4 that describes Bodoni Moda):*
+
 **Amended 2026-08-04. The display face is now a Didone, not the grotesque.** Amy sent a screenshot of **Didot** that she liked. That input postdates the Helvetica instruction, so it supersedes it for the display role. **This is not a re-litigation of the Helvetica direction and should not be treated as one** — her three-face ceiling and the "uniform and very premium" requirement are both intact, and Archivo still carries body, nav, and every UI surface, so the neo-grotesque direction still governs everything except headings. The count went **down**, from three faces to two. Full reasoning and the measured evidence are in BUILD-PLAN.md's 2026-08-04 entry.
 
 **Two families. Display in the Didone, everything else in the grotesque.** Restraint reads as more expensive than variety, and the discipline of one grotesque against one display face is the actual signature of the fashion houses she likes.
@@ -180,6 +202,32 @@ This is the one memorable thing about the site. Everything else stays quiet so t
 ---
 
 # 4. Site architecture
+
+**Current site (updated 2026-10-09, POLISH-AND-AUDIT-V2).** Live routes:
+
+```
+/                      Home
+/services              Services (one overview page; no child pages)
+/about                 About: headshot and copy, Mission, Studio
+/process               Process: four steps
+/contact               Consultation form, Common Questions
+/contact/thank-you     Form success page (noindex)
+/cincinnati            Location page (search only; not in the nav or footer)
+/northern-kentucky     Location page (search only; not in the nav or footer)
+/privacy, /terms       Legal (noindex)
+/404
+```
+
+**Main nav, four items: Services, About, Process, Contact.** The footer's "Site" column mirrors it from the same array (`src/data/nav.ts`).
+
+**Flagged off, not deleted** (`src/config/flags.ts`, routes moved under `src/pages/_disabled/`, which Astro does not build):
+- Portfolio (`portfolioEnabled: false`, 2026-08-19): one photographed house is not a portfolio.
+- Blinds landing page (`blindsEnabled: false`, 2026-10-08): saved for v2. `/blinds` and `/blinds/` 301 to `/services`.
+- Design Journal (`journalEnabled: false`, 2026-10-08): saved for v2. `/journal`, `/journal/`, and `/journal/*` 301 to `/`.
+- The four service child pages were removed 2026-08-19; each 301s to `/services`.
+
+All redirects live in `netlify.toml`. The text below is the history of this section and is superseded where it disagrees.
+
 
 ```
 /                      Home
@@ -250,6 +298,8 @@ Designer's Eye, A Workroom's Understanding") is the About section and now sits
    click rather than doubling it.
 
 **Section 1: Hero.**
+
+**Current hero (updated 2026-10-14).** Full-bleed archway photograph; the nav line on top. The opening line, "The little details make all the difference.", is permanent and set in **ink** (Sam, 2026-10-14: white could not be read), on one line at the **top** of the frame on the pale arch ceiling; centred, it sat on the chandelier. At the bottom: the wordmark (white, Label role scaled up), the studio tagline "Boutique custom window treatment and upholstery studio serving Cincinnati and Northern Kentucky." in Label style (replaced the Upholstery / Drapery / Shades word links 2026-10-08), the discovery-call CTA, and the scroll cue. The Portfolio section is flag-disabled, so Services follows the hero. The notes below are history where they disagree.
 
 - Full viewport height. The image fills the entire screen.
 - The only thing above it is the navigation line. No headline block, no descriptor paragraph, no stacked copy. Amy was explicit and repeated it.
@@ -334,6 +384,13 @@ Names are evocative and non-geographic. No leading "The." Garden Room, Blue Stud
 
 ## 5.3 Services
 
+**Current page (updated 2026-10-09, POLISH-AND-AUDIT-V2).** One overview page; the four child pages were consolidated into it 2026-08-19 and 301 to `/services`. Copy is Kristen's copy pass (2026-10-08) in `src/content/pages/services.md`: an intro (H1 "Services", three paragraphs, the service area named), then Custom Drapery; Blinds, Shades, and Shutters; Upholstery; Soft Furnishings; and The Amy K Clark Design Difference. Each service heading has one plain line under it in the Label style (Sam replaced the tagline-style lines 2026-10-09); the intro has none.
+
+Layout: from 900px, copy left and one sticky 4:5 photograph right whose top edge lines up with the H1; the photograph crossfades to each section's image as that section scrolls into view (`src/scripts/image-stage.js`, scroll mode). Below 900px, each service shows its own photograph inline above its heading. The crossfade keeps its 700ms fade under reduced motion (6.8's exception).
+
+The blinds and shades manufacturer is not named ("a trusted American manufacturer"); see CLAUDE.md's vendor rule. No accordion, no decision categories, no Lafayette. The text below is history and superseded where it disagrees.
+
+
 Overview page plus four child pages. Each child page targets its own keyword cluster and gets its own title, meta description, H1, and 400 to 700 words of real copy.
 
 **Service names are all the same size and weight (added 2026-07-31).** Every service name on the services page renders at an identical font size and font weight. The staggered *layout position* — the varied left indents that give the list its asymmetry per 3.5 — **stays and is explicitly fine.** What is not fine is size hierarchy: rendering Custom Drapery larger than Soft Furnishings tells a reader that one service matters more than another, which is not true and not the message. Vary the position, never the scale.
@@ -351,6 +408,15 @@ Overview page plus four child pages. Each child page targets its own keyword clu
 
 ## 5.4 About
 
+**Current page (updated 2026-10-09, POLISH-AND-AUDIT-V2), in order:**
+1. **Amy's headshot and copy.** Headshot left and copy right from 900px, headshot above copy on mobile. Eyebrow "About", H1 "Meet Amy", the line "A designer's eye. A maker's understanding.", the intro, a paragraph naming the service area (Cincinnati and Northern Kentucky), then Curiosity Became Craft, Designed for the Room It Belongs In, and Materials Chosen With Experience (Kristen's copy pass, 2026-10-08). Schumacher is named only as a fabric source.
+2. **Mission** (added 2026-10-12 at Amy's request): heading "Mission" and one statement. The statement is Claude-written and marked for Amy's sign-off.
+3. **Studio**: Sam Clark (Website and Digital Strategy; Boston College), Kelsee Etmans (Photographer; BFA, University of Cincinnati CCM), and Reaghan Connelly (Social Media; University of Cincinnati, Film and Media Studies). Name, role, and one credential line each; no biographies. Amy has no Studio card, because her headshot leads the page. Reaghan's card renders only once `src/assets/images/team/reaghan-connelly.jpg` exists.
+4. The "Let's Get Started" band.
+
+The previous About copy is hidden (not deleted) at `src/content/pages/_hidden/about-before-copy-pass-v1.md`. The text below is history and superseded where it disagrees, including the three-portrait Studio row with Amy in it.
+
+
 1. Amy's story. Specific, not vague. It needs actual detail about what she made and for whom.
 2. **Where it started.** The origin section, anchored to Grandma's attic, with an early photograph of Amy.
 3. The invention framing: every window shade she makes, she is inventing. She adapts to the room. There are no guides.
@@ -367,6 +433,9 @@ Kelsee Etmans    Photographer
 Headshots from `/public/images/team/`. Name in Label style, role beneath in `--ink-muted`. No biography paragraphs. Section heading is `Studio`, not `Our Team`.
 
 ## 5.5 Process
+
+**Current page (updated 2026-10-09, POLISH-AND-AUDIT-V2). Four numbered steps (01 to 04):** Begin with a conversation; Explore the possibilities; Refine the details; Bring it to life (Kristen's copy pass, 2026-10-08). Step 01 is the complimentary 15-minute discovery call; step 02 is the in-home design consultation. "Paid" is not used on this page (it was removed 2026-10-12), so `/contact` remains the only page that calls the visit paid. Layout: copy left, the ivory drapery and white wood blinds bay-window photograph right, photograph above copy on mobile. The page closes with its own heading and paragraph ("Let's Make Your Home Feel More Like You") and the standard "Schedule your complimentary discovery call" button to `/contact`, in place of "Let's Get Started". The five-step list below is history and superseded.
+
 
 **Five numbered steps as of 2026-08-01**, revised from four. This is the only page where numbering is permitted.
 
@@ -558,6 +627,8 @@ Native lazy loading below the fold. Blur-up placeholder from a 20px-wide inline 
 
 Plus: hero gallery advances by instant swap, shade reveals render fully visible on load, no scale on hover, **and the hero's one-time auto-scroll does not run at all (6.9).**
 
+**Exception, added 2026-10-12 (POLISH-AND-AUDIT-V2 Task 1).** Three opacity fades keep their 700ms (`--hover-image-duration`, ease-out) under reduced motion, and only these three: the Home service-list photo crossfade, the Home active-row underline, and the `/services` scroll-stage crossfade. Under reduce the underline does not draw across; it is fully drawn and fades in. Why: WCAG 2.3.3 does not count opacity changes as motion animation, and macOS's own Reduce Motion replaces slides with dissolves rather than removing them. A hard cut between two photographs is the more jarring of the two. Built as scoped rules inside `@media (prefers-reduced-motion: reduce)` in `ServiceList.astro` and `services/index.astro`, with `!important` and class specificity so they beat the global rule above. Nothing else on the site changes under reduce. Sam's Mac runs with Reduce Motion on, which is how the hard cut was found.
+
 ## 6.9 Scroll behaviour — SETTLED, do not revisit
 
 **Closed decision, 2026-08-02.** Scroll behaviour on this site is one thing
@@ -569,6 +640,14 @@ into the first section and then removes its own listener. It fires **at most
 once per page view**, never scrolls backward, and is disabled entirely under
 `prefers-reduced-motion`. Implementation and full spec: `initHeroScrollEase()`
 in `src/scripts/motion.js`, plus `.scroll-ease-target` in `global.css`.
+
+**Amended 2026-10-08 (COPY-PASS-V1 Task 4, Sam's request).** The auto-scroll
+now fires **at most once per browser session** (sessionStorage; once per page
+load if storage is blocked), is triggered by a wheel, trackpad, or touch
+gesture at the top rather than by the `scroll` event, never arms on a page
+that loads scrolled or with a `#hash`, and swallows wheel/touch input until
+trackpad momentum settles so it cannot overshoot. Still off under reduced
+motion. Still not snapping, and nothing below changes.
 
 **There is no section-level scroll snapping, anywhere, and there is not going
 to be.** `scroll-snap-type` appears nowhere in the codebase.

@@ -18,12 +18,12 @@
 // scaleX underline rather than toggling text-decoration, since markdown links
 // cannot carry the .link-underline class.
 
-import Base from '../../layouts/Base.astro';
-import ContactBand from '../../components/ContactBand.astro';
-import RevealImage from '../../components/RevealImage.astro';
+import Base from '../../../layouts/Base.astro';
+import ContactBand from '../../../components/ContactBand.astro';
+import RevealImage from '../../../components/RevealImage.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import { journalImages } from '../../data/journalImages';
+import { journalImages } from '../../../data/journalImages';
 
 export async function getStaticPaths() {
   const posts = await getCollection('journal');

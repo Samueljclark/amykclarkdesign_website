@@ -1,5 +1,22 @@
 ---
-// About (DESIGN_BRIEF.md 5.4). Five required parts, in the brief's order:
+// About (DESIGN_BRIEF.md 5.4).
+//
+// REORDERED 2026-10-08 (COPY-PASS-V1, Task 6), Kristen's copy pass:
+//   a. Amy's headshot + the new About copy (headshot left, copy right from
+//      900px, the same breakpoint and grid idea as Home's About block;
+//      headshot above copy below 900px).
+//   b. Studio — kept, at Sam's direction, overriding Kristen's "headshot
+//      only" note. Amy's card is removed because her headshot now leads the
+//      page. Sam and Kelsee unchanged; Reaghan Connelly's card is gated (see
+//      REAGHAN below).
+//   c. The "Let's Get Started" ContactBand.
+// Hidden, not deleted: the ivory bay-window lead image (moving to /process,
+// Task 7), the workroom stitching close-up, and all of the previous body copy
+// (now src/content/pages/_hidden/about-before-copy-pass-v1.md). The two
+// images are commented out in the markup below.
+//
+// Notes below this line describe the page as it was before that pass.
+// Five required parts, in the brief's order:
 // Amy's story, the origin section anchored to her grandmother's attic, the
 // invention framing, the fabric lines, and the Studio row of three portraits.
 //
@@ -53,44 +70,85 @@ import ContactBand from '../components/ContactBand.astro';
 import RevealImage from '../components/RevealImage.astro';
 import { getEntry, render } from 'astro:content';
 import { photos } from '../data/photos';
+import { coverSizes } from '../utils/coverSizes';
 import originImage from '../assets/images/about/amy-hand-stitching-check-fabric-ottoman-cutting-table.jpg';
 import samPortrait from '../assets/images/team/sam-clark.jpg';
 import kelseePortrait from '../assets/images/team/kelsee-etmans.jpg';
+import type { ImageMetadata } from 'astro';
 
 const entry = await getEntry('pages', 'about');
 const { Content } = await render(entry);
-const { seoTitle, description, eyebrow, title, lead } = entry.data;
+const { seoTitle, description, eyebrow, title, lede, lead, mission } = entry.data;
 
-const studio = [
+/* ---- STUDIO (updated 2026-10-12, POLISH-AND-AUDIT-V2 Task 3). ----
+   Names, roles, and credential lines live here as plain data, one line each.
+   Order: Sam, Kelsee, Reaghan. Amy has no card: her headshot leads the page
+   (COPY-PASS-V1, Task 6), so the same photograph does not appear twice.
+   Alt text is built from name + role, the pattern the cards always used.
+
+   REAGHAN: her card renders only when BOTH are true at build time:
+     1. src/assets/images/team/reaghan-connelly.jpg exists, and
+     2. REAGHAN_CONNELLY_TITLE is not an empty string.
+   `import.meta.glob` resolves to an empty object when the file is missing,
+   so until the photo lands the row is Sam and Kelsee only: no empty slot, no
+   placeholder, no broken image, and no build error. */
+const REAGHAN_CONNELLY_TITLE = 'Social Media';
+
+const STUDIO_PEOPLE = [
+  { name: 'Sam Clark', role: 'Website and Digital Strategy', credential: 'Boston College' },
+  { name: 'Kelsee Etmans', role: 'Photographer', credential: 'BFA, University of Cincinnati CCM' },
   {
-    // Sourced from photos.ts as of 2026-08-02: this portrait gained a second
-    // consumer (Home's About section), so its alt text and blur-up string
-    // live in one place rather than two copies that can drift.
-    image: photos['amy-portrait'].image,
-    alt: photos['amy-portrait'].alt,
-    name: 'Amy Clark',
-    role: 'Founder',
-    blurDataURL: photos['amy-portrait'].blurDataURL,
+    name: 'Reaghan Connelly',
+    role: REAGHAN_CONNELLY_TITLE,
+    credential: 'University of Cincinnati, Film and Media Studies',
   },
-  {
+];
+
+const reaghanPhoto = Object.values(
+  import.meta.glob<{ default: ImageMetadata }>('../assets/images/team/reaghan-connelly.jpg', {
+    eager: true,
+  })
+)[0]?.default;
+
+// Photos and crop settings, keyed by name.
+const STUDIO_PHOTOS: Record<string, { image?: ImageMetadata; blurDataURL?: string; lift?: boolean }> = {
+  'Sam Clark': {
     image: samPortrait,
-    alt: 'Sam Clark, web development and digital strategy',
-    name: 'Sam Clark',
-    role: 'Web Development and Digital Strategy',
     // The only portrait that still needs a lifted crop — see the style block.
     lift: true,
     blurDataURL:
       'data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADQBACdASoYAB4APwFqrU8rJiQiMAgBYCAJbACxHyGBlqVK7OZmAQYYc9pSMHaUAAD+zXxNENZ7PTGw6BXWhP3ISh6Sc+CivpasODVB5wfj+9w3pdDk5dlsVhWpamyDJvS1Q9FlRbFHkJQW1pdJx2Bu8g0HEJJpD8HKl5ZMBe93XZJLp0YhaMTxSHWnYfI3MGsZUFEZmi5Vd/+uEihbuAo6/EjYv2qJMgOKT4gA',
   },
-  {
+  'Kelsee Etmans': {
     image: kelseePortrait,
-    alt: 'Kelsee Etmans, photographer',
-    name: 'Kelsee Etmans',
-    role: 'Photographer',
     blurDataURL:
       'data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAAAwBQCdASoYABgAPwFysFIrJqSiqAqpYCAJbACw7A0WLHyRVpL4BaXhAkkV935PTW44AAD+6/6olE6FqPSaMKIkbh30v3yxPKOvGzajfQUvitW7unMiry65YrDZa8lI1QidPuVXCKT0bbQNe129zeDnljMVu4fqAGu9AneiawptnBT1LhNGdOzz2d7moLaxf1cXRqyDZXR5+MAO0iREXvQac6y/NHsD7MN0mhd/csj3wVTNS6CuKjLyhO1U1C55x2siTpejwcWbn4/cZmAAAA==',
   },
-];
+  'Reaghan Connelly': { image: reaghanPhoto },
+};
+
+type StudioPerson = {
+  image: ImageMetadata;
+  alt: string;
+  name: string;
+  role: string;
+  credential: string;
+  lift?: boolean;
+  blurDataURL?: string;
+};
+const studio: StudioPerson[] = STUDIO_PEOPLE.flatMap((person) => {
+  const photo = STUDIO_PHOTOS[person.name];
+  if (!photo?.image || !person.role.trim()) return [];
+  return [
+    {
+      ...person,
+      ...photo,
+      image: photo.image,
+      role: person.role.trim(),
+      alt: `${person.name}, ${person.role.trim().toLowerCase()}`,
+    },
+  ];
+});
 ---
 
 <Base
@@ -103,22 +161,36 @@ const studio = [
     { name: 'About', href: '/about' },
   ]}
 >
-  <section class="section wrap text-page__intro">
-    <p class="type-label text-page__eyebrow">{eyebrow}</p>
-    <h1 class="type-display text-page__heading">{title}</h1>
-    {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
+  <section class="section wrap about-intro">
+    <div class="about-intro__grid">
+      <figure class="about-intro__portrait">
+        <RevealImage
+          src={photos['amy-portrait'].image}
+          alt={photos['amy-portrait'].alt}
+          blurDataURL={photos['amy-portrait'].blurDataURL}
+          aspectRatio="4/5"
+          sizes={coverSizes(photos['amy-portrait'].image, 4 / 5, '(min-width: 900px) 24rem, 90vw')}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </figure>
+
+      <div class="about-intro__copy">
+        <p class="type-label text-page__eyebrow">{eyebrow}</p>
+        <h1 class="type-display text-page__heading">{title}</h1>
+        {lede && <p class="type-label about-intro__lede">{lede}</p>}
+        {lead.map((paragraph) => <p class="text-page__lead">{paragraph}</p>)}
+        <div class="prose about-intro__body">
+          <Content />
+        </div>
+      </div>
+    </div>
   </section>
 
-  {/* Swapped most recent session, Sam's direct instruction ("soooo ugly"):
-      the banded-roman-shade shot (a phone-camera photo of the Collected
-      Living Room / Stardust Lane house — soft, low-contrast, plus an
-      American flag and a garden ornament visible through the glass, per
-      docs/handoff/PHOTO-EDIT-REQUESTS.md) is out. In its place: a real DSLR
-      frame from the Ivory House shoot, unused anywhere else on the site
-      (Portfolio, its other consumer, is flag-disabled). Known defects
-      (dark left third, blown outer windows) are real but this is still a
-      genuine improvement over a phone photo. No untapped better candidate
-      exists in the current asset library — this is the best available. */}
+  {/* HIDDEN 2026-10-08 (COPY-PASS-V1, Task 6), not deleted. The ivory
+      bay-window image moves to /process (Task 7); the stitching close-up is
+      off the page. Restore by uncommenting.
+
   <RevealImage
     src={photos['ivory-house-bay-window'].image}
     alt={photos['ivory-house-bay-window'].alt}
@@ -127,19 +199,30 @@ const studio = [
     sizes="100vw"
   />
 
-  <section class="section wrap">
-    <div class="prose">
-      <Content />
-    </div>
-  </section>
-
   <RevealImage
     src={originImage}
     alt="Amy's hands stitching a check-fabric ottoman on the workroom's gridded cutting table"
-    blurDataURL="data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQBQCdASoUABsAPtFWpk2oJCOiMBgIAQAaCUAWI+0YM6xTv/HqJLEODA5eoh4khh+AAP6A1FH/ibcZQuuEMg5Bb9qgUg+8MTeydH5d/BbmERZiGbJsiLRQ2+PUcm+DG+P8NtdDhDZFf1313HfX7lH3WkmsrO1kjqlzEbGk6qNAbfKC94avLNB3OZpndDKKEQGcZKeQXRVS3MhjogZaVWt6+6UBmAAAAAA="
+    blurDataURL="data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQBQCdASoUABsAPtFWpk2oJCOiMBgIAQAaCUAWI+0YM6xTv/HqJLEODA5eoh4khh+AAP6A1FH/ibcZQuuEMg5Bb9qgUg+8MTeydH5d/BbmERZiGbJsiLRQ2+PUcm+DG+P8NtdDhDZFf1313HfX7lH3WkmsrO1kjqlzEbGk6qNAbfKC94avLNB3OZpndDKKEQGcZKeQXRVS3MhjogZaVWt6+6UBmAAAA="
     aspectRatio="16/9"
     sizes="100vw"
   />
+  */}
+
+  {/* Mission (POLISH-AND-AUDIT-V2, Task 3; Amy asked for one 2026-10-09).
+      Copy in about.md. The heading is the same `.prose h2` as the About
+      sections above it; the statement uses the testimonial-quote role at the
+      existing subhead size, the site's largest non-heading text, so it reads
+      as a statement rather than another paragraph. No new type styles. */}
+  {mission && (
+    <section class="section wrap about-mission" aria-labelledby="mission-heading">
+      <div class="about-mission__grid">
+        <div class="prose about-mission__copy">
+          <h2 id="mission-heading">{mission.heading}</h2>
+          <p class="type-quote text-page__subhead about-mission__statement">{mission.body}</p>
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section wrap studio" aria-labelledby="studio-heading">
     <h2 id="studio-heading" class="type-display studio__heading">Studio</h2>
@@ -157,6 +240,7 @@ const studio = [
             <figcaption class="studio__caption">
               <p class="type-label studio__name">{person.name}</p>
               <p class="type-label studio__role">{person.role}</p>
+              <p class="type-label studio__credential">{person.credential}</p>
             </figcaption>
           </figure>
         </li>
@@ -168,6 +252,37 @@ const studio = [
 </Base>
 
 <style>
+  /* ---- Headshot + copy (COPY-PASS-V1, Task 6). Portrait left, copy right
+     from 900px, the same breakpoint and column logic as Home's About block
+     (index.astro's `.differentiator__grid`), mirrored. DOM order is portrait
+     then copy, which is also the mobile order Task 6 asks for. ---- */
+  .about-intro__grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .about-intro__portrait {
+    max-width: 24rem;
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    .about-intro__grid {
+      grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+  }
+
+  .about-intro__lede {
+    margin-top: 1.25rem;
+    line-height: 1.7;
+  }
+
+  .about-intro__body {
+    margin-top: 1rem;
+  }
+
   /* 5.4.5: "Three portraits in a row. Name in Label style, role beneath in
      --ink-muted. No biography paragraphs. Section heading is Studio, not Our
      Team." A plain three-up row, not a card grid — no border, no shadow, no
@@ -182,6 +297,9 @@ const studio = [
     gap: 2.5rem;
   }
 
+  /* Three tracks whether there are two cards or three (Reaghan's is gated,
+     see the frontmatter), so a card is the same size either way and two
+     cards simply leave the row short rather than growing to fill it. */
   @media (min-width: 768px) {
     .studio__list {
       grid-template-columns: repeat(3, 1fr);
@@ -213,8 +331,50 @@ const studio = [
     margin-top: 1rem;
   }
 
+  /* Credential line: the role line's own style (Label role, --ink-muted),
+     so it never competes with the name. */
+  .studio__credential {
+    margin-top: 0.35rem;
+    color: var(--ink-muted);
+    /* Label's line-height is 1; a credential long enough to wrap
+       (Reaghan's) needs room between its lines. */
+    line-height: 1.5;
+  }
+
+  /* Mission sits in the same column as the copy above it from 900px, so it
+     reads as the end of Amy's section rather than a new page. Spacing only. */
+  .about-mission {
+    padding-top: 0;
+  }
+  @media (min-width: 900px) {
+    .about-mission__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+      gap: clamp(3rem, 6vw, 6rem);
+    }
+    .about-mission__copy {
+      grid-column: 2;
+    }
+  }
+  .about-mission__copy h2 {
+    margin-top: 0;
+  }
+  .about-mission__statement {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.35;
+  }
+
   .studio__role {
     margin-top: 0.5rem;
     color: var(--ink-muted);
+  }
+  /* Image-first below 900px, and below 768px the section's 72px top padding
+     only just equals the fixed nav's height, which left the photo pressed
+     against the nav. A text-first page reads fine flush; a photo does not. */
+  @media (max-width: 767px) {
+    .about-intro {
+      padding-top: calc(var(--space-section) + 1.5rem);
+    }
   }
 </style>

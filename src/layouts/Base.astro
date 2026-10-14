@@ -53,6 +53,9 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// The 404 page is served at whatever URL was missing, and /404/ itself does
+// not exist, so it declares no canonical and no og:url (2026-10-12, audit).
+const isNotFoundPage = Astro.url.pathname.replace(/\/$/, '') === '/404';
 const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
@@ -65,14 +68,16 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, follow" />}
 
-    <link rel="canonical" href={canonicalURL.href} />
+    {!isNotFoundPage && <link rel="canonical" href={canonicalURL.href} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- iOS home-screen icon: the favicon rendered at 180x180 (2026-10-14, audit). -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Amy K Clark Design" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL.href} />
+    {!isNotFoundPage && <meta property="og:url" content={canonicalURL.href} />}
     <meta property="og:image" content={ogImageURL.href} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -81,14 +86,11 @@ const ogImageURL = new URL(ogImage, Astro.site);
 
     <!-- Section 7: self-hosted woff2, font-display: swap. Two faces, two
          preloads, and no others exist. Both Archivo weights (400/500) live in
-         one variable file, and Bodoni Moda's weight and optical-size axes live
-         in one file too, so one preload each covers every use.
+         one variable file, and the display face is one static Jost 300 file
+         (2026-10-12; Bodoni Moda is retired and no longer preloaded).
 
-         Bodoni Moda is preloaded because it carries the Display role, and on
-         all twenty non-home pages the display-role <h1> is above the fold.
-         (Home is the one page where it is not: its <h1> is visually hidden and
-         the wordmark is Archivo. Preloading is still the right trade for one
-         page against twenty.) -->
+         Jost is preloaded because it carries the Display role, and on every
+         non-home page the display-role <h1> is above the fold. -->
     <link
       rel="preload"
       href="/fonts/archivo-variable.woff2"
@@ -98,7 +100,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
     />
     <link
       rel="preload"
-      href="/fonts/bodoni-moda-variable.woff2"
+      href="/fonts/jost-latin-300.woff2"
       as="font"
       type="font/woff2"
       crossorigin
