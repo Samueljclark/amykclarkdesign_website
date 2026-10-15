@@ -173,17 +173,29 @@ const { images } = Astro.props;
      the very bottom edge and was still fully transparent at 55% height, so
      the band the wordmark actually occupies carried almost no scrim at all.
      The top ramp is unchanged — it exists for the nav, which has not moved. */
+  /* ---- Retuned 2026-10-15 (contrast pass) for the archway photograph,
+     which is far paler at the top than the frames this was first tuned for.
+     Measured against the real photo pixels from 390 to 2560 wide, the white
+     nav over the arch ceiling was 2.2-4.2:1 (needs 4.5) and the white
+     wordmark 2.5-3.0:1 at 390, 1024, and 1280 (needs 3).
+       - Top band: sized to the nav in px, not as a share of the hero, so it
+         is strong behind the nav text at every height and has fully cleared
+         by 5.75rem, where the ink opening line sits on the pale ceiling.
+       - Bottom ramp: starts at 40% (was 44%) and reaches 70% (was 64%) by
+         62%, where the wordmark sits on the bright doorway.
+     Still the one gradient on the page. ---- */
   .hero__scrim {
     position: absolute;
     inset: 0;
     z-index: 2;
     background: linear-gradient(
       to bottom,
-      color-mix(in srgb, var(--ground) 35%, transparent) 0%,
-      transparent 22%,
-      transparent 44%,
-      color-mix(in srgb, var(--ground) 64%, transparent) 68%,
-      color-mix(in srgb, var(--ground) 84%, transparent) 100%
+      color-mix(in srgb, var(--ground) 80%, transparent) 0,
+      color-mix(in srgb, var(--ground) 40%, transparent) var(--nav-height),
+      transparent 5.75rem,
+      transparent 40%,
+      color-mix(in srgb, var(--ground) 70%, transparent) 62%,
+      color-mix(in srgb, var(--ground) 86%, transparent) 100%
     );
   }
 
@@ -277,6 +289,8 @@ const { images } = Astro.props;
        chandelier rather than running down beside its chain. Was 32ch. */
     max-width: none;
     text-align: center;
+    position: relative;
+    isolation: isolate;
     font-size: var(--text-label);
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
@@ -286,6 +300,22 @@ const { images } = Astro.props;
   }
   .hero__opening-line.is-visible {
     opacity: 1;
+  }
+  /* A soft glow of the page colour behind the line (2026-10-15). On wide
+     screens the chandelier's chain hangs from the arch apex straight through
+     the centre of the line; this fades the chain behind the letters without
+     a visible box. Over the plain ceiling it is close to invisible. */
+  .hero__opening-line::before {
+    content: '';
+    position: absolute;
+    inset: -0.9em -2.5em;
+    z-index: -1;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--paper) 88%, transparent),
+      color-mix(in srgb, var(--paper) 55%, transparent) 60%,
+      transparent
+    );
   }
 
   .hero__bottom {
