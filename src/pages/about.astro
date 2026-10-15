@@ -86,12 +86,16 @@ const { seoTitle, description, eyebrow, title, lede, lead, mission } = entry.dat
    (COPY-PASS-V1, Task 6), so the same photograph does not appear twice.
    Alt text is built from name + role, the pattern the cards always used.
 
-   REAGHAN: her card renders only when BOTH are true at build time:
-     1. src/assets/images/team/reaghan-connelly.jpg exists, and
-     2. REAGHAN_CONNELLY_TITLE is not an empty string.
-   `import.meta.glob` resolves to an empty object when the file is missing,
-   so until the photo lands the row is Sam and Kelsee only: no empty slot, no
-   placeholder, no broken image, and no build error. */
+   REAGHAN (changed 2026-10-15, Sam): her card now shows whenever
+   REAGHAN_CONNELLY_TITLE is set, photo or not. Until her headshot exists the
+   photo slot is a plain neutral square with her initials, the same 1:1 size
+   as the other two portraits.
+   TO ADD HER PHOTO: save it as
+       src/assets/images/team/reaghan-connelly.jpg
+   and rebuild. That one file path is the whole swap: `import.meta.glob`
+   below picks it up and the placeholder disappears on its own. (Before
+   2026-10-15 her whole card was hidden until that file existed, which is why
+   she did not appear on the live site.) */
 const REAGHAN_CONNELLY_TITLE = 'Social Media';
 
 const STUDIO_PEOPLE = [
@@ -128,7 +132,8 @@ const STUDIO_PHOTOS: Record<string, { image?: ImageMetadata; blurDataURL?: strin
 };
 
 type StudioPerson = {
-  image: ImageMetadata;
+  image?: ImageMetadata;
+  initials: string;
   alt: string;
   name: string;
   role: string;
@@ -138,14 +143,15 @@ type StudioPerson = {
 };
 const studio: StudioPerson[] = STUDIO_PEOPLE.flatMap((person) => {
   const photo = STUDIO_PHOTOS[person.name];
-  if (!photo?.image || !person.role.trim()) return [];
+  if (!person.role.trim()) return [];
   return [
     {
       ...person,
       ...photo,
-      image: photo.image,
+      image: photo?.image,
       role: person.role.trim(),
       alt: `${person.name}, ${person.role.trim().toLowerCase()}`,
+      initials: person.name.split(' ').map((part) => part[0]).join(''),
     },
   ];
 });
@@ -230,13 +236,19 @@ const studio: StudioPerson[] = STUDIO_PEOPLE.flatMap((person) => {
       {studio.map((person) => (
         <li class="studio__item">
           <figure class:list={['studio__figure', { 'studio__figure--lift': person.lift }]}>
-            <RevealImage
-              src={person.image}
-              alt={person.alt}
-              blurDataURL={person.blurDataURL}
-              aspectRatio="1/1"
-              sizes="(min-width: 768px) 30vw, 90vw"
-            />
+            {person.image ? (
+              <RevealImage
+                src={person.image}
+                alt={person.alt}
+                blurDataURL={person.blurDataURL}
+                aspectRatio="1/1"
+                sizes="(min-width: 768px) 30vw, 90vw"
+              />
+            ) : (
+              <div class="placeholder-slot studio__placeholder" aria-hidden="true">
+                <span class="type-label">{person.initials}</span>
+              </div>
+            )}
             <figcaption class="studio__caption">
               <p class="type-label studio__name">{person.name}</p>
               <p class="type-label studio__role">{person.role}</p>
@@ -329,6 +341,18 @@ const studio: StudioPerson[] = STUDIO_PEOPLE.flatMap((person) => {
 
   .studio__caption {
     margin-top: 1rem;
+  }
+
+  /* Photo slot for a Studio member whose headshot has not arrived yet
+     (2026-10-15). The site's existing .placeholder-slot tint, without its
+     dashed border so it reads as a deliberate empty frame rather than a
+     broken image, at the portraits' own 1:1 shape. */
+  .studio__placeholder {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border: 0;
+    /* Ink, not the slot's default --ink-muted, which fails AA on this tint. */
+    color: var(--ink);
   }
 
   /* Credential line: the role line's own style (Label role, --ink-muted),
