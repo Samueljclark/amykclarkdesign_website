@@ -476,3 +476,9 @@ which is outside what this pass can do and is flagged in
    detail, though it is upholstery fabric, not a drapery swatch, seam, or
    hem, so a drapery-specific detail shot is still worth having. Also in
    ASK-AMY.md's photography section.
+
+## 2026-10-15: Reaghan Connelly's Studio headshot
+
+| Slot | File | Source | Size | Notes |
+|---|---|---|---|---|
+| `/about` Studio, Reaghan Connelly | `team/reaghan-connelly.jpg` (src/assets and public) | `source-photos/ReaghanHeadshot.JPG` (3120x2080, EXIF orientation 6) | 1400x1400 | Supplied by Sam. Rotated upright with Pillow (not sips), then cropped square to head and shoulders from the full-length frame so it matches Sam's and Kelsee's framing. Replaces the initials placeholder. |
